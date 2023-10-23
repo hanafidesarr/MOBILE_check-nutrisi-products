@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Barcode, BarcodeScanner } from '@capacitor-mlkit/barcode-scanning';
 import { AlertController } from '@ionic/angular';
+
 @Component({
-  selector: 'app-tabs',
-  templateUrl: 'tabs.page.html',
-  styleUrls: ['tabs.page.scss']
+  selector: 'app-tab5',
+  templateUrl: './tab5.page.html',
+  styleUrls: ['./tab5.page.scss'],
 })
-export class TabsPage {
-  
+export class Tab5Page implements OnInit {
+
   isSupported = false;
   barcodes: Barcode[] = [];
 
@@ -37,19 +38,11 @@ export class TabsPage {
     console.log(BarcodeScanner.isGoogleBarcodeScannerModuleAvailable())
     
     if (!granted) {
-      this.presentAlert('Permision', 'belum di izinkan');
+      this.presentAlert();
       return;
     }
     const { barcodes } = await BarcodeScanner.scan();
     this.barcodes.push(...barcodes);
-
-    if (barcodes.length > 0) {
-      barcodes.forEach((barcode) => {
-        this.presentAlert('Scanned Barcode', barcode.rawValue);
-      });
-    } else {
-      this.presentAlert('No Barcode Scanned', 'No barcodes were detected.');
-    }
 
   }
 
@@ -58,10 +51,10 @@ export class TabsPage {
     return camera === 'granted' || camera === 'limited';
   }
 
-  async presentAlert(header: any, message: any): Promise<void> {
+  async presentAlert(): Promise<void> {
     const alert = await this.alertController.create({
-      header: header,
-      message: message,
+      header: 'Permission denied',
+      message: 'Please grant camera permission to use the barcode scanner.',
       buttons: ['OK'],
     });
     await alert.present();
@@ -69,4 +62,3 @@ export class TabsPage {
 
   
 }
-

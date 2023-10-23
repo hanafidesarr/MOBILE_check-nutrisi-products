@@ -1,0 +1,27 @@
+
+
+.sc-ion-searchbar-md-h {
+  --border-radius: 10px !important;
+}
+
+.title-products {
+  padding-bottom: 4px;
+  margin-bottom: 6px;
+  margin-top: 6px;
+  border-bottom: solid #7c7c7c1c;
+}
+
+
+ion-icon.small-icon {
+  font-size: 12px; /* Adjust the size as needed */
+}
+
+.custom-thumbnail {
+  width: 100px !important;
+  height: 100px !important;
+  object-fit: cover;
+}
+
+// ion-card {
+//   box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+// }
