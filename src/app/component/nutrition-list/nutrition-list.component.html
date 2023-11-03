@@ -1,0 +1,16 @@
+<tr *ngIf="nutriment" style="height: 1.3rem !important;     border-bottom: solid; line-height: 1.5rem;">
+
+  <th *ngIf="!tab_cell" colspan="2" class="ion-text-left" >
+    <b>{{name}}</b>
+  </th>
+  <th *ngIf="tab_cell == 1" colspan="2" class="ion-text-left" style="padding-left: 1rem; font-weight: normal;">
+    {{name}}
+  </th>
+  <th *ngIf="tab_cell == 2" colspan="2" class="ion-text-left" style="padding-left: 2rem; font-weight: normal;">
+    {{name}}
+  </th>
+
+  <td class="ion-text-right">
+    <b>{{nutriment}} {{unit}}</b>
+  </td>
+</tr>

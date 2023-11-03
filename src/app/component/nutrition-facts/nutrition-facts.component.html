@@ -1,0 +1,390 @@
+<!-- {{product?.code}} -->
+
+
+<section *ngIf="product?.serving_size" class="performance-facts">
+  <header class="performance-facts__header">
+    <h1 class="performance-facts__title">Nutrition Facts</h1>
+    <h6 class="ion-no-margin-top">
+      
+      <!-- <div *ngIf="!sajian">As sold per serving ({{product?.serving_size}})</div>
+      <div *ngIf="sajian">As sold per {{sajian}}</div> -->
+      <ion-item>
+        <ion-select label="Takaran Saji Per" value="serving"  (ionChange)="calculateNutrition($event)">
+          <ion-select-option value="serving">Kemasan</ion-select-option>
+          <ion-select-option value="100g">100g</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </h6>
+  </header>
+  
+  <table class="performance-facts__table">
+    <!-- <thead>
+      <tr>
+        <th colspan="3" class="small-info">
+          As sold per serving ({{product?.serving_size}})
+        </th>
+      </tr>
+    </thead> -->
+    <tbody>
+      <tr *ngIf="energy_kj || energy_kcal">
+        <th colspan="2">
+          <b>Energy</b>
+        </th>
+        <td>
+          <b>{{energy_kj}} kj ( {{energy_kcal}}  {{product.nutriments["energy-kcal_unit"]}} )</b>
+        </td>
+      </tr>
+      
+      <!-- <tr *ngIf="product?.nutriments['energy-from-fat_serving']">
+        <th colspan="2">
+          <b>Energy from Fat</b>
+        </th>
+        <td>
+          <b>{{product.nutriments["energy-from-fat_serving"]}} kj ( {{product.nutriments["energy-from-fat-kcal_serving"] || "-"}}  {{product.nutriments["energy-kcal_unit"]}} )</b>
+        </td>
+      </tr> -->
+
+
+      <app-nutrition-list name="Total fat" [nutriment]="fat" [unit]="product?.nutriments['fat_unit']" >
+      </app-nutrition-list>
+      <app-nutrition-list name="Saturated Fat" [nutriment]="saturated_fat" [unit]="product?.nutriments['saturated-fat_unit']" [tab_cell]="1">
+      </app-nutrition-list>
+      <app-nutrition-list name="Butyric acid" [nutriment]="butyric_acid" [unit]="product?.nutriments['butyric-acid_unit']" [tab_cell]="2">
+      </app-nutrition-list>
+      <app-nutrition-list name="Caproic acid" [nutriment]="caproic_acid" [unit]="product?.nutriments['caproic-acid_unit']" [tab_cell]="2">
+      </app-nutrition-list>
+      <app-nutrition-list name="Caprylic acid" [nutriment]="caprylic_acid" [unit]="product?.nutriments['caprylic_acid_unit']" [tab_cell]="2">
+      </app-nutrition-list>
+      <app-nutrition-list name="Caproic acid" [nutriment]="caproic_acid" [unit]="product?.nutriments['capric-acid_unit']" [tab_cell]="2">
+      </app-nutrition-list>
+      <app-nutrition-list name="Lauric acid" [nutriment]="lauric_acid" [unit]="product?.nutriments['lauric-acid_unit']" [tab_cell]="2">
+      </app-nutrition-list>
+      <app-nutrition-list name="Myristic acid" [nutriment]="myristic_acid" [unit]="product?.nutriments['myristic-acid_unit']" [tab_cell]="2">
+      </app-nutrition-list>
+      <app-nutrition-list name="Palmitic acid" [nutriment]="palmitic_acid" [unit]="product?.nutriments['palmitic-acid_unit']" [tab_cell]="2">
+      </app-nutrition-list>
+      <app-nutrition-list name="Stearic acid" [nutriment]="stearic_acid" [unit]="product?.nutriments['stearic-acid_unit']" [tab_cell]="2">
+      </app-nutrition-list>
+      <app-nutrition-list name="Arachidic acid" [nutriment]="arachidic_acid" [unit]="product?.nutriments['arachidic-acid_unit']" [tab_cell]="2">
+      </app-nutrition-list>
+      <app-nutrition-list name="Behenic acid" [nutriment]="behenic_acid" [unit]="product?.nutriments['behenic-acid_unit']" [tab_cell]="2">
+      </app-nutrition-list>
+      <app-nutrition-list name="Lignoceric acid" [nutriment]="lignoceric_acid" [unit]="product?.nutriments['lignoceric-acid_unit']" [tab_cell]="2">
+      </app-nutrition-list>
+      <app-nutrition-list name="Cerotic acid" [nutriment]="cerotic_acid" [unit]="product?.nutriments['cerotic-acid_unit']" [tab_cell]="2">
+      </app-nutrition-list>
+      <app-nutrition-list name="Montanic acid" [nutriment]="montanic_acid" [unit]="product?.nutriments['montanic-acid_unit']" [tab_cell]="2">
+      </app-nutrition-list>
+      <app-nutrition-list name="Melissic acid" [nutriment]="melissic_acid" [unit]="product?.nutriments['melissic-acid_unit']" [tab_cell]="2">
+      </app-nutrition-list>
+      <app-nutrition-list name="Monounsaturated fat" [nutriment]="monounsaturated_fat" [unit]="product?.nutriments['monounsaturated-fat_unit']" [tab_cell]="2">
+      </app-nutrition-list>
+      <app-nutrition-list name="Polyunsaturated fat" [nutriment]="polyunsaturated_fat" [unit]="product?.nutriments['polyunsaturated-fat_unit']" [tab_cell]="2">
+      </app-nutrition-list>
+
+
+      <app-nutrition-list name="Omega 3 fat" [nutriment]="omega_3_fat" [unit]="product?.nutriments['omega-3-fat_unit']" [tab_cell]="1">
+      </app-nutrition-list>
+      <app-nutrition-list name="Alpha linolenic acid" [nutriment]="alpha_linolenic_acid" [unit]="product?.nutriments['alpha-linolenic-acid_unit']" [tab_cell]="2">
+      </app-nutrition-list>
+      <app-nutrition-list name="Eicosapentaenoic acid" [nutriment]="eicosapentaenoic_acid" [unit]="product?.nutriments['eicosapentaenoic-acid_unit']" [tab_cell]="2">
+      </app-nutrition-list>
+      <app-nutrition-list name="Docosahexaenoic acid" [nutriment]="docosahexaenoic_acid" [unit]="product?.nutriments['docosahexaenoic-acid_unit']" [tab_cell]="2">
+      </app-nutrition-list>
+  
+      <app-nutrition-list name="Omega 6 fat" [nutriment]="omega_6_fat" [unit]="product?.nutriments['omega-6-fat_unit']" [tab_cell]="1">
+      </app-nutrition-list>
+      <app-nutrition-list name="Linoleic acid" [nutriment]="linoleic_acid" [unit]="product?.nutriments['linoleic-acid_unit']" [tab_cell]="2">
+      </app-nutrition-list>
+      <app-nutrition-list name="Arachidonic acid" [nutriment]="arachidonic_acid" [unit]="product?.nutriments['arachidonic-acid_unit']" [tab_cell]="2">
+      </app-nutrition-list>
+      <app-nutrition-list name="Gamma linolenic acid" [nutriment]="gamma_linolenic_acid" [unit]="product?.nutriments['gamma-linolenic-acid_unit']" [tab_cell]="2">
+      </app-nutrition-list>
+      <app-nutrition-list name="Dihomo gamma linolenic acid" [nutriment]="dihomo_gamma_linolenic_acid" [unit]="product?.nutriments['dihomo-gamma-linolenic-acid_unit']" [tab_cell]="2">
+      </app-nutrition-list>
+
+      <app-nutrition-list name="Omega 9 fat" [nutriment]="omega_9_fat" [unit]="product?.nutriments['omega-9-fat_unit']" [tab_cell]="1"></app-nutrition-list>
+      <app-nutrition-list name="Oleic acid" [nutriment]="oleic_acid" [unit]="product?.nutriments['oleic-acid_unit']" [tab_cell]="1"></app-nutrition-list>
+      <app-nutrition-list name="Elaidic acid" [nutriment]="elaidic_acid" [unit]="product?.nutriments['elaidic-acid_unit']" [tab_cell]="1"></app-nutrition-list>
+      <app-nutrition-list name="Gondoic acid" [nutriment]="gondoic_acid" [unit]="product?.nutriments['gondoic-acid_unit']" [tab_cell]="1"></app-nutrition-list>
+      <app-nutrition-list name="Mead acid" [nutriment]="mead_acid" [unit]="product?.nutriments['mead-acid_unit']" [tab_cell]="1"></app-nutrition-list>
+      <app-nutrition-list name="Erucic acid" [nutriment]="erucic_acid" [unit]="product?.nutriments['erucic-acid_unit']" [tab_cell]="1"></app-nutrition-list>
+      <app-nutrition-list name="Nervonic acid" [nutriment]="nervonic_acid" [unit]="product?.nutriments['nervonic-acid_unit']" [tab_cell]="1"></app-nutrition-list>
+  
+      <app-nutrition-list name="Trans fat" [nutriment]="trans_fat" [unit]="product?.nutriments['trans-fat_unit']"  [tab_cell]="1">
+      </app-nutrition-list>
+      <app-nutrition-list name="Cholesterol" [nutriment]="cholesterol" [unit]="product?.nutriments['cholesterol_unit']"  [tab_cell]="1">
+      </app-nutrition-list>
+      
+      <app-nutrition-list name="Carbohydrates" [nutriment]="carbohydrates" [unit]="product?.nutriments['carbohydrates_unit']">
+      </app-nutrition-list>
+      <app-nutrition-list name="Sugars" [nutriment]="sugars" [unit]="product?.nutriments['sugars_unit']" [tab_cell]="1">
+      </app-nutrition-list>
+      <app-nutrition-list name="Sucrose" [nutriment]="sucrose" [unit]="product?.nutriments['sucrose_unit']" [tab_cell]="1">
+      </app-nutrition-list>
+      <app-nutrition-list name="Glucose" [nutriment]="glucose" [unit]="product?.nutriments['glucose_unit']" [tab_cell]="1">
+      </app-nutrition-list>
+      <app-nutrition-list name="Fructose" [nutriment]="fructose" [unit]="product?.nutriments['fructose_unit']" [tab_cell]="1">
+      </app-nutrition-list>
+      <app-nutrition-list name="Lactose" [nutriment]="lactose" [unit]="product?.nutriments['lactose_unit']" [tab_cell]="1">
+      </app-nutrition-list>
+      <app-nutrition-list name="Maltose" [nutriment]="maltose" [unit]="product?.nutriments['maltose_unit']" [tab_cell]="1">
+      </app-nutrition-list>
+      <app-nutrition-list name="Maltodextrins" [nutriment]="maltodextrins" [unit]="product?.nutriments['maltodextrins_unit']" [tab_cell]="1">
+      </app-nutrition-list>
+      <app-nutrition-list name="Starch" [nutriment]="starch" [unit]="product?.nutriments['starch_unit']" [tab_cell]="1">
+      </app-nutrition-list>
+      <app-nutrition-list name="Polyols" [nutriment]="polyols" [unit]="product?.nutriments['polyols_unit']" [tab_cell]="1">
+      </app-nutrition-list>
+    
+      <app-nutrition-list name="Fiber" [nutriment]="fiber" [unit]="product?.nutriments['fiber_unit']" >
+      </app-nutrition-list>
+      <app-nutrition-list name="Proteins" [nutriment]="proteins" [unit]="product?.nutriments['proteins_unit']" >
+      </app-nutrition-list>
+      <app-nutrition-list name="Casein" [nutriment]="casein" [unit]="product?.nutriments['casein_unit']" [tab_cell]="1">
+      </app-nutrition-list>
+      <app-nutrition-list name="Serum_proteins" [nutriment]="serum_proteins" [unit]="product?.nutriments['serum-proteins_unit']" [tab_cell]="1">
+      </app-nutrition-list>
+      <app-nutrition-list name="Nucleotides" [nutriment]="nucleotides" [unit]="product?.nutriments['nucleotides_unit']" [tab_cell]="1">
+      </app-nutrition-list>
+      <app-nutrition-list name="Salt" [nutriment]="salt" [unit]="product?.nutriments['salt_unit']" >
+      </app-nutrition-list>
+      <app-nutrition-list name="Sodium" [nutriment]="sodium" [unit]="product?.nutriments['sodium_unit']" [tab_cell]="1">
+      </app-nutrition-list>
+      <app-nutrition-list name="Alcohol" [nutriment]="alcohol" [unit]="product?.nutriments['alcohol_unit']">
+      </app-nutrition-list>
+
+      <!-- <tr *ngIf="product?.nutriments['fat_serving']">
+        <th colspan="2">
+          <b>Total Fat</b>
+        </th>
+        <td>
+          <b>{{product?.nutriments['fat_serving']}} {{product?.nutriments['fat_unit']}}</b>
+        </td>
+      </tr> -->
+
+      
+      <!-- <tr *ngIf="product?.nutriments['saturated-fat_serving']">
+        <td class="blank-cell">
+        </td>
+        <th>
+          Saturated Fat
+        </th>
+        <td>
+          <b>{{product?.nutriments['saturated-fat_serving']}} {{product?.nutriments['saturated-fat_unit']}}</b>
+        </td>
+      </tr> -->
+
+      <!-- arachidic-acid -->
+      <!-- <tr *ngIf="product?.nutriments['arachidic-acid_serving']">
+        <td class="blank-cell">
+        </td>
+        <th>
+          Arachidic acid
+        </th>
+        <td>
+          <b>{{product?.nutriments['arachidic-acid_serving']}} {{product?.nutriments['arachidic-acid_unit']}}</b>
+        </td>
+      </tr> -->
+
+      
+      <!-- <tr *ngIf="product?.nutriments['monounsaturated-fat_serving']">
+        <td class="blank-cell">
+        </td>
+        <th>
+          Monounsaturated Fat
+        </th>
+        <td>
+          <b>{{product?.nutriments['monounsaturated-fat_serving']}} {{product?.nutriments['monounsaturated-fat_unit']}}</b>
+        </td>
+      </tr> -->
+
+      <!-- <tr *ngIf="product?.nutriments['polyunsaturated-fat_serving']">
+        <td class="blank-cell">
+        </td>
+        <th>
+          Polyunsaturated Fat
+        </th>
+        <td>
+          <b>{{product?.nutriments['polyunsaturated-fat_serving']}} {{product?.nutriments['polyunsaturated-fat_unit']}}</b>
+        </td>
+      </tr>
+      <tr *ngIf="product?.nutriments['polyunsaturated-fat_serving']">
+        <td class="blank-cell">
+        </td>
+        <th>
+          Polyunsaturated Fat
+        </th>
+        <td>
+          <b>{{product?.nutriments['polyunsaturated-fat_serving']}} {{product?.nutriments['polyunsaturated-fat_unit']}}</b>
+        </td>
+      </tr> -->
+      
+      <!-- <tr>
+        <th colspan="2">
+          <b>Cholesterol</b>
+          55mg
+        </th>
+        <td>
+          <b>18%</b>
+        </td>
+      </tr>
+      <tr>
+        <th colspan="2">
+          <b>Sodium</b>
+          40mg
+        </th>
+        <td>
+          <b>2%</b>
+        </td>
+      </tr>
+      <tr>
+        <th colspan="2">
+          <b>Total Carbohydrate</b>
+          17g
+        </th>
+        <td>
+          <b>6%</b>
+        </td>
+      </tr>
+      <tr>
+        <td class="blank-cell">
+        </td>
+        <th>
+          Dietary Fiber
+          1g
+        </th>
+        <td>
+          <b>4%</b>
+        </td>
+      </tr>
+      <tr>
+        <td class="blank-cell">
+        </td>
+        <th>
+          Sugars
+          14g
+        </th>
+        <td>
+        </td>
+      </tr>
+      <tr class="thick-end">
+        <th colspan="2">
+          <b>Protein</b>
+          3g
+        </th>
+        <td>
+        </td>
+      </tr> -->
+    </tbody>
+  </table>
+
+  <div style="border-bottom: 5px solid #b6b6b6; padding: 0.5rem;margin: 0.5rem 0;"></div>
+  <table class="performance-facts__table--grid">
+    <tbody>
+      <app-nutrition-list [nutriment]="vitamin_a" name="vitamin a" [unit]="product?.nutriments['vitamin-a_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="beta_carotene" name="beta carotene" [unit]="product?.nutriments['beta-carotene_unit']" [tab_cell]="1"></app-nutrition-list>
+      <app-nutrition-list [nutriment]="vitamin_d" name="vitamin d" [unit]="product?.nutriments['vitamin-d_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="vitamin_e" name="vitamin e" [unit]="product?.nutriments['vitamin-e_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="vitamin_k" name="vitamin k" [unit]="product?.nutriments['vitamin-k_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="vitamin_c" name="vitamin c" [unit]="product?.nutriments['vitamin-c_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="vitamin_b1" name="vitamin b1" [unit]="product?.nutriments['vitamin-b1_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="vitamin_b1" name="vitamin b1" [unit]="product?.nutriments['vitamin-b2_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="vitamin_pp" name="vitamin pp" [unit]="product?.nutriments['vitamin-pp_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="vitamin_b6" name="vitamin b6" [unit]="product?.nutriments['vitamin-b6_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="vitamin_b9" name="vitamin b9" [unit]="product?.nutriments['vitamin-b9_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="vitamin_b12" name="vitamin b12" [unit]="product?.nutriments['vitamin-b12_unit']" ></app-nutrition-list>
+      
+      <app-nutrition-list [nutriment]="biotin" name="biotin" [unit]="product?.nutriments['biotin_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="pantothenic_acid" name="pantothenic_acid" [unit]="product?.nutriments['pantothenic-acid_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="silica" name="silica" [unit]="product?.nutriments['silica_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="bicarbonate" name="bicarbonate" [unit]="product?.nutriments['bicarbonate_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="potassium" name="potassium" [unit]="product?.nutriments['potassium_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="chloride" name="chloride" [unit]="product?.nutriments['chloride_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="calcium" name="calcium" [unit]="product?.nutriments['calcium_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="phosphorus" name="phosphorus" [unit]="product?.nutriments['phosphorus_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="iron" name="iron" [unit]="product?.nutriments['iron_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="magnesium" name="magnesium" [unit]="product?.nutriments['magnesium_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="zinc" name="zinc" [unit]="product?.nutriments['zinc_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="copper" name="copper" [unit]="product?.nutriments['copper_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="manganese" name="manganese" [unit]="product?.nutriments['manganese_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="fluoride" name="fluoride" [unit]="product?.nutriments['fluoride_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="chromium" name="chromium" [unit]="product?.nutriments['chromium_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="molybdenum" name="molybdenum" [unit]="product?.nutriments['molybdenum_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="iodine" name="iodine" [unit]="product?.nutriments['iodine_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="caffeine" name="caffeine" [unit]="product?.nutriments['caffeine_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="taurine" name="taurine" [unit]="product?.nutriments['taurine_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="ph" name="ph" [unit]="product?.nutriments['ph_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="fruits_vegetables_nuts" name="fruits_vegetables_nuts" [unit]="product?.nutriments['fruits-vegetables-nuts_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="collagen_meat_protein_ratio" name="collagen meat protein ratio" [unit]="product?.nutriments['collagen-meat-protein-ratio_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="cocoa" name="cocoa" [unit]="product?.nutriments['cocoa_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="chlorophyl" name="chlorophyl" [unit]="product?.nutriments['chlorophyl_unit']" ></app-nutrition-list>
+      <app-nutrition-list [nutriment]="carbon_footprint" name="carbon footprint" [unit]="product?.nutriments['carbon_footprint_unit']" ></app-nutrition-list>
+    </tbody>
+  </table>
+
+  <p class="small-info">* Percent Daily Values are based on a 2,000 calorie diet. Your daily values may be higher or lower depending on your calorie needs:</p>
+
+  <table class="performance-facts__table--small small-info">
+    <!-- <thead>
+      <tr>
+        <td colspan="2"></td>
+        <th>Calories:</th>
+        <th>2,000</th>
+        <th>2,500</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th colspan="2">Total Fat</th>
+        <td>Less than</td>
+        <td>65g</td>
+        <td>80g</td>
+      </tr>
+      <tr>
+        <td class="blank-cell"></td>
+        <th>Saturated Fat</th>
+        <td>Less than</td>
+        <td>20g</td>
+        <td>25g</td>
+      </tr>
+      <tr>
+        <th colspan="2">Cholesterol</th>
+        <td>Less than</td>
+        <td>300mg</td>
+        <td>300 mg</td>
+      </tr>
+      <tr>
+        <th colspan="2">Sodium</th>
+        <td>Less than</td>
+        <td>2,400mg</td>
+        <td>2,400mg</td>
+      </tr>
+      <tr>
+        <th colspan="3">Total Carbohydrate</th>
+        <td>300g</td>
+        <td>375g</td>
+      </tr>
+      <tr>
+        <td class="blank-cell"></td>
+        <th colspan="2">Dietary Fiber</th>
+        <td>25g</td>
+        <td>30g</td>
+      </tr>
+    </tbody> -->
+  </table>
+
+  <p class="small-info">
+    Calories per gram:
+  </p>
+  <p class="small-info text-center">
+    Fat 9
+    &bull;
+    Carbohydrate 4
+    &bull;
+    Protein 4
+  </p>
+
+</section>
+
+

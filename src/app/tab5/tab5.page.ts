@@ -41,7 +41,9 @@ export class Tab5Page implements OnInit {
       this.presentAlert();
       return;
     }
+
     const { barcodes } = await BarcodeScanner.scan();
+    
     this.barcodes.push(...barcodes);
 
   }

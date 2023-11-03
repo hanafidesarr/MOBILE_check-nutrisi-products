@@ -25,3 +25,10 @@ ion-icon.small-icon {
 // ion-card {
 //   box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
 // }
+
+.ion-color-danger {
+  color: --ion-color-danger
+}
+ion-row {
+  align-items: center !important;
+}

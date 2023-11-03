@@ -1,0 +1,274 @@
+<ion-header [translucent]="true">
+	<ion-toolbar>
+		<ion-title>get_product</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+	
+	<ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+	<ion-header collapse="condense">
+		<ion-toolbar>
+			<ion-title size="large">get_product</ion-title>
+		</ion-toolbar>
+	</ion-header>
+
+	<!-- item.image_front_thumb_url || item.image_thumb_url || item.image_ingredients_thumb_url || item.image_nutrition_thumb_url || item.image_packaging_thumb_url -->
+	<ion-card class="ion-text-center">
+		<swiper-container  [slidesPerView]="1" [loop]="true"  [autoplay]="true" pagination="true">
+			<swiper-slide *ngFor="let image of product_images">
+				<img *ngIf="image.value" [src]="image.value" />
+			</swiper-slide>
+		</swiper-container>
+		<ion-card-header>
+			<ion-card-title class=""><h1>{{product?.product_name}} - {{product?.brands}} - {{product?.quantity}}</h1></ion-card-title>
+			<!-- <ion-card-subtitle>{{product_countries}}</ion-card-subtitle> -->
+			<ion-card-subtitle>{{product?.categories}}</ion-card-subtitle>
+		</ion-card-header>
+	
+		<ion-card-content>
+			<!-- <ion-grid>
+				<ion-row>
+					<ion-col size="6" class="ion-text-start">
+						Common name : {{product?.generic_name || '-'}}
+					</ion-col>
+					<ion-col size="6" class="ion-text-end">
+						Brand : {{product?.brands || '-'}}
+
+					</ion-col>
+				</ion-row>
+			</ion-grid> -->
+
+			<ion-grid class="ion-text-start">
+				<!-- <ion-row>Common name : {{product?.generic_name_en || '-'}}</ion-row> -->
+				<!-- <ion-row>Quantity : {{product?.quantity || '-'}}</ion-row>
+				<ion-row>Brand : {{product?.brands || '-'}}</ion-row> -->
+				<!-- <ion-row>Manufacturing places : {{product?.manufacturing_places || '-'}}</ion-row> -->
+				<!-- <ion-row>Stores : {{product?.stores || '-'}}</ion-row> -->
+				<!-- <ion-row>Countries where sold : {{product?.countries || '-'}}</ion-row> -->
+			</ion-grid>
+			<!-- <p class="ion-text-center">
+				{{product?.ingredients_text}}
+			</p> -->
+		</ion-card-content>
+	</ion-card>
+
+
+
+	<h2 class="ion-text-center">Health</h2>
+
+	<ion-card class="ion-text-center" color="primary">
+		<ion-grid>
+			<ion-row>
+				<ion-col size="3" class="ion-text-start">
+					<img [src]="nutri_score">
+				</ion-col>
+				<ion-col size="7" class="ion-text-end">
+					<ion-text color="light"><h5 class="ion-no-margin">Nutri-Score {{(product?.nutriscore_grade | uppercase) || "- ? -"}}</h5></ion-text>
+					<div  class="ion-text-end">
+						<ion-text *ngIf=" product?.nutriscore_grade == 'a'" > Very good nutritional quality </ion-text>
+						<ion-text *ngIf=" product?.nutriscore_grade == 'b'" > Good nutritional quality </ion-text>
+						<ion-text *ngIf=" product?.nutriscore_grade == 'c'" > Average nutritional quality </ion-text>
+						<ion-text *ngIf=" product?.nutriscore_grade == 'd'" color="warning" > Poor nutritional quality </ion-text>
+						<ion-text *ngIf=" product?.nutriscore_grade == 'e'" color="danger"> Bad nutritional quality </ion-text>
+						<ion-text *ngIf=" product?.nutriscore_grade == ''" > score is unknown </ion-text>
+					</div>
+					<!-- <ion-button expand="block" color="light" ><small>Check</small></ion-button> -->
+				</ion-col>
+				<ion-col size="2" class="ion-text-end">
+					<ion-icon name="arrow-forward-circle-outline" aria-hidden="true" size="large"></ion-icon>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+
+	</ion-card>
+	
+
+	<ion-card *ngIf="existObject(product?.nutrient_levels)">
+		<ion-accordion-group>
+			<ion-accordion *ngIf="product?.nutrient_levels['fat']" value="fat">
+				<ion-item slot="header" color="light">
+					<ion-icon *ngIf="product?.nutrient_levels['fat'] === 'low'" name="radio-button-on-outline" color="primary" class="ion-margin-end"></ion-icon>
+					<ion-icon *ngIf="product?.nutrient_levels['fat'] === 'moderate'" name="radio-button-on-outline" color="warning" class="ion-margin-end"></ion-icon>
+					<ion-icon *ngIf="product?.nutrient_levels['fat'] === 'high'" name="radio-button-on-outline" color="danger" class="ion-margin-end"></ion-icon>
+					<ion-label> Fat in {{product?.nutrient_levels['fat']}} quantity ({{product?.nutriments['fat']}}%)</ion-label>
+				</ion-item>
+				<div class="ion-padding" slot="content">
+					<div style="margin-bottom:0.5rem">
+						<div>
+							<div class="panel_text">
+								<b>What you need to know</b>
+								<ul>
+									<li>A high consumption of fat, especially saturated fats, can raise cholesterol, which increases the risk of heart diseases.</li>
+								</ul>
+								<b>Recommendation</b>:
+								<b>Limit the consumption of fat and saturated fat</b>
+								<ul>
+									<li>Choose products with lower fat and saturated fat content.</li>
+								</ul>
+								Source: <a href="https://www.nhs.uk/live-well/eat-well/food-types/different-fats-nutrition/">(NHS) UK - Fat: the facts</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</ion-accordion>
+			<ion-accordion *ngIf="product?.nutrient_levels['saturated-fat']" value="saturated-fat">
+				<ion-item slot="header" color="light">
+					<ion-icon *ngIf="product?.nutrient_levels['saturated-fat'] === 'low'" name="radio-button-on-outline" color="primary" class="ion-margin-end"></ion-icon>
+					<ion-icon *ngIf="product?.nutrient_levels['saturated-fat'] === 'moderate'" name="radio-button-on-outline" color="warning" class="ion-margin-end"></ion-icon>
+					<ion-icon *ngIf="product?.nutrient_levels['saturated-fat'] === 'high'" name="radio-button-on-outline" color="danger" class="ion-margin-end"></ion-icon>
+					<ion-label>Saturated fat in {{product?.nutrient_levels['saturated-fat']}} quantity ({{product?.nutriments['saturated-fat']}}%) </ion-label>
+				</ion-item>
+				<div class="ion-padding" slot="content">
+					<div style="margin-bottom:0.5rem">
+						<div>
+							<div class="panel_text">
+								<b>What you need to know</b>
+								<ul>
+									<li>A high consumption of fat, especially saturated fats, can raise cholesterol, which increases the risk of heart diseases.</li>
+								</ul>
+								<b>Recommendation</b>:
+								<b>Limit the consumption of fat and saturated fat</b>
+								<ul>
+									<li>Choose products with lower fat and saturated fat content.</li>
+								</ul>
+								Source: <a href="https://www.nhs.uk/live-well/eat-well/food-types/different-fats-nutrition/">(NHS) UK - Fat: the facts</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</ion-accordion>
+			<ion-accordion *ngIf="product?.nutrient_levels['sugars']" value="sugars">
+				<ion-item slot="header" color="light">
+					<ion-icon *ngIf="product?.nutrient_levels['sugars'] === 'low'" name="radio-button-on-outline" color="primary" class="ion-margin-end"></ion-icon>
+					<ion-icon *ngIf="product?.nutrient_levels['sugars'] === 'moderate'" name="radio-button-on-outline" color="warning" class="ion-margin-end"></ion-icon>
+					<ion-icon *ngIf="product?.nutrient_levels['sugars'] === 'high'" name="radio-button-on-outline" color="danger" class="ion-margin-end"></ion-icon>
+					<ion-label>Sugars in {{product?.nutrient_levels['sugars']}} quantity ({{product?.nutriments['sugars']}}%) </ion-label>
+				</ion-item>
+				<div class="ion-padding" slot="content">
+					<div style="margin-bottom:0.5rem">
+						<div>
+								<div class="panel_text">
+										<b>What you need to know</b>
+										<ul>
+												<li>A high consumption of sugar can cause weight gain and tooth decay. It also augments the risk of type 2 diabetes and cardio-vascular diseases.</li>
+										</ul>
+
+										<b>Recommendation</b>:
+										<b>Limit the consumption of sugar and sugary drinks</b>
+										<ul>
+												<li>Sugary drinks (such as sodas, fruit beverages, and fruit juices and nectars) should be limited as much as possible (no more than 1 glass a day).</li>
+												<li>Choose products with lower sugar content and reduce the consumption of products with added sugars.</li>
+										</ul>
+										Source: <a href="https://www.nhs.uk/live-well/eat-well/food-types/how-does-sugar-in-our-diet-affect-our-health/">(NHS) UK - Sugars: the facts</a>
+								</div>
+						</div>
+				</div>
+				
+				</div>
+			</ion-accordion>
+			<ion-accordion *ngIf="product?.nutrient_levels['salt']" value="salt">
+				<ion-item slot="header" color="light">
+					<ion-icon *ngIf="product?.nutrient_levels['salt'] === 'low'" name="radio-button-on-outline" color="primary" class="ion-margin-end"></ion-icon>
+					<ion-icon *ngIf="product?.nutrient_levels['salt'] === 'moderate'" name="radio-button-on-outline" color="warning" class="ion-margin-end"></ion-icon>
+					<ion-icon *ngIf="product?.nutrient_levels['salt'] === 'high'" name="radio-button-on-outline" color="danger" class="ion-margin-end"></ion-icon>
+					<ion-label>Salt in {{product?.nutrient_levels['salt']}} quantity ({{product?.nutriments['salt']}}%) </ion-label>
+				</ion-item>
+				<div class="ion-padding" slot="content">
+					
+					<div style="margin-bottom:0.5rem">
+						<b>What you need to know</b>
+						<ul>
+								<li>A high consumption of salt (or sodium) can cause raised blood pressure, which can increase the risk of heart disease and stroke.</li>
+								<li>Many people who have high blood pressure do not know it, as there are often no symptoms.</li>
+								<li>Most people consume too much salt (on average 9 to 12 grams per day), around twice the recommended maximum level of intake.</li>
+						</ul>
+
+						<b>Recommendation</b>:
+						<b>Limit the consumption of salt and salted food</b>
+						<ul>
+								<li>Reduce the quantity of salt used when cooking, and don't salt again at the table.</li>
+								<li>Limit the consumption of salty snacks and choose products with lower salt content.</li>
+						</ul>
+
+						Source: <a href="https://www.who.int/news-room/fact-sheets/detail/salt-reduction">(WHO) - Fact sheet - Salt reduction</a>
+						<br>
+						Source: <a href="https://www.nhs.uk/live-well/eat-well/food-types/salt-nutrition/">(NHS) - Salt: the facts</a>
+					</div>
+				</div>
+			</ion-accordion>
+		</ion-accordion-group>
+	</ion-card>
+
+	<ion-card>
+		<ion-accordion-group>
+			<ion-accordion value="first">
+				<ion-item slot="header" color="light">
+					<ion-label>Bahan</ion-label>
+				</ion-item>
+				<div class="ion-padding" slot="content"><ion-text>{{product?.ingredients_text_with_allergens_id}}</ion-text></div>
+			</ion-accordion>
+		</ion-accordion-group>
+	</ion-card>
+	
+	<ion-card>
+		<app-nutrition-facts [product]="product">
+		</app-nutrition-facts>
+	</ion-card>
+	
+	
+	<ion-card class="ion-text-center" color="primary">
+		<ion-grid>
+			<ion-row>
+				<ion-col size="3" class="ion-text-start">
+					<img [src]="eco_score">
+				</ion-col>
+				<ion-col size="7">
+					<ion-text class="ion-text-end" color="light"><h5 class="ion-no-margin">ECO-Score {{product?.ecoscore_grade == "unknown" ?  "- ? -" : product?.ecoscore_grade | uppercase }}</h5></ion-text>
+					<div  class="ion-text-end">
+						<ion-text *ngIf=" product?.ecoscore_grade == 'a'" > Very good ECO SCORE quality </ion-text>
+						<ion-text *ngIf=" product?.ecoscore_grade == 'b'" > Low environmental impact </ion-text>
+						<ion-text *ngIf=" product?.ecoscore_grade == 'c'" > Moderate environmental impact </ion-text>
+						<ion-text *ngIf=" product?.ecoscore_grade == 'd'" color="warning" > High environmental impact</ion-text>
+						<ion-text *ngIf=" product?.ecoscore_grade == 'e'" color="danger" > Very High environmental impact </ion-text>
+						<ion-text *ngIf=" product?.ecoscore_grade == 'unknown'" > unknown </ion-text>
+					</div>
+
+					<!-- <ion-button expand="block" color="light" ><small>Check</small></ion-button> -->
+				</ion-col>
+				<ion-col size="2" class="ion-text-end">
+					<ion-icon name="arrow-forward-circle-outline" aria-hidden="true" size="large"></ion-icon>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-card>
+
+	<ion-card class="ion-text-center" color="primary">
+		<ion-grid>
+			<ion-row>
+				<ion-col size="3" class="ion-text-center">
+					<img [src]="nova_group" width="30%">
+				</ion-col>
+				<ion-col size="7" class="ion-text-end">
+					<ion-text color="light"><h5>NOVA {{product?.nova_group ||  "- ? -" }}</h5></ion-text>
+				</ion-col>
+				<ion-col size="2" class="ion-text-end">
+					<ion-icon name="arrow-forward-circle-outline" aria-hidden="true" size="large"></ion-icon>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-card>
+	
+
+
+	
+	<div class="ion-margin ion-padding ion-text-center">
+		<small><ion-text>source from <a>openfoodfacts</a></ion-text></small>
+	</div>
+</ion-content>
+
+
+

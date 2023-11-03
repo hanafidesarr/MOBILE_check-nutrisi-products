@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 
 import { Barcode, BarcodeScanner } from '@capacitor-mlkit/barcode-scanning';
 import { AlertController } from '@ionic/angular';
+
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
@@ -12,7 +15,7 @@ export class TabsPage {
   isSupported = false;
   barcodes: Barcode[] = [];
 
-  constructor(private alertController: AlertController) {}
+  constructor(private alertController: AlertController, private _router: Router) {}
 
   ngOnInit() {
 
@@ -43,9 +46,16 @@ export class TabsPage {
     const { barcodes } = await BarcodeScanner.scan();
     this.barcodes.push(...barcodes);
 
+    
     if (barcodes.length > 0) {
-      barcodes.forEach((barcode) => {
-        this.presentAlert('Scanned Barcode', barcode.rawValue);
+      barcodes.forEach((barcodeId) => {
+        // this.presentAlert('Scanned Barcode', barcode.rawValue);
+        
+        if (barcodeId.format == "QR_CODE") {
+          this.presentAlert('Barocode salah', 'pastikan anda scan barcode, bukan QRCode');
+          return;
+        }
+        this._router.navigate(['/get-product', barcodeId.rawValue]);
       });
     } else {
       this.presentAlert('No Barcode Scanned', 'No barcodes were detected.');

@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: 'tab5',
     loadChildren: () => import('./tab5/tab5.module').then( m => m.Tab5PageModule)
+  },
+  {
+    path: 'get-product/:barcodeId',
+    loadChildren: () => import('./product/get-product/get-product.module').then(m => m.GetProductPageModule)
   }
 ];
 @NgModule({
