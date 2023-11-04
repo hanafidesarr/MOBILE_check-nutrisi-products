@@ -18,7 +18,7 @@
 
 	<!-- item.image_front_thumb_url || item.image_thumb_url || item.image_ingredients_thumb_url || item.image_nutrition_thumb_url || item.image_packaging_thumb_url -->
 	<ion-card class="ion-text-center">
-		<swiper-container  [slidesPerView]="1" [loop]="true"  [autoplay]="true" pagination="true">
+		<swiper-container  [slidesPerView]="1" [loop]="false"  [autoplay]="false" pagination="true">
 			<swiper-slide *ngFor="let image of product_images">
 				<img *ngIf="image.value" [src]="image.value" />
 			</swiper-slide>

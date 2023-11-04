@@ -1,9 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { IonSearchbar } from '@ionic/angular';
+
 import { ProductService } from './../api/product.service';
 import { LoadingService } from './../api/loading.service';
+
+import { Platform } from '@ionic/angular';
+
+import { App } from '@capacitor/app';
 
 @Component({
   selector: 'app-tab1',
@@ -11,36 +17,38 @@ import { LoadingService } from './../api/loading.service';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-  show_debounce:any = false;
+
+  // FITUR HISTORY SEARCH 
+  @ViewChild('searchBar') searchBar: IonSearchbar;
+  search_histories:any;
+  public list_search_histories: string[] = [];
+  public results_search_histories = [...this.list_search_histories];
+  
+
+  // SEARCH
+  public loaded = true;
+  public product_present = true;
+  loaderResult = new Array(4); // Create an array with four elements
 
   ionicForm: FormGroup;
-  result: any;
-  products: any;
+  result_products: any;
+  list_products: any;
   next_page: any;
   page_size = 5;
   showTextMain = true;
-  
-  public loaded = true;
-  public product_present = true;
+  backButtonListener: any;
 
-  itemsArray = new Array(4); // Create an array with four elements
-  
-  public data = [
-    'Grade A extra Large eggs',
-    'avena',
-    'Susu ultra',
-    'Geneva',
-    'Hong Kong',
-    'Istanbul',
-    'London',
-    'Madrid',
-    'New York',
-    'Panama City',
-  ];
-  public results = [...this.data];
+  constructor(private platform: Platform, public formBuilder: FormBuilder,  private _router: Router, private _productService: ProductService, public _loadingService: LoadingService) {
+    this.saveHistoryToLocStorage()
+  }
 
-  constructor(public formBuilder: FormBuilder,  private _router: Router, private _productService: ProductService, public _loadingService: LoadingService) {}
   ngOnInit() {
+    this.triggerBack();
+    this.initForm();
+
+  }
+
+  initForm() {
     this.ionicForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
       country: ['indonesia', [Validators.required, Validators.minLength(2)]],
@@ -55,44 +63,59 @@ export class Tab1Page {
     });
   }
 
-  get errorControl() {
-    return this.ionicForm.controls;
+  triggerBack(){
+    this.backButtonListener = App.addListener('backButton', () => {
+      if (this.searchBar) {
+        this.searchBar.getInputElement().then((inputElement) => {
+          inputElement.blur();
+        });
+        this.search_histories = false;
+      }
+    });
   }
 
-  addToInput(data:any) {
-    this.show_debounce = false;
-    this.loaded = false;
-    this.product_present = true;
-    this.ionicForm.patchValue({
-      name: data
-    });
-    this.show_debounce = false
-    this.accessAPI()
+  addToInput(keyword:any) {
+    this.accessAPI(keyword, this.ionicForm.value.country)
   }
 
   submitForm = () => {
-    this.show_debounce = false;
-    this.loaded = false;
-    this.product_present = true;
-    this.accessAPI()
+    this.accessAPI(this.ionicForm.value.name, this.ionicForm.value.country)
   };
 
-  accessAPI() {
-    this._productService.products({brands_tags: this.ionicForm.value, page: 1, page_size: this.page_size}).subscribe(
+  accessAPI(keyword: any, country: any) {
+
+    this.loaded = false;
+    
+    this.product_present = true;
+    this.search_histories = false;
+    this._productService.products({keyword: keyword, country: country, page: 1, page_size: this.page_size}).subscribe(
       (response) => {
+        // add history keyword
+        this.ionicForm.patchValue({
+          name: keyword
+        });
 
         this.loaded = true;
         this.showTextMain = false;
 
-        this.result =  response
+        this.result_products =  response
         
-        this.products = this.result.products
-        this.product_present = this.products.length > 0
+        this.list_products = this.result_products.products
+        this.product_present = this.list_products.length > 0
         
         // this._loadingService.hideLoader();
         this.next_page = 2
         
-        console.log(this.result); // You can process the data as needed
+        console.log(this.result_products); // You can process the data as needed
+
+        if (this.list_search_histories.includes(this.ionicForm.value.name)) {
+          console.log('Object already exists in the history.');
+          return; // Don't save duplicate objects
+        }
+      
+        // If the object is not a duplicate, add it to the array
+        this.list_search_histories.push(this.ionicForm.value.name);
+        localStorage.setItem('history', JSON.stringify(this.list_search_histories)); // Update local storage
 
       },
       (error) => {
@@ -105,14 +128,14 @@ export class Tab1Page {
   }
 
   loadMore = (event: any) => {
-    if(this.result.count > this.page_size && this.products.length < this.result.count) {
+    if(this.result_products.count > this.page_size && this.list_products.length < this.result_products.count) {
       // Simulate loading more data, or you can make another API call to fetch additional data
 
-      this._productService.products({ brands_tags: this.ionicForm.value, page: this.next_page, page_size: this.page_size })
+      this._productService.products({ keyword: this.ionicForm.value.name, country: this.ionicForm.value.country, page: this.next_page, page_size: this.page_size })
         .subscribe(
           (response) => {
             // Append the new data to the results array
-            this.products = this.products.concat(response.products);
+            this.list_products = this.list_products.concat(response.products);
             this.next_page = this.next_page + 1
             event.target.complete();
           },
@@ -132,36 +155,46 @@ export class Tab1Page {
   }
 
   reloadPage() {
-
     location.reload();
   }
 
-
-
+  saveHistoryToLocStorage() {
+    const storedData = localStorage.getItem('history');
+    if (storedData) {
+      this.list_search_histories = JSON.parse(storedData);
+    }
+    this.results_search_histories = this.list_search_histories
+  }
+  
   handleInput(event: any) {
     const query = event.target.value.toLowerCase();
-    this.results = this.data.filter((d) => d.toLowerCase().indexOf(query) > -1);
-
+    this.results_search_histories = this.list_search_histories.filter((d) => d.toLowerCase().indexOf(query) > -1);
   }
+
   onSearchFocus() {
-    this.show_debounce = true
+    this.search_histories = true
   }
-  onSearchBlur() {
-    // console.log(this.ionicForm.value.name)
-    // if (this.ionicForm.value.name == '') {
 
-    //   this.show_debounce = true
-    // }
-    // this.show_debounce = false
+  deleteObjectHistory(index: number) {
+    if (index >= 0 && index < this.list_search_histories.length) {
+      this.list_search_histories.splice(index, 1); // Remove the item from the array
 
-    // Delay the execution of hiding the search results
+      this.results_search_histories.splice(index, 1); // Remove the item from the array
+      localStorage.setItem('history', JSON.stringify(this.list_search_histories)); // Update local storage
+    }
+  }
+
+  ionViewWillLeave() {
+    if (this.backButtonListener) {
+      this.backButtonListener.remove();
+    }
+  }
+
+  handleRefresh(event:any) {
     setTimeout(() => {
-      if (this.ionicForm.value.name == '') {
-        this.show_debounce = false;
-      }
-    }, 200); // You can adjust the delay time as needed
+      // Any calls to load data go here
+      event.target.complete();
+    }, 2000);
   }
-
-
-
 }
+

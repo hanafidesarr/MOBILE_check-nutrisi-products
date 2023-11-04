@@ -12,12 +12,12 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   products(data: any): Observable<MyResponse> {
-    let x = data.brands_tags.name
-    let country = data.brands_tags.country
+    let keyword = data.keyword
+    let country = data.country
     let page = data.page
     let page_size = data.page_size
     let params = new HttpParams();
-    params = params.set('search_terms', x);
+    params = params.set('search_terms', keyword);
     params = params.set('page', page);
     params = params.set('countries_tags', country);
     params = params.set('page_size', page_size);
