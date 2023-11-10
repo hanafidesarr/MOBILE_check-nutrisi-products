@@ -15,18 +15,19 @@
   </ion-header> -->
   <swiper-container [slidesPerView]="1" [loop]="true"  [autoplay]="true" pagination="true">
     <swiper-slide>
-      <img src="https://ionicframework.com/docs/demos/api/slides/slide-1.png" />
-
-    </swiper-slide>
-    <swiper-slide>
-      <img src="https://ionicframework.com/docs/demos/api/slides/slide-1.png" />
-
-    </swiper-slide>
-    <swiper-slide>
-      <img src="https://ionicframework.com/docs/demos/api/slides/slide-1.png" />
-
+      <ion-img
+        src="https://ionicframework.com/docs/demos/api/slides/slide-1.png"
+        (ionError)="handleImageError()"
+        (ionImgDidLoad)="handleImageDidLoad()"
+      ></ion-img>
+      <!-- *ngIf="loading" -->
+      <div *ngIf="loading" class="image-loader">
+        <ion-spinner color="primary" name="crescent"></ion-spinner>
+      </div>
+      
     </swiper-slide>
   </swiper-container>
+
 
   <h1 class="ion-text-center">Yu, mulai hidup sehat!</h1>
 

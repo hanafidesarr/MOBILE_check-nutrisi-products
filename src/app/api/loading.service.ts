@@ -12,9 +12,8 @@ export class LoadingService {
 
   async showLoader() {
     this.loading = await this._loadingCtrl.create({
-      spinner: null,
-      cssClass: "asasasas",
-      message: "<img src='assets/food-loading.gif' />"
+      spinner: 'crescent',
+      // message: "<img src='assets/food-loading.gif' style='width:50px !important;height:50px !important'/>"
     });
     await this.loading.present();
   }

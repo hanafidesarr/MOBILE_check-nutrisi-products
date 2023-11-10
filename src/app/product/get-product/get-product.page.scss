@@ -7,5 +7,12 @@ ion-row {
 }
 
 
+.swiper-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-
+.swiper-slide {
+  width: 80%; /* Set the width of your slides as needed */
+}

@@ -1,9 +1,3 @@
-<ion-header [translucent]="true">
-	<ion-toolbar>
-		<ion-title>get_product</ion-title>
-	</ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
 	
 	<ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
@@ -15,99 +9,139 @@
 			<ion-title size="large">get_product</ion-title>
 		</ion-toolbar>
 	</ion-header>
+	<swiper-container  [slidesPerView]="product_images.length > 1 ? '1.2' : '1'" [loop]="false"  [autoplay]="false" pagination="true">
+		<swiper-slide *ngFor="let image of product_images">
+			<img *ngIf="image.value" (click)="openModal(image.value)" [src]="image.value || 'https://world.openfoodfacts.org/images/icons/dist/packaging.svg'" style="width: 100%;object-fit: cover;height: 30vh; padding: 0 5px;"/>
+		</swiper-slide>
+	</swiper-container>
 
-	<!-- item.image_front_thumb_url || item.image_thumb_url || item.image_ingredients_thumb_url || item.image_nutrition_thumb_url || item.image_packaging_thumb_url -->
-	<ion-card class="ion-text-center">
-		<swiper-container  [slidesPerView]="1" [loop]="false"  [autoplay]="false" pagination="true">
-			<swiper-slide *ngFor="let image of product_images">
-				<img *ngIf="image.value" [src]="image.value" />
-			</swiper-slide>
-		</swiper-container>
-		<ion-card-header>
-			<ion-card-title class=""><h1>{{product?.product_name}} - {{product?.brands}} - {{product?.quantity}}</h1></ion-card-title>
-			<!-- <ion-card-subtitle>{{product_countries}}</ion-card-subtitle> -->
-			<ion-card-subtitle>{{product?.categories}}</ion-card-subtitle>
-		</ion-card-header>
-	
-		<ion-card-content>
-			<!-- <ion-grid>
+	<div >
+		<ion-card color="primary" class="ion-no-margin ion-no-padding" style="box-shadow: none;">
+			<ion-grid class="ion-margin-top ion-margin-bottom">
 				<ion-row>
-					<ion-col size="6" class="ion-text-start">
-						Common name : {{product?.generic_name || '-'}}
+					<ion-col size="10">
+						<h2 class="ion-no-margin">{{product?.product_name}}</h2>
+						{{product?.brands}} - {{product?.quantity}}
 					</ion-col>
-					<ion-col size="6" class="ion-text-end">
-						Brand : {{product?.brands || '-'}}
-
+					<ion-col size="2" justify="end" class="ion-text-center" style="align-items: center !important;">
+						<ion-icon name="heart" size="large" justify="end"></ion-icon>
 					</ion-col>
 				</ion-row>
-			</ion-grid> -->
-
-			<ion-grid class="ion-text-start">
-				<!-- <ion-row>Common name : {{product?.generic_name_en || '-'}}</ion-row> -->
-				<!-- <ion-row>Quantity : {{product?.quantity || '-'}}</ion-row>
-				<ion-row>Brand : {{product?.brands || '-'}}</ion-row> -->
-				<!-- <ion-row>Manufacturing places : {{product?.manufacturing_places || '-'}}</ion-row> -->
-				<!-- <ion-row>Stores : {{product?.stores || '-'}}</ion-row> -->
-				<!-- <ion-row>Countries where sold : {{product?.countries || '-'}}</ion-row> -->
 			</ion-grid>
-			<!-- <p class="ion-text-center">
-				{{product?.ingredients_text}}
-			</p> -->
-		</ion-card-content>
-	</ion-card>
 
+		</ion-card>
+	</div>
 
+	<ion-item>
+		<h4 class="ion-text-left">Kesehatan produk</h4>
+	</ion-item>
 
-	<h2 class="ion-text-center">Health</h2>
-
-	<ion-card class="ion-text-center" color="primary">
+	<ion-card class="ion-text-center" color="light">
 		<ion-grid>
 			<ion-row>
 				<ion-col size="3" class="ion-text-start">
 					<img [src]="nutri_score">
 				</ion-col>
 				<ion-col size="7" class="ion-text-end">
-					<ion-text color="light"><h5 class="ion-no-margin">Nutri-Score {{(product?.nutriscore_grade | uppercase) || "- ? -"}}</h5></ion-text>
+					<ion-text color="dark"><h5 class="ion-no-margin">Nutri-Score {{(product?.nutriscore_grade | uppercase) || "- ? -"}}</h5></ion-text>
 					<div  class="ion-text-end">
-						<ion-text *ngIf=" product?.nutriscore_grade == 'a'" > Very good nutritional quality </ion-text>
-						<ion-text *ngIf=" product?.nutriscore_grade == 'b'" > Good nutritional quality </ion-text>
-						<ion-text *ngIf=" product?.nutriscore_grade == 'c'" > Average nutritional quality </ion-text>
-						<ion-text *ngIf=" product?.nutriscore_grade == 'd'" color="warning" > Poor nutritional quality </ion-text>
-						<ion-text *ngIf=" product?.nutriscore_grade == 'e'" color="danger"> Bad nutritional quality </ion-text>
-						<ion-text *ngIf=" product?.nutriscore_grade == ''" > score is unknown </ion-text>
+						<ion-text *ngIf=" product?.nutriscore_grade == 'a'" > <ion-badge style="background-color: #108843;">Kualitas nutrisi sangat baik</ion-badge> </ion-text>
+						<ion-text *ngIf=" product?.nutriscore_grade == 'b'" > <ion-badge color="primary">Kualitas nutrisi baik</ion-badge></ion-text>
+						<ion-text *ngIf=" product?.nutriscore_grade == 'c'" > <ion-badge style="background-color: #fccc06;">Kualitas nutrisi cukup</ion-badge></ion-text>
+						<ion-text *ngIf=" product?.nutriscore_grade == 'd'" > <ion-badge style="background-color: #f49836;">Kualitas nutrisi kurang</ion-badge></ion-text>
+						<ion-text *ngIf=" product?.nutriscore_grade == 'e'" > <ion-badge color="danger">Kualitas nutrisi tidak baik</ion-badge></ion-text>
+						<ion-text *ngIf=" product?.nutriscore_grade == null" > <ion-badge color="dark">Tidak di ketahui</ion-badge> </ion-text>
 					</div>
 					<!-- <ion-button expand="block" color="light" ><small>Check</small></ion-button> -->
 				</ion-col>
 				<ion-col size="2" class="ion-text-end">
-					<ion-icon name="arrow-forward-circle-outline" aria-hidden="true" size="large"></ion-icon>
+					<ion-icon *ngIf="product?.nutriscore_data" name="information-circle-outline" aria-hidden="true" size="large" color="primary"  (click)="setOpen(true)"></ion-icon>
+					<ion-modal [isOpen]="isModalOpen">
+						<ng-template>
+							<ion-header>
+								<ion-toolbar>
+									<ion-title>Kalkulasi nilai nutrisi</ion-title>
+									<ion-buttons slot="end">
+										<ion-button (click)="setOpen(false)"><ion-icon name="close" size="large"></ion-icon></ion-button>
+									</ion-buttons>
+								</ion-toolbar> 
+							</ion-header>
+							<ion-content class="ion-padding">
+								<!-- <p>
+									Warning: the amount of fruits, vegetables and nuts is not specified on the label, it was estimated from the list of ingredients: 0
+									This product is not considered a beverage for the calculation of the Nutri-Score.
+								</p> -->
+
+								<b>Positif point : {{product?.nutriscore_data?.positive_points}}</b>
+								<ion-list>
+									<ion-item>
+										<ion-icon name="checkmark-circle-outline" size="small" color="primary" style="margin-right: 5px;"></ion-icon>
+										<ion-label class="ion-text-wrap">Protein : {{product?.nutriscore_data?.proteins_points}} / 5 (nilai: {{product?.nutriscore_data?.proteins}}, pembulatan nilai: {{product?.nutriscore_data?.proteins_value}})</ion-label>
+									</ion-item>
+									<ion-item>
+										<ion-icon name="checkmark-circle-outline" size="small" color="primary" style="margin-right: 5px;"></ion-icon>
+										<ion-label class="ion-text-wrap">Serat : {{product?.nutriscore_data?.fiber_points}} / 5 (nilai: {{product?.nutriscore_data?.fiber}}, pembulatan nilai: {{product?.nutriscore_data?.fiber_value}})</ion-label>
+									</ion-item>
+									<ion-item>
+										<ion-icon name="checkmark-circle-outline" size="small" color="primary" style="margin-right: 5px;"></ion-icon>
+										<ion-label class="ion-text-wrap">Buah-buahan, sayuran, kacang-kacangan, dan colza/walnut/minyak zaitun : {{product?.nutriscore_data?.fruits_vegetables_nuts_colza_walnut_olive_oils_points}} / 5 (nilai: {{product?.nutriscore_data?.fruits_vegetables_nuts_colza_walnut_olive_oils}}, pembulatan nilai: {{product?.nutriscore_data?.fruits_vegetables_nuts_colza_walnut_olive_oils_value}})</ion-label>
+									</ion-item>
+								</ion-list>
+
+								<div class="ion-margin-top"><b>Negatif point : {{product?.nutriscore_data?.negative_points}}</b></div>
+								<ion-list>
+									<ion-item>
+										<ion-icon name="ban-outline" size="small" color="danger" style="margin-right: 5px;"></ion-icon>
+										<ion-label class="ion-text-wrap">Energy/Kalori : {{product?.nutriscore_data?.energy_points}} / 10 (nilai: {{product?.nutriscore_data?.energy}}, pembulatan nilai: {{product?.nutriscore_data?.energy_value}})</ion-label>
+									</ion-item>
+									<ion-item>
+										<ion-icon name="ban-outline" size="small" color="danger" style="margin-right: 5px;"></ion-icon>
+										<ion-label class="ion-text-wrap">Gula : {{product?.nutriscore_data?.sugars_points}} / 10 (nilai: {{product?.nutriscore_data?.sugars}}, pembulatan nilai: {{product?.nutriscore_data?.sugars_value}})</ion-label>
+									</ion-item>
+									<ion-item>
+										<ion-icon name="ban-outline" size="small" color="danger" style="margin-right: 5px;"></ion-icon>
+										<ion-label class="ion-text-wrap">Lemak jenuh : {{product?.nutriscore_data?.saturated_fat_points}} / 10 (nilai: {{product?.nutriscore_data?.saturated_fat}}, pembulatan nilai: {{product?.nutriscore_data?.saturated_fat_value}})</ion-label>
+									</ion-item>
+									<ion-item>
+										<ion-icon name="ban-outline" size="small" color="danger" style="margin-right: 5px;"></ion-icon>
+										<ion-label class="ion-text-wrap">Sodium : {{product?.nutriscore_data?.sodium_points}} / 10 (nilai: {{product?.nutriscore_data?.sodium}}, pembulatan nilai: {{product?.nutriscore_data?.sodium_value}})</ion-label>
+									</ion-item>
+								</ion-list>
+<!-- 
+								<div class="ion-margin-top"><b>Score Nutrisi : {{product?.nutriscore_data?.score}}</b></div>
+								<b>Peringkat nutrisi : {{product?.nutriscore_data?.grade}} </b> -->
+							</ion-content>
+						</ng-template>
+					</ion-modal>
 				</ion-col>
 			</ion-row>
 		</ion-grid>
 
 	</ion-card>
 	
-
+	
 	<ion-card *ngIf="existObject(product?.nutrient_levels)">
+		
 		<ion-accordion-group>
 			<ion-accordion *ngIf="product?.nutrient_levels['fat']" value="fat">
 				<ion-item slot="header" color="light">
 					<ion-icon *ngIf="product?.nutrient_levels['fat'] === 'low'" name="radio-button-on-outline" color="primary" class="ion-margin-end"></ion-icon>
 					<ion-icon *ngIf="product?.nutrient_levels['fat'] === 'moderate'" name="radio-button-on-outline" color="warning" class="ion-margin-end"></ion-icon>
 					<ion-icon *ngIf="product?.nutrient_levels['fat'] === 'high'" name="radio-button-on-outline" color="danger" class="ion-margin-end"></ion-icon>
-					<ion-label> Fat in {{product?.nutrient_levels['fat']}} quantity ({{product?.nutriments['fat']}}%)</ion-label>
+					<ion-label> Lemak dalam jumlah <b>{{nutrient_levels_fat}}</b> ({{product?.nutriments['fat']}}%)</ion-label>
 				</ion-item>
 				<div class="ion-padding" slot="content">
 					<div style="margin-bottom:0.5rem">
 						<div>
 							<div class="panel_text">
-								<b>What you need to know</b>
+								<b>Apa yang perlu anda ketahui?</b>
 								<ul>
-									<li>A high consumption of fat, especially saturated fats, can raise cholesterol, which increases the risk of heart diseases.</li>
+									<li>Konsumsi lemak yang tinggi, terutama lemak jenuh, dapat meningkatkan kolesterol, yang meningkatkan risiko penyakit jantung.</li>
 								</ul>
-								<b>Recommendation</b>:
-								<b>Limit the consumption of fat and saturated fat</b>
+								<b>Rekomendasi</b>:
+								<b>Batasi konsumsi lemak dan lemak jenuh.</b>
 								<ul>
-									<li>Choose products with lower fat and saturated fat content.</li>
+									<li>Pilih produk dengan kandungan lemak dan lemak jenuh yang lebih rendah.</li>
 								</ul>
 								Source: <a href="https://www.nhs.uk/live-well/eat-well/food-types/different-fats-nutrition/">(NHS) UK - Fat: the facts</a>
 							</div>
@@ -120,20 +154,20 @@
 					<ion-icon *ngIf="product?.nutrient_levels['saturated-fat'] === 'low'" name="radio-button-on-outline" color="primary" class="ion-margin-end"></ion-icon>
 					<ion-icon *ngIf="product?.nutrient_levels['saturated-fat'] === 'moderate'" name="radio-button-on-outline" color="warning" class="ion-margin-end"></ion-icon>
 					<ion-icon *ngIf="product?.nutrient_levels['saturated-fat'] === 'high'" name="radio-button-on-outline" color="danger" class="ion-margin-end"></ion-icon>
-					<ion-label>Saturated fat in {{product?.nutrient_levels['saturated-fat']}} quantity ({{product?.nutriments['saturated-fat']}}%) </ion-label>
+					<ion-label>Lemak jenuh <b>{{nutrient_levels_saturated_fat}}</b> ({{product?.nutriments['saturated-fat']}}%) </ion-label>
 				</ion-item>
 				<div class="ion-padding" slot="content">
 					<div style="margin-bottom:0.5rem">
 						<div>
 							<div class="panel_text">
-								<b>What you need to know</b>
+								<b>Apa yang perlu anda ketahui?</b>
 								<ul>
-									<li>A high consumption of fat, especially saturated fats, can raise cholesterol, which increases the risk of heart diseases.</li>
+									<li>Konsumsi lemak yang tinggi, terutama lemak jenuh, dapat meningkatkan kolesterol, yang meningkatkan risiko penyakit jantung.</li>
 								</ul>
-								<b>Recommendation</b>:
-								<b>Limit the consumption of fat and saturated fat</b>
+								<b>Rekomendasi</b>:
+								<b>Batasi konsumsi lemak dan lemak jenuh.</b>
 								<ul>
-									<li>Choose products with lower fat and saturated fat content.</li>
+									<li>Pilih produk dengan kandungan lemak dan lemak jenuh yang lebih rendah.</li>
 								</ul>
 								Source: <a href="https://www.nhs.uk/live-well/eat-well/food-types/different-fats-nutrition/">(NHS) UK - Fat: the facts</a>
 							</div>
@@ -146,22 +180,22 @@
 					<ion-icon *ngIf="product?.nutrient_levels['sugars'] === 'low'" name="radio-button-on-outline" color="primary" class="ion-margin-end"></ion-icon>
 					<ion-icon *ngIf="product?.nutrient_levels['sugars'] === 'moderate'" name="radio-button-on-outline" color="warning" class="ion-margin-end"></ion-icon>
 					<ion-icon *ngIf="product?.nutrient_levels['sugars'] === 'high'" name="radio-button-on-outline" color="danger" class="ion-margin-end"></ion-icon>
-					<ion-label>Sugars in {{product?.nutrient_levels['sugars']}} quantity ({{product?.nutriments['sugars']}}%) </ion-label>
+					<ion-label>Gula dalam jumlah <b>{{nutrient_levels_sugar}}</b> ({{product?.nutriments['sugars']}}%) </ion-label>
 				</ion-item>
 				<div class="ion-padding" slot="content">
 					<div style="margin-bottom:0.5rem">
 						<div>
 								<div class="panel_text">
-										<b>What you need to know</b>
+										<b>Apa yang perlu anda ketahui?</b>
 										<ul>
-												<li>A high consumption of sugar can cause weight gain and tooth decay. It also augments the risk of type 2 diabetes and cardio-vascular diseases.</li>
+												<li>Konsumsi gula yang tinggi dapat menyebabkan penambahan berat badan dan kerusakan gigi. Hal ini juga meningkatkan risiko diabetes tipe 2 dan penyakit kardiovaskular.</li>
 										</ul>
 
-										<b>Recommendation</b>:
-										<b>Limit the consumption of sugar and sugary drinks</b>
+										<b>Rekomendasi</b>:
+										<b>Batasi konsumsi gula dan minuman manis.</b>
 										<ul>
-												<li>Sugary drinks (such as sodas, fruit beverages, and fruit juices and nectars) should be limited as much as possible (no more than 1 glass a day).</li>
-												<li>Choose products with lower sugar content and reduce the consumption of products with added sugars.</li>
+												<li>Minuman manis (seperti minuman bersoda, minuman buah, dan jus buah) sebaiknya dibatasi sebanyak mungkin (tidak lebih dari 1 gelas sehari).</li>
+												<li>Pilih produk dengan kandungan gula yang lebih rendah dan kurangi konsumsi produk yang mengandung gula tambahan.</li>
 										</ul>
 										Source: <a href="https://www.nhs.uk/live-well/eat-well/food-types/how-does-sugar-in-our-diet-affect-our-health/">(NHS) UK - Sugars: the facts</a>
 								</div>
@@ -175,23 +209,23 @@
 					<ion-icon *ngIf="product?.nutrient_levels['salt'] === 'low'" name="radio-button-on-outline" color="primary" class="ion-margin-end"></ion-icon>
 					<ion-icon *ngIf="product?.nutrient_levels['salt'] === 'moderate'" name="radio-button-on-outline" color="warning" class="ion-margin-end"></ion-icon>
 					<ion-icon *ngIf="product?.nutrient_levels['salt'] === 'high'" name="radio-button-on-outline" color="danger" class="ion-margin-end"></ion-icon>
-					<ion-label>Salt in {{product?.nutrient_levels['salt']}} quantity ({{product?.nutriments['salt']}}%) </ion-label>
+					<ion-label>Garam dalam jumlah <b>{{nutrient_levels_salt}}</b> ({{product?.nutriments['salt']}}%) </ion-label>
 				</ion-item>
 				<div class="ion-padding" slot="content">
 					
 					<div style="margin-bottom:0.5rem">
-						<b>What you need to know</b>
+						<b>Apa yang perlu anda ketahui?</b>
 						<ul>
-								<li>A high consumption of salt (or sodium) can cause raised blood pressure, which can increase the risk of heart disease and stroke.</li>
-								<li>Many people who have high blood pressure do not know it, as there are often no symptoms.</li>
-								<li>Most people consume too much salt (on average 9 to 12 grams per day), around twice the recommended maximum level of intake.</li>
+								<li>Konsumsi garam (atau natrium) yang tinggi dapat menyebabkan peningkatan tekanan darah, yang dapat meningkatkan risiko penyakit jantung dan stroke.</li>
+								<li>Banyak orang yang memiliki tekanan darah tinggi tidak menyadarinya, karena seringkali tidak ada gejala yang muncul.</li>
+								<li>Sebagian besar orang mengonsumsi terlalu banyak garam (rata-rata 9 hingga 12 gram per hari), sekitar dua kali lipat batas maksimum yang direkomendasikan.</li>
 						</ul>
 
-						<b>Recommendation</b>:
-						<b>Limit the consumption of salt and salted food</b>
+						<b>Rekomendasi</b>:
+						<b>Batasi konsumsi garam dan makanan yang mengandung garam.</b>
 						<ul>
-								<li>Reduce the quantity of salt used when cooking, and don't salt again at the table.</li>
-								<li>Limit the consumption of salty snacks and choose products with lower salt content.</li>
+								<li>Kurangi jumlah garam yang digunakan saat memasak, dan jangan menambahkan garam lagi di meja makan.</li>
+								<li>Batasilah konsumsi makanan ringan asin dan pilih produk dengan kandungan garam yang lebih rendah.</li>
 						</ul>
 
 						Source: <a href="https://www.who.int/news-room/fact-sheets/detail/salt-reduction">(WHO) - Fact sheet - Salt reduction</a>
@@ -203,13 +237,13 @@
 		</ion-accordion-group>
 	</ion-card>
 
-	<ion-card>
-		<ion-accordion-group>
+	<ion-card *ngIf="product?.ingredients_text">
+		<ion-accordion-group [value]="['first']">
 			<ion-accordion value="first">
 				<ion-item slot="header" color="light">
-					<ion-label>Bahan</ion-label>
+					<ion-label>Bahan / Komposisi</ion-label>
 				</ion-item>
-				<div class="ion-padding" slot="content"><ion-text>{{product?.ingredients_text_with_allergens_id}}</ion-text></div>
+				<div class="ion-padding" slot="content"><ion-text>{{product?.ingredients_text}}</ion-text></div>
 			</ion-accordion>
 		</ion-accordion-group>
 	</ion-card>
@@ -219,44 +253,51 @@
 		</app-nutrition-facts>
 	</ion-card>
 	
-	
-	<ion-card class="ion-text-center" color="primary">
+	<ion-item>
+		<h4 class="ion-text-left">Dampak pada lingkungan</h4>
+	</ion-item>
+
+	<ion-card class="ion-text-center" color="light">
 		<ion-grid>
 			<ion-row>
 				<ion-col size="3" class="ion-text-start">
 					<img [src]="eco_score">
 				</ion-col>
 				<ion-col size="7">
-					<ion-text class="ion-text-end" color="light"><h5 class="ion-no-margin">ECO-Score {{product?.ecoscore_grade == "unknown" ?  "- ? -" : product?.ecoscore_grade | uppercase }}</h5></ion-text>
+					<ion-text class="ion-text-end" color="dark"><h5 class="ion-no-margin">ECO-Score {{product?.ecoscore_grade == "unknown" ?  "- ? -" : product?.ecoscore_grade | uppercase }}</h5></ion-text>
 					<div  class="ion-text-end">
-						<ion-text *ngIf=" product?.ecoscore_grade == 'a'" > Very good ECO SCORE quality </ion-text>
-						<ion-text *ngIf=" product?.ecoscore_grade == 'b'" > Low environmental impact </ion-text>
-						<ion-text *ngIf=" product?.ecoscore_grade == 'c'" > Moderate environmental impact </ion-text>
-						<ion-text *ngIf=" product?.ecoscore_grade == 'd'" color="warning" > High environmental impact</ion-text>
-						<ion-text *ngIf=" product?.ecoscore_grade == 'e'" color="danger" > Very High environmental impact </ion-text>
-						<ion-text *ngIf=" product?.ecoscore_grade == 'unknown'" > unknown </ion-text>
+						<ion-text *ngIf=" product?.ecoscore_grade == 'a'" > <ion-badge style="background-color: #108843;">Dampak pada lingkungan sangat baik</ion-badge></ion-text>
+						<ion-text *ngIf=" product?.ecoscore_grade == 'b'" > <ion-badge color="primary">Dampak pada lingkungan baik</ion-badge></ion-text>
+						<ion-text *ngIf=" product?.ecoscore_grade == 'c'" > <ion-badge style="background-color: #fccc06;">Dampak pada lingkungan cukup</ion-badge></ion-text>
+						<ion-text *ngIf=" product?.ecoscore_grade == 'd'" > <ion-badge style="background-color: #f49836;"> Dampak pada lingkungan kurang</ion-badge></ion-text>
+						<ion-text *ngIf=" product?.ecoscore_grade == 'e'" > <ion-badge color="danger">Dampak pada lingkungan tidak baik </ion-badge></ion-text>
+						<ion-text *ngIf=" product?.ecoscore_grade == 'unknown'" ><ion-badge color="dark">Tidak di ketahui</ion-badge> </ion-text>
 					</div>
 
 					<!-- <ion-button expand="block" color="light" ><small>Check</small></ion-button> -->
 				</ion-col>
 				<ion-col size="2" class="ion-text-end">
-					<ion-icon name="arrow-forward-circle-outline" aria-hidden="true" size="large"></ion-icon>
+					<ion-icon name="information-circle-outline" aria-hidden="true" size="large" color="primary"></ion-icon>
 				</ion-col>
 			</ion-row>
 		</ion-grid>
 	</ion-card>
 
-	<ion-card class="ion-text-center" color="primary">
+	<ion-item>
+		<h4 class="ion-text-left">Proses produksi product</h4>
+	</ion-item>
+
+	<ion-card class="ion-text-center" color="light">
 		<ion-grid>
 			<ion-row>
 				<ion-col size="3" class="ion-text-center">
 					<img [src]="nova_group" width="30%">
 				</ion-col>
 				<ion-col size="7" class="ion-text-end">
-					<ion-text color="light"><h5>NOVA {{product?.nova_group ||  "- ? -" }}</h5></ion-text>
+					<ion-text color="dark"><h5>NOVA {{product?.nova_group ||  "- ? -" }}</h5></ion-text>
 				</ion-col>
 				<ion-col size="2" class="ion-text-end">
-					<ion-icon name="arrow-forward-circle-outline" aria-hidden="true" size="large"></ion-icon>
+					<ion-icon name="information-circle-outline" aria-hidden="true" size="large" color="primary"></ion-icon>
 				</ion-col>
 			</ion-row>
 		</ion-grid>

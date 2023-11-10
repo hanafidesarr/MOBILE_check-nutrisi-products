@@ -10,6 +10,7 @@ import { LoadingService } from './../api/loading.service';
 import { Platform } from '@ionic/angular';
 
 import { App } from '@capacitor/app';
+import { IonContent } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -17,6 +18,7 @@ import { App } from '@capacitor/app';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
+  @ViewChild(IonContent) content: IonContent;
 
   // FITUR HISTORY SEARCH 
   @ViewChild('searchBar') searchBar: IonSearchbar;
@@ -34,7 +36,7 @@ export class Tab1Page {
   result_products: any;
   list_products: any;
   next_page: any;
-  page_size = 5;
+  page_size = 10;
   showTextMain = true;
   backButtonListener: any;
 
@@ -75,6 +77,10 @@ export class Tab1Page {
   }
 
   addToInput(keyword:any) {
+    // add history keyword
+    this.ionicForm.patchValue({
+      name: keyword
+    });
     this.accessAPI(keyword, this.ionicForm.value.country)
   }
 
@@ -85,15 +91,12 @@ export class Tab1Page {
   accessAPI(keyword: any, country: any) {
 
     this.loaded = false;
-    
+
     this.product_present = true;
     this.search_histories = false;
     this._productService.products({keyword: keyword, country: country, page: 1, page_size: this.page_size}).subscribe(
       (response) => {
-        // add history keyword
-        this.ionicForm.patchValue({
-          name: keyword
-        });
+
 
         this.loaded = true;
         this.showTextMain = false;
@@ -103,19 +106,28 @@ export class Tab1Page {
         this.list_products = this.result_products.products
         this.product_present = this.list_products.length > 0
         
-        // this._loadingService.hideLoader();
+        this._loadingService.hideLoader();
         this.next_page = 2
         
         console.log(this.result_products); // You can process the data as needed
 
         if (this.list_search_histories.includes(this.ionicForm.value.name)) {
           console.log('Object already exists in the history.');
-          return; // Don't save duplicate objects
+
+          this.list_search_histories = this.list_search_histories.filter(item => item !== this.ionicForm.value.name);
+          this.results_search_histories = this.results_search_histories.filter(item => item !== this.ionicForm.value.name);
+
+          this.list_search_histories.unshift(this.ionicForm.value.name);
+          this.results_search_histories.unshift(this.ionicForm.value.name);
+          localStorage.setItem('history', JSON.stringify(this.list_search_histories)); // Update local storage
+        } else {
+
+          // If the object is not a duplicate, add it to the array
+          // this.list_search_histories.push(this.ionicForm.value.name);
+          this.list_search_histories.unshift(this.ionicForm.value.name);
+          localStorage.setItem('history', JSON.stringify(this.list_search_histories)); // Update local storage
         }
       
-        // If the object is not a duplicate, add it to the array
-        this.list_search_histories.push(this.ionicForm.value.name);
-        localStorage.setItem('history', JSON.stringify(this.list_search_histories)); // Update local storage
 
       },
       (error) => {
@@ -173,6 +185,7 @@ export class Tab1Page {
 
   onSearchFocus() {
     this.search_histories = true
+    this.content.scrollToPoint(0, 0, 500);
   }
 
   deleteObjectHistory(index: number) {

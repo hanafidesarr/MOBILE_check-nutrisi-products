@@ -1,15 +1,15 @@
 <!-- {{product?.code}} -->
 
 
-<section *ngIf="product?.serving_size" class="performance-facts">
+<section class="performance-facts">
   <header class="performance-facts__header">
-    <h1 class="performance-facts__title">Nutrition Facts</h1>
+    <h1 class="performance-facts__title ion-padding-left ion-margin-right ion-no-margin-bottom">Nilai Gizi</h1>
     <h6 class="ion-no-margin-top">
       
       <!-- <div *ngIf="!sajian">As sold per serving ({{product?.serving_size}})</div>
       <div *ngIf="sajian">As sold per {{sajian}}</div> -->
       <ion-item>
-        <ion-select label="Takaran Saji Per" value="serving"  (ionChange)="calculateNutrition($event)">
+        <ion-select label="Pilih takaran per saji" value="{{takaran_per}}"  (ionChange)="calculateNutrition($event)">
           <ion-select-option value="serving">Kemasan</ion-select-option>
           <ion-select-option value="100g">100g</ion-select-option>
         </ion-select>

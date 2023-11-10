@@ -1,0 +1,13 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Image</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()"><ion-icon name="close" size="large"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-img [src]="url" style="width: 100%;"></ion-img>
+  
+</ion-content>

@@ -113,16 +113,17 @@ export class NutritionFactsComponent  implements OnChanges {
   chlorophyl: any;
   carbon_footprint: any;
 
+  takaran_per: any;
   constructor() {
-    
+
   }
   ngOnChanges(changes: any): void {
     if (changes.product && !changes.product.firstChange) {
       // The product input has changed, and it's not the initial change.
       // You can perform actions here based on the new value of 'product'.
       console.log('Product has changed:', this.product);
-
-      this.dynamic("serving");
+      this.takaran_per = this.product?.serving_size ? 'serving' : '100g'
+      this.dynamic(this.takaran_per);
     }
   }
 

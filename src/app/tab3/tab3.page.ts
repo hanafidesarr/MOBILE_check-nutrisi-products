@@ -10,6 +10,17 @@ register();
 })
 export class Tab3Page {
 
+  loading: boolean = true;
+
   constructor() {}
 
+
+  handleImageError() {
+    this.loading = false; // Hide the loading spinner
+  }
+
+ 
+  handleImageDidLoad() {
+    this.loading = false; // Hide the loading spinner when the image is loaded
+  }
 }
