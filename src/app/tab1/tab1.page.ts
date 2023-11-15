@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { IonSearchbar } from '@ionic/angular';
 
 import { ProductService } from './../api/product.service';
-import { LoadingService } from './../api/loading.service';
 
 import { Platform } from '@ionic/angular';
 
@@ -40,7 +39,7 @@ export class Tab1Page {
   showTextMain = true;
   backButtonListener: any;
 
-  constructor(private platform: Platform, public formBuilder: FormBuilder,  private _router: Router, private _productService: ProductService, public _loadingService: LoadingService) {
+  constructor(private platform: Platform, public formBuilder: FormBuilder,  private _router: Router, private _productService: ProductService) {
     this.saveHistoryToLocStorage()
   }
 
@@ -106,7 +105,6 @@ export class Tab1Page {
         this.list_products = this.result_products.products
         this.product_present = this.list_products.length > 0
         
-        this._loadingService.hideLoader();
         this.next_page = 2
         
         console.log(this.result_products); // You can process the data as needed

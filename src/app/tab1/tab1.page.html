@@ -10,7 +10,8 @@
             formControlName="name"
             type="text"
             aria-label="Name"
-            enterkeyhint="search"
+            placeholder="Cari product kemasan"
+            enterkeyhint="Search"
             (ionInput)="handleInput($event)"
             (ionFocus)="onSearchFocus()"
           ></ion-searchbar>
@@ -50,7 +51,7 @@
 
   
   <div *ngIf="showTextMain && loaded">
-    <ion-item><h3 class=" ion-margin-end">Label Product</h3></ion-item>
+    <ion-item><h5 class=" ion-margin-end">Label Product</h5></ion-item>
     <ion-item>
       <ion-grid>
         <ion-row>
@@ -69,7 +70,7 @@
       <ion-grid>
         <ion-row>
           <ion-col size="8">
-            <div>Label kandungan nutrisi pada product.</div>
+            <div>Nilai dampak kemasan pada lingkungan.</div>
             <small>(A) Sangat baik (B) Baik (C) Cukup (D) Kurang </small>
           </ion-col>
           <ion-col size="4">
@@ -78,10 +79,28 @@
         </ion-row>
       </ion-grid>
     </ion-item>
+
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4">
+            <img src="https://static.openfoodfacts.org/images/attributes/nova-group-1.svg">
+          </ion-col>
+          <ion-col size="8">
+            <div>Proses produksi pada product.</div>
+            <small>(1) 1 kali proses (2) 2 kali proses (n) dan seterusnya </small>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    
   </div>
 
 
   <div  *ngIf="product_present else showTest">
+    <ion-item class="ion-margin-top ion-text-right">
+      <ion-label class="ion-margin-top ion-text-right">Jumlah : {{result_products.count}}</ion-label>
+    </ion-item>
     <ion-list size="6" class="ion-margin-bottom" *ngIf="loaded">
       <ion-card *ngFor="let item of list_products" >
         <ion-grid  (click)="openProduct(item.code)">
@@ -102,7 +121,7 @@
                 </ion-col>
                 <ion-col size="4">
                   <ion-button expand="block" color="danger">
-                    <ion-icon slot="icon-only" name="heart" size="small"></ion-icon>
+                    <ion-icon slot="icon-only" name="bookmark" size="small"></ion-icon>
                   </ion-button>
                 </ion-col>
               </ion-row> -->
@@ -146,11 +165,13 @@
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."></ion-infinite-scroll-content>
   </ion-infinite-scroll>
 
-  <ng-template class="ion-text-center" #showTest>
-    <div  class="ion-text-center" >
-      <h1>KOSONG</h1>
-      <p>Coba untuk mencari di negara lain di dalam form pencarian</p>
-    </div>
+  <ng-template class="" #showTest>
+    <ion-item class="ion-text-center ion-margin-top">
+      <ion-label>
+        <h1>Product tidak tersedia</h1>
+        <p class="ion-text-wrap">Coba untuk mencari product di negara lain pada pencarian</p>
+      </ion-label>
+    </ion-item>
   </ng-template>
   <!-- <ion-header collapse="condense">
     <ion-toolbar>

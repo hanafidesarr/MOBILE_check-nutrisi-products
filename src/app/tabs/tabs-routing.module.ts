@@ -38,6 +38,14 @@ const routes: Routes = [
     path: '',
     redirectTo: '/tabs/tab3',
     pathMatch: 'full'
+  },
+  {
+    path: 'modal-barcode',
+    loadChildren: () => import('./modal-barcode/modal-barcode.module').then( m => m.ModalBarcodePageModule)
+  },
+  {
+    path: 'modal-not-barcode',
+    loadChildren: () => import('./modal-not-barcode/modal-not-barcode.module').then( m => m.ModalNotBarcodePageModule)
   }
 ];
 

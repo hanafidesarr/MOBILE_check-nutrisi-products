@@ -31,14 +31,21 @@ export class GetProductPage implements OnInit {
   nutrient_levels_sugar:any;
   nutrient_levels_salt:any;
   
+  isToastOpen = false;
+  toast_message:string;
   
   isModalOpen = false;
+  list_favorites: any[] = [];
 
-  constructor(private modalController: ModalController, private _route: ActivatedRoute, private _productService: ProductService, public _loadingService: LoadingService, private _router: Router) {
+  constructor(private modalController: ModalController, private _route: ActivatedRoute, private _productService: ProductService, private _loadingService: LoadingService, private _router: Router) {
 
-
+    const storedData = localStorage.getItem('list_favorites');
+    if (storedData) {
+      this.list_favorites = JSON.parse(storedData);
+    }
     this._loadingService.showLoader();
     this._route.params.subscribe(params => {
+
       this.barcode = params['barcodeId'];
 
       this._productService.product({barcode_id: this.barcode}).subscribe(
@@ -64,11 +71,12 @@ export class GetProductPage implements OnInit {
             alert("barcode tidak ada, yu tambah product baru")
           } else {
             alert(error.message)
-            // this._loadingService.hideLoader();
           }
-          this._loadingService.hideLoader();
           this._router.navigate(['/tabs']);
+
+          this._loadingService.hideLoader();
         }
+        
       );
       // Now you can use the productId in your component
     });
@@ -147,5 +155,50 @@ export class GetProductPage implements OnInit {
     return await modal.present();
   }
 
+  saveFavorite() {
+    if (this.checkIfCodeExists(this.list_favorites, this.product.code)) {
+      alert("data sudah ada di favorite")
+      return;
+    } else {
+      this.list_favorites.unshift({ code: this.product.code, product_name: this.product.product_name, image_front_url: this.product.image_front_url, quantity: this.product.quantity, brands: this.product.brands, nutriscore_grade: this.product["nutriscore_grade"], ecoscore_grade: this.product["ecoscore_grade"] });
+      localStorage.setItem('list_favorites', JSON.stringify(this.list_favorites)); 
+      const icon = document.querySelector('ion-icon');
+      if (icon) {
+        icon.style.color = 'red';
+      }
+
+      this.isToastOpen = true;
+      this.toast_message = "Product telah di simpan"
+    }
+
+
+  }
+
+  removeFavorite() {
+    this.list_favorites = this.list_favorites.filter(
+      (item) => item.code !== this.product.code
+    );
+    localStorage.setItem('list_favorites', JSON.stringify(this.list_favorites));
+    this.isFavorite(null) 
+
+    this.isToastOpen = true;
+    this.toast_message = "Product telah di hapus"
+  }
+
+  isFavorite(code: any) {
+    if(code){
+      return this.checkIfCodeExists(this.list_favorites, code);
+    } else {
+      return false
+    }
+  }
+
+  checkIfCodeExists(array:any[], codeToCheck: string): boolean {
+    return array.some(item => item.code === codeToCheck);
+  }
+
+  setOpenToast(isOpen: boolean) {
+    this.isToastOpen = isOpen;
+  }
 }
 

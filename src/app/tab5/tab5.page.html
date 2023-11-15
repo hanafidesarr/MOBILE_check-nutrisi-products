@@ -1,19 +1,72 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Barcode Scanner</ion-title>
+    <ion-title>Product Tersimpan</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-item *ngFor="let barcode of barcodes">
-      <ion-label position="stacked">{{ barcode.format }}</ion-label>
-      <ion-input type="text" [value]="barcode.rawValue"></ion-input>
-    </ion-item>
-  </ion-list>
-  <ion-fab slot="fixed" vertical="top" horizontal="end">
-    <ion-fab-button (click)="scan()" [disabled]="!isSupported">
-      <ion-icon name="scan"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+<ion-content style="margin-bottom: 10vh;">
+
+  <div style="margin-bottom: 10vh;">
+    <div  *ngIf="list_favorites">
+      <ion-item class="ion-margin-top ion-text-right">
+        <ion-label class="ion-margin-top ion-text-right">Jumlah : {{list_favorites.length}}</ion-label>
+      </ion-item>
+      <ion-list size="6" class="ion-margin-bottom">
+        <ion-card *ngFor="let item of list_favorites; let i = index" >
+          <ion-grid >
+            <ion-row>
+              <ion-col size="3" (click)="openProduct(item.code)">
+                <img style="border-radius: 10px;" [src]="item.image_front_url || 'https://world.openfoodfacts.org/images/icons/dist/packaging.svg'" class="custom-thumbnail">
+              </ion-col>
+              <ion-col size="5" (click)="openProduct(item.code)">
+                <!-- <ion-card-subtitle>{{item.id}}</ion-card-subtitle> -->
+                <ion-card-subtitle><h6 class="ion-no-margin">{{item.product_name || item?.brands }}</h6></ion-card-subtitle>
+                <div class="ion-margin-top ion-margin-bottom">
+                  <div>Quantity : {{item?.quantity || '-'}}</div>
+                  <div>Brand : {{item?.brands || '-'}}</div>
+                </div>
+                <!-- <ion-button (click)="deleteFavorite(i)">Delete</ion-button> -->
+              </ion-col>
+
+              <ion-col size="3" (click)="openProduct(item.code)">
+                <img *ngIf="item['nutriscore_grade']" style="border-radius: 10px;" src="https://static.openfoodfacts.org/images/attributes/nutriscore-{{item['nutriscore_grade']}}.svg">
+                <img *ngIf="item['ecoscore_grade']" style="border-radius: 10px;" src="https://static.openfoodfacts.org/images/attributes/ecoscore-{{item['ecoscore_grade']}}.svg">
+              </ion-col>
+
+              <ion-col size="1" color="red" style="background-color: #eb445a; " class="ion-text-center" (click)="deleteFavorite(i)" >
+                <ion-icon name="close" size="small" color="light" ></ion-icon>
+                <ion-text color="light" style="writing-mode: vertical-lr;
+                transform: rotate(360deg);
+                text-align: center;
+                margin-top: 50%;">Hapus</ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+
+        </ion-card>
+      </ion-list>
+      
+    </div>
+    <div  *ngIf="!list_favorites" class="ion-text-center ">
+      <h1 class="ion-margin">Product tersimpan masih kosong</h1>
+      <ion-button [routerLink]="['/tabs/tab1']">
+        <ion-icon slot="start" name="search" ></ion-icon>
+        Cari product
+      </ion-button>
+
+      <ion-route url="/tab1" component="page-tab1">dsds</ion-route>
+    </div>
+    <ion-list>
+      <ion-item *ngFor="let barcode of barcodes">
+        <ion-label position="stacked">{{ barcode.format }}</ion-label>
+        <ion-input type="text" [value]="barcode.rawValue"></ion-input>
+      </ion-item>
+    </ion-list>
+    <!-- <ion-fab slot="fixed" vertical="top" horizontal="end">
+      <ion-fab-button (click)="scan()" [disabled]="!isSupported">
+        <ion-icon name="scan"></ion-icon>
+      </ion-fab-button>
+    </ion-fab> -->
+  </div>
 </ion-content>

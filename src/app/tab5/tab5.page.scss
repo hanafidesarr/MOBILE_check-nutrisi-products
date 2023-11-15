@@ -1,1 +1,6 @@
 ion-content { --background: transparent !important; }
+.custom-thumbnail {
+  width: 100px !important;
+  height: 100px !important;
+  object-fit: cover;
+}

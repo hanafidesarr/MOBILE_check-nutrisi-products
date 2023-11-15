@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { Barcode, BarcodeScanner } from '@capacitor-mlkit/barcode-scanning';
 import { AlertController } from '@ionic/angular';
 
+import { App } from '@capacitor/app';
 @Component({
   selector: 'app-tab5',
   templateUrl: './tab5.page.html',
@@ -11,11 +12,30 @@ import { AlertController } from '@ionic/angular';
 export class Tab5Page implements OnInit {
 
   isSupported = false;
+  list_favorites: any;
   barcodes: Barcode[] = [];
 
-  constructor(private alertController: AlertController) {}
+  backButtonListener: any;
 
+  constructor(private _router: Router, private alertController: AlertController) {
+  }
+
+  ionViewWillEnter() {
+    this.getFavorites()
+  }
+
+  getFavorites() {
+
+    this.list_favorites = localStorage.getItem('list_favorites')
+    this.list_favorites = JSON.parse(this.list_favorites)
+    console.log(this.list_favorites)
+  }
   ngOnInit() {
+
+    this.backButtonListener = App.addListener('backButton', () => {
+
+      this.getFavorites()
+    });
 
     BarcodeScanner.isGoogleBarcodeScannerModuleAvailable().then((result) => {
       if(result.available) {
@@ -62,5 +82,16 @@ export class Tab5Page implements OnInit {
     await alert.present();
   }
 
-  
+  deleteFavorite(index: number) {
+    if (index >= 0 && index < this.list_favorites.length) {
+      console.log(index)
+      this.list_favorites.splice(index, 1); // Remove the item from the array
+      localStorage.setItem('list_favorites', JSON.stringify(this.list_favorites)); // Update local storage
+    }
+  }
+
+  openProduct = (barcodeId: any) => {
+    this._router.navigate(['/get-product', barcodeId]);
+  }
+
 }
