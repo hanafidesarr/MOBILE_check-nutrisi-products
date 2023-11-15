@@ -4,11 +4,11 @@ import { register } from 'swiper/element/bundle';
 
 register();
 @Component({
-  selector: 'app-tab3',
-  templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss']
+  selector: 'app-home',
+  templateUrl: 'home.page.html',
+  styleUrls: ['home.page.scss']
 })
-export class Tab3Page {
+export class HomePage {
 
   loading: boolean = true;
 
@@ -18,7 +18,6 @@ export class Tab3Page {
   handleImageError() {
     this.loading = false; // Hide the loading spinner
   }
-
  
   handleImageDidLoad() {
     this.loading = false; // Hide the loading spinner when the image is loaded

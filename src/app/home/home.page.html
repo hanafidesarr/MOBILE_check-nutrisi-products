@@ -1,22 +1,5 @@
-<!-- <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
-
 <ion-content [fullscreen]="false">
-
-  <!-- <svg #barcode id="barcode"></svg> -->
-  
   <div style="margin-bottom: 10vh;">
-    <!-- <ion-header collapse="condense">
-      <ion-toolbar>
-        <ion-title size="large">Tab 3</ion-title>
-      </ion-toolbar>
-    </ion-header> -->
     <swiper-container [slidesPerView]="1" [loop]="true"  [autoplay]="true" pagination="true">
       <swiper-slide>
         <ion-img
@@ -24,14 +7,14 @@
           (ionError)="handleImageError()"
           (ionImgDidLoad)="handleImageDidLoad()"
         ></ion-img>
-        <!-- *ngIf="loading" -->
-        <!-- <div *ngIf="loading" class="image-loader">
-          <ion-spinner color="primary" name="crescent"></ion-spinner>
-        </div> -->
-        
       </swiper-slide>
+      
     </swiper-container>
 
+    <!-- *ngIf="loading" -->
+    <div *ngIf="loading" class="image-loader">
+      <ion-spinner color="primary" name="crescent"></ion-spinner>
+    </div>
 
     <ion-text class="ion-margin-top">
       <h1 class="ion-text-center">Yu, mulai hidup sehat!</h1>
@@ -53,11 +36,7 @@
         </ion-item-divider>
         <ion-item>
           <ion-icon aria-hidden="true" name="scan" slot="start" class="ion-text-center"  size="large"></ion-icon>
-          <ion-label class="ion-text-wrap">Scan barcode product dari camera</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-icon aria-hidden="true" name="image" slot="start" class="ion-text-center"  size="large"></ion-icon>
-          <ion-label class="ion-text-wrap">Scan barcode product dari gallery handphone</ion-label>
+          <ion-label class="ion-text-wrap">Scan barcode product dari camera dan gallery handphone</ion-label>
         </ion-item>
         <ion-item>
           <ion-icon aria-hidden="true" name="search" slot="start" class="ion-text-center"  size="large"></ion-icon>
