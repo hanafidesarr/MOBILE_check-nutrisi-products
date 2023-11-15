@@ -99,7 +99,7 @@
 
   <div  *ngIf="product_present else showTest">
     <ion-item class="ion-margin-top ion-text-right">
-      <ion-label class="ion-margin-top ion-text-right">Jumlah : {{result_products.count}}</ion-label>
+      <ion-label *ngIf="result_products" class="ion-margin-top ion-text-right">Jumlah : {{result_products.count}}</ion-label>
     </ion-item>
     <ion-list size="6" class="ion-margin-bottom" *ngIf="loaded">
       <ion-card *ngFor="let item of list_products" >

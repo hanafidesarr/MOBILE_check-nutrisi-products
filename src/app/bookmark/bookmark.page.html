@@ -5,7 +5,6 @@
 </ion-header>
 
 <ion-content style="margin-bottom: 10vh;">
-
   <div style="margin-bottom: 10vh;">
     <div  *ngIf="list_favorites">
       <ion-item class="ion-margin-top ion-text-right">
@@ -48,14 +47,14 @@
       </ion-list>
       
     </div>
-    <div  *ngIf="!list_favorites" class="ion-text-center ">
+    <div  *ngIf="list_favorites == ''" class="ion-text-center ">
       <h1 class="ion-margin">Product tersimpan masih kosong</h1>
-      <ion-button [routerLink]="['/tabs/tab1']">
+      <ion-button [routerLink]="['/tabs/search']">
         <ion-icon slot="start" name="search" ></ion-icon>
         Cari product
       </ion-button>
 
-      <ion-route url="/tab1" component="page-tab1">dsds</ion-route>
+      <!-- <ion-route url="/search" component="page-search">dsds</ion-route> -->
     </div>
     <ion-list>
       <ion-item *ngFor="let barcode of barcodes">

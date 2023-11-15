@@ -14,11 +14,11 @@ import {
 import { FilePicker } from "@capawesome/capacitor-file-picker";
 
 @Component({
-  selector: 'app-tab4',
-  templateUrl: './tab4.page.html',
-  styleUrls: ['./tab4.page.scss'],
+  selector: 'app-setting',
+  templateUrl: './setting.page.html',
+  styleUrls: ['./setting.page.scss'],
 })
-export class Tab4Page implements OnInit {
+export class SettingPage implements OnInit {
   barcode:any;
   backButtonListener: any;
   constructor(private ngZone: NgZone, public photoService: PhotoService, private _router: Router, private alertController: AlertController) { }

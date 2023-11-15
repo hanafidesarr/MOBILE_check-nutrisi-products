@@ -5,11 +5,11 @@ import { AlertController } from '@ionic/angular';
 
 import { App } from '@capacitor/app';
 @Component({
-  selector: 'app-tab5',
-  templateUrl: './tab5.page.html',
-  styleUrls: ['./tab5.page.scss'],
+  selector: 'app-bookmark',
+  templateUrl: './bookmark.page.html',
+  styleUrls: ['./bookmark.page.scss'],
 })
-export class Tab5Page implements OnInit {
+export class BookmarkPage implements OnInit {
 
   isSupported = false;
   list_favorites: any;

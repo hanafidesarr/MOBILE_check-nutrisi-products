@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { IonSearchbar } from '@ionic/angular';
 
-import { ProductService } from './../api/product.service';
+import { ProductService } from '../api/product.service';
 
 import { Platform } from '@ionic/angular';
 
@@ -12,11 +12,11 @@ import { App } from '@capacitor/app';
 import { IonContent } from '@ionic/angular';
 
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  selector: 'app-search',
+  templateUrl: 'search.page.html',
+  styleUrls: ['search.page.scss']
 })
-export class Tab1Page {
+export class SearchPage {
   @ViewChild(IonContent) content: IonContent;
 
   // FITUR HISTORY SEARCH 
