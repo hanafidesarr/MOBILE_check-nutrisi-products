@@ -14,8 +14,20 @@ const routes: Routes = [
     component: GetProductPage
   },
   {
-    path: 'modal',
-    loadChildren: () => import('./modal/modal.module').then( m => m.ModalPageModule)
+    path: 'modal-image',
+    loadChildren: () => import('./modal-image/modal-image.module').then( m => m.ModalImagePageModule)
+  },
+  {
+    path: 'modal-nutriscore-info',
+    loadChildren: () => import('./modal-nutriscore-info/modal-nutriscore-info.module').then( m => m.ModalNutriscoreInfoPageModule)
+  },
+  {
+    path: 'modal-ecoscore-info',
+    loadChildren: () => import('./modal-ecoscore-info/modal-ecoscore-info.module').then( m => m.ModalEcoscoreInfoPageModule)
+  },
+  {
+    path: 'modal-novascore-info',
+    loadChildren: () => import('./modal-novascore-info/modal-novascore-info.module').then( m => m.ModalNovascoreInfoPageModule)
   }
 ];
 

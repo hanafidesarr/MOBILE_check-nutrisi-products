@@ -9,7 +9,10 @@ import { register } from 'swiper/element/bundle';
 
 
 import { ModalController } from '@ionic/angular';
-import { ModalPage } from './modal/modal.page';
+import { ModalImagePage } from './modal-image/modal-image.page';
+import { ModalNutriscoreInfoPage } from './modal-nutriscore-info/modal-nutriscore-info.page';
+import { ModalEcoscoreInfoPage } from './modal-ecoscore-info/modal-ecoscore-info.page';
+import { ModalNovascoreInfoPage } from './modal-novascore-info/modal-novascore-info.page';
 
 register();
 
@@ -34,7 +37,6 @@ export class GetProductPage implements OnInit {
   isToastOpen = false;
   toast_message:string;
   
-  isModalOpen = false;
   list_favorites: any[] = [];
 
   constructor(private modalController: ModalController, private _route: ActivatedRoute, private _productService: ProductService, private _loadingService: LoadingService, private _router: Router) {
@@ -73,12 +75,9 @@ export class GetProductPage implements OnInit {
             alert(error.message)
           }
           this._router.navigate(['/tabs']);
-
           this._loadingService.hideLoader();
         }
-        
       );
-      // Now you can use the productId in your component
     });
   }
 
@@ -95,9 +94,7 @@ export class GetProductPage implements OnInit {
     return obj && Object.keys(obj).length !== 0;
   }
 
-  setOpen(isOpen: boolean) {
-    this.isModalOpen = isOpen;
-  }
+
 
   validation_nutrient_levels() {
     // FAT
@@ -144,16 +141,7 @@ export class GetProductPage implements OnInit {
     }
   }
 
-  async openModal(item: any) {
-    const modal = await this.modalController.create({
-      component: ModalPage,
-      componentProps: {
-        url: item,
-      },
-    });
 
-    return await modal.present();
-  }
 
   saveFavorite() {
     if (this.checkIfCodeExists(this.list_favorites, this.product.code)) {
@@ -195,6 +183,49 @@ export class GetProductPage implements OnInit {
 
   checkIfCodeExists(array:any[], codeToCheck: string): boolean {
     return array.some(item => item.code === codeToCheck);
+  }
+
+  // Toggle open 
+  
+  async openModalImage(item: any) {
+    const modal = await this.modalController.create({
+      component: ModalImagePage,
+      componentProps: {
+        url: item,
+      },
+    });
+
+    return await modal.present();
+  }
+
+  async openNutriScore(product: any) {
+    const modal = await this.modalController.create({
+      component: ModalNutriscoreInfoPage,
+      componentProps: {
+        product: product,
+      },
+    });
+    return await modal.present();
+  }
+  
+  async openEcoScore(product: any) {
+    const modal = await this.modalController.create({
+      component: ModalEcoscoreInfoPage,
+      componentProps: {
+        product: product,
+      },
+    });
+    return await modal.present();
+  }
+  
+  async openNovaScore(product: any) {
+    const modal = await this.modalController.create({
+      component: ModalNovascoreInfoPage,
+      componentProps: {
+        product: product,
+      },
+    });
+    return await modal.present();
   }
 
   setOpenToast(isOpen: boolean) {

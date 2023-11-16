@@ -39,6 +39,8 @@ export class SearchPage {
   showTextMain = true;
   backButtonListener: any;
 
+  error_result: any;
+
   constructor(private platform: Platform, public formBuilder: FormBuilder,  private _router: Router, private _productService: ProductService) {
     this.saveHistoryToLocStorage()
   }
@@ -105,6 +107,7 @@ export class SearchPage {
         this.list_products = this.result_products.products
         this.product_present = this.list_products.length > 0
         
+        
         this.next_page = 2
         
         console.log(this.result_products); // You can process the data as needed
@@ -129,6 +132,7 @@ export class SearchPage {
 
       },
       (error) => {
+        this.error_result = error.name
         this.loaded = true;
         this.product_present = false;
         this.showTextMain = false;

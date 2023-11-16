@@ -97,9 +97,9 @@
   </div>
 
 
-  <div  *ngIf="product_present else showTest">
+  <div  *ngIf="product_present">
     <ion-item class="ion-margin-top ion-text-right">
-      <ion-label *ngIf="result_products" class="ion-margin-top ion-text-right">Jumlah : {{result_products.count}}</ion-label>
+      <ion-label *ngIf="result_products" class="ion-margin-top ion-text-right">Jumlah : {{list_products.length}}</ion-label>
     </ion-item>
     <ion-list size="6" class="ion-margin-bottom" *ngIf="loaded">
       <ion-card *ngFor="let item of list_products" >
@@ -165,14 +165,22 @@
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."></ion-infinite-scroll-content>
   </ion-infinite-scroll>
 
-  <ng-template class="" #showTest>
+  <div *ngIf="result_products?.count == 0">
     <ion-item class="ion-text-center ion-margin-top">
       <ion-label>
         <h1>Product tidak tersedia</h1>
         <p class="ion-text-wrap">Coba untuk mencari product di negara lain pada pencarian</p>
       </ion-label>
     </ion-item>
-  </ng-template>
+  </div>
+  <div *ngIf="error_result == 'HttpErrorResponse'" class="">
+    <ion-item class="ion-text-center ion-margin-top">
+      <ion-label>
+        <h1>Periksa koneksi anda</h1>
+        <p class="ion-text-wrap">Coba untuk mencari product di negara lain pada pencarian</p>
+      </ion-label>
+    </ion-item>
+  </div>
   <!-- <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Tab 1</ion-title>

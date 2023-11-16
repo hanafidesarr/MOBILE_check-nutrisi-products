@@ -47,7 +47,7 @@
       </ion-list>
       
     </div>
-    <div  *ngIf="list_favorites == ''" class="ion-text-center ">
+    <div  *ngIf="list_favorites == null" class="ion-text-center ">
       <h1 class="ion-margin">Product tersimpan masih kosong</h1>
       <ion-button [routerLink]="['/tabs/search']">
         <ion-icon slot="start" name="search" ></ion-icon>

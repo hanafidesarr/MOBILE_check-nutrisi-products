@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ModalPageRoutingModule } from './modal-routing.module';
+import { ModalImagePageRoutingModule } from './modal-image-routing.module';
 
-import { ModalPage } from './modal.page';
+import { ModalImagePage } from './modal-image.page';
 
 
 @NgModule({
@@ -14,8 +14,8 @@ import { ModalPage } from './modal.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    ModalPageRoutingModule
+    ModalImagePageRoutingModule
   ],
-  declarations: [ModalPage]
+  declarations: [ModalImagePage]
 })
-export class ModalPageModule {}
+export class ModalImagePageModule {}

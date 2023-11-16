@@ -11,7 +11,7 @@
 	</ion-header>
 	<swiper-container  [slidesPerView]="product_images.length > 1 ? '1.2' : '1'" [loop]="false"  [autoplay]="false" pagination="true">
 		<swiper-slide *ngFor="let image of product_images">
-			<img *ngIf="image.value" (click)="openModal(image.value)" [src]="image.value || 'https://world.openfoodfacts.org/images/icons/dist/packaging.svg'" style="width: 100%;object-fit: cover;height: 30vh; padding: 0 5px;"/>
+			<img *ngIf="image.value" (click)="openModalImage(image.value)" [src]="image.value || 'https://world.openfoodfacts.org/images/icons/dist/packaging.svg'" style="width: 100%;object-fit: cover;height: 30vh; padding: 0 5px;"/>
 		</swiper-slide>
 	</swiper-container>
 
@@ -38,7 +38,6 @@
 					</ion-col>
 				</ion-row>
 			</ion-grid>
-			
 		</ion-card>
 	</div>
 
@@ -65,64 +64,7 @@
 					<!-- <ion-button expand="block" color="light" ><small>Check</small></ion-button> -->
 				</ion-col>
 				<ion-col size="2" class="ion-text-end">
-					<ion-icon *ngIf="product?.nutriscore_data" name="information-circle-outline" aria-hidden="true" size="large" color="primary"  (click)="setOpen(true)"></ion-icon>
-					<ion-modal [isOpen]="isModalOpen">
-						<ng-template>
-							<ion-header>
-								<ion-toolbar>
-									<ion-title>Kalkulasi nilai nutrisi</ion-title>
-									<ion-buttons slot="end">
-										<ion-button (click)="setOpen(false)"><ion-icon name="close" size="large"></ion-icon></ion-button>
-									</ion-buttons>
-								</ion-toolbar> 
-							</ion-header>
-							<ion-content class="ion-padding">
-								<!-- <p>
-									Warning: the amount of fruits, vegetables and nuts is not specified on the label, it was estimated from the list of ingredients: 0
-									This product is not considered a beverage for the calculation of the Nutri-Score.
-								</p> -->
-
-								<b>Positif point : {{product?.nutriscore_data?.positive_points}}</b>
-								<ion-list>
-									<ion-item>
-										<ion-icon name="checkmark-circle-outline" size="small" color="primary" style="margin-right: 5px;"></ion-icon>
-										<ion-label class="ion-text-wrap">Protein : {{product?.nutriscore_data?.proteins_points}} / 5 (nilai: {{product?.nutriscore_data?.proteins}}, pembulatan nilai: {{product?.nutriscore_data?.proteins_value}})</ion-label>
-									</ion-item>
-									<ion-item>
-										<ion-icon name="checkmark-circle-outline" size="small" color="primary" style="margin-right: 5px;"></ion-icon>
-										<ion-label class="ion-text-wrap">Serat : {{product?.nutriscore_data?.fiber_points}} / 5 (nilai: {{product?.nutriscore_data?.fiber}}, pembulatan nilai: {{product?.nutriscore_data?.fiber_value}})</ion-label>
-									</ion-item>
-									<ion-item>
-										<ion-icon name="checkmark-circle-outline" size="small" color="primary" style="margin-right: 5px;"></ion-icon>
-										<ion-label class="ion-text-wrap">Buah-buahan, sayuran, kacang-kacangan, dan colza/walnut/minyak zaitun : {{product?.nutriscore_data?.fruits_vegetables_nuts_colza_walnut_olive_oils_points}} / 5 (nilai: {{product?.nutriscore_data?.fruits_vegetables_nuts_colza_walnut_olive_oils}}, pembulatan nilai: {{product?.nutriscore_data?.fruits_vegetables_nuts_colza_walnut_olive_oils_value}})</ion-label>
-									</ion-item>
-								</ion-list>
-
-								<div class="ion-margin-top"><b>Negatif point : {{product?.nutriscore_data?.negative_points}}</b></div>
-								<ion-list>
-									<ion-item>
-										<ion-icon name="ban-outline" size="small" color="danger" style="margin-right: 5px;"></ion-icon>
-										<ion-label class="ion-text-wrap">Energy/Kalori : {{product?.nutriscore_data?.energy_points}} / 10 (nilai: {{product?.nutriscore_data?.energy}}, pembulatan nilai: {{product?.nutriscore_data?.energy_value}})</ion-label>
-									</ion-item>
-									<ion-item>
-										<ion-icon name="ban-outline" size="small" color="danger" style="margin-right: 5px;"></ion-icon>
-										<ion-label class="ion-text-wrap">Gula : {{product?.nutriscore_data?.sugars_points}} / 10 (nilai: {{product?.nutriscore_data?.sugars}}, pembulatan nilai: {{product?.nutriscore_data?.sugars_value}})</ion-label>
-									</ion-item>
-									<ion-item>
-										<ion-icon name="ban-outline" size="small" color="danger" style="margin-right: 5px;"></ion-icon>
-										<ion-label class="ion-text-wrap">Lemak jenuh : {{product?.nutriscore_data?.saturated_fat_points}} / 10 (nilai: {{product?.nutriscore_data?.saturated_fat}}, pembulatan nilai: {{product?.nutriscore_data?.saturated_fat_value}})</ion-label>
-									</ion-item>
-									<ion-item>
-										<ion-icon name="ban-outline" size="small" color="danger" style="margin-right: 5px;"></ion-icon>
-										<ion-label class="ion-text-wrap">Sodium : {{product?.nutriscore_data?.sodium_points}} / 10 (nilai: {{product?.nutriscore_data?.sodium}}, pembulatan nilai: {{product?.nutriscore_data?.sodium_value}})</ion-label>
-									</ion-item>
-								</ion-list>
-<!-- 
-								<div class="ion-margin-top"><b>Score Nutrisi : {{product?.nutriscore_data?.score}}</b></div>
-								<b>Peringkat nutrisi : {{product?.nutriscore_data?.grade}} </b> -->
-							</ion-content>
-						</ng-template>
-					</ion-modal>
+					<ion-icon *ngIf="product?.nutriscore_data" name="information-circle-outline" aria-hidden="true" size="large" color="primary"  (click)="openNutriScore(product)"></ion-icon>
 				</ion-col>
 			</ion-row>
 		</ion-grid>
@@ -287,7 +229,7 @@
 					<!-- <ion-button expand="block" color="light" ><small>Check</small></ion-button> -->
 				</ion-col>
 				<ion-col size="2" class="ion-text-end">
-					<ion-icon name="information-circle-outline" aria-hidden="true" size="large" color="primary"></ion-icon>
+					<ion-icon (click)="openEcoScore(product)" name="information-circle-outline" aria-hidden="true" size="large" color="primary"></ion-icon>
 				</ion-col>
 			</ion-row>
 		</ion-grid>
@@ -307,7 +249,7 @@
 					<ion-text color="dark"><h5>NOVA {{product?.nova_group ||  "- ? -" }}</h5></ion-text>
 				</ion-col>
 				<ion-col size="2" class="ion-text-end">
-					<ion-icon name="information-circle-outline" aria-hidden="true" size="large" color="primary"></ion-icon>
+					<ion-icon (click)="openNovaScore(product)" name="information-circle-outline" aria-hidden="true" size="large" color="primary"></ion-icon>
 				</ion-col>
 			</ion-row>
 		</ion-grid>

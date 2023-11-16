@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Route, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 
 import JsBarcode from 'jsbarcode';
@@ -13,7 +14,7 @@ export class ModalBarcodePage implements OnInit {
   @ViewChild('generate_barcode') generate_barcode: ElementRef;
 
   @Input() barcode: any;
-  constructor(private _modalCtrl: ModalController) { }
+  constructor(private _modalCtrl: ModalController, private _router: Router) { }
 
   ngOnInit() {
   }
@@ -22,6 +23,12 @@ export class ModalBarcodePage implements OnInit {
     JsBarcode(this.generate_barcode.nativeElement, this.barcode.rawValue);
   }
 
+  goToProduct(){
+
+    this._router.navigate(['/get-product', this.barcode.rawValue]);
+
+    this._modalCtrl.dismiss();
+  }
   closeModal() {
     this._modalCtrl.dismiss();
   }
