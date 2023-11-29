@@ -4,8 +4,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content style="margin-bottom: 10vh;">
-  <div style="margin-bottom: 10vh;">
+<ion-content>
+  <div style="margin-bottom: 5vh;">
     <div  *ngIf="list_favorites">
       <ion-item class="ion-margin-top ion-text-right">
         <ion-label class="ion-margin-top ion-text-right">Jumlah : {{list_favorites.length}}</ion-label>
@@ -28,8 +28,8 @@
               </ion-col>
 
               <ion-col size="3" (click)="openProduct(item.code)">
-                <img *ngIf="item['nutriscore_grade']" style="border-radius: 10px;" src="https://static.openfoodfacts.org/images/attributes/nutriscore-{{item['nutriscore_grade']}}.svg">
-                <img *ngIf="item['ecoscore_grade']" style="border-radius: 10px;" src="https://static.openfoodfacts.org/images/attributes/ecoscore-{{item['ecoscore_grade']}}.svg">
+                <img *ngIf="item['nutriscore_grade']" style="border-radius: 10px;" src="assets/nutriscore/nutriscore-{{item['nutriscore_grade']}}.svg">
+                <!-- <img *ngIf="item['ecoscore_grade']" style="border-radius: 10px;" src="assets/ecoscore/ecoscore-{{item['ecoscore_grade']}}.svg"> -->
               </ion-col>
 
               <ion-col size="1" color="red" style="background-color: #eb445a; " class="ion-text-center" (click)="deleteFavorite(i)" >

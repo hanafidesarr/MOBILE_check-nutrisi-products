@@ -62,10 +62,10 @@ export class TabsPage {
     
     console.log(BarcodeScanner.isGoogleBarcodeScannerModuleAvailable())
     
-    if (!granted) {
-      this.presentAlert('Permision', 'belum di izinkan');
-      return;
-    }
+    // if (!granted) {
+    //   this.presentAlert('Permision', 'belum di izinkan');
+    //   return;
+    // }
     const { barcodes } = await BarcodeScanner.scan({
       formats: undefined,
     });
@@ -74,17 +74,14 @@ export class TabsPage {
     
     if (barcodes.length > 0) {
       barcodes.forEach((barcode) => {
-        // this.presentAlert('Scanned Barcode', barcode.rawValue);
         if (barcode.format == "QR_CODE") {
           this.showModalNotBarcode(barcode)
-          // this.presentAlert('Barocode salah', 'pastikan anda scan barcode, bukan QRCode');
           return;
         }
         this._router.navigate(['/get-product', barcode.rawValue]);
       });
     } else {
       this.barcode = this.barcodes[0]
-      // this.presentAlert('No Barcode Scanned', 'No barcodes were detected.');
     }
 
   }

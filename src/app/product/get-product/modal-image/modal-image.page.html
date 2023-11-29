@@ -8,6 +8,11 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-img [src]="url" style="width: 100%;"></ion-img>
+  <div *ngIf="loading" class="image-loader" style="position: absolute; top:50%; left:50%">
+    <ion-spinner color="primary" name="crescent" size="large"></ion-spinner>
+  </div>
+  <ion-img [src]="url_full" style="width: 100%;" 
+  (ionError)="handleImageError()"
+  (ionImgDidLoad)="handleImageDidLoad()"></ion-img>
   
 </ion-content>

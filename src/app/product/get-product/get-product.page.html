@@ -41,8 +41,15 @@
 		</ion-card>
 	</div>
 
+	<div style="text-align:center;" class="ion-margin-top">
+		<svg #generate_barcode id="generate_barcode" class="ion-text-center" style="  display: block;
+		margin: auto;
+		width: 100%; /* Adjust the width as needed */
+		text-align: center;"></svg>
+	</div>
+
 	<ion-item>
-		<h4 class="ion-text-left">Kesehatan produk</h4>
+		<h4 class="ion-text-left">Kesehatan</h4>
 	</ion-item>
 
 	<ion-card class="ion-text-center" color="light">
@@ -64,13 +71,17 @@
 					<!-- <ion-button expand="block" color="light" ><small>Check</small></ion-button> -->
 				</ion-col>
 				<ion-col size="2" class="ion-text-end">
-					<ion-icon *ngIf="product?.nutriscore_data" name="information-circle-outline" aria-hidden="true" size="large" color="primary"  (click)="openNutriScore(product)"></ion-icon>
+					<ion-icon name="information-circle-outline" aria-hidden="true" size="large" color="primary"  (click)="openNutriScore(product)"></ion-icon>
 				</ion-col>
 			</ion-row>
 		</ion-grid>
 
 	</ion-card>
 	
+	<!-- <ion-item *ngIf="existObject(product?.nutrient_levels)">
+		<ion-icon name="alert-circle-outline" color="warning" size="large"></ion-icon>
+		<ion-label> Persentase dihitung sajian per 100g. </ion-label>
+	</ion-item> -->
 	
 	<ion-card *ngIf="existObject(product?.nutrient_levels)">
 		
@@ -80,7 +91,7 @@
 					<ion-icon *ngIf="product?.nutrient_levels['fat'] === 'low'" name="radio-button-on-outline" color="primary" class="ion-margin-end"></ion-icon>
 					<ion-icon *ngIf="product?.nutrient_levels['fat'] === 'moderate'" name="radio-button-on-outline" color="warning" class="ion-margin-end"></ion-icon>
 					<ion-icon *ngIf="product?.nutrient_levels['fat'] === 'high'" name="radio-button-on-outline" color="danger" class="ion-margin-end"></ion-icon>
-					<ion-label> Lemak dalam jumlah <b>{{nutrient_levels_fat}}</b> ({{product?.nutriments['fat']}}%)</ion-label>
+					<ion-label> Lemak dalam jumlah <b>{{nutrient_levels_fat}}</b> ({{product?.nutriments['fat_100g']}}%)</ion-label>
 				</ion-item>
 				<div class="ion-padding" slot="content">
 					<div style="margin-bottom:0.5rem">
@@ -106,7 +117,7 @@
 					<ion-icon *ngIf="product?.nutrient_levels['saturated-fat'] === 'low'" name="radio-button-on-outline" color="primary" class="ion-margin-end"></ion-icon>
 					<ion-icon *ngIf="product?.nutrient_levels['saturated-fat'] === 'moderate'" name="radio-button-on-outline" color="warning" class="ion-margin-end"></ion-icon>
 					<ion-icon *ngIf="product?.nutrient_levels['saturated-fat'] === 'high'" name="radio-button-on-outline" color="danger" class="ion-margin-end"></ion-icon>
-					<ion-label>Lemak jenuh <b>{{nutrient_levels_saturated_fat}}</b> ({{product?.nutriments['saturated-fat']}}%) </ion-label>
+					<ion-label>Lemak jenuh <b>{{nutrient_levels_saturated_fat}}</b> ({{product?.nutriments['saturated-fat_100g']}}%) </ion-label>
 				</ion-item>
 				<div class="ion-padding" slot="content">
 					<div style="margin-bottom:0.5rem">
@@ -132,7 +143,7 @@
 					<ion-icon *ngIf="product?.nutrient_levels['sugars'] === 'low'" name="radio-button-on-outline" color="primary" class="ion-margin-end"></ion-icon>
 					<ion-icon *ngIf="product?.nutrient_levels['sugars'] === 'moderate'" name="radio-button-on-outline" color="warning" class="ion-margin-end"></ion-icon>
 					<ion-icon *ngIf="product?.nutrient_levels['sugars'] === 'high'" name="radio-button-on-outline" color="danger" class="ion-margin-end"></ion-icon>
-					<ion-label>Gula dalam jumlah <b>{{nutrient_levels_sugar}}</b> ({{product?.nutriments['sugars']}}%) </ion-label>
+					<ion-label>Gula dalam jumlah <b>{{nutrient_levels_sugar}}</b> ({{product?.nutriments['sugars_100g']}}%) </ion-label>
 				</ion-item>
 				<div class="ion-padding" slot="content">
 					<div style="margin-bottom:0.5rem">
@@ -161,7 +172,7 @@
 					<ion-icon *ngIf="product?.nutrient_levels['salt'] === 'low'" name="radio-button-on-outline" color="primary" class="ion-margin-end"></ion-icon>
 					<ion-icon *ngIf="product?.nutrient_levels['salt'] === 'moderate'" name="radio-button-on-outline" color="warning" class="ion-margin-end"></ion-icon>
 					<ion-icon *ngIf="product?.nutrient_levels['salt'] === 'high'" name="radio-button-on-outline" color="danger" class="ion-margin-end"></ion-icon>
-					<ion-label>Garam dalam jumlah <b>{{nutrient_levels_salt}}</b> ({{product?.nutriments['salt']}}%) </ion-label>
+					<ion-label>Garam dalam jumlah <b>{{nutrient_levels_salt}}</b> ({{product?.nutriments['salt_100g']}}%) </ion-label>
 				</ion-item>
 				<div class="ion-padding" slot="content">
 					
@@ -205,7 +216,7 @@
 		</app-nutrition-facts>
 	</ion-card>
 	
-	<ion-item>
+	<!-- <ion-item>
 		<h4 class="ion-text-left">Dampak pada lingkungan</h4>
 	</ion-item>
 
@@ -226,7 +237,6 @@
 						<ion-text *ngIf=" product?.ecoscore_grade == 'unknown'" ><ion-badge color="dark">Tidak di ketahui</ion-badge> </ion-text>
 					</div>
 
-					<!-- <ion-button expand="block" color="light" ><small>Check</small></ion-button> -->
 				</ion-col>
 				<ion-col size="2" class="ion-text-end">
 					<ion-icon (click)="openEcoScore(product)" name="information-circle-outline" aria-hidden="true" size="large" color="primary"></ion-icon>
@@ -253,7 +263,7 @@
 				</ion-col>
 			</ion-row>
 		</ion-grid>
-	</ion-card>
+	</ion-card> -->
 	
 
 

@@ -15,6 +15,7 @@ export class HomePage {
   constructor() {}
 
 
+  
   handleImageError() {
     this.loading = false; // Hide the loading spinner
   }

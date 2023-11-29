@@ -7,47 +7,54 @@
   </ion-toolbar> 
 </ion-header>
 <ion-content class="ion-padding">
+  <h1 class="ion-text-center">Apa itu Nutri-Score?</h1>
+  <p>Nutri-Score adalah sebuah label yang menunjukkan kualitas nutrisi produk - produk makanan yang diwakili oleh nilai A sampai E. Dengan Nutri-Score, produk dapat dibandingkan dengan mudah dan cepat.</p>
+  <p>Nutri-Score telah diusulkan oleh EREN, sebuah tim peneliti nutrisi publik Perancis, yang dipimpin oleh Profesor Serge Hercberg. Ia didasarkan pada skor nutrisi FSA yang dibuat oleh Food Standards Agency di Britania Raya.</p>
+  <p>Sumber dari : <a href="https://world.openfoodfacts.org/nutriscore" target="_blank">nutriscore</a></p>
   <!-- <p>
     Warning: the amount of fruits, vegetables and nuts is not specified on the label, it was estimated from the list of ingredients: 0
     This product is not considered a beverage for the calculation of the Nutri-Score.
   </p> -->
+  <ion-item-divider style="margin-bottom: 3rem;"></ion-item-divider>
+  <div *ngIf="product?.nutriscore_data" >
+    <b>Positif point : {{product?.nutriscore_data?.positive_points}}</b>
+    <ion-list>
+      <ion-item>
+        <ion-icon name="checkmark-circle-outline" size="small" color="primary" style="margin-right: 5px;"></ion-icon>
+        <ion-label class="ion-text-wrap">Protein : {{product?.nutriscore_data?.proteins_points}} / 5 (nilai: {{product?.nutriscore_data?.proteins}})</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="checkmark-circle-outline" size="small" color="primary" style="margin-right: 5px;"></ion-icon>
+        <ion-label class="ion-text-wrap">Serat : {{product?.nutriscore_data?.fiber_points}} / 5 (nilai: {{product?.nutriscore_data?.fiber}})</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="checkmark-circle-outline" size="small" color="primary" style="margin-right: 5px;"></ion-icon>
+        <ion-label class="ion-text-wrap">Buah-buahan, sayuran, kacang-kacangan, dan colza/walnut/minyak zaitun : {{product?.nutriscore_data?.fruits_vegetables_nuts_colza_walnut_olive_oils_points}} / 5 (nilai: {{product?.nutriscore_data?.fruits_vegetables_nuts_colza_walnut_olive_oils}})</ion-label>
+      </ion-item>
+    </ion-list>
 
-  <b>Positif point : {{product?.nutriscore_data?.positive_points}}</b>
-  <ion-list>
-    <ion-item>
-      <ion-icon name="checkmark-circle-outline" size="small" color="primary" style="margin-right: 5px;"></ion-icon>
-      <ion-label class="ion-text-wrap">Protein : {{product?.nutriscore_data?.proteins_points}} / 5 (nilai: {{product?.nutriscore_data?.proteins}}, pembulatan nilai: {{product?.nutriscore_data?.proteins_value}})</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="checkmark-circle-outline" size="small" color="primary" style="margin-right: 5px;"></ion-icon>
-      <ion-label class="ion-text-wrap">Serat : {{product?.nutriscore_data?.fiber_points}} / 5 (nilai: {{product?.nutriscore_data?.fiber}}, pembulatan nilai: {{product?.nutriscore_data?.fiber_value}})</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="checkmark-circle-outline" size="small" color="primary" style="margin-right: 5px;"></ion-icon>
-      <ion-label class="ion-text-wrap">Buah-buahan, sayuran, kacang-kacangan, dan colza/walnut/minyak zaitun : {{product?.nutriscore_data?.fruits_vegetables_nuts_colza_walnut_olive_oils_points}} / 5 (nilai: {{product?.nutriscore_data?.fruits_vegetables_nuts_colza_walnut_olive_oils}}, pembulatan nilai: {{product?.nutriscore_data?.fruits_vegetables_nuts_colza_walnut_olive_oils_value}})</ion-label>
-    </ion-item>
-  </ion-list>
-
-  <div class="ion-margin-top"><b>Negatif point : {{product?.nutriscore_data?.negative_points}}</b></div>
-  <ion-list>
-    <ion-item>
-      <ion-icon name="ban-outline" size="small" color="danger" style="margin-right: 5px;"></ion-icon>
-      <ion-label class="ion-text-wrap">Energy/Kalori : {{product?.nutriscore_data?.energy_points}} / 10 (nilai: {{product?.nutriscore_data?.energy}}, pembulatan nilai: {{product?.nutriscore_data?.energy_value}})</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="ban-outline" size="small" color="danger" style="margin-right: 5px;"></ion-icon>
-      <ion-label class="ion-text-wrap">Gula : {{product?.nutriscore_data?.sugars_points}} / 10 (nilai: {{product?.nutriscore_data?.sugars}}, pembulatan nilai: {{product?.nutriscore_data?.sugars_value}})</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="ban-outline" size="small" color="danger" style="margin-right: 5px;"></ion-icon>
-      <ion-label class="ion-text-wrap">Lemak jenuh : {{product?.nutriscore_data?.saturated_fat_points}} / 10 (nilai: {{product?.nutriscore_data?.saturated_fat}}, pembulatan nilai: {{product?.nutriscore_data?.saturated_fat_value}})</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="ban-outline" size="small" color="danger" style="margin-right: 5px;"></ion-icon>
-      <ion-label class="ion-text-wrap">Sodium : {{product?.nutriscore_data?.sodium_points}} / 10 (nilai: {{product?.nutriscore_data?.sodium}}, pembulatan nilai: {{product?.nutriscore_data?.sodium_value}})</ion-label>
-    </ion-item>
-  </ion-list>
-<!-- 
+    <div class="ion-margin-top"><b>Negatif point : {{product?.nutriscore_data?.negative_points}}</b></div>
+    <ion-list>
+      <ion-item>
+        <ion-icon name="ban-outline" size="small" color="danger" style="margin-right: 5px;"></ion-icon>
+        <ion-label class="ion-text-wrap">Energy/Kalori : {{product?.nutriscore_data?.energy_points}} / 10 (nilai: {{product?.nutriscore_data?.energy}})</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="ban-outline" size="small" color="danger" style="margin-right: 5px;"></ion-icon>
+        <ion-label class="ion-text-wrap">Gula : {{product?.nutriscore_data?.sugars_points}} / 10 (nilai: {{product?.nutriscore_data?.sugars}})</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="ban-outline" size="small" color="danger" style="margin-right: 5px;"></ion-icon>
+        <ion-label class="ion-text-wrap">Lemak jenuh : {{product?.nutriscore_data?.saturated_fat_points}} / 10 (nilai: {{product?.nutriscore_data?.saturated_fat}})</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="ban-outline" size="small" color="danger" style="margin-right: 5px;"></ion-icon>
+        <ion-label class="ion-text-wrap">Sodium : {{product?.nutriscore_data?.sodium_points}} / 10 (nilai: {{product?.nutriscore_data?.sodium}})</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+  
+  <!-- 
   <div class="ion-margin-top"><b>Score Nutrisi : {{product?.nutriscore_data?.score}}</b></div>
   <b>Peringkat nutrisi : {{product?.nutriscore_data?.grade}} </b> -->
 </ion-content>

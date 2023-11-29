@@ -1,5 +1,5 @@
 {
-  "name": "check-nutrisi-products",
+  "name": "cek nilai gizi",
   "integrations": {
     "capacitor": {}
   },

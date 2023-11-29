@@ -1,23 +1,31 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar style="box-shadow: none !important;">
     <ion-title>modal-barcode</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()"><ion-icon name="close" size="large"></ion-icon></ion-button>
+    </ion-buttons>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content [fullscreen]="true">
   <ion-content class="ion-padding">
+
     <div class="ion-text-right">
       <ion-icon (click)="closeModal()" name="close" size="large"></ion-icon>
     </div>
-    <ion-item class="ion-text-center"><svg #generate_barcode id="generate_barcode"></svg></ion-item>
-    <h1 class="ion-text-center">Barcode di temukan</h1>
-    <p>
-      Product makanan saat ini menggunakan barcode untuk indetifikasi. sehingga <b>QRCode</b> serta type code lain tidak bisa kami pindai/scan.
-    </p>
-    <p>jika anda memindai/scan code barcode, pastikan memindai/scan dengan posisi yang tepat</p>
-    <!-- <ion-item></ion-item>
-    <h5 class="ion-text-center" >hasil barcode : {{barcode?.rawValue}}</h5>
-    <div class="ion-text-center" >type barcode : {{barcode?.format}}</div> -->
-    <ion-button (click)="goToProduct()"></ion-button>
+
+    <div class="ion-text-center ion-margin-top">
+      <svg #generate_barcode id="generate_barcode" class="ion-text-center" style="  display: block;
+      margin: auto;
+      width: 100%; /* Adjust the width as needed */
+      text-align: center;"></svg>
+      <h1 class="ion-text-center">Barcode di temukan</h1>
+
+      <!-- <ion-item></ion-item>
+      <h5 class="ion-text-center" >hasil barcode : {{barcode?.rawValue}}</h5>
+      <div class="ion-text-center" >type barcode : {{barcode?.format}}</div> -->
+      <ion-button (click)="goToProduct()" class="ion-text-center">Check Product</ion-button>
+    </div>
   </ion-content>
 </ion-content>

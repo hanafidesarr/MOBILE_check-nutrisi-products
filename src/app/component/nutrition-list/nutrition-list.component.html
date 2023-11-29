@@ -9,8 +9,10 @@
   <th *ngIf="tab_cell == 2" colspan="2" class="ion-text-left" style="padding-left: 2rem; font-weight: normal;">
     {{name}}
   </th>
-
   <td class="ion-text-right">
-    <b>{{nutriment}} {{unit}}</b>
+    <b>{{ formatNutriment() }} {{unit}}</b>
+  </td>
+  <td class="ion-text-right">
+    <b>{{formatAKG()}}</b>
   </td>
 </tr>

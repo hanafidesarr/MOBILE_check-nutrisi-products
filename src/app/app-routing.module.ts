@@ -21,6 +21,10 @@ const routes: Routes = [
   {
     path: 'get-product/:barcodeId',
     loadChildren: () => import('./product/get-product/get-product.module').then(m => m.GetProductPageModule)
+  },
+  {
+    path: 'intro',
+    loadChildren: () => import('./intro/intro.module').then( m => m.IntroPageModule)
   }
 ];
 @NgModule({

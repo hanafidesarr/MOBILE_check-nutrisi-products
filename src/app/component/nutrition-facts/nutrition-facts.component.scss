@@ -10,10 +10,10 @@ p {
 
 .performance-facts {
   border: 1px solid black;
-  margin: 20px;
+  margin: 10px;
   float: left;
   width: auto;
-  padding: 0.5rem;
+  padding: 1rem;
   table {
     border-collapse: collapse;
   }
@@ -24,7 +24,7 @@ p {
   margin: 0 0 0.25rem 0;
 }
 .performance-facts__header {
-  border-bottom: 5px solid black;
+  border-bottom: 5px solid #b6b6b6;
   padding: 0 0 0.25rem 0;
   margin: 0 0 0.5rem 0;
   p {
@@ -117,4 +117,17 @@ p {
 app-nutrition-list {
 
   display: contents !important;
+}
+
+.gram {
+
+  margin-left: 4%;
+}
+
+ion-row {
+  align-items: center !important;
+}
+input{
+  max-height: 10px;
+  height: 10px;
 }

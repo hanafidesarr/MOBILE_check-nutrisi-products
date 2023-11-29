@@ -117,10 +117,13 @@ export class SearchPage {
 
           this.list_search_histories = this.list_search_histories.filter(item => item !== this.ionicForm.value.name);
           this.results_search_histories = this.results_search_histories.filter(item => item !== this.ionicForm.value.name);
+          console.log(this.ionicForm.value.name != '')
+          if(this.ionicForm.value.name) {
+            this.list_search_histories.unshift(this.ionicForm.value.name);
+            this.results_search_histories.unshift(this.ionicForm.value.name);
+            localStorage.setItem('history', JSON.stringify(this.list_search_histories)); // Update local storage
 
-          this.list_search_histories.unshift(this.ionicForm.value.name);
-          this.results_search_histories.unshift(this.ionicForm.value.name);
-          localStorage.setItem('history', JSON.stringify(this.list_search_histories)); // Update local storage
+          }
         } else {
 
           // If the object is not a duplicate, add it to the array
@@ -190,12 +193,18 @@ export class SearchPage {
     this.content.scrollToPoint(0, 0, 500);
   }
 
-  deleteObjectHistory(index: number) {
-    if (index >= 0 && index < this.list_search_histories.length) {
-      this.list_search_histories.splice(index, 1); // Remove the item from the array
+  deleteObjectHistory(value: string) {
+    // if (index >= 0 && index < this.list_search_histories.length) {
+    //   this.list_search_histories.splice(index, 1); // Remove the item from the array
 
-      this.results_search_histories.splice(index, 1); // Remove the item from the array
-      localStorage.setItem('history', JSON.stringify(this.list_search_histories)); // Update local storage
+    //   this.results_search_histories.splice(index, 1); // Remove the item from the array
+    //   localStorage.setItem('history', JSON.stringify(this.list_search_histories)); // Update local storage
+    // }  
+
+    const index = this.results_search_histories.indexOf(value);
+    if (index !== -1) {
+      this.results_search_histories.splice(index, 1);
+      localStorage.setItem('history', JSON.stringify(this.list_search_histories)); 
     }
   }
 

@@ -10,7 +10,7 @@
             formControlName="name"
             type="text"
             aria-label="Name"
-            placeholder="Cari product kemasan"
+            placeholder="Cari product, contoh 'indomie' "
             enterkeyhint="Search"
             (ionInput)="handleInput($event)"
             (ionFocus)="onSearchFocus()"
@@ -43,7 +43,7 @@
     <ion-list style="height:auto; overflow: auto;">
       <ion-item *ngFor="let result of results_search_histories; let i = index">
         <ion-label   (click)="addToInput(result)">{{ result }}</ion-label>
-        <ion-icon (click)="deleteObjectHistory(i)" color="" slot="end" name="close-outline"></ion-icon>
+        <ion-icon (click)="deleteObjectHistory(result)" color="" slot="end" name="close-outline"></ion-icon>
       </ion-item>
     </ion-list>
 
@@ -51,12 +51,12 @@
 
   
   <div *ngIf="showTextMain && loaded">
-    <ion-item><h5 class=" ion-margin-end">Label Product</h5></ion-item>
-    <ion-item>
+    <div class=" ion-margin-top ion-padding-top ion-margin-bottom ion-margin-bottom ion-text-center" ><h5>Check product di seluruh dunia</h5></div>
+    <!-- <ion-item>
       <ion-grid>
         <ion-row>
           <ion-col size="4">
-            <img src="https://static.openfoodfacts.org/images/attributes/nutriscore-a.svg">
+            <img src="assets/nutriscore/nutriscore-a.svg">
           </ion-col>
           <ion-col size="8">
             <div>Label kandungan nutrisi pada product.</div>
@@ -74,7 +74,7 @@
             <small>(A) Sangat baik (B) Baik (C) Cukup (D) Kurang </small>
           </ion-col>
           <ion-col size="4">
-            <img src="https://static.openfoodfacts.org/images/attributes/ecoscore-a.svg">
+            <img src="assets/ecoscore/ecoscore-a.svg">
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -84,7 +84,7 @@
       <ion-grid>
         <ion-row>
           <ion-col size="4">
-            <img src="https://static.openfoodfacts.org/images/attributes/nova-group-1.svg">
+            <img src="assets/nova/nova-group-1.svg">
           </ion-col>
           <ion-col size="8">
             <div>Proses produksi pada product.</div>
@@ -92,14 +92,14 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-    </ion-item>
+    </ion-item> -->
     
   </div>
 
 
   <div  *ngIf="product_present">
     <ion-item class="ion-margin-top ion-text-right">
-      <ion-label *ngIf="result_products" class="ion-margin-top ion-text-right">Jumlah : {{list_products.length}}</ion-label>
+      <ion-label *ngIf="result_products" class="ion-margin-top ion-text-right">Jumlah : {{result_products.count}}</ion-label>
     </ion-item>
     <ion-list size="6" class="ion-margin-bottom" *ngIf="loaded">
       <ion-card *ngFor="let item of list_products" >
@@ -128,8 +128,8 @@
             </ion-col>
 
             <ion-col size="3">
-              <img *ngIf="item['nutriscore_grade']" style="border-radius: 10px;" src="https://static.openfoodfacts.org/images/attributes/nutriscore-{{item['nutriscore_grade']}}.svg">
-              <img *ngIf="item['ecoscore_grade']" style="border-radius: 10px;" src="https://static.openfoodfacts.org/images/attributes/ecoscore-{{item['ecoscore_grade']}}.svg">
+              <img *ngIf="item['nutriscore_grade']" style="border-radius: 10px;" src="assets/nutriscore/nutriscore-{{item['nutriscore_grade']}}.svg">
+              <!-- <img *ngIf="item['ecoscore_grade']" style="border-radius: 10px;" src="assets/ecoscore/ecoscore-{{item['ecoscore_grade']}}.svg"> -->
             </ion-col>
           </ion-row>
         </ion-grid>

@@ -3,49 +3,97 @@
 
 <section class="performance-facts">
   <header class="performance-facts__header">
-    <h1 class="performance-facts__title ion-padding-left ion-margin-right ion-no-margin-bottom">Nilai Gizi</h1>
-    <h6 class="ion-no-margin-top">
+    <h1 class="performance-facts__title ion-padding-left ion-margin-right" style="margin-bottom: 2rem;">Nilai Gizi</h1>
+    <div class="ion-no-margin-top">
       
       <!-- <div *ngIf="!sajian">As sold per serving ({{product?.serving_size}})</div>
       <div *ngIf="sajian">As sold per {{sajian}}</div> -->
-      <ion-item>
-        <ion-select label="Pilih takaran per saji" value="{{takaran_per}}"  (ionChange)="calculateNutrition($event)">
-          <ion-select-option value="serving">Kemasan</ion-select-option>
+      <!-- <ion-item>
+        <ion-select label="Pilih takaran per" value="{{takaran_per}}"  (ionChange)="calculateNutrition($event)">
+          <ion-select-option value="serving">Sajian ({{product?.serving_size}})</ion-select-option>
           <ion-select-option value="100g">100g</ion-select-option>
         </ion-select>
-      </ion-item>
-    </h6>
+      </ion-item> -->
+      <ion-input fill="outline" style="font-size: 1.5rem;" class="ion-margin-top text-center" labelPlacement="floating" [value]="product?.serving_quantity" (ionInput)="customCalculateNutrition($event)">
+        <div slot="label" style="font-size:1rem"><b>Jumlah Takaran</b></div>
+        <ion-badge slot="end" color="white" style="position: absolute; right: 0; bottom:0;">gram/ml</ion-badge>
+      </ion-input>
+
+      <!-- <ion-input [value]="product?.serving_quantity" label="Outline input" label-placement="floating" fill="outline" placeholder="Enter text" (ionInput)="customCalculateNutrition($event)"></ion-input> -->
+
+      <!-- <ion-badge slot="end" color="light" class="gram">gram/ml</ion-badge> -->
+      <!-- <ion-item>
+        <ion-input color="light"  label="Hitung quantity per : " placeholder="qty" [value]="product?.serving_quantity" class="ion-text-right" Type="numeric" (ionInput)="customCalculateNutrition($event)"></ion-input>
+        
+
+        <ion-input  label="Kalkulasi" type="text" placeholder="Username">
+          <ion-label position="end">gram</ion-label>
+        </ion-input>
+        
+      </ion-item> -->
+
+      <ion-select label="Pilih AKG untuk" value="pria_30-49" (ionChange)="calculateAKG($event)">
+        <!-- <ion-select-option value="serving">Sajian ({{product?.serving_size}})</ion-select-option> -->
+        <!-- <ion-select-option value="100g">100g</ion-select-option> -->
+
+        <!-- <ion-select-option disabled class="option-group-custom"> -- EU Group 1 -- </ion-select-option>
+        <ion-select-option>Add Knowledge</ion-select-option>
+        <ion-select-option>Share Knowledge</ion-select-option>
+        <ion-select-option>Other</ion-select-option>
+        <ion-select-option disabled class="option-group-custom"> -- EU Group 2 -- </ion-select-option>
+        <ion-select-option>Option 1</ion-select-option>
+        <ion-select-option>Option 2</ion-select-option> -->
+
+        <ion-select-option disabled class="option-group-custom" style="font-weight: 900;"><b> -- Anak-anak -- </b></ion-select-option>
+        <ng-container *ngFor="let item of akg_lists_anak">
+          <ion-select-option [value]="item.id">{{ item.name }}</ion-select-option>
+        </ng-container>
+      
+        <ion-select-option disabled class="option-group-custom"> -- Pria Dewasa -- </ion-select-option>
+        <ng-container *ngFor="let item of akg_lists_pria">
+          <ion-select-option [value]="item.id">{{ item.name }}</ion-select-option>
+        </ng-container>
+
+        <ion-select-option disabled class="option-group-custom"> -- Wanita Dewasa -- </ion-select-option>
+        <ng-container *ngFor="let item of akg_lists_wanita">
+          <ion-select-option [value]="item.id">{{ item.name }}</ion-select-option>
+        </ng-container>
+      </ion-select>
+    </div>
   </header>
   
   <table class="performance-facts__table">
-    <!-- <thead>
-      <tr>
-        <th colspan="3" class="small-info">
-          As sold per serving ({{product?.serving_size}})
-        </th>
-      </tr>
-    </thead> -->
     <tbody>
+      <tr>
+        <td>
+          <b>Energy</b>
+        </td>
+        <td></td>
+        <td></td>
+        <td>
+          <b>*AKG</b>
+        </td>
+      </tr>
       <tr *ngIf="energy_kj || energy_kcal">
         <th colspan="2">
-          <b>Energy</b>
+          <b>{{energy_kj.toFixed(2)}} kj</b>
         </th>
+        <td  class="ion-text-right">
+          <b>{{energy_kcal.toFixed(2)}} kcal</b>
+        </td>
         <td>
-          <b>{{energy_kj}} kj ( {{energy_kcal}}  {{product.nutriments["energy-kcal_unit"]}} )</b>
+          <b>{{formatAKGEnergi()}}</b>
         </td>
       </tr>
       
-      <!-- <tr *ngIf="product?.nutriments['energy-from-fat_serving']">
-        <th colspan="2">
-          <b>Energy from Fat</b>
-        </th>
-        <td>
-          <b>{{product.nutriments["energy-from-fat_serving"]}} kj ( {{product.nutriments["energy-from-fat-kcal_serving"] || "-"}}  {{product.nutriments["energy-kcal_unit"]}} )</b>
-        </td>
-      </tr> -->
-
-
-      <app-nutrition-list name="Total fat" [nutriment]="fat" [unit]="product?.nutriments['fat_unit']" >
+      <tr>
+        <td style="padding: 0;"></td>
+        <td style="padding: 0;"></td>
+        <td style="padding: 0;"></td>
+        <td style="padding: 0;"></td>
+      </tr>
+      
+      <app-nutrition-list name="Total fat" [nutriment]="fat" [unit]="product?.nutriments['fat_unit']" [akg]="akg_fat">
       </app-nutrition-list>
       <app-nutrition-list name="Saturated Fat" [nutriment]="saturated_fat" [unit]="product?.nutriments['saturated-fat_unit']" [tab_cell]="1">
       </app-nutrition-list>
@@ -116,7 +164,7 @@
       <app-nutrition-list name="Cholesterol" [nutriment]="cholesterol" [unit]="product?.nutriments['cholesterol_unit']"  [tab_cell]="1">
       </app-nutrition-list>
       
-      <app-nutrition-list name="Carbohydrates" [nutriment]="carbohydrates" [unit]="product?.nutriments['carbohydrates_unit']">
+      <app-nutrition-list name="Carbohydrates" [nutriment]="carbohydrates" [unit]="product?.nutriments['carbohydrates_unit']" [akg]="akg_carbo">
       </app-nutrition-list>
       <app-nutrition-list name="Sugars" [nutriment]="sugars" [unit]="product?.nutriments['sugars_unit']" [tab_cell]="1">
       </app-nutrition-list>
@@ -137,9 +185,9 @@
       <app-nutrition-list name="Polyols" [nutriment]="polyols" [unit]="product?.nutriments['polyols_unit']" [tab_cell]="1">
       </app-nutrition-list>
     
-      <app-nutrition-list name="Fiber" [nutriment]="fiber" [unit]="product?.nutriments['fiber_unit']" >
+      <app-nutrition-list name="Fiber" [nutriment]="fiber" [unit]="product?.nutriments['fiber_unit']" [akg]="akg_fiber">
       </app-nutrition-list>
-      <app-nutrition-list name="Proteins" [nutriment]="proteins" [unit]="product?.nutriments['proteins_unit']" >
+      <app-nutrition-list name="Proteins" [nutriment]="proteins" [unit]="product?.nutriments['proteins_unit']" [akg]="akg_protein">
       </app-nutrition-list>
       <app-nutrition-list name="Casein" [nutriment]="casein" [unit]="product?.nutriments['casein_unit']" [tab_cell]="1">
       </app-nutrition-list>
@@ -276,12 +324,12 @@
         <td>
         </td>
       </tr> -->
-    </tbody>
-  </table>
+      
+      <div style="width: 100%;">
+        <div style="border-bottom: 5px solid #b6b6b6; padding: 0.5rem;margin: 0.5rem 0; width: 100%;"></div>
+      </div>
+      
 
-  <div style="border-bottom: 5px solid #b6b6b6; padding: 0.5rem;margin: 0.5rem 0;"></div>
-  <table class="performance-facts__table--grid">
-    <tbody>
       <app-nutrition-list [nutriment]="vitamin_a" name="vitamin A" [unit]="product?.nutriments['vitamin-a_unit']" ></app-nutrition-list>
       <app-nutrition-list [nutriment]="beta_carotene" name="beta carotene" [unit]="product?.nutriments['beta-carotene_unit']" [tab_cell]="1"></app-nutrition-list>
       <app-nutrition-list [nutriment]="vitamin_d" name="vitamin D" [unit]="product?.nutriments['vitamin-d_unit']" ></app-nutrition-list>
@@ -323,8 +371,9 @@
     </tbody>
   </table>
 
-  <p class="small-info">* Percent Daily Values are based on a 2,000 calorie diet. Your daily values may be higher or lower depending on your calorie needs:</p>
 
+  <p class="small-info" style="margin-top: 0.5rem;">* Angka Kebutuhan Gizi (AKG) merupakan kecukupan rata-rata zat gizi setiap hari. sumber perhitungan berdasarkan data dari <a style="color:black" href="https://standarpangan.pom.go.id/dokumen/pedoman/KIE_Label_Gizi_-_Masyarakat_Umum.pdf" target="_blank"><b>Badan POM</b> indonesia</a>  </p>
+  <p class="small-info" style="margin-top: 0.5rem;">* Kami secara terbuka menerima masukan dari produsen maupun konsumen tentang nilai gizi yang tertera</p>
   <table class="performance-facts__table--small small-info">
     <!-- <thead>
       <tr>
@@ -373,17 +422,6 @@
       </tr>
     </tbody> -->
   </table>
-
-  <p class="small-info">
-    Calories per gram:
-  </p>
-  <p class="small-info text-center">
-    Fat 9
-    &bull;
-    Carbohydrate 4
-    &bull;
-    Protein 4
-  </p>
 
 </section>
 
