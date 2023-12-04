@@ -14,8 +14,8 @@
           <ion-select-option value="100g">100g</ion-select-option>
         </ion-select>
       </ion-item> -->
-      <ion-input fill="outline" style="font-size: 1.5rem;" class="ion-margin-top text-center" labelPlacement="floating" [value]="product?.serving_quantity" (ionInput)="customCalculateNutrition($event)">
-        <div slot="label" style="font-size:1rem"><b>Jumlah Takaran</b></div>
+      <ion-input fill="outline" style="font-size: 1.5rem;" class="ion-margin-top text-center" labelPlacement="floating" [value]="product?.serving_quantity || 100" (ionInput)="customCalculateNutrition($event)">
+        <div slot="label" style="font-size:1rem"><b>Kalkulasi Takaran</b></div>
         <ion-badge slot="end" color="white" style="position: absolute; right: 0; bottom:0;">gram/ml</ion-badge>
       </ion-input>
 

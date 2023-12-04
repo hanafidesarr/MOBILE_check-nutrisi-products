@@ -1,0 +1,66 @@
+<!-- <ion-content [fullscreen]="true" class="ion-padding">
+  <swiper-container [slidesPerView]="1" [loop]="true"  [autoplay]="true" pagination="true">
+    <swiper-slide>
+      <ion-img
+        src="https://ionicframework.com/docs/demos/api/slides/slide-1.png"
+      ></ion-img>
+      <h2>Welcome</h2>
+      <p>
+        is a practical preview of the ionic framework in action, and a
+        demonstration of proper code use.
+      </p>
+    </swiper-slide>
+    <swiper-slide>
+      <ion-img
+        src="https://ionicframework.com/docs/demos/api/slides/slide-1.png"
+      ></ion-img>
+      <h2>Welcome</h2>
+      <p>
+        is a practical preview of the ionic framework in action, and a
+        demonstration of proper code use.
+      </p>
+    </swiper-slide>
+    
+  </swiper-container>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title (click)="navigateToHome()">Go to Home </ion-title>
+  </ion-toolbar>
+</ion-footer> -->
+
+
+
+<ion-content>
+  <!-- Top fill image -->
+
+  <div class="top-fill">
+
+    <div class="top-image">
+      <!-- Replace 'your-image-path.jpg' with the actual path to your image -->
+      <img src="assets/paper-bag-vegetables.gif" alt="Top Fill Image">
+      <h1 class="ion-margin-bottom ion-padding-bottom">{{translationService.translateKey('welcome')}}</h1>
+    </div>
+
+  </div>
+
+  <!-- Bottom fill area with text and half-curve background color -->
+  <div class="bottom-fill ion-padding">
+    <div class="title">
+      <h3 style="color: white;">Language / Bahasa</h3>
+    </div>
+    
+    <div class="content">
+      <ion-list style="background: none rgb(253, 147, 70); font-size: 1.3rem; color: white;">
+        <ion-select  (ionChange)="changeSelectLang($event)" [(ngModel)]="currentLanguage" aria-label="Fruit" interface="action-sheet" placeholder="" style="justify-content: center;">
+          <ion-select-option value="en">English</ion-select-option>
+          <ion-select-option value="id">Indonesia</ion-select-option>
+        </ion-select>
+    </ion-list>
+    </div>
+
+    <ion-button  fill="outline" color="light"  shape="round" class="next-page" (click)="navigateToHome()">Next</ion-button>
+  </div>
+</ion-content>
