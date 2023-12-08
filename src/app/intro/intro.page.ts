@@ -14,18 +14,17 @@ export class IntroPage implements OnInit {
     initialSlide: 1,
     speed: 400,
   };
-  constructor(public _router: Router, public translationService: TranslationService) {
+  constructor(public _router: Router, public _translation_service: TranslationService) {
 
-    this.translationService.init();
-    this.currentLanguage = this.translationService.getCurrentLanguage();
+    this._translation_service.init();
+    this.currentLanguage = this._translation_service.getCurrentLanguage();
   }
 
   ngOnInit() {
   }
 
   changeSelectLang(e:any) {
-
-    this.translationService.setLanguage(this.currentLanguage);
+    this._translation_service.setLanguage(this.currentLanguage);
   }
 
   navigateToHome() {

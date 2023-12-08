@@ -5,11 +5,9 @@
       <ion-icon (click)="closeModal()" name="close" size="large"></ion-icon>
     </div>
     <ion-img src="assets/barcode.png"></ion-img>
-    <h1 class="ion-text-center">Pastikan gambar barcode seperti contoh di atas</h1>
-    <p>
-      Product makanan saat ini menggunakan barcode untuk indetifikasi.
-    </p>
-    <p>jika anda memindai/scan code barcode, pastikan memindai/scan dengan posisi yang tepat</p>
+    <div class="ion-text-center">
+      <div [innerHTML]="_translation_service.translateKey('note_not_barcode')"></div>
+    </div>
     <!-- <ion-item></ion-item>
     <h5 class="ion-text-center" >hasil barcode : {{barcode?.rawValue}}</h5>
     <div class="ion-text-center" >type barcode : {{barcode?.format}}</div> -->

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { TranslationService } from 'src/app/api/translation.service';
+
 
 @Component({
   selector: 'app-modal-not-barcode',
@@ -8,7 +10,10 @@ import { ModalController } from '@ionic/angular';
 })
 export class ModalNotBarcodePage implements OnInit {
 
-  constructor(private _modalCtrl: ModalController) { }
+  constructor(private _modalCtrl: ModalController, public _translation_service: TranslationService) {
+    
+    this._translation_service.init();
+  }
 
   ngOnInit() {
   }

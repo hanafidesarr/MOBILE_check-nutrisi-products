@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { TranslationService } from 'src/app/api/translation.service';
 
 @Component({
   selector: 'app-nutrition-facts',
@@ -7,96 +8,16 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/cor
 })
 export class NutritionFactsComponent  implements OnChanges {
 
+  akg_lists_anak:any;
+  akg_lists_pria:any;
+  akg_lists_wanita:any;
+
   akg_energy: any;
   akg_protein: any;
   akg_fat: any;
   akg_carbo: any;
   akg_fiber: any;
 
-  akg_lists_anak = [
-    {
-      id: 'anak_1-3',
-      name: 'anak 1-3 tahun'
-    },
-    {
-      id: 'anak_4-6',
-      name: 'anak 4-6 tahun'
-    },
-    {
-      id: 'anak_7-9',
-      name: 'anak 7-9 tahun'
-    },
-  ];
-
-  akg_lists_pria = [
-    {
-      id: 'pria_10-12',
-      name: 'pria 10-12 tahun'
-    },
-    {
-      id: 'pria_13-15',
-      name: 'pria 13-15 tahun'
-    },
-    {
-      id: 'pria_16-18',
-      name: 'pria 16-18 tahun'
-    },
-    {
-      id: 'pria_19-29',
-      name: 'pria 19-29 tahun'
-    },
-    {
-      id: 'pria_30-49',
-      name: 'pria 30-49 tahun'
-    },
-    {
-      id: 'pria_50-64',
-      name: 'pria 50-64 tahun'
-    },
-    {
-      id: 'pria_65-80',
-      name: 'pria 65-80 tahun'
-    },
-    {
-      id: 'pria_80_plus',
-      name: 'pria 80+ tahun'
-    },
-  ];
-
-  akg_lists_wanita = [
-    {
-      id: 'wanita_10-12',
-      name: 'wanita 10-12 tahun'
-    },
-    {
-      id: 'wanita_13-15',
-      name: 'wanita 13-15 tahun'
-    },
-    {
-      id: 'wanita_16-18',
-      name: 'wanita 16-18 tahun'
-    },
-    {
-      id: 'wanita_19-29',
-      name: 'wanita 19-29 tahun'
-    },
-    {
-      id: 'wanita_30-49',
-      name: 'wanita 30-49 tahun'
-    },
-    {
-      id: 'wanita_50-64',
-      name: 'wanita 50-64 tahun'
-    },
-    {
-      id: 'wanita_65-80',
-      name: 'wanita 65-80 tahun'
-    },
-    {
-      id: 'wanita_80_plus',
-      name: 'wanita 80+ tahun'
-    },
-  ];
 
   @Input() name?: string;
   @Input() product?: any;
@@ -208,11 +129,102 @@ export class NutritionFactsComponent  implements OnChanges {
   takaran_per: any;
 
   custom_serving: any = 0;
-  constructor() {
+  currentLanguage: any;
+  constructor(public _translation_service: TranslationService) {
+
+
+  this.akg_lists_anak = [
+    {
+      id: 'anak_1-3',
+      name: _translation_service.translateKey('children') + " 1-3 " + _translation_service.translateKey('year_old')
+    },
+    {
+      id: 'anak_4-6',
+      name: _translation_service.translateKey('children') + " 4-6 " + _translation_service.translateKey('year_old')
+    },
+    {
+      id: 'anak_7-9',
+      name: _translation_service.translateKey('children') + " 7-9 " + _translation_service.translateKey('year_old')
+    },
+  ];
+
+  this.akg_lists_pria = [
+    {
+      id: 'pria_10-12',
+      name: _translation_service.translateKey('male') + " 10-12 " + _translation_service.translateKey('year_old')
+    },
+    {
+      id: 'pria_13-15',
+      name: _translation_service.translateKey('male') + " 13-15 " + _translation_service.translateKey('year_old')
+    },
+    {
+      id: 'pria_16-18',
+      name: _translation_service.translateKey('male') + " 16-18 " + _translation_service.translateKey('year_old')
+    },
+    {
+      id: 'pria_19-29',
+      name: _translation_service.translateKey('male') + " 19-29 " + _translation_service.translateKey('year_old')
+    },
+    {
+      id: 'pria_30-49',
+      name: _translation_service.translateKey('male') + " 30-49 " + _translation_service.translateKey('year_old')
+    },
+    {
+      id: 'pria_50-64',
+      name: _translation_service.translateKey('male') + " 50-64 " + _translation_service.translateKey('year_old')
+    },
+    {
+      id: 'pria_65-80',
+      name: _translation_service.translateKey('male') + " 65-80 " + _translation_service.translateKey('year_old')
+    },
+    {
+      id: 'pria_80_plus',
+      name: _translation_service.translateKey('male') + " 80+ " + _translation_service.translateKey('year_old')
+    },
+  ];
+
+  this.akg_lists_wanita = [
+    {
+      id: 'wanita_10-12',
+      name: _translation_service.translateKey('female') + " 10-12 " + _translation_service.translateKey('year_old')
+    },
+    {
+      id: 'wanita_13-15',
+      name: _translation_service.translateKey('female') + " 13-15 " + _translation_service.translateKey('year_old')
+    },
+    {
+      id: 'wanita_16-18',
+      name: _translation_service.translateKey('female') + " 16-18 " + _translation_service.translateKey('year_old')
+    },
+    {
+      id: 'wanita_19-29',
+      name: _translation_service.translateKey('female') + " 19-29 " + _translation_service.translateKey('year_old')
+    },
+    {
+      id: 'wanita_30-49',
+      name: _translation_service.translateKey('female') + " 30-49 " + _translation_service.translateKey('year_old')
+    },
+    {
+      id: 'wanita_50-64',
+      name: _translation_service.translateKey('female') + " 50-64 " + _translation_service.translateKey('year_old')
+    },
+    {
+      id: 'wanita_65-80',
+      name: _translation_service.translateKey('female') + " 65-80 " + _translation_service.translateKey('year_old')
+    },
+    {
+      id: 'wanita_80_plus',
+      name: _translation_service.translateKey('female') + " 80+ " + _translation_service.translateKey('year_old')
+    },
+  ];
 
   }
 
   ngOnInit() {
+
+
+    this._translation_service.init();
+    this.currentLanguage = this._translation_service.getCurrentLanguage();
   }
 
   ngOnChanges(changes: any): void {

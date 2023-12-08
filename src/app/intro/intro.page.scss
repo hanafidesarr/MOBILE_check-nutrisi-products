@@ -12,41 +12,60 @@ ion-content {
     align-items: center;
     text-align: center;
     justify-content: center;
-
-    height: 50%;
-
+    background-color: rgb(253, 147, 70);
+    height: 90%;
+    border-bottom-left-radius: 80px;
     .top-image {
       img {
         width: 50%;
         height: 50%;
       }
     }
+
   }
 
   .bottom-fill {
     // background: linear-gradient(to bottom, orange 0%, #ffa500d1 30%, #ffa500cc 50%, #ffa500a8 70%, #dabd8882 100%);
     // background:none rgb(253, 127, 44);
-    background: none rgb(253, 147, 70);
-    box-shadow: #FDB777 -1px 0px 24px -4px;
+    // background: none rgb(253, 147, 70);
+    // box-shadow: #FDB777 -1px 0px 24px -4px;
     // background: none rgb(253, 167, 102);
-    border-top-left-radius: 50px; /* Adjust the radius as needed */
-    border-top-right-radius: 50px; /* Adjust the radius as needed */
-    height: 50%;
-    .title {
-      padding: 2rem;
-      text-align: center;
-    }
-    .content {
-      height: auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+    // border-top-left-radius: 50px; /* Adjust the radius as needed */
+    // border-top-right-radius: 50px; /* Adjust the radius as needed */
+    height: 10%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }
-.next-page {
-  position: absolute;
-  bottom: 30px;
-  right: 30px;
-  color: white;
+
+.line-with-circle {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
+
+.line {
+  flex: 1;
+  height: 2px;
+  background-color: white;
+}
+
+.circle {
+  color: orange;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  color: white;
+  margin-left: 10px;
+}
+

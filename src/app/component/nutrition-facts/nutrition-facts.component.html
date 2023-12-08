@@ -3,7 +3,7 @@
 
 <section class="performance-facts">
   <header class="performance-facts__header">
-    <h1 class="performance-facts__title ion-padding-left ion-margin-right" style="margin-bottom: 2rem;">Nilai Gizi</h1>
+    <h1 class="performance-facts__title ion-padding-left ion-margin-right ion-text-capitalize" style="margin-bottom: 2rem;">{{_translation_service.translateKey('nutrition_facts')}}</h1>
     <div class="ion-no-margin-top">
       
       <!-- <div *ngIf="!sajian">As sold per serving ({{product?.serving_size}})</div>
@@ -15,7 +15,7 @@
         </ion-select>
       </ion-item> -->
       <ion-input fill="outline" style="font-size: 1.5rem;" class="ion-margin-top text-center" labelPlacement="floating" [value]="product?.serving_quantity || 100" (ionInput)="customCalculateNutrition($event)">
-        <div slot="label" style="font-size:1rem"><b>Kalkulasi Takaran</b></div>
+        <div slot="label" style="font-size:1rem"><b>{{_translation_service.translateKey('calculate_per_serving')}}</b></div>
         <ion-badge slot="end" color="white" style="position: absolute; right: 0; bottom:0;">gram/ml</ion-badge>
       </ion-input>
 
@@ -32,7 +32,7 @@
         
       </ion-item> -->
 
-      <ion-select label="Pilih AKG untuk" value="pria_30-49" (ionChange)="calculateAKG($event)">
+      <ion-select label="{{_translation_service.translateKey('select_daily_value_for')}}" value="pria_30-49" (ionChange)="calculateAKG($event)">
         <!-- <ion-select-option value="serving">Sajian ({{product?.serving_size}})</ion-select-option> -->
         <!-- <ion-select-option value="100g">100g</ion-select-option> -->
 
@@ -43,18 +43,19 @@
         <ion-select-option disabled class="option-group-custom"> -- EU Group 2 -- </ion-select-option>
         <ion-select-option>Option 1</ion-select-option>
         <ion-select-option>Option 2</ion-select-option> -->
+        
 
-        <ion-select-option disabled class="option-group-custom" style="font-weight: 900;"><b> -- Anak-anak -- </b></ion-select-option>
+        <ion-select-option disabled class="option-group-custom" style="font-weight: 900;"><b> -- {{_translation_service.translateKey('children')}} -- </b></ion-select-option>
         <ng-container *ngFor="let item of akg_lists_anak">
           <ion-select-option [value]="item.id">{{ item.name }}</ion-select-option>
         </ng-container>
       
-        <ion-select-option disabled class="option-group-custom"> -- Pria Dewasa -- </ion-select-option>
+        <ion-select-option disabled class="option-group-custom"> -- {{_translation_service.translateKey('male')}} -- </ion-select-option>
         <ng-container *ngFor="let item of akg_lists_pria">
           <ion-select-option [value]="item.id">{{ item.name }}</ion-select-option>
         </ng-container>
 
-        <ion-select-option disabled class="option-group-custom"> -- Wanita Dewasa -- </ion-select-option>
+        <ion-select-option disabled class="option-group-custom"> -- {{_translation_service.translateKey('female')}} -- </ion-select-option>
         <ng-container *ngFor="let item of akg_lists_wanita">
           <ion-select-option [value]="item.id">{{ item.name }}</ion-select-option>
         </ng-container>
@@ -71,7 +72,7 @@
         <td></td>
         <td></td>
         <td>
-          <b>*AKG</b>
+          <b>{{_translation_service.translateKey('daily_value')}}</b>
         </td>
       </tr>
       <tr *ngIf="energy_kj || energy_kcal">
@@ -93,9 +94,9 @@
         <td style="padding: 0;"></td>
       </tr>
       
-      <app-nutrition-list name="Total fat" [nutriment]="fat" [unit]="product?.nutriments['fat_unit']" [akg]="akg_fat">
+      <app-nutrition-list name="{{_translation_service.translateKey('fat')}}" [nutriment]="fat" [unit]="product?.nutriments['fat_unit']" [akg]="akg_fat">
       </app-nutrition-list>
-      <app-nutrition-list name="Saturated Fat" [nutriment]="saturated_fat" [unit]="product?.nutriments['saturated-fat_unit']" [tab_cell]="1">
+      <app-nutrition-list name="{{_translation_service.translateKey('saturated_fat')}}" [nutriment]="saturated_fat" [unit]="product?.nutriments['saturated-fat_unit']" [tab_cell]="1">
       </app-nutrition-list>
       <app-nutrition-list name="Butyric acid" [nutriment]="butyric_acid" [unit]="product?.nutriments['butyric-acid_unit']" [tab_cell]="2">
       </app-nutrition-list>
@@ -164,9 +165,9 @@
       <app-nutrition-list name="Cholesterol" [nutriment]="cholesterol" [unit]="product?.nutriments['cholesterol_unit']"  [tab_cell]="1">
       </app-nutrition-list>
       
-      <app-nutrition-list name="Carbohydrates" [nutriment]="carbohydrates" [unit]="product?.nutriments['carbohydrates_unit']" [akg]="akg_carbo">
+      <app-nutrition-list name="{{_translation_service.translateKey('carbohydrates')}}" [nutriment]="carbohydrates" [unit]="product?.nutriments['carbohydrates_unit']" [akg]="akg_carbo">
       </app-nutrition-list>
-      <app-nutrition-list name="Sugars" [nutriment]="sugars" [unit]="product?.nutriments['sugars_unit']" [tab_cell]="1">
+      <app-nutrition-list name="{{_translation_service.translateKey('sugar')}}" [nutriment]="sugars" [unit]="product?.nutriments['sugars_unit']" [tab_cell]="1">
       </app-nutrition-list>
       <app-nutrition-list name="Sucrose" [nutriment]="sucrose" [unit]="product?.nutriments['sucrose_unit']" [tab_cell]="1">
       </app-nutrition-list>
@@ -185,7 +186,7 @@
       <app-nutrition-list name="Polyols" [nutriment]="polyols" [unit]="product?.nutriments['polyols_unit']" [tab_cell]="1">
       </app-nutrition-list>
     
-      <app-nutrition-list name="Fiber" [nutriment]="fiber" [unit]="product?.nutriments['fiber_unit']" [akg]="akg_fiber">
+      <app-nutrition-list name="{{_translation_service.translateKey('fiber')}}" [nutriment]="fiber" [unit]="product?.nutriments['fiber_unit']" [akg]="akg_fiber">
       </app-nutrition-list>
       <app-nutrition-list name="Proteins" [nutriment]="proteins" [unit]="product?.nutriments['proteins_unit']" [akg]="akg_protein">
       </app-nutrition-list>
@@ -195,7 +196,7 @@
       </app-nutrition-list>
       <app-nutrition-list name="Nucleotides" [nutriment]="nucleotides" [unit]="product?.nutriments['nucleotides_unit']" [tab_cell]="1">
       </app-nutrition-list>
-      <app-nutrition-list name="Salt" [nutriment]="salt" [unit]="product?.nutriments['salt_unit']" >
+      <app-nutrition-list name="{{_translation_service.translateKey('salt')}}" [nutriment]="salt" [unit]="product?.nutriments['salt_unit']" >
       </app-nutrition-list>
       <app-nutrition-list name="Sodium" [nutriment]="sodium" [unit]="product?.nutriments['sodium_unit']" [tab_cell]="1">
       </app-nutrition-list>
@@ -372,8 +373,8 @@
   </table>
 
 
-  <p class="small-info" style="margin-top: 0.5rem;">* Angka Kebutuhan Gizi (AKG) merupakan kecukupan rata-rata zat gizi setiap hari. sumber perhitungan berdasarkan data dari <a style="color:black" href="https://standarpangan.pom.go.id/dokumen/pedoman/KIE_Label_Gizi_-_Masyarakat_Umum.pdf" target="_blank"><b>Badan POM</b> indonesia</a>  </p>
-  <p class="small-info" style="margin-top: 0.5rem;">* Kami secara terbuka menerima masukan dari produsen maupun konsumen tentang nilai gizi yang tertera</p>
+  <p class="small-info" style="margin-top: 0.5rem;">{{_translation_service.translateKey('note_1_nutrition_facts')}} <a style="color:black" href="https://standarpangan.pom.go.id/dokumen/pedoman/KIE_Label_Gizi_-_Masyarakat_Umum.pdf" target="_blank"><b>Badan POM</b> indonesia</a>  </p>
+  <p class="small-info" style="margin-top: 0.5rem;">{{_translation_service.translateKey('note_2_nutrition_facts')}}</p>
   <table class="performance-facts__table--small small-info">
     <!-- <thead>
       <tr>

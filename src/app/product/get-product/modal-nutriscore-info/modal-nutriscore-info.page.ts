@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { TranslationService } from 'src/app/api/translation.service';
+
 
 
 @Component({
@@ -10,10 +12,12 @@ import { ModalController } from '@ionic/angular';
 export class ModalNutriscoreInfoPage implements OnInit {
 
   @Input() product: any;
-  constructor(private _modalCtrl: ModalController) { }
+  constructor(private _modalCtrl: ModalController, public _translation_service: TranslationService) { }
 
   ngOnInit() {
+    this._translation_service.init();
   }
+  
   closeModal() {
     this._modalCtrl.dismiss();
   }

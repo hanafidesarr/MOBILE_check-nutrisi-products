@@ -1,6 +1,6 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Product Tersimpan</ion-title>
+  <ion-toolbar color="tertiary">
+    <ion-title>Bookmark</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,7 +8,7 @@
   <div style="margin-bottom: 5vh;">
     <div  *ngIf="list_favorites">
       <ion-item class="ion-margin-top ion-text-right">
-        <ion-label class="ion-margin-top ion-text-right">Jumlah : {{list_favorites.length}}</ion-label>
+        <ion-label class="ion-margin-top ion-text-right">Total : {{list_favorites.length}}</ion-label>
       </ion-item>
       <ion-list size="6" class="ion-margin-bottom">
         <ion-card *ngFor="let item of list_favorites; let i = index" >
@@ -21,8 +21,8 @@
                 <!-- <ion-card-subtitle>{{item.id}}</ion-card-subtitle> -->
                 <ion-card-subtitle><h6 class="ion-no-margin">{{item.product_name || item?.brands }}</h6></ion-card-subtitle>
                 <div class="ion-margin-top ion-margin-bottom">
-                  <div>Quantity : {{item?.quantity || '-'}}</div>
-                  <div>Brand : {{item?.brands || '-'}}</div>
+                  <div>{{_translation_service.translateKey('qty')}} : {{item?.quantity || '-'}}</div>
+                  <div>{{_translation_service.translateKey('brand')}} : {{item?.brands || '-'}}</div>
                 </div>
                 <!-- <ion-button (click)="deleteFavorite(i)">Delete</ion-button> -->
               </ion-col>
@@ -37,7 +37,7 @@
                 <ion-text color="light" style="writing-mode: vertical-lr;
                 transform: rotate(360deg);
                 text-align: center;
-                margin-top: 50%;">Hapus</ion-text>
+                margin-top: 50%;">{{_translation_service.translateKey('remove')}}</ion-text>
               </ion-col>
             </ion-row>
           </ion-grid>
@@ -48,10 +48,11 @@
       
     </div>
     <div  *ngIf="list_favorites == null" class="ion-text-center ">
-      <h1 class="ion-margin">Product tersimpan masih kosong</h1>
+      <div class="ion-text-center ion-margin ion-padding-top">{{_translation_service.translateKey('note_product_empty_bookmark')}}</div>
+      <!-- <h1 class="ion-margin">{{_translation_service.translateKey('remove')}}</h1> -->
       <ion-button [routerLink]="['/tabs/search']">
         <ion-icon slot="start" name="search" ></ion-icon>
-        Cari product
+        <div class="ion-text-capitalize">{{_translation_service.translateKey('search_product')}}</div>
       </ion-button>
 
       <!-- <ion-route url="/search" component="page-search">dsds</ion-route> -->

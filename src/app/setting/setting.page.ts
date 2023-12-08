@@ -13,18 +13,32 @@ import {
 } from "@capacitor-mlkit/barcode-scanning";
 import { FilePicker } from "@capawesome/capacitor-file-picker";
 
+// Services
+import { TranslationService } from '../api/translation.service';
+import { ToastService } from '../services/toast/toast.service';
+
 @Component({
   selector: 'app-setting',
   templateUrl: './setting.page.html',
   styleUrls: ['./setting.page.scss'],
 })
 export class SettingPage implements OnInit {
+
   barcode:any;
   backButtonListener: any;
-  constructor(private ngZone: NgZone, public photoService: PhotoService, private _router: Router, private alertController: AlertController) { }
+  currentLanguage: any;
+
+  constructor(private _toast_service: ToastService, public _translation_service: TranslationService, private ngZone: NgZone, public photoService: PhotoService, private _router: Router, private alertController: AlertController) { }
 
   ngOnInit() {
     this.triggerBack()
+    this._translation_service.init();
+    this.currentLanguage = this._translation_service.getCurrentLanguage();
+  }
+
+  changeSelectLang(e:any) {
+    this._translation_service.setLanguage(this.currentLanguage);
+    this._toast_service.presentToast(this._translation_service.translateKey('change_language'))
   }
 
   triggerBack(){
@@ -119,8 +133,8 @@ export class SettingPage implements OnInit {
 
   async presentAlertInfo(): Promise<void> {
     const alert = await this.alertController.create({
-      header: 'Maaf',
-      message: 'Fitur ini masih dalam proses pengerjaan',
+      header: this._translation_service.translateKey('sorry'),
+      message: this._translation_service.translateKey('feature_not_avaliable'),
       buttons: ['OK'],
     });
     await alert.present();

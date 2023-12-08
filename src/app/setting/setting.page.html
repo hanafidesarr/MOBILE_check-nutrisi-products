@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Setting</ion-title>
+  <ion-toolbar color="tertiary">
+    <ion-title>{{_translation_service.translateKey('setting')}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -53,23 +53,22 @@
       </ion-item-divider>
       <ion-item (click)="functionNotReady()">
         <ion-icon aria-hidden="true" name="person-outline" slot="start"></ion-icon>
-        <ion-label> Login / Masuk </ion-label>
+        <ion-label>{{_translation_service.translateKey('sign_in')}}</ion-label>
         <!-- <ion-note slot="end">15</ion-note> -->
       </ion-item>
-      <ion-item (click)="functionNotReady()">
+      <!-- <ion-item (click)="functionNotReady()">
         <ion-icon aria-hidden="true" name="person-add-outline" slot="start"></ion-icon>
         <ion-label> Sign up / Daftar </ion-label>
-        <!-- <ion-note slot="end">15</ion-note> -->
-      </ion-item>
+      </ion-item> -->
 
       <ion-item-divider>
         <ion-label> Product </ion-label>
       </ion-item-divider>
       <ion-item (click)="functionNotReady()">
         <ion-icon aria-hidden="true" name="duplicate-outline" slot="start"></ion-icon>
-        <ion-label>Tambah Product</ion-label>
+        <ion-label>{{_translation_service.translateKey('add_product')}}</ion-label>
       </ion-item>
-      <ion-item (click)="functionNotReady()">
+      <!-- <ion-item (click)="functionNotReady()">
         <ion-icon aria-hidden="true" name="create-outline" slot="start"></ion-icon>
         <ion-label>Edit Product</ion-label>
       </ion-item>
@@ -80,19 +79,34 @@
       <ion-item (click)="functionNotReady()">
         <ion-icon aria-hidden="true" name="list-outline" slot="start"></ion-icon>
         <ion-label>History</ion-label>
-      </ion-item>
-
+      </ion-item> -->
       <ion-item-divider>
         <ion-label> Lain-lain </ion-label>
       </ion-item-divider>
-      <ion-item (click)="functionNotReady()">
+      <!-- <ion-item (click)="functionNotReady()">
         <ion-icon aria-hidden="true" name="heart-outline" slot="start"></ion-icon>
-        <ion-label>Donasi</ion-label>
+        <ion-label>{{_translation_service.translateKey('language')}}</ion-label>
+      </ion-item> -->
+      <ion-list>
+        <ion-item>
+          <ion-icon aria-hidden="true" name="language-outline" slot="start"></ion-icon>
+          <ion-select (ionChange)="changeSelectLang($event)" [(ngModel)]="currentLanguage" aria-label="language">
+            <ion-select-option value="en">English</ion-select-option>
+            <ion-select-option value="id">Indonesia</ion-select-option>
+            <ion-select-option value="fr">France</ion-select-option>
+            <ion-select-option value="it">Italy</ion-select-option>
+            <ion-select-option value="zh_cn">Chinese</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+      <!-- <ion-item (click)="functionNotReady()">
+        <ion-icon aria-hidden="true" name="heart-outline" slot="start"></ion-icon>
+        <ion-label>{{_translation_service.translateKey('donation')}}</ion-label>
       </ion-item>
       <ion-item (click)="functionNotReady()">
         <ion-icon aria-hidden="true" name="information-circle-outline" slot="start"></ion-icon>
-        <ion-label>Info</ion-label>
-      </ion-item>
+        <ion-label>{{_translation_service.translateKey('about_us')}}</ion-label>
+      </ion-item> -->
 
     </ion-item-group>
   </ion-list>

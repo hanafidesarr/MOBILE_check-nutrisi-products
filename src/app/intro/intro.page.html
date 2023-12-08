@@ -37,30 +37,76 @@
   <!-- Top fill image -->
 
   <div class="top-fill">
+    <!-- <div style="position: absolute; z-index: 99; right: 10px; top:10px">
+      <ion-icon name="information-circle-outline" aria-hidden="true" size="large" color="light"></ion-icon>
+    </div> -->
+    <ion-grid class="ion-padding">
 
-    <div class="top-image">
-      <!-- Replace 'your-image-path.jpg' with the actual path to your image -->
+      <ion-row color="light" class=" ion-text-left w-75 text-white ion-padding-bottom" style="font-size: 24px; min-height: 150px;">
+        <ion-col>
+          {{_translation_service.translateKey('quotes_intro')}}
+        </ion-col>
+      </ion-row>
+      <!-- <hr style="text-align: left;
+      width: 80%;
+      margin-left: 6px;
+      background-color: white;"> -->
+
+      <div class="line-with-circle">
+        <div class="line"></div>
+        <div class="circle">
+          <!-- You can customize the circle content here, e.g., an icon or text -->
+          <span>&#8226;</span>
+        </div>
+        <div class="text">Health</div>
+      </div>
+      <ion-row>
+        <ion-col>
+          <ion-list lines="none" style="background: none rgb(253, 147, 70); font-size: 1.3rem; color: white;">
+
+            <ion-item color="primary">
+              <ion-select justify="start"  (ionChange)="changeSelectLang($event)"  [(ngModel)]="currentLanguage" interface="action-sheet">
+                <div slot="label"><ion-icon name="language-outline" size="large"></ion-icon></div>
+                <ion-select-option value="en">English</ion-select-option>
+                <ion-select-option value="id">Indonesia</ion-select-option>
+                <ion-select-option value="fr">France</ion-select-option>
+                <ion-select-option value="it">Italy</ion-select-option>
+                <ion-select-option value="zh_cn">Chinese</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <!-- <div class="top-image">
       <img src="assets/paper-bag-vegetables.gif" alt="Top Fill Image">
-      <h1 class="ion-margin-bottom ion-padding-bottom">{{translationService.translateKey('welcome')}}</h1>
-    </div>
+      <h1 class="ion-margin-bottom ion-padding-bottom">{{_translation_service.translateKey('welcome')}}</h1>
+    </div> -->
 
   </div>
 
   <!-- Bottom fill area with text and half-curve background color -->
-  <div class="bottom-fill ion-padding">
-    <div class="title">
-      <h3 style="color: white;">Language / Bahasa</h3>
-    </div>
+  <div class="bottom-fill d-flex justify-content-between ion-margin-start ion-margin-end">
+    
+    <ion-badge color="light" class="ion-text-capitalize"><div style="font-size: 1rem; padding:0.5rem 1rem">{{_translation_service.translateKey('stay_health')}}</div></ion-badge>
+    <ion-icon name="logo-instagram" size="small"></ion-icon>
+    <ion-icon name="globe-outline" size="small"></ion-icon>
+    <ion-icon name="logo-twitter" size="small"></ion-icon>
+    <!--
     
     <div class="content">
       <ion-list style="background: none rgb(253, 147, 70); font-size: 1.3rem; color: white;">
-        <ion-select  (ionChange)="changeSelectLang($event)" [(ngModel)]="currentLanguage" aria-label="Fruit" interface="action-sheet" placeholder="" style="justify-content: center;">
+        <ion-select  (ionChange)="changeSelectLang($event)" [(ngModel)]="currentLanguage" aria-label="Language" interface="action-sheet" placeholder="" style="justify-content: center;">
           <ion-select-option value="en">English</ion-select-option>
           <ion-select-option value="id">Indonesia</ion-select-option>
         </ion-select>
-    </ion-list>
+      </ion-list>
     </div>
 
-    <ion-button  fill="outline" color="light"  shape="round" class="next-page" (click)="navigateToHome()">Next</ion-button>
+    <ion-button  fill="outline" color="light"  shape="round" class="next-page" (click)="navigateToHome()">Next</ion-button> -->
+    <ion-button class="ion-text-capitalize"  fill="outline" color="primary"  shape="round" (click)="navigateToHome()">{{_translation_service.translateKey('next')}}</ion-button> 
+  
+    
   </div>
 </ion-content>

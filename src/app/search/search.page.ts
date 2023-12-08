@@ -10,6 +10,8 @@ import { Platform } from '@ionic/angular';
 
 import { App } from '@capacitor/app';
 import { IonContent } from '@ionic/angular';
+import { TranslationService } from '../api/translation.service';
+
 
 @Component({
   selector: 'app-search',
@@ -41,7 +43,12 @@ export class SearchPage {
 
   error_result: any;
 
-  constructor(private platform: Platform, public formBuilder: FormBuilder,  private _router: Router, private _productService: ProductService) {
+  constructor(
+    private platform: Platform,
+    public formBuilder: FormBuilder,
+    private _router: Router,
+    private _productService: ProductService,
+    public _translation_service: TranslationService) {
     this.saveHistoryToLocStorage()
   }
 
@@ -49,12 +56,14 @@ export class SearchPage {
     this.triggerBack();
     this.initForm();
 
+    this._translation_service.init();
+
   }
 
   initForm() {
     this.ionicForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
-      country: ['indonesia', [Validators.required, Validators.minLength(2)]],
+      country: ['', [Validators.required, Validators.minLength(2)]],
       email: [
         '',
         [

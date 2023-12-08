@@ -36,6 +36,7 @@ export class ProductService {
 }
 
 interface MyResponse {
+  count: any;
   code:  any[];
   products: any[]; // Change 'any' to the actual type of your products array
 }

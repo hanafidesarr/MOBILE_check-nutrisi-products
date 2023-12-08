@@ -4,6 +4,7 @@ import { Barcode, BarcodeScanner } from '@capacitor-mlkit/barcode-scanning';
 import { AlertController } from '@ionic/angular';
 
 import { App } from '@capacitor/app';
+import { TranslationService } from '../api/translation.service';
 @Component({
   selector: 'app-bookmark',
   templateUrl: './bookmark.page.html',
@@ -17,7 +18,9 @@ export class BookmarkPage implements OnInit {
 
   backButtonListener: any;
 
-  constructor(private _router: Router, private alertController: AlertController) {
+  constructor(private _router: Router, public _translation_service: TranslationService, private alertController: AlertController) {
+
+    this._translation_service.init();
   }
 
   ionViewWillEnter() {

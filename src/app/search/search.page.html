@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
 
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <form class="ion-padding-top"  [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
 
       <ion-grid>
@@ -10,7 +10,7 @@
             formControlName="name"
             type="text"
             aria-label="Name"
-            placeholder="Cari product, contoh 'indomie' "
+            placeholder="{{_translation_service.translateKey('example')}} 'indomie'"
             enterkeyhint="Search"
             (ionInput)="handleInput($event)"
             (ionFocus)="onSearchFocus()"
@@ -19,13 +19,13 @@
         <ion-row class="ion-align-items-center ion-padding-start ion-padding-end" >
           <ion-col size="6">
             <!-- <ion-text color="danger"><p (click)="reloadPage()">Reset Search</p></ion-text> -->
-            <ion-button color="light" (click)="reloadPage()" size="small">Clear Search</ion-button>
+            <ion-button color="light" (click)="reloadPage()" size="small">{{_translation_service.translateKey('clear_search')}}</ion-button>
           </ion-col>
           <ion-col size="6">
 
             <ion-select justify="end" formControlName="country" (ionChange)="submitForm()" class="ion-no-padding">
-              <ion-select-option value="indonesia">Product Indonesia</ion-select-option>
-              <ion-select-option value="">Product Dunia</ion-select-option>
+              <ion-select-option value="">{{_translation_service.translateKey('world_products')}}</ion-select-option>
+              <ion-select-option value="indonesia">{{_translation_service.translateKey('indonesia_products')}}</ion-select-option>
             </ion-select>
           </ion-col>
         </ion-row>
@@ -51,7 +51,7 @@
 
   
   <div *ngIf="showTextMain && loaded">
-    <div class=" ion-margin-top ion-padding-top ion-margin-bottom ion-margin-bottom ion-text-center" ><h5>Check product di seluruh dunia</h5></div>
+    <div class=" ion-margin-top ion-padding-top ion-margin-bottom ion-margin-bottom ion-text-center" ><p>{{_translation_service.translateKey('note_check_product_in_world')}}</p></div>
     <!-- <ion-item>
       <ion-grid>
         <ion-row>
@@ -98,8 +98,8 @@
 
 
   <div  *ngIf="product_present">
-    <ion-item class="ion-margin-top ion-text-right">
-      <ion-label *ngIf="result_products" class="ion-margin-top ion-text-right">Jumlah : {{result_products.count}}</ion-label>
+    <ion-item *ngIf="result_products" class="ion-margin-top ion-text-right">
+      <ion-label class="ion-margin-top ion-text-right">{{_translation_service.translateKey('total_product')}} : {{result_products.count}}</ion-label>
     </ion-item>
     <ion-list size="6" class="ion-margin-bottom" *ngIf="loaded">
       <ion-card *ngFor="let item of list_products" >
@@ -112,8 +112,8 @@
               <!-- <ion-card-subtitle>{{item.id}}</ion-card-subtitle> -->
               <ion-card-subtitle><h6 class="ion-no-margin">{{item.product_name || item?.brands }}</h6></ion-card-subtitle>
               <div class="ion-margin-top ion-margin-bottom">
-                <div>Quantity : {{item?.quantity || '-'}}</div>
-                <div>Brand : {{item?.brands || '-'}}</div>
+                <div>{{_translation_service.translateKey('qty')}} : {{item?.quantity || '-'}}</div>
+                <div>{{_translation_service.translateKey('brand')}} : {{item?.brands || '-'}}</div>
               </div>
 
               <!-- <ion-row>
@@ -168,16 +168,15 @@
   <div *ngIf="result_products?.count == 0">
     <ion-item class="ion-text-center ion-margin-top">
       <ion-label>
-        <h1>Product tidak tersedia</h1>
-        <p class="ion-text-wrap">Coba untuk mencari product di negara lain pada pencarian</p>
+        <h1>{{_translation_service.translateKey('product_empty')}}</h1>
+        <p class="ion-text-wrap">{{_translation_service.translateKey('try_check_other_country')}}</p>
       </ion-label>
     </ion-item>
   </div>
   <div *ngIf="error_result == 'HttpErrorResponse'" class="">
     <ion-item class="ion-text-center ion-margin-top">
       <ion-label>
-        <h1>Periksa koneksi anda</h1>
-        <p class="ion-text-wrap">Coba untuk mencari product di negara lain pada pencarian</p>
+        <h1>{{_translation_service.translateKey('check_conection')}}</h1>
       </ion-label>
     </ion-item>
   </div>

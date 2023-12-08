@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
 
 
 import { ProductService } from './../../api/product.service';
@@ -17,6 +16,8 @@ import { ModalNovascoreInfoPage } from './modal-novascore-info/modal-novascore-i
 import { App } from '@capacitor/app';
 
 import JsBarcode from 'jsbarcode';
+import { ToastService } from 'src/app/services/toast/toast.service';
+import { TranslationService } from 'src/app/api/translation.service';
 
 register();
 
@@ -38,9 +39,6 @@ export class GetProductPage implements OnInit {
   nutrient_levels_sugar:any;
   nutrient_levels_salt:any;
   
-  isToastOpen = false;
-  toast_message:string;
-  
   list_favorites: any[] = [];
 
   backButtonListener: any;
@@ -49,7 +47,14 @@ export class GetProductPage implements OnInit {
   @ViewChild('generate_barcode') generate_barcode: ElementRef;
 
 
-  constructor(private location: Location, private router: Router, private modalController: ModalController, private _route: ActivatedRoute, private _productService: ProductService, private _loadingService: LoadingService, private _router: Router) {
+  constructor(
+    public _translation_service: TranslationService,
+    private _toast_service: ToastService,
+    private modalController: ModalController,
+    private _route: ActivatedRoute,
+    private _productService: ProductService,
+    private _loadingService: LoadingService,
+    private _router: Router) {
 
     const storedData = localStorage.getItem('list_favorites');
     if (storedData) {
@@ -67,6 +72,8 @@ export class GetProductPage implements OnInit {
 
   ngOnInit() {
     this.triggerBack();
+
+    this._translation_service.init();
   }
 
   triggerBack() {
@@ -98,45 +105,46 @@ export class GetProductPage implements OnInit {
   validation_nutrient_levels() {
     // FAT
     if (this.product?.nutrient_levels['fat'] == "low") {
-      this.nutrient_levels_fat = "Rendah"
+      this.nutrient_levels_fat = this._translation_service.translateKey('low_quantity')
     }
     if (this.product?.nutrient_levels['fat'] == "moderate") {
-      this.nutrient_levels_fat = "Cukup"
+      this.nutrient_levels_fat = this._translation_service.translateKey('moderate_quantity')
     }
     if (this.product?.nutrient_levels['fat'] == "high") {
-      this.nutrient_levels_fat = "Tinggi"
+      this.nutrient_levels_fat = this._translation_service.translateKey('high_quantity')
     }
+
     // SATURATED FAT
     if (this.product?.nutrient_levels['saturated-fat'] == "low") {
-      this.nutrient_levels_saturated_fat = "Rendah"
+      this.nutrient_levels_saturated_fat = this._translation_service.translateKey('low_quantity')
     }
     if (this.product?.nutrient_levels['saturated-fat'] == "moderate") {
-      this.nutrient_levels_saturated_fat = "Cukup"
+      this.nutrient_levels_saturated_fat = this._translation_service.translateKey('moderate_quantity')
     }
     if (this.product?.nutrient_levels['saturated-fat'] == "high") {
-      this.nutrient_levels_saturated_fat = "Tinggi"
+      this.nutrient_levels_saturated_fat = this._translation_service.translateKey('high_quantity')
     }
 
     // SUGAR
     if (this.product?.nutrient_levels['sugars'] == "low") {
-      this.nutrient_levels_sugar = "Rendah"
+      this.nutrient_levels_sugar = this._translation_service.translateKey('low_quantity')
     }
     if (this.product?.nutrient_levels['sugars'] == "moderate") {
-      this.nutrient_levels_sugar = "Cukup"
+      this.nutrient_levels_sugar = this._translation_service.translateKey('moderate_quantity')
     }
     if (this.product?.nutrient_levels['sugars'] == "high") {
-      this.nutrient_levels_sugar = "Tinggi"
+      this.nutrient_levels_sugar = this._translation_service.translateKey('high_quantity')
     }
 
     // SALT
     if (this.product?.nutrient_levels['salt'] == "low") {
-      this.nutrient_levels_salt = "Rendah"
+      this.nutrient_levels_salt = this._translation_service.translateKey('low_quantity')
     }
     if (this.product?.nutrient_levels['salt'] == "moderate") {
-      this.nutrient_levels_salt = "Cukup"
+      this.nutrient_levels_salt = this._translation_service.translateKey('moderate_quantity')
     }
     if (this.product?.nutrient_levels['salt'] == "high") {
-      this.nutrient_levels_salt = "Tinggi"
+      this.nutrient_levels_salt = this._translation_service.translateKey('high_quantity')
     }
   }
 
@@ -153,9 +161,7 @@ export class GetProductPage implements OnInit {
       // if (icon) {
       //   icon.style.color = 'red';
       // }
-
-      this.isToastOpen = true;
-      this.toast_message = "Product telah di simpan"
+      this._toast_service.presentToast(this._translation_service.translateKey('info_product_saved_bookmark'))
     }
 
 
@@ -168,8 +174,7 @@ export class GetProductPage implements OnInit {
     localStorage.setItem('list_favorites', JSON.stringify(this.list_favorites));
     this.isFavorite(null) 
 
-    this.isToastOpen = true;
-    this.toast_message = "Product telah di hapus"
+    this._toast_service.presentToast(this._translation_service.translateKey('info_product_removed_bookmark'))
   }
 
   isFavorite(code: any) {
@@ -227,9 +232,7 @@ export class GetProductPage implements OnInit {
     return await modal.present();
   }
 
-  setOpenToast(isOpen: boolean) {
-    this.isToastOpen = isOpen;
-  }
+
   ionViewWillEnter(){
     JsBarcode(this.generate_barcode.nativeElement, this.barcode);
   }
@@ -255,7 +258,7 @@ export class GetProductPage implements OnInit {
       },
       (error) => {
         if (error.status == 404) {
-          alert("barcode tidak ada, yu tambah product baru")
+          alert(this._translation_service.translateKey('barcode_product_not_found'))
         } else {
           alert(error.message)
         }

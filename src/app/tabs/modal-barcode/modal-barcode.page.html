@@ -20,12 +20,12 @@
       margin: auto;
       width: 100%; /* Adjust the width as needed */
       text-align: center;"></svg>
-      <h1 class="ion-text-center">Barcode di temukan</h1>
+      <h1 class="ion-text-center">{{_translation_service.translateKey('note_found_barcode')}}</h1>
 
       <!-- <ion-item></ion-item>
       <h5 class="ion-text-center" >hasil barcode : {{barcode?.rawValue}}</h5>
       <div class="ion-text-center" >type barcode : {{barcode?.format}}</div> -->
-      <ion-button (click)="goToProduct()" class="ion-text-center">Check Product</ion-button>
+      <ion-button (click)="goToProduct()" class="ion-text-center">{{_translation_service.translateKey('check_product')}}</ion-button>
     </div>
   </ion-content>
 </ion-content>

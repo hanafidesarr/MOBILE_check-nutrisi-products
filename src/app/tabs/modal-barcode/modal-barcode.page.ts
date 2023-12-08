@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-
+import { TranslationService } from 'src/app/api/translation.service';
 import JsBarcode from 'jsbarcode';
 
 @Component({
@@ -14,7 +14,9 @@ export class ModalBarcodePage implements OnInit {
   @ViewChild('generate_barcode') generate_barcode: ElementRef;
 
   @Input() barcode: any;
-  constructor(private _modalCtrl: ModalController, private _router: Router) { }
+  constructor(private _modalCtrl: ModalController, private _router: Router, public _translation_service: TranslationService) {
+    this._translation_service.init();
+  }
 
   ngOnInit() {
   }
