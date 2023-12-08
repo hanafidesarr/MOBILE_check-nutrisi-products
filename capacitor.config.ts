@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
-  appName: 'cek nilai gizi',
+  appName: 'NutriCheck',
   webDir: 'www',
   server: {
     androidScheme: 'https'
