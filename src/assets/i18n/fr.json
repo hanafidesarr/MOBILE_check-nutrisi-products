@@ -95,5 +95,7 @@
 
   "product_empty": "produit vide",
   "try_check_other_country": "essayez de rechercher des produits dans d'autres pays",
-  "check_conection": "vérifiez votre connexion Internet"
+  "check_conection": "vérifiez votre connexion Internet",
+
+  "nutriments_less": "Désolé, les informations nutritionnelles ne sont toujours pas complètes. Nous sommes en train de les mettre à jour."
 }

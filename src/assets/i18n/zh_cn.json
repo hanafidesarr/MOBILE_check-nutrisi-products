@@ -94,5 +94,7 @@
 
   "product_empty": "产品为空",
   "try_check_other_country": "尝试在其他国家搜索产品",
-  "check_conection": "检查您的互联网连接"
+  "check_conection": "检查您的互联网连接",
+
+  "nutriments_less": "抱歉，营养信息仍然不完整。我们正在进行更新。"
 }

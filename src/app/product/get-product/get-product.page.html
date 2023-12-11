@@ -69,11 +69,6 @@
 
 	</ion-card>
 	
-	<!-- <ion-item *ngIf="existObject(product?.nutrient_levels)">
-		<ion-icon name="alert-circle-outline" color="warning" size="large"></ion-icon>
-		<ion-label> Persentase dihitung sajian per 100g. </ion-label>
-	</ion-item> -->
-	
 	<ion-card *ngIf="existObject(product?.nutrient_levels)">
 		
 		<ion-accordion-group>
@@ -162,12 +157,17 @@
 			</ion-accordion>
 		</ion-accordion-group>
 	</ion-card>
-	
+
 	<ion-card>
 
 		<ion-card-header color="primary">
 			<ion-title class="ion-text-capitalize ion-no-padding ion-no-margin">{{_translation_service.translateKey('nutrition_facts')}}</ion-title>
 		</ion-card-header>
+		<!-- {{nutriments_length}} HAHA -->
+		<ion-card *ngIf="nutriments_length <= 2" color="white" style="box-shadow: none !important; border: solid var(--ion-color-warning);">
+			<ion-card-content> {{_translation_service.translateKey('nutriments_less')}} </ion-card-content>
+		</ion-card>
+
 		<app-nutrition-facts [product]="product">
 		</app-nutrition-facts>
 	</ion-card>

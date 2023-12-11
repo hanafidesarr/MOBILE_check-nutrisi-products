@@ -29,6 +29,17 @@ export class ProductService {
   }
 
 
+  products_count() {
+    let params = new HttpParams();
+    params = params.set('search_terms', '');
+    params = params.set('fields', 'code');
+    params = params.set('page', 1);
+    params = params.set('page_size', '');
+    params = params.set('json', 1);
+
+    return this.http.get<MyResponse>(this.apiUrl, { params: params });
+  }
+
   product(data: any){
     return this.http.get<any>(this.api_v2 + '/product/' + data.barcode_id);
   }

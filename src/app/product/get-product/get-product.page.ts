@@ -43,6 +43,7 @@ export class GetProductPage implements OnInit {
 
   backButtonListener: any;
 
+  nutriments_length:any;
 
   @ViewChild('generate_barcode') generate_barcode: ElementRef;
 
@@ -74,6 +75,7 @@ export class GetProductPage implements OnInit {
     this.triggerBack();
 
     this._translation_service.init();
+
   }
 
   triggerBack() {
@@ -253,6 +255,9 @@ export class GetProductPage implements OnInit {
         this.nutri_score = "assets/nutriscore/nutriscore-" + ( this.product.nutriscore_grade || "unknown" ) + ".svg" || "assets/food-loading.gif"
         this.nova_group = "assets/nova/nova-group-" + ( this.product.nova_group || "unknown" ) + ".svg" || "assets/food-loading.gif"
         this.eco_score = "assets/ecoscore/ecoscore-" + ( this.product.ecoscore_grade || "unknown" ) + ".svg" || "assets/food-loading.gif"
+        
+        let nutriments = this.product?.nutriments
+        this.nutriments_length = Object.keys(nutriments).length;
         
         this._loadingService.hideLoader();
       },

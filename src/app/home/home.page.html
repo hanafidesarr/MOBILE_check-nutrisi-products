@@ -2,26 +2,25 @@
   <div style=" padding-bottom: 4rem;" >
     <swiper-container [slidesPerView]="1" [loop]="true"  [autoplay]="true" pagination="true">
       <swiper-slide>
+        <img
+          src="assets/banner-scanner.jpg"
+        >
+        
+      </swiper-slide>
+      <!-- <swiper-slide>
         <ion-img
           src="assets/banner-scanner.jpg"
           (ionError)="handleImageError()"
           (ionImgDidLoad)="handleImageDidLoad()"
         ></ion-img>
-      </swiper-slide>
-      <swiper-slide>
-        <ion-img
-          src="assets/banner-scanner.jpg"
-          (ionError)="handleImageError()"
-          (ionImgDidLoad)="handleImageDidLoad()"
-        ></ion-img>
-      </swiper-slide>
+      </swiper-slide> -->
       
     </swiper-container>
 
     <!-- *ngIf="loading" -->
-    <div *ngIf="loading" class="image-loader">
+    <!-- <div *ngIf="loading" class="image-loader">
       <ion-spinner color="primary" name="crescent"></ion-spinner>
-    </div>
+    </div> -->
 
     <ion-card style="margin-top: -2rem; z-index: 2; background: none rgb(253, 147, 70); color: white;">
       <!-- <div style="position: absolute; z-index: 3; right: 2px; top:2px">
@@ -29,7 +28,9 @@
       </div> -->
       <ion-card-content class="ion-text-center">
         <ion-text class="ion-text-capitalize">{{_translation_service.translateKey('products_count_available')}}</ion-text>
-        <h1>3.007.780++ </h1>
+        <h1>{{total_all_products | number: '1.0-3'}} ++
+          <!-- <ion-icon name="refresh-circle-outline" color="white" style="align-items: center;" (click)="get_products_count_click()"></ion-icon> -->
+        </h1>
       </ion-card-content>
     </ion-card>
     

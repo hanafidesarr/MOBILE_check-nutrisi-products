@@ -3,6 +3,8 @@ import { register } from 'swiper/element/bundle';
 import { TranslationService } from '../api/translation.service';
 import { ProductService } from '../api/product.service';
 import { PushNotifications } from '@capacitor/push-notifications';
+import { LoadingService } from '../api/loading.service';
+
 
 register();
 @Component({
@@ -13,8 +15,11 @@ register();
 export class HomePage {
   loading: boolean = true;
   response: any;
-  constructor(public _translation_service: TranslationService, 
-    private _productService: ProductService) {
+  total_all_products: any = 3009515;
+  constructor(
+    public _translation_service: TranslationService, 
+    private _productService: ProductService,
+    private _loadingService: LoadingService) {
     // Initialize the translation service
 
     // this.getProducts()
@@ -22,6 +27,7 @@ export class HomePage {
   }
 
   ngOnInit() {
+    this.get_products_count() 
     this.addListeners()
     this.registerNotifications()
   }
@@ -84,5 +90,13 @@ export class HomePage {
   getDeliveredNotifications = async () => {
     const notificationList = await PushNotifications.getDeliveredNotifications();
     alert('delivered notifications'+ JSON.stringify(notificationList));
+  }
+
+  get_products_count() {
+    this._productService.products_count().subscribe(
+      (response) => {
+        this.total_all_products = response.count
+      })
+
   }
 }

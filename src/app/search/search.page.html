@@ -10,7 +10,7 @@
             formControlName="name"
             type="text"
             aria-label="Name"
-            placeholder="{{_translation_service.translateKey('example')}} 'indomie'"
+            placeholder="{{_translation_service.translateKey('search_product')}}"
             enterkeyhint="Search"
             (ionInput)="handleInput($event)"
             (ionFocus)="onSearchFocus()"
@@ -24,8 +24,20 @@
           <ion-col size="6">
 
             <ion-select justify="end" formControlName="country" (ionChange)="submitForm()" class="ion-no-padding">
-              <ion-select-option value="">{{_translation_service.translateKey('world_products')}}</ion-select-option>
-              <ion-select-option value="indonesia">{{_translation_service.translateKey('indonesia_products')}}</ion-select-option>
+              <ion-select-option value="">All product</ion-select-option>
+              <ion-select-option value="indonesia">Indonesia product</ion-select-option>
+              <ion-select-option value="france">France product</ion-select-option>
+              <ion-select-option value="united states">US product</ion-select-option>
+              <ion-select-option value="russia">Russia product</ion-select-option>
+              <ion-select-option value="saudi arabia">Saudi Arabia product</ion-select-option>
+              <ion-select-option value="italy">Italy product</ion-select-option>
+              <ion-select-option value="japan">Japan product</ion-select-option>
+              <ion-select-option value="north korea">North Korean product</ion-select-option>
+              <ion-select-option value="south korea">South Korean product</ion-select-option>
+              <ion-select-option value="china">China product</ion-select-option>
+              <ion-select-option value="india">India product</ion-select-option>
+              <ion-select-option value="thailand">Thailand product</ion-select-option>
+              <ion-select-option value="vietnam">Vietnam product</ion-select-option>
             </ion-select>
           </ion-col>
         </ion-row>

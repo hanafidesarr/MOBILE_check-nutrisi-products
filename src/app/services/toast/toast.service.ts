@@ -11,7 +11,7 @@ export class ToastService {
   async presentToast(text:any) {
     const toast = await this._toastCtrl.create({
       message: text,
-      duration: 4000,
+      duration: 1000,
       position: 'top',
     });
 

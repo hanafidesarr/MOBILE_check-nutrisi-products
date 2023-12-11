@@ -5,18 +5,10 @@
   <header class="performance-facts__header">
     <h1 class="performance-facts__title ion-padding-left ion-margin-right ion-text-capitalize" style="margin-bottom: 2rem;">{{_translation_service.translateKey('nutrition_facts')}}</h1>
     <div class="ion-no-margin-top">
-      
-      <!-- <div *ngIf="!sajian">As sold per serving ({{product?.serving_size}})</div>
-      <div *ngIf="sajian">As sold per {{sajian}}</div> -->
-      <!-- <ion-item>
-        <ion-select label="Pilih takaran per" value="{{takaran_per}}"  (ionChange)="calculateNutrition($event)">
-          <ion-select-option value="serving">Sajian ({{product?.serving_size}})</ion-select-option>
-          <ion-select-option value="100g">100g</ion-select-option>
-        </ion-select>
-      </ion-item> -->
-      <ion-input fill="outline" style="font-size: 1.5rem;" class="ion-margin-top text-center" labelPlacement="floating" [value]="product?.serving_quantity || 100" (ionInput)="customCalculateNutrition($event)">
+
+      <ion-input #per_serving_input fill="outline" style="font-size: 1.5rem;" class="ion-margin-top text-center" labelPlacement="floating" [value]="product?.serving_quantity || 100" (ionInput)="customCalculateNutrition($event)">
         <div slot="label" style="font-size:1rem"><b>{{_translation_service.translateKey('calculate_per_serving')}}</b></div>
-        <ion-badge slot="end" color="white" style="position: absolute; right: 0; bottom:0;">gram/ml</ion-badge>
+        <ion-badge slot="end" color="white" style="position: absolute; right: 0; bottom:0; display: block !important;">gram/ml</ion-badge>
       </ion-input>
 
       <!-- <ion-input [value]="product?.serving_quantity" label="Outline input" label-placement="floating" fill="outline" placeholder="Enter text" (ionInput)="customCalculateNutrition($event)"></ion-input> -->
@@ -32,7 +24,7 @@
         
       </ion-item> -->
 
-      <ion-select label="{{_translation_service.translateKey('select_daily_value_for')}}" value="pria_30-49" (ionChange)="calculateAKG($event)">
+      <ion-select label="*AKG" value="pria_30-49" (ionChange)="calculateAKG($event)">
         <!-- <ion-select-option value="serving">Sajian ({{product?.serving_size}})</ion-select-option> -->
         <!-- <ion-select-option value="100g">100g</ion-select-option> -->
 
@@ -60,6 +52,13 @@
           <ion-select-option [value]="item.id">{{ item.name }}</ion-select-option>
         </ng-container>
       </ion-select>
+
+      <ion-card class="ion-padding ion-no-margin" color="light" style="box-shadow: none !important;">
+        <b>Result</b>
+        <p>per serving : {{per_serving_input?.value || product?.serving_quantity || 100}} gram/ml</p>
+        <p>*AKG : {{value_name_AKG}}</p>
+      </ion-card>
+      
     </div>
   </header>
   
@@ -94,6 +93,8 @@
         <td style="padding: 0;"></td>
       </tr>
       
+      <app-nutrition-list name="Energy from fat" [nutriment]="energy_from_fat" [unit]="product?.nutriments['energy-from-fat_unit']">
+      </app-nutrition-list>
       <app-nutrition-list name="{{_translation_service.translateKey('fat')}}" [nutriment]="fat" [unit]="product?.nutriments['fat_unit']" [akg]="akg_fat">
       </app-nutrition-list>
       <app-nutrition-list name="{{_translation_service.translateKey('saturated_fat')}}" [nutriment]="saturated_fat" [unit]="product?.nutriments['saturated-fat_unit']" [tab_cell]="1">
@@ -132,7 +133,7 @@
       </app-nutrition-list>
 
 
-      <app-nutrition-list name="Omega 3 fat" [nutriment]="omega_3_fat" [unit]="product?.nutriments['omega-3-fat_unit']" [tab_cell]="1">
+      <app-nutrition-list name="Omega 3 fat" [nutriment]="omega_3_fat" [unit]="'mg'" [tab_cell]="1">
       </app-nutrition-list>
       <app-nutrition-list name="Alpha linolenic acid" [nutriment]="alpha_linolenic_acid" [unit]="product?.nutriments['alpha-linolenic-acid_unit']" [tab_cell]="2">
       </app-nutrition-list>
@@ -162,7 +163,7 @@
   
       <app-nutrition-list name="Trans fat" [nutriment]="trans_fat" [unit]="product?.nutriments['trans-fat_unit']"  [tab_cell]="1">
       </app-nutrition-list>
-      <app-nutrition-list name="Cholesterol" [nutriment]="cholesterol" [unit]="product?.nutriments['cholesterol_unit']"  [tab_cell]="1">
+      <app-nutrition-list name="Cholesterol" [nutriment]="cholesterol" [unit]="'mg'"  [tab_cell]="1">
       </app-nutrition-list>
       
       <app-nutrition-list name="{{_translation_service.translateKey('carbohydrates')}}" [nutriment]="carbohydrates" [unit]="product?.nutriments['carbohydrates_unit']" [akg]="akg_carbo">

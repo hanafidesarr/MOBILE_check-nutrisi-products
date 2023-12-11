@@ -17,7 +17,7 @@
   "feature_not_avaliable": "Fitur ini masih dalam proses pengerjaan.",
 
   "example": "contoh",
-  "clear_search": "bersihkan pencarian",
+  "clear_search": "refresh",
   "world_products": "product dunia",
   "indonesia_products": "product indonesia",
   "qty": "jumlah",
@@ -94,5 +94,7 @@
 
   "product_empty": "product kosong",
   "try_check_other_country": "coba cari product di negara lain",
-  "check_conection": "check koneksi internet anda"
+  "check_conection": "check koneksi internet anda",
+
+  "nutriments_less": "Maaf, informasi nutrisi masih belum lengkap. saat ini kami sedang memperbarui."
 }

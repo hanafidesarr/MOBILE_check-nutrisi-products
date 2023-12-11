@@ -8,6 +8,13 @@ import { TranslationService } from 'src/app/api/translation.service';
 })
 export class NutritionFactsComponent  implements OnChanges {
 
+  @Input() name?: string;
+  @Input() product?: any;
+
+  // AKG VALUE
+  value_AKG: any;
+  value_name_AKG: any;
+
   akg_lists_anak:any;
   akg_lists_pria:any;
   akg_lists_wanita:any;
@@ -18,14 +25,10 @@ export class NutritionFactsComponent  implements OnChanges {
   akg_carbo: any;
   akg_fiber: any;
 
-
-  @Input() name?: string;
-  @Input() product?: any;
-
-  sajian: any;
+  // VALUE NUTRIMENT
   energy_kj: any;
   energy_kcal: any;
-
+  energy_from_fat:any;
   fat: any;
   saturated_fat: any;
   butyric_acid: any;
@@ -126,114 +129,110 @@ export class NutritionFactsComponent  implements OnChanges {
   chlorophyl: any;
   carbon_footprint: any;
 
-  takaran_per: any;
-
-  custom_serving: any = 0;
+  // GLOBAL
   currentLanguage: any;
+
   constructor(public _translation_service: TranslationService) {
+    this.akg_lists_anak = [
+      {
+        id: 'anak_1-3',
+        name: _translation_service.translateKey('children') + " 1-3 " + _translation_service.translateKey('year_old')
+      },
+      {
+        id: 'anak_4-6',
+        name: _translation_service.translateKey('children') + " 4-6 " + _translation_service.translateKey('year_old')
+      },
+      {
+        id: 'anak_7-9',
+        name: _translation_service.translateKey('children') + " 7-9 " + _translation_service.translateKey('year_old')
+      },
+    ];
 
+    this.akg_lists_pria = [
+      {
+        id: 'pria_10-12',
+        name: _translation_service.translateKey('male') + " 10-12 " + _translation_service.translateKey('year_old')
+      },
+      {
+        id: 'pria_13-15',
+        name: _translation_service.translateKey('male') + " 13-15 " + _translation_service.translateKey('year_old')
+      },
+      {
+        id: 'pria_16-18',
+        name: _translation_service.translateKey('male') + " 16-18 " + _translation_service.translateKey('year_old')
+      },
+      {
+        id: 'pria_19-29',
+        name: _translation_service.translateKey('male') + " 19-29 " + _translation_service.translateKey('year_old')
+      },
+      {
+        id: 'pria_30-49',
+        name: _translation_service.translateKey('male') + " 30-49 " + _translation_service.translateKey('year_old')
+      },
+      {
+        id: 'pria_50-64',
+        name: _translation_service.translateKey('male') + " 50-64 " + _translation_service.translateKey('year_old')
+      },
+      {
+        id: 'pria_65-80',
+        name: _translation_service.translateKey('male') + " 65-80 " + _translation_service.translateKey('year_old')
+      },
+      {
+        id: 'pria_80_plus',
+        name: _translation_service.translateKey('male') + " 80+ " + _translation_service.translateKey('year_old')
+      },
+    ];
 
-  this.akg_lists_anak = [
-    {
-      id: 'anak_1-3',
-      name: _translation_service.translateKey('children') + " 1-3 " + _translation_service.translateKey('year_old')
-    },
-    {
-      id: 'anak_4-6',
-      name: _translation_service.translateKey('children') + " 4-6 " + _translation_service.translateKey('year_old')
-    },
-    {
-      id: 'anak_7-9',
-      name: _translation_service.translateKey('children') + " 7-9 " + _translation_service.translateKey('year_old')
-    },
-  ];
-
-  this.akg_lists_pria = [
-    {
-      id: 'pria_10-12',
-      name: _translation_service.translateKey('male') + " 10-12 " + _translation_service.translateKey('year_old')
-    },
-    {
-      id: 'pria_13-15',
-      name: _translation_service.translateKey('male') + " 13-15 " + _translation_service.translateKey('year_old')
-    },
-    {
-      id: 'pria_16-18',
-      name: _translation_service.translateKey('male') + " 16-18 " + _translation_service.translateKey('year_old')
-    },
-    {
-      id: 'pria_19-29',
-      name: _translation_service.translateKey('male') + " 19-29 " + _translation_service.translateKey('year_old')
-    },
-    {
-      id: 'pria_30-49',
-      name: _translation_service.translateKey('male') + " 30-49 " + _translation_service.translateKey('year_old')
-    },
-    {
-      id: 'pria_50-64',
-      name: _translation_service.translateKey('male') + " 50-64 " + _translation_service.translateKey('year_old')
-    },
-    {
-      id: 'pria_65-80',
-      name: _translation_service.translateKey('male') + " 65-80 " + _translation_service.translateKey('year_old')
-    },
-    {
-      id: 'pria_80_plus',
-      name: _translation_service.translateKey('male') + " 80+ " + _translation_service.translateKey('year_old')
-    },
-  ];
-
-  this.akg_lists_wanita = [
-    {
-      id: 'wanita_10-12',
-      name: _translation_service.translateKey('female') + " 10-12 " + _translation_service.translateKey('year_old')
-    },
-    {
-      id: 'wanita_13-15',
-      name: _translation_service.translateKey('female') + " 13-15 " + _translation_service.translateKey('year_old')
-    },
-    {
-      id: 'wanita_16-18',
-      name: _translation_service.translateKey('female') + " 16-18 " + _translation_service.translateKey('year_old')
-    },
-    {
-      id: 'wanita_19-29',
-      name: _translation_service.translateKey('female') + " 19-29 " + _translation_service.translateKey('year_old')
-    },
-    {
-      id: 'wanita_30-49',
-      name: _translation_service.translateKey('female') + " 30-49 " + _translation_service.translateKey('year_old')
-    },
-    {
-      id: 'wanita_50-64',
-      name: _translation_service.translateKey('female') + " 50-64 " + _translation_service.translateKey('year_old')
-    },
-    {
-      id: 'wanita_65-80',
-      name: _translation_service.translateKey('female') + " 65-80 " + _translation_service.translateKey('year_old')
-    },
-    {
-      id: 'wanita_80_plus',
-      name: _translation_service.translateKey('female') + " 80+ " + _translation_service.translateKey('year_old')
-    },
-  ];
+    this.akg_lists_wanita = [
+      {
+        id: 'wanita_10-12',
+        name: _translation_service.translateKey('female') + " 10-12 " + _translation_service.translateKey('year_old')
+      },
+      {
+        id: 'wanita_13-15',
+        name: _translation_service.translateKey('female') + " 13-15 " + _translation_service.translateKey('year_old')
+      },
+      {
+        id: 'wanita_16-18',
+        name: _translation_service.translateKey('female') + " 16-18 " + _translation_service.translateKey('year_old')
+      },
+      {
+        id: 'wanita_19-29',
+        name: _translation_service.translateKey('female') + " 19-29 " + _translation_service.translateKey('year_old')
+      },
+      {
+        id: 'wanita_30-49',
+        name: _translation_service.translateKey('female') + " 30-49 " + _translation_service.translateKey('year_old')
+      },
+      {
+        id: 'wanita_50-64',
+        name: _translation_service.translateKey('female') + " 50-64 " + _translation_service.translateKey('year_old')
+      },
+      {
+        id: 'wanita_65-80',
+        name: _translation_service.translateKey('female') + " 65-80 " + _translation_service.translateKey('year_old')
+      },
+      {
+        id: 'wanita_80_plus',
+        name: _translation_service.translateKey('female') + " 80+ " + _translation_service.translateKey('year_old')
+      },
+    ];
 
   }
 
   ngOnInit() {
 
-
     this._translation_service.init();
     this.currentLanguage = this._translation_service.getCurrentLanguage();
+
+    this.value_AKG = 'pria_30-49';
+    this.value_name_AKG = this._translation_service.translateKey('male') + " 30-49 " + this._translation_service.translateKey('year_old')
   }
 
   ngOnChanges(changes: any): void {
     if (changes.product && !changes.product.firstChange) {
-      // The product input has changed, and it's not the initial change.
-      // You can perform actions here based on the new value of 'product'.
-      console.log('Product has changed:', this.product);
-      this.takaran_per = this.product?.serving_size ? 'serving' : '100g'
-      this.dynamic(this.takaran_per, null);
+      let takaran_per = this.product?.serving_size ? 'serving' : '100g'
+      this.dynamic(takaran_per, null);
 
       this.akg_energy = (this.energy_kcal / 2550) * 100;
       this.akg_protein = (this.proteins / 65) * 100;
@@ -250,10 +249,12 @@ export class NutritionFactsComponent  implements OnChanges {
 
   customCalculateNutrition(e: any) {
     this.dynamic('100g', e.target.value);
-    console.log(e.target.value)
+
+    this.akg_formula(this.value_AKG)
   }
 
   calculateAKG(e: any) {
+    this.value_AKG = e.target.value;
     this.akg_formula(e.target.value);
   }
 
@@ -261,6 +262,8 @@ export class NutritionFactsComponent  implements OnChanges {
     switch (umur) {
 
       case 'anak_1-3':
+
+        this.value_name_AKG = this._translation_service.translateKey('children') + " 1-3 " + this._translation_service.translateKey('year_old')
         this.akg_energy = (this.energy_kcal / 1350) * 100;
         this.akg_protein = (this.proteins / 20) * 100;
         this.akg_fat = (this.fat / 45) * 100;
@@ -268,6 +271,7 @@ export class NutritionFactsComponent  implements OnChanges {
         this.akg_fiber = (this.fiber / 19) * 100;
         break;
       case 'anak_4-6':
+        this.value_name_AKG = this._translation_service.translateKey('children') + " 4-6 " + this._translation_service.translateKey('year_old')
         this.akg_energy = (this.energy_kcal / 1400) * 100;
         this.akg_protein = (this.proteins / 25) * 100;
         this.akg_fat = (this.fat / 50) * 100;
@@ -275,6 +279,7 @@ export class NutritionFactsComponent  implements OnChanges {
         this.akg_fiber = (this.fiber / 20) * 100;
         break;
       case 'anak_7-9':
+        this.value_name_AKG = this._translation_service.translateKey('children') + " 7-9 " + this._translation_service.translateKey('year_old')
         this.akg_energy = (this.energy_kcal / 1650) * 100;
         this.akg_protein = (this.proteins / 40) * 100;
         this.akg_fat = (this.fat / 55) * 100;
@@ -283,6 +288,7 @@ export class NutritionFactsComponent  implements OnChanges {
         break;
 
       case 'pria_10-12':
+        this.value_name_AKG = this._translation_service.translateKey('male') + " 10-12 " + this._translation_service.translateKey('year_old')
         this.akg_energy = (this.energy_kcal / 2000) * 100;
         this.akg_protein = (this.proteins / 50) * 100;
         this.akg_fat = (this.fat / 65) * 100;
@@ -290,6 +296,7 @@ export class NutritionFactsComponent  implements OnChanges {
         this.akg_fiber = (this.fiber / 28) * 100;
         break;
       case 'pria_13-15':
+        this.value_name_AKG = this._translation_service.translateKey('male') + " 13-15 " + this._translation_service.translateKey('year_old')
         this.akg_energy = (this.energy_kcal / 2400) * 100;
         this.akg_protein = (this.proteins / 70) * 100;
         this.akg_fat = (this.fat / 80) * 100;
@@ -297,6 +304,7 @@ export class NutritionFactsComponent  implements OnChanges {
         this.akg_fiber = (this.fiber / 34) * 100;
         break;
       case 'pria_16-18':
+        this.value_name_AKG = this._translation_service.translateKey('male') + " 16-18 " + this._translation_service.translateKey('year_old')
         this.akg_energy = (this.energy_kcal / 2650) * 100;
         this.akg_protein = (this.proteins / 75) * 100;
         this.akg_fat = (this.fat / 85) * 100;
@@ -304,6 +312,7 @@ export class NutritionFactsComponent  implements OnChanges {
         this.akg_fiber = (this.fiber / 37) * 100;
         break;
       case 'pria_19-29':
+        this.value_name_AKG = this._translation_service.translateKey('male') + " 19-29 " + this._translation_service.translateKey('year_old')
         this.akg_energy = (this.energy_kcal / 2650) * 100;
         this.akg_protein = (this.proteins / 65) * 100;
         this.akg_fat = (this.fat / 75) * 100;
@@ -311,6 +320,7 @@ export class NutritionFactsComponent  implements OnChanges {
         this.akg_fiber = (this.fiber / 37) * 100;
         break;
       case 'pria_30-49':
+        this.value_name_AKG = this._translation_service.translateKey('male') + " 30-49 " + this._translation_service.translateKey('year_old')
         this.akg_energy = (this.energy_kcal / 2550) * 100;
         this.akg_protein = (this.proteins / 65) * 100;
         this.akg_fat = (this.fat / 70) * 100;
@@ -318,6 +328,7 @@ export class NutritionFactsComponent  implements OnChanges {
         this.akg_fiber = (this.fiber / 36) * 100;
         break;
       case 'pria_50-64':
+        this.value_name_AKG = this._translation_service.translateKey('male') + " 50-64 " + this._translation_service.translateKey('year_old')
         this.akg_energy = (this.energy_kcal / 2150) * 100;
         this.akg_protein = (this.proteins / 65) * 100;
         this.akg_fat = (this.fat / 60) * 100;
@@ -325,6 +336,7 @@ export class NutritionFactsComponent  implements OnChanges {
         this.akg_fiber = (this.fiber / 30) * 100;
         break;
       case 'pria_65-80':
+        this.value_name_AKG = this._translation_service.translateKey('male') + " 65-80 " + this._translation_service.translateKey('year_old')
         this.akg_energy = (this.energy_kcal / 1800) * 100;
         this.akg_protein = (this.proteins / 64) * 100;
         this.akg_fat = (this.fat / 50) * 100;
@@ -332,6 +344,7 @@ export class NutritionFactsComponent  implements OnChanges {
         this.akg_fiber = (this.fiber / 25) * 100;
         break;
       case 'pria_80_plus':
+        this.value_name_AKG = this._translation_service.translateKey('male') + " 80+ " + this._translation_service.translateKey('year_old')
         this.akg_energy = (this.energy_kcal / 1600) * 100;
         this.akg_protein = (this.proteins / 64) * 100;
         this.akg_fat = (this.fat / 45) * 100;
@@ -341,6 +354,7 @@ export class NutritionFactsComponent  implements OnChanges {
 
 
       case 'wanita_10-12':
+        this.value_name_AKG = this._translation_service.translateKey('female') + " 10-12 " + this._translation_service.translateKey('year_old')
         this.akg_energy = (this.energy_kcal / 1900) * 100;
         this.akg_protein = (this.proteins / 55) * 100;
         this.akg_fat = (this.fat / 65) * 100;
@@ -348,6 +362,7 @@ export class NutritionFactsComponent  implements OnChanges {
         this.akg_fiber = (this.fiber / 27) * 100;
         break;
       case 'wanita_13-15':
+        this.value_name_AKG = this._translation_service.translateKey('female') + " 13-15 " + this._translation_service.translateKey('year_old')
         this.akg_energy = (this.energy_kcal / 2050) * 100;
         this.akg_protein = (this.proteins / 65) * 100;
         this.akg_fat = (this.fat / 70) * 100;
@@ -355,6 +370,7 @@ export class NutritionFactsComponent  implements OnChanges {
         this.akg_fiber = (this.fiber / 29) * 100;
         break;
       case 'wanita_16-18':
+        this.value_name_AKG = this._translation_service.translateKey('female') + " 16-18 " + this._translation_service.translateKey('year_old')
         this.akg_energy = (this.energy_kcal / 2100) * 100;
         this.akg_protein = (this.proteins / 65) * 100;
         this.akg_fat = (this.fat / 70) * 100;
@@ -362,6 +378,8 @@ export class NutritionFactsComponent  implements OnChanges {
         this.akg_fiber = (this.fiber / 29) * 100;
         break;
       case 'wanita_19-29':
+
+        this.value_name_AKG = this._translation_service.translateKey('female') + " 19-29 " + this._translation_service.translateKey('year_old')
         this.akg_energy = (this.energy_kcal / 2250) * 100;
         this.akg_protein = (this.proteins / 65) * 100;
         this.akg_fat = (this.fat / 65) * 100;
@@ -369,6 +387,7 @@ export class NutritionFactsComponent  implements OnChanges {
         this.akg_fiber = (this.fiber / 32) * 100;
         break;
       case 'wanita_30-49':
+        this.value_name_AKG = this._translation_service.translateKey('female') + " 30-49 " + this._translation_service.translateKey('year_old')
         this.akg_energy = (this.energy_kcal / 2150) * 100;
         this.akg_protein = (this.proteins / 60) * 100;
         this.akg_fat = (this.fat / 60) * 100;
@@ -376,6 +395,7 @@ export class NutritionFactsComponent  implements OnChanges {
         this.akg_fiber = (this.fiber / 30) * 100;
         break;
       case 'wanita_50-64':
+        this.value_name_AKG = this._translation_service.translateKey('female') + " 50-64 " + this._translation_service.translateKey('year_old')
         this.akg_energy = (this.energy_kcal / 1800) * 100;
         this.akg_protein = (this.proteins / 60) * 100;
         this.akg_fat = (this.fat / 50) * 100;
@@ -383,6 +403,7 @@ export class NutritionFactsComponent  implements OnChanges {
         this.akg_fiber = (this.fiber / 25) * 100;
         break;
       case 'wanita_65-80':
+        this.value_name_AKG = this._translation_service.translateKey('female') + " 65-80 " + this._translation_service.translateKey('year_old')
         this.akg_energy = (this.energy_kcal / 1550) * 100;
         this.akg_protein = (this.proteins / 58) * 100;
         this.akg_fat = (this.fat / 45) * 100;
@@ -390,6 +411,7 @@ export class NutritionFactsComponent  implements OnChanges {
         this.akg_fiber = (this.fiber / 22) * 100;
         break;
       case 'wanita_80_plus':
+        this.value_name_AKG = this._translation_service.translateKey('female') + " 80+ " + this._translation_service.translateKey('year_old')
         this.akg_energy = (this.energy_kcal / 1400) * 100;
         this.akg_protein = (this.proteins / 58) * 100;
         this.akg_fat = (this.fat / 40) * 100;
@@ -398,23 +420,11 @@ export class NutritionFactsComponent  implements OnChanges {
         break;
 
       default:
-        this.akg_energy = null
-        this.akg_protein = null
-        this.akg_fat = null
-        this.akg_carbo = null
-        this.akg_fiber = null
         break;
     }
   }
+
   dynamic(data: any, custom_value:any) {
-    
-
-    this.akg_energy = null
-    this.akg_fat = null
-    this.akg_protein = null;
-    this.akg_carbo = null;
-    this.akg_fiber = null;
-
     const exclusionList = ['100g', 'serving'];
     if (custom_value) {
       custom_value = custom_value / 100
@@ -427,6 +437,8 @@ export class NutritionFactsComponent  implements OnChanges {
     } else {
       this.energy_kcal = this.product?.nutriments["energy-kcal_" + data] * custom_value
     }
+    
+    this.energy_from_fat = this.product?.nutriments["energy-from-fat_" + data] * custom_value
     this.fat = this.product?.nutriments["fat_" + data] * custom_value
     this.saturated_fat = this.product?.nutriments["saturated-fat_" + data] * custom_value
     this.butyric_acid = this.product?.nutriments["butyric-acid_" + data] * custom_value
@@ -539,4 +551,5 @@ export class NutritionFactsComponent  implements OnChanges {
       return ''; // Tampilkan pesan atau nilai default jika nutriment tidak terdefinisi
     }
   }
+
 }
