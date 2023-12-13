@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslationService } from '../api/translation.service';
+import { Platform } from '@ionic/angular';
 @Component({
   selector: 'app-intro',
   templateUrl: './intro.page.html',
@@ -14,7 +15,7 @@ export class IntroPage implements OnInit {
     initialSlide: 1,
     speed: 400,
   };
-  constructor(public _router: Router, public _translation_service: TranslationService) {
+  constructor(public _router: Router, public _translation_service: TranslationService, public _platform: Platform) {
 
     this._translation_service.init();
     this.currentLanguage = this._translation_service.getCurrentLanguage();
@@ -43,4 +44,9 @@ export class IntroPage implements OnInit {
 
   }
   
+  mailto(email:any) {
+    this._platform.ready().then(() => {
+        window.open('mailto:'+email);
+    });
+  }
 }

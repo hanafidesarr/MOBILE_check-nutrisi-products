@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { TranslationService } from 'src/app/api/translation.service';
 
+import { AlertController } from '@ionic/angular';
+
 @Component({
   selector: 'app-nutrition-facts',
   templateUrl: './nutrition-facts.component.html',
@@ -8,9 +10,13 @@ import { TranslationService } from 'src/app/api/translation.service';
 })
 export class NutritionFactsComponent  implements OnChanges {
 
+  public alertButtons = ['OK'];
+
+
   @Input() name?: string;
   @Input() product?: any;
 
+  enteredValues: any;
   // AKG VALUE
   value_AKG: any;
   value_name_AKG: any;
@@ -132,7 +138,7 @@ export class NutritionFactsComponent  implements OnChanges {
   // GLOBAL
   currentLanguage: any;
 
-  constructor(public _translation_service: TranslationService) {
+  constructor(public _translation_service: TranslationService, private _alertCtrl: AlertController) {
     this.akg_lists_anak = [
       {
         id: 'anak_1-3',
@@ -248,7 +254,7 @@ export class NutritionFactsComponent  implements OnChanges {
   }
 
   customCalculateNutrition(e: any) {
-    this.dynamic('100g', e.target.value);
+    this.dynamic('100g', e);
 
     this.akg_formula(this.value_AKG)
   }
@@ -550,6 +556,30 @@ export class NutritionFactsComponent  implements OnChanges {
     } else {
       return ''; // Tampilkan pesan atau nilai default jika nutriment tidak terdefinisi
     }
+  }
+
+  async calculateServing() {
+    const alert_show = await this._alertCtrl.create({
+      header: 'Quantity per serving',
+      buttons: this.alertButtons,
+      inputs: [
+        {
+          type: 'number',
+          placeholder: 'Quantity',
+          value: this.enteredValues || this.product?.serving_quantity || 100, // Set default value dynamically
+        },
+      ],
+    });
+
+    alert_show.onDidDismiss().then((data) => {
+      if (data && data.data) {
+        this.enteredValues = data.data.values[0];
+        this.customCalculateNutrition(this.enteredValues)
+        // Access individual values like enteredValues.Name, enteredValues.Nickname, etc.
+      }
+    });
+
+    await alert_show.present();
   }
 
 }

@@ -127,7 +127,12 @@ app-nutrition-list {
 ion-row {
   align-items: center !important;
 }
-input{
-  max-height: 10px;
-  height: 10px;
+
+
+.input-fill-outline.sc-ion-input-md-h {
+  opacity: 0.8 !important;
+  --border-color: var(--ion-color-primary, #b3b3b3);
+  --border-radius: 4px;
+  --padding-start: 16px;
+  --padding-end: 16px;
 }

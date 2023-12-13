@@ -6,8 +6,30 @@
     <h1 class="performance-facts__title ion-padding-left ion-margin-right ion-text-capitalize" style="margin-bottom: 2rem;">{{_translation_service.translateKey('nutrition_facts')}}</h1>
     <div class="ion-no-margin-top">
 
-      <ion-input #per_serving_input fill="outline" style="font-size: 1.5rem;" class="ion-margin-top text-center" labelPlacement="floating" [value]="product?.serving_quantity || 100" (ionInput)="customCalculateNutrition($event)">
-        <div slot="label" style="font-size:1rem"><b>{{_translation_service.translateKey('calculate_per_serving')}}</b></div>
+      <!-- <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-input id="present-alert" #per_serving_input fill="outline" style="font-size: 1.5rem;" class="ion-margin-top text-center" labelPlacement="floating" [value]="product?.serving_quantity || 100" (ionInput)="customCalculateNutrition($event)">
+              <div slot="label" style="font-size:1rem"><b>{{_translation_service.translateKey('calculate_per_serving')}}</b></div>
+              <ion-badge slot="end" color="white" style="position: absolute; right: 0; bottom:0; display: block !important;">gram/ml</ion-badge>
+            </ion-input>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button id="present-alert">Cl</ion-button>
+            <ion-alert
+              trigger="present-alert"
+              header="Please enter your info"
+              [buttons]="alertButtons"
+              [inputs]="alertInputs"
+            ></ion-alert>
+          </ion-col>
+        </ion-row>
+      </ion-grid> -->
+      <!-- <small>*Tap area for calculate serving or AKG</small> -->
+      
+      <ion-input (click)="calculateServing()" [readonly]="true" #per_serving_input fill="outline" style="font-size: 1.5rem;" class="ion-margin-top text-center" labelPlacement="floating" [value]="enteredValues || product?.serving_quantity || 100" >
+        <div slot="label" style="font-size:1rem"><ion-badge color="dark" >{{_translation_service.translateKey('calculate_per_serving')}}</ion-badge></div>
+        
         <ion-badge slot="end" color="white" style="position: absolute; right: 0; bottom:0; display: block !important;">gram/ml</ion-badge>
       </ion-input>
 
@@ -374,7 +396,7 @@
   </table>
 
 
-  <p class="small-info" style="margin-top: 0.5rem;">{{_translation_service.translateKey('note_1_nutrition_facts')}} <a style="color:black" href="https://standarpangan.pom.go.id/dokumen/pedoman/KIE_Label_Gizi_-_Masyarakat_Umum.pdf" target="_blank"><b>Badan POM</b> indonesia</a>  </p>
+  <p class="small-info" style="margin-top: 0.5rem;">{{_translation_service.translateKey('note_1_nutrition_facts')}} <a href="https://standarpangan.pom.go.id/dokumen/pedoman/KIE_Label_Gizi_-_Masyarakat_Umum.pdf" target="_blank"><b>Badan POM</b> indonesia</a>  </p>
   <p class="small-info" style="margin-top: 0.5rem;">{{_translation_service.translateKey('note_2_nutrition_facts')}}</p>
   <table class="performance-facts__table--small small-info">
     <!-- <thead>

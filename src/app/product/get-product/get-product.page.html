@@ -16,7 +16,7 @@
 	</swiper-container>
 
 	<div >
-		<ion-card color="primary" class="ion-no-margin ion-no-padding" style="box-shadow: none;">
+		<ion-card color="light" class="ion-no-margin ion-no-padding" style="box-shadow: none; border-top: solid 1rem var(--ion-color-primary); border-bottom: solid 1rem var(--ion-color-primary);">
 			<ion-grid class="ion-margin-top ion-margin-bottom">
 				<ion-row>
 					<ion-col size="10">
@@ -25,7 +25,7 @@
 					</ion-col>
 					<ion-col size="2" justify="end" class="ion-text-center" style="align-items: center !important;">
 						<ion-icon (click)="removeFavorite()" *ngIf="isFavorite(product?.code)" color="dark" name="bookmark" size="large" justify="end"></ion-icon>
-						<ion-icon (click)="saveFavorite()" *ngIf="!isFavorite(product?.code)" color="light" name="bookmark-outline" size="large" justify="end"></ion-icon>
+						<ion-icon (click)="saveFavorite()" *ngIf="!isFavorite(product?.code)" color="dark" name="bookmark-outline" size="large" justify="end"></ion-icon>
 					</ion-col>
 				</ion-row>
 			</ion-grid>
