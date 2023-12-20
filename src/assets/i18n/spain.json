@@ -96,5 +96,26 @@
   "try_check_other_country": "intenta buscar productos en otros países",
   "check_conection": "verifica tu conexión a internet",
 
-  "nutriments_less": "Lo siento, la información nutricional aún está incompleta. Actualmente la estamos actualizando."
+  "nutriments_less": "Lo siento, la información nutricional aún está incompleta. Actualmente la estamos actualizando.",
+
+  "result": "Resultado",
+  "total": "Total",
+  "quantity_per_serving": "Cantidad por Porción",
+  "introduction": "Introducción",
+
+  "intro1_title": "Escanear Código de Barras del Producto",
+  "intro1_subtitle": "Puedes ver detalles del producto mediante el código de barras del producto",
+  "intro1_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>Escanear desde la Cámara</b></h3>\n Selecciona el botón para escanear desde la cámara de tu teléfono\n <div style=\"display: flex;align-items: center;justify-content: center;\">",
+  "intro1_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>Cargar desde la Galería</b></h3>\n Selecciona cargar desde la galería en tu teléfono\n <div style=\"display: flex;align-items: center;justify-content: center;\">",
+
+  "intro2_title": "Búsqueda de Productos",
+  "intro2_subtitle": "Puedes ver detalles del producto mediante la búsqueda de productos",
+  "intro2_card_note1": "Busca por nombre del producto o marca",
+  "intro2_card_note2": "Selecciona el país proveedor del producto",
+  "intro2_card_note3": "Más de 3 millones de productos y se añaden diariamente",
+
+  "intro3_title": "Detalles del Producto",
+  "intro3_subtitle": "Información detallada del producto",
+  "intro3_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>Nutri Score</b></h3>\n Verifica el etiquetado nutricional estándar internacional",
+  "intro3_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>Valor Nutricional</b></h3>\n Verifica y calcula el valor nutricional y las cantidades diarias recomendadas (Daily Value Nutrition)"
 }

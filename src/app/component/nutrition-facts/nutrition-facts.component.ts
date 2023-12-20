@@ -560,7 +560,7 @@ export class NutritionFactsComponent  implements OnChanges {
 
   async calculateServing() {
     const alert_show = await this._alertCtrl.create({
-      header: 'Quantity per serving',
+      header: this._translation_service.translateKey('quantity_per_serving'),
       buttons: this.alertButtons,
       inputs: [
         {

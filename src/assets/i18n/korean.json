@@ -96,5 +96,26 @@
   "try_check_other_country": "다른 국가의 제품을 검색해보세요",
   "check_conection": "인터넷 연결을 확인하세요",
 
-  "nutriments_less": "죄송합니다. 영양 정보가 아직 완전하지 않습니다. 현재 업데이트 중입니다."
+  "nutriments_less": "죄송합니다. 영양 정보가 아직 완전하지 않습니다. 현재 업데이트 중입니다.",
+
+  "result": "결과",
+  "total": "총계",
+  "quantity_per_serving": "양 / 서빙",
+  "introduction": "소개",
+
+  "intro1_title": "제품 바코드 스캔",
+  "intro1_subtitle": "제품 바코드를 통해 제품 세부 정보를 확인할 수 있습니다",
+  "intro1_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>카메라 스캔</b></h3>\n 핸드폰 카메라 스캔 버튼 선택\n <div style=\"display: flex;align-items: center;justify-content: center;\">",
+  "intro1_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>갤러리에서 업로드</b></h3>\n 핸드폰 갤러리에서 업로드 선택\n <div style=\"display: flex;align-items: center;justify-content: center;\">",
+
+  "intro2_title": "제품 검색",
+  "intro2_subtitle": "제품 검색을 통해 제품 세부 정보를 확인할 수 있습니다",
+  "intro2_card_note1": "제품 이름 또는 상표로 검색",
+  "intro2_card_note2": "제품 공급 국가 선택",
+  "intro2_card_note3": "3백만 개 이상의 제품이 있으며 매일 추가됩니다",
+
+  "intro3_title": "제품 세부 정보",
+  "intro3_subtitle": "제품의 세부 정보",
+  "intro3_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>영양 점수</b></h3>\n 국제적인 영양 라벨 확인",
+  "intro3_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>영양 가치</b></h3>\n 영양 가치 및 권장 섭취량 확인 (Daily Value Nutrition)"
 }

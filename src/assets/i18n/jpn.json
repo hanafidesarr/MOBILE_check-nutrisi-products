@@ -96,5 +96,26 @@
   "try_check_other_country": "他の国の製品を検索してみてください",
   "check_conection": "インターネット接続を確認してください",
 
-  "nutriments_less": "申し訳ありませんが、栄養情報はまだ不完全です。現在更新中です。"
+  "nutriments_less": "申し訳ありませんが、栄養情報はまだ不完全です。現在更新中です。",
+
+  "result": "結果",
+  "total": "合計",
+  "quantity_per_serving": "1食あたりの量",
+  "introduction": "紹介",
+
+  "intro1_title": "商品バーコードスキャン",
+  "intro1_subtitle": "商品バーコードを通じて商品の詳細を確認できます",
+  "intro1_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>カメラでスキャン</b></h3>\n あなたの携帯電話のスキャンボタンを選択してください\n <div style=\"display: flex;align-items: center;justify-content: center;\">",
+  "intro1_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>ギャラリーからアップロード</b></h3>\n あなたの携帯電話のギャラリーからアップロードを選択してください\n <div style=\"display: flex;align-items: center;justify-content: center;\">",
+
+  "intro2_title": "商品検索",
+  "intro2_subtitle": "商品検索を通じて商品の詳細を確認できます",
+  "intro2_card_note1": "商品名やブランドで検索",
+  "intro2_card_note2": "商品供給国の選択",
+  "intro2_card_note3": "300万以上の商品があり、毎日追加されます",
+
+  "intro3_title": "商品詳細",
+  "intro3_subtitle": "商品の詳細情報",
+  "intro3_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>栄養スコア</b></h3>\n 国際基準の栄養ラベルを確認",
+  "intro3_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>栄養価</b></h3>\n 栄養価と一日の推奨摂取量を確認・計算 (Daily Value Nutrition)"
 }

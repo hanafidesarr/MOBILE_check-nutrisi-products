@@ -96,5 +96,26 @@
   "try_check_other_country": "Diğer ülkelerde ürün aramayı deneyin",
   "check_conection": "İnternet bağlantınızı kontrol edin",
 
-  "nutriments_less": "Üzgünüz, besin bilgileri hala eksik. Şu anda güncelliyoruz."
+  "nutriments_less": "Üzgünüz, besin bilgileri hala eksik. Şu anda güncelliyoruz.",
+
+  "result": "Sonuç",
+  "total": "Toplam",
+  "quantity_per_serving": "Porsiyon Başına Miktar",
+  "introduction": "Giriş",
+
+  "intro1_title": "Ürün Barkodunu Tara",
+  "intro1_subtitle": "Ürün detaylarını barkod üzerinden görebilirsiniz",
+  "intro1_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>Kameradan Tara</b></h3>\n Telefonunuzdaki kamerayla taramak için düğmeyi seçin\n <div style=\"display: flex;align-items: center;justify-content: center;\">",
+  "intro1_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>Galeriden Yükle</b></h3>\n Telefonunuzdaki galeriden yüklemek için düğmeyi seçin\n <div style=\"display: flex;align-items: center;justify-content: center;\">",
+
+  "intro2_title": "Ürün Ara",
+  "intro2_subtitle": "Ürün detaylarını ürün araması ile görebilirsiniz",
+  "intro2_card_note1": "Ürün adı veya markaya göre ara",
+  "intro2_card_note2": "Ürün sağlayan ülkeyi seç",
+  "intro2_card_note3": "3 milyonun üzerinde ürün ve her gün eklenenler",
+
+  "intro3_title": "Ürün Detayları",
+  "intro3_subtitle": "Detaylı ürün bilgileri",
+  "intro3_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>Nutri Skoru</b></h3>\n Uluslararası standartlara göre besin etiketini kontrol et",
+  "intro3_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>Besin Değeri</b></h3>\n Besin değerini ve günlük önerilen miktarları kontrol et ve hesapla (Daily Value Nutrition)"
 }

@@ -97,5 +97,26 @@
   "try_check_other_country": "جرب البحث عن منتجات في بلدان أخرى",
   "check_conection": "تحقق من اتصال الإنترنت الخاص بك",
 
-  "nutriments_less": "آسف، معلومات التغذية لا تزال غير كاملة. نحن نقوم حاليًا بالتحديث"
+  "nutriments_less": "آسف، معلومات التغذية لا تزال غير كاملة. نحن نقوم حاليًا بالتحديث",
+
+  "result": "النتيجة",
+  "total": "الإجمالي",
+  "quantity_per_serving": "الكمية لكل وجبة",
+  "introduction": "مقدمة",
+
+  "intro1_title": "مسح رمز الباركود للمنتج",
+  "intro1_subtitle": "يمكنك عرض تفاصيل المنتج عبر رمز الباركود",
+  "intro1_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>المسح من الكاميرا</b></h3>\n حدد زر المسح بواسطة الكاميرا على الهاتف\n <div style=\"display: flex;align-items: center;justify-content: center;\">",
+  "intro1_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>التحميل من المعرض</b></h3>\n حدد التحميل من المعرض على الهاتف\n <div style=\"display: flex;align-items: center;justify-content: center;\">",
+
+  "intro2_title": "البحث عن المنتج",
+  "intro2_subtitle": "يمكنك عرض تفاصيل المنتج عبر عمليات البحث عن المنتج",
+  "intro2_card_note1": "البحث بناءً على اسم المنتج أو العلامة التجارية",
+  "intro2_card_note2": "اختيار بلد مورد المنتج",
+  "intro2_card_note3": "أكثر من 3 ملايين منتج وسيتم إضافة المزيد يوميًا",
+
+  "intro3_title": "تفاصيل المنتج",
+  "intro3_subtitle": "معلومات تفصيلية عن المنتج",
+  "intro3_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>نقاط التغذية</b></h3>\n تحقق من تسمية القيم الغذائية حسب المعايير الدولية",
+  "intro3_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>القيمة الغذائية</b></h3>\n تحقق وحسب قيمة الطاقة والكمية اليومية الموصى بها (Daily Value Nutrition)"
 }

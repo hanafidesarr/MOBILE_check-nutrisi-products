@@ -96,5 +96,26 @@
   "try_check_other_country": "probeer producten te zoeken in andere landen",
   "check_conection": "controleer uw internetverbinding",
 
-  "nutriments_less": "Sorry, de voedingsinformatie is nog niet compleet. We zijn het momenteel aan het bijwerken."
+  "nutriments_less": "Sorry, de voedingsinformatie is nog niet compleet. We zijn het momenteel aan het bijwerken.",
+
+  "result": "Resultaat",
+  "total": "Totaal",
+  "quantity_per_serving": "Hoeveelheid per Portie",
+  "introduction": "Inleiding",
+
+  "intro1_title": "Scan Product Barcode",
+  "intro1_subtitle": "U kunt productdetails bekijken via de productbarcode",
+  "intro1_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>Scannen via Camera</b></h3>\n Selecteer de knop om de camera van uw telefoon te scannen\n <div style=\"display: flex;align-items: center;justify-content: center;\">",
+  "intro1_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>Uploaden vanuit Galerij</b></h3>\n Selecteer uploaden vanuit de galerij op uw telefoon\n <div style=\"display: flex;align-items: center;justify-content: center;\">",
+
+  "intro2_title": "Product Zoeken",
+  "intro2_subtitle": "U kunt productdetails bekijken via productzoekopdrachten",
+  "intro2_card_note1": "Zoek op basis van productnaam of handelsmerk",
+  "intro2_card_note2": "Keuze van land van herkomst van het product",
+  "intro2_card_note3": "Meer dan 3 miljoen producten en er worden dagelijks meer toegevoegd",
+
+  "intro3_title": "Productdetails",
+  "intro3_subtitle": "Gedetailleerde productinformatie",
+  "intro3_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>Nutri Score</b></h3>\n Controleer het voedingslabel volgens internationale normen",
+  "intro3_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>Voedingswaarde</b></h3>\n Controleer en bereken de voedingswaarde en Daily Value"
 }

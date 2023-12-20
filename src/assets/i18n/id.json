@@ -96,5 +96,27 @@
   "try_check_other_country": "coba cari product di negara lain",
   "check_conection": "check koneksi internet anda",
 
-  "nutriments_less": "Maaf, informasi nutrisi masih belum lengkap. saat ini kami sedang memperbarui."
+  "nutriments_less": "Maaf, informasi nutrisi masih belum lengkap. saat ini kami sedang memperbarui.",
+
+  "result": "Hasil",
+  "total": "Total",
+  "quantity_per_serving": "Jumlah per takaran",
+  "introduction": "Perkenalan",
+
+  "intro1_title": "Scan Barcode Product",
+  "intro1_subtitle": "Anda bisa melihat detail product melalui barcode product",
+  "intro1_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>Scan dari kamera</b></h3>\n pilih tombol scan camera handphone\n <div style=\"display: flex;align-items: center;justify-content: center;\">",
+  "intro1_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>Upload dari gallery</b></h3>\n pilih upload dari gallery handphone\n <div style=\"display: flex;align-items: center;justify-content: center;\">",
+
+  "intro2_title": "Pencarian Product",
+  "intro2_subtitle": "Anda bisa melihat detail product melalui pencarian product",
+  "intro2_card_note1": "Cari berdasarkan nama product atau merk dagang",
+  "intro2_card_note2": "Pilihan negara penyedia product",
+  "intro2_card_note3": "Lebih dari 3juta product dan akan di tambah setiap harinya",
+
+  "intro3_title": "Detail Product",
+  "intro3_subtitle": "Detail informasi product",
+  "intro3_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>Nutri Score</b></h3>\n cek label nutrisi standard internasional",
+  "intro3_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>Nilai Gizi</b></h3>\n Cek dan kalkulasi nilai gizi dan AKG"
+
 }

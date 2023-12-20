@@ -108,9 +108,14 @@
             <ion-select-option value="hi">Hindi/India</ion-select-option>
             <ion-select-option value="thai">Thailand</ion-select-option>
             <ion-select-option value="viet">Vietnam</ion-select-option>
+            <ion-select-option value="sunda">Bahasa Sunda</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-list>
+      <ion-item routerLink="/intro">
+        <ion-icon aria-hidden="true" name="information-circle-outline" slot="start"></ion-icon>
+        <ion-label>{{_translation_service.translateKey('introduction')}}</ion-label>
+      </ion-item>
       <!-- <ion-item (click)="functionNotReady()">
         <ion-icon aria-hidden="true" name="heart-outline" slot="start"></ion-icon>
         <ion-label>{{_translation_service.translateKey('donation')}}</ion-label>

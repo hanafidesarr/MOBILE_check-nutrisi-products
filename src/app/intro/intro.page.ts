@@ -22,26 +22,15 @@ export class IntroPage implements OnInit {
   }
 
   ngOnInit() {
+    
   }
 
   changeSelectLang(e:any) {
     this._translation_service.setLanguage(this.currentLanguage);
   }
 
-  navigateToHome() {
-
-    const storedValue = localStorage.getItem('introViewed');
-    // Check if the intro has been viewed from localStorage
-    this.hasIntroBeenViewed = storedValue !== null && JSON.parse(storedValue);
-
-    // If the intro hasn't been viewed, mark it as viewed
-    if (!this.hasIntroBeenViewed) {
-      localStorage.setItem('introViewed', 'true');
-    }
-    
-
-    this._router.navigate(['/tabs']);
-
+  toIntro1() {
+    this._router.navigate(['/intro/intro1']);
   }
   
   mailto(email:any) {

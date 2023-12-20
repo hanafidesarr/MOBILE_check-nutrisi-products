@@ -1,43 +1,6 @@
-<!-- <ion-content [fullscreen]="true" class="ion-padding">
-  <swiper-container [slidesPerView]="1" [loop]="true"  [autoplay]="true" pagination="true">
-    <swiper-slide>
-      <ion-img
-        src="https://ionicframework.com/docs/demos/api/slides/slide-1.png"
-      ></ion-img>
-      <h2>Welcome</h2>
-      <p>
-        is a practical preview of the ionic framework in action, and a
-        demonstration of proper code use.
-      </p>
-    </swiper-slide>
-    <swiper-slide>
-      <ion-img
-        src="https://ionicframework.com/docs/demos/api/slides/slide-1.png"
-      ></ion-img>
-      <h2>Welcome</h2>
-      <p>
-        is a practical preview of the ionic framework in action, and a
-        demonstration of proper code use.
-      </p>
-    </swiper-slide>
-    
-  </swiper-container>
-
-</ion-content>
-
-<ion-footer>
-  <ion-toolbar>
-    <ion-title (click)="navigateToHome()">Go to Home </ion-title>
-  </ion-toolbar>
-</ion-footer> -->
 
 <ion-content>
-  <!-- Top fill image -->
-
   <div class="top-fill">
-    <!-- <div style="position: absolute; z-index: 99; right: 10px; top:10px">
-      <ion-icon name="information-circle-outline" aria-hidden="true" size="large" color="light"></ion-icon>
-    </div> -->
     <ion-grid class="ion-padding">
       <ion-row>
         <ion-col class="ion-text-left">
@@ -87,6 +50,7 @@
                 <ion-select-option value="hi">Hindi/India</ion-select-option>
                 <ion-select-option value="thai">Thailand</ion-select-option>
                 <ion-select-option value="viet">Vietnam</ion-select-option>
+                <ion-select-option value="sunda">Bahasa Sunda</ion-select-option>
               </ion-select>
             </ion-item>
           </ion-list>
@@ -94,33 +58,17 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-    <!-- <div class="top-image">
-      <img src="assets/paper-bag-vegetables.gif" alt="Top Fill Image">
-      <h1 class="ion-margin-bottom ion-padding-bottom">{{_translation_service.translateKey('welcome')}}</h1>
-    </div> -->
 
   </div>
 
   <!-- Bottom fill area with text and half-curve background color -->
   <div class="bottom-fill d-flex justify-content-between ion-margin-start ion-margin-end">
     
-    <ion-badge color="light" class="ion-text-capitalize"><div style="font-size: 1rem; padding:0.5rem 1rem">NutriScan</div></ion-badge>
-    <a href="https://www.instagram.com/nutriscan.official/" target="_blank" class="text-dark pt-1"><ion-icon name="logo-instagram" size="small"></ion-icon></a>
-    <a href="http://axeonsoft.com/" target="_blank" class="text-dark pt-1"><ion-icon name="globe-outline" size="small"></ion-icon></a>
+    <ion-badge color="light" class="ion-text-capitalize"><div style="font-size: 1rem; padding:0.5rem 1rem">NutriCheck</div></ion-badge>
+    <a href="https://www.instagram.com/nutricheck.official/" target="_blank" class="text-dark pt-1"><ion-icon name="logo-instagram" size="small"></ion-icon></a>
+    <a href="http://axeonsoft.com/en" target="_blank" class="text-dark pt-1"><ion-icon name="globe-outline" size="small"></ion-icon></a>
     <div (click)="mailto('admin@axeonsoft.com')" class="text-dark pt-1"><ion-icon name="mail-outline" size="small"></ion-icon></div>
-    <!--
-    
-    <div class="content">
-      <ion-list style="background: none rgb(253, 147, 70); font-size: 1.3rem; color: white;">
-        <ion-select  (ionChange)="changeSelectLang($event)" [(ngModel)]="currentLanguage" aria-label="Language" interface="action-sheet" placeholder="" style="justify-content: center;">
-          <ion-select-option value="en">English</ion-select-option>
-          <ion-select-option value="id">Indonesia</ion-select-option>
-        </ion-select>
-      </ion-list>
-    </div>
-
-    <ion-button  fill="outline" color="light"  shape="round" class="next-page" (click)="navigateToHome()">Next</ion-button> -->
-    <ion-button class="ion-text-capitalize"  fill="outline" color="primary"  shape="round" (click)="navigateToHome()">{{_translation_service.translateKey('next')}}</ion-button> 
+    <ion-button class="ion-text-capitalize"  fill="outline" color="primary"  shape="round" (click)="toIntro1()">{{_translation_service.translateKey('next')}}</ion-button> 
   
     
   </div>

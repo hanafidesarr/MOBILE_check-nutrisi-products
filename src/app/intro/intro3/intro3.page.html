@@ -1,0 +1,49 @@
+<ion-toolbar color="tertiary">
+  <ion-title class="ion-text-center ion-padding-top"><h1>{{_translation_service.translateKey('intro3_title')}}</h1></ion-title>
+  <div class="text-center">{{_translation_service.translateKey('intro3_subtitle')}}</div>
+</ion-toolbar>
+<ion-content>
+  <!-- Top fill image -->
+  <div class="top-fill">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div class="card">
+            <div class="circle">
+              <ion-icon size="large" name="fast-food-outline"></ion-icon>
+            </div>
+            <ion-card-content class="" style=" margin-top: 1.5rem;">
+              <img src="assets/nutriscore/nutriscore-a.svg" width="65%">
+              <img src="assets/nutriscore/nutriscore-b.svg" width="65%">
+              <img src="assets/nutriscore/nutriscore-c.svg" width="65%">
+              <img class="pb-3" src="assets/nutriscore/nutriscore-d.svg" width="65%">
+              <div [innerHTML]="_translation_service.translateKey('intro3_card1')"></div>
+            </ion-card-content>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div class="card">
+            <div class="circle">
+              <ion-icon size="large" name="list-outline"></ion-icon>
+            </div>
+            <ion-card-content class="ion-margin-top">
+              <img class="pb-3" src="assets/intro/nutrition-facts.png">
+              <div [innerHTML]="_translation_service.translateKey('intro3_card2')"></div>
+            </ion-card-content>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div class="bottom-fill d-flex justify-content-between ion-margin-start ion-margin-end">
+    
+    <ion-button (click)="back()" class="ion-text-capitalize"  fill="outline" color="primary"  shape="round"><ion-icon name="caret-back-outline"></ion-icon></ion-button> 
+    <a href="https://www.instagram.com/nutricheck.official/" target="_blank" class="text-dark pt-1"><ion-icon name="logo-instagram" size="small"></ion-icon></a>
+    <a href="http://axeonsoft.com/" target="_blank" class="text-dark pt-1"><ion-icon name="globe-outline" size="small"></ion-icon></a>
+    <div (click)="mailto('admin@axeonsoft.com')" class="text-dark pt-1"><ion-icon name="mail-outline" size="small"></ion-icon></div>
+    <ion-button class="ion-text-capitalize"  fill="outline" color="primary"  shape="round" (click)="toHome()">Home</ion-button> 
+  
+    
+  </div>
+</ion-content>

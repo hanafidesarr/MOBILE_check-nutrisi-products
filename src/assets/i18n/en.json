@@ -97,5 +97,26 @@
   "check_conection": "check your internet connection",
 
 
-  "nutriments_less": "Sorry, the nutrition information is still incomplete. we are currently updating it."
+  "nutriments_less": "Sorry, the nutrition information is still incomplete. we are currently updating it.",
+
+  "result": "Result",
+  "total": "Total",
+  "quantity_per_serving": "Quantity per Serving",
+  "introduction": "Introduction",
+
+  "intro1_title": "Scan Barcode Product",
+  "intro1_subtitle": "You can view product details using the product barcode",
+  "intro1_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>Scan from Camera</b></h3>\nSelect the scan camera button on your mobile phone\n<div style=\"display: flex;align-items: center;justify-content: center;\">",
+  "intro1_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>Upload from Gallery</b></h3>\nSelect upload from the mobile phone gallery\nlist<div style=\"display: flex;align-items: center;justify-content: center;\">",
+
+  "intro2_title": "Product Search",
+  "intro2_subtitle": "You can view product details through product search",
+  "intro2_card_note1": "Search by product name or brand",
+  "intro2_card_note2": "Country options for product providers",
+  "intro2_card_note3": "More than 3 million products and will be added every day",
+
+  "intro3_title": "Product Details",
+  "intro3_subtitle": "Detailed product information",
+  "intro3_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>Nutri Score</b></h3>\nCheck international standard nutrition labels",
+  "intro3_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>Nutritional Value</b></h3>\nCheck and calculate nutritional values and RDA (Daily Value)"
 }

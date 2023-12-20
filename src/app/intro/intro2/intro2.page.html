@@ -1,0 +1,54 @@
+<ion-toolbar color="tertiary">
+  <ion-title class="ion-text-center ion-padding-top"><h1>{{_translation_service.translateKey('intro2_title')}}</h1></ion-title>
+  <div class="text-center">{{_translation_service.translateKey('intro2_subtitle')}}</div>
+</ion-toolbar>
+<ion-content>
+  <!-- Top fill image -->
+  <div class="top-fill">
+    
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div class="card">
+            <div class="circle">
+              <ion-icon size="large" name="search-outline"></ion-icon>
+            </div>
+            <ion-grid class="py-3">
+              <ion-row>
+                <ion-col size="6">
+                  <img src="assets/intro/search-page.png">
+                </ion-col>
+                <ion-col size="6" class="">
+                  <ion-row>
+                    <ion-col size="2"><ion-icon name="leaf-outline" color="success"></ion-icon></ion-col>
+                    <ion-col class="text-left">{{_translation_service.translateKey('intro2_card_note1')}}</ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="2"><ion-icon name="leaf-outline" color="success"></ion-icon></ion-col>
+                    <ion-col class="text-left">{{_translation_service.translateKey('intro2_card_note2')}}</ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="2"><ion-icon name="leaf-outline" color="success"></ion-icon></ion-col>
+                    <ion-col class="text-left">{{_translation_service.translateKey('intro2_card_note3')}}</ion-col>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <!-- Bottom fill area with text and half-curve background color -->
+  <div class="bottom-fill d-flex justify-content-between ion-margin-start ion-margin-end">
+    
+    <ion-button (click)="back()" class="ion-text-capitalize"  fill="outline" color="primary"  shape="round"><ion-icon name="caret-back-outline"></ion-icon></ion-button> 
+    <a href="https://www.instagram.com/nutricheck.official/" target="_blank" class="text-dark pt-1"><ion-icon name="logo-instagram" size="small"></ion-icon></a>
+    <a href="http://axeonsoft.com/" target="_blank" class="text-dark pt-1"><ion-icon name="globe-outline" size="small"></ion-icon></a>
+    <div (click)="mailto('admin@axeonsoft.com')" class="text-dark pt-1"><ion-icon name="mail-outline" size="small"></ion-icon></div>
+    <ion-button class="ion-text-capitalize"  fill="outline" color="primary"  shape="round" (click)="toIntro2()">{{_translation_service.translateKey('next')}}</ion-button> 
+  
+    
+  </div>
+</ion-content>

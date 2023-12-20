@@ -92,5 +92,26 @@
   "try_check_other_country": "ลองค้นหาผลิตภัณฑ์ในประเทศอื่น",
   "check_conection": "ตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ",
 
-  "nutriments_less": "ขออภัย ข้อมูลโภชนาการยังไม่สมบูรณ์ เรากำลังทำการอัปเดตในขณะนี้"
+  "nutriments_less": "ขออภัย ข้อมูลโภชนาการยังไม่สมบูรณ์ เรากำลังทำการอัปเดตในขณะนี้",
+
+  "result": "ผลลัพธ์",
+  "total": "รวม",
+  "quantity_per_serving": "ปริมาณต่อหนึ่งจาน",
+  "introduction": "นำเสนอ",
+
+  "intro1_title": "สแกนบาร์โค้ดสินค้า",
+  "intro1_subtitle": "คุณสามารถดูรายละเอียดของสินค้าผ่านบาร์โค้ด",
+  "intro1_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>สแกนจากกล้อง</b></h3>\n เลือกปุ่มสแกนจากกล้องบนโทรศัพท์ของคุณ\n <div style=\"display: flex;align-items: center;justify-content: center;\">",
+  "intro1_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>อัปโหลดจากแกลเลอรี</b></h3>\n เลือกอัปโหลดจากแกลเลอรีบนโทรศัพท์ของคุณ\n <div style=\"display: flex;align-items: center;justify-content: center;\">",
+
+  "intro2_title": "ค้นหาสินค้า",
+  "intro2_subtitle": "คุณสามารถดูรายละเอียดของสินค้าผ่านการค้นหา",
+  "intro2_card_note1": "ค้นหาตามชื่อสินค้าหรือแบรนด์",
+  "intro2_card_note2": "เลือกประเทศที่จัดหาสินค้า",
+  "intro2_card_note3": "มีสินค้ามากกว่า 3 ล้านรายการและเพิ่มขึ้นทุกวัน",
+
+  "intro3_title": "รายละเอียดของสินค้า",
+  "intro3_subtitle": "ข้อมูลรายละเอียดของสินค้า",
+  "intro3_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>Nutri Score</b></h3>\n ตรวจสอบป้ายกำกับโภชนาการมาตรฐานนานาชาติ",
+  "intro3_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>ค่าโภชนาการ</b></h3>\n ตรวจสอบและคำนวณค่าโภชนาการและปริมาณที่แนะนำในแต่ละวัน (Daily Value Nutrition)"
 }

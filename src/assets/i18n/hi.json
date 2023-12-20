@@ -96,5 +96,26 @@
   "try_check_other_country": "अन्य देशों में उत्पादों की खोज करने का प्रयास करें",
   "check_conection": "अपना इंटरनेट कनेक्शन जाँचें",
 
-  "nutriments_less": "माफ़ करें, पोषण जानकारी अभी अधूरी है। हम इसे अद्यतित कर रहे हैं।"
+  "nutriments_less": "माफ़ करें, पोषण जानकारी अभी अधूरी है। हम इसे अद्यतित कर रहे हैं।",
+
+  "result": "परिणाम",
+  "total": "कुल",
+  "quantity_per_serving": "प्रति सर्विंग मात्रा",
+  "introduction": "परिचय",
+
+  "intro1_title": "उत्पाद बारकोड स्कैन करें",
+  "intro1_subtitle": "आप उत्पाद विवरण बारकोड के माध्यम से देख सकते हैं",
+  "intro1_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>कैमरा से स्कैन करें</b></h3>\n अपने फ़ोन पर कैमरा स्कैन करने के लिए बटन चुनें\n <div style=\"display: flex;align-items: center;justify-content: center;\">",
+  "intro1_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>गैलरी से अपलोड करें</b></h3>\n अपने फ़ोन पर गैलरी से अपलोड करने के लिए बटन चुनें\n <div style=\"display: flex;align-items: center;justify-content: center;\">",
+
+  "intro2_title": "उत्पाद खोज",
+  "intro2_subtitle": "आप उत्पाद खोज के माध्यम से उत्पाद विवरण देख सकते हैं",
+  "intro2_card_note1": "उत्पाद के नाम या ब्रांड के आधार पर खोजें",
+  "intro2_card_note2": "उत्पाद प्रदाता देश का चयन करें",
+  "intro2_card_note3": "3 मिलियन से अधिक उत्पाद और प्रतिदिन जोड़े जाते हैं",
+
+  "intro3_title": "उत्पाद विवरण",
+  "intro3_subtitle": "उत्पाद का विस्तृत जानकारी",
+  "intro3_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>न्यूट्री स्कोर</b></h3>\n अंतरराष्ट्रीय मानक पोषण लेबल की जाँच करें",
+  "intro3_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>पोषण मूल्य</b></h3>\n पोषण मूल्य और अनुशंसित दैनिक आवश्यकता की गणना करें (Daily Value Nutrition)"
 }

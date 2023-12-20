@@ -96,5 +96,26 @@
   "try_check_other_country": "尝试在其他国家搜索产品",
   "check_conection": "检查您的互联网连接",
 
-  "nutriments_less": "抱歉，营养信息仍然不完整。我们正在进行更新。"
+  "nutriments_less": "抱歉，营养信息仍然不完整。我们正在进行更新。",
+
+  "result": "结果",
+  "total": "总计",
+  "quantity_per_serving": "每份数量",
+  "introduction": "介绍",
+
+  "intro1_title": "扫描产品条形码",
+  "intro1_subtitle": "您可以通过产品的条形码查看详细信息",
+  "intro1_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>从相机扫描</b></h3>\n 选择您手机上的扫描按钮\n <div style=\"display: flex;align-items: center;justify-content: center;\">",
+  "intro1_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>从相册上传</b></h3>\n 选择在手机上从相册上传\n <div style=\"display: flex;align-items: center;justify-content: center;\">",
+
+  "intro2_title": "搜索产品",
+  "intro2_subtitle": "您可以通过产品搜索查看详细信息",
+  "intro2_card_note1": "按产品名称或品牌搜索",
+  "intro2_card_note2": "选择产品供应国家",
+  "intro2_card_note3": "超过300万种产品，每天都会增加",
+
+  "intro3_title": "产品详情",
+  "intro3_subtitle": "产品详细信息",
+  "intro3_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>营养分数</b></h3>\n 检查国际标准的营养标签",
+  "intro3_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>营养价值</b></h3>\n 检查和计算营养价值和每日推荐量 (Daily Value Nutrition)"
 }

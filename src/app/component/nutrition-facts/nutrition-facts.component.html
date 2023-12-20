@@ -46,7 +46,7 @@
         
       </ion-item> -->
 
-      <ion-select label="*AKG" value="pria_30-49" (ionChange)="calculateAKG($event)">
+      <ion-select label="{{_translation_service.translateKey('daily_value')}} (Daily Value)" value="pria_30-49" (ionChange)="calculateAKG($event)">
         <!-- <ion-select-option value="serving">Sajian ({{product?.serving_size}})</ion-select-option> -->
         <!-- <ion-select-option value="100g">100g</ion-select-option> -->
 
@@ -76,8 +76,8 @@
       </ion-select>
 
       <ion-card class="ion-padding ion-no-margin" color="light" style="box-shadow: none !important;">
-        <b>Result</b>
-        <p>per serving : {{per_serving_input?.value || product?.serving_quantity || 100}} gram/ml</p>
+        <b class="ion-text-capitalize">{{_translation_service.translateKey('result')}}</b>
+        <p>{{_translation_service.translateKey('calculate_per_serving')}} : {{per_serving_input?.value || product?.serving_quantity || 100}} gram/ml</p>
         <p>*AKG : {{value_name_AKG}}</p>
       </ion-card>
       

@@ -96,5 +96,26 @@
   "try_check_other_country": "Versuchen Sie, nach Produkten in anderen Ländern zu suchen",
   "check_conection": "Überprüfen Sie Ihre Internetverbindung",
 
-  "nutriments_less": "Entschuldigung, die Nährwertangaben sind noch nicht vollständig. Wir aktualisieren sie gerade."
+  "nutriments_less": "Entschuldigung, die Nährwertangaben sind noch nicht vollständig. Wir aktualisieren sie gerade.",
+
+  "result": "Ergebnis",
+  "total": "Gesamt",
+  "quantity_per_serving": "Menge pro Portion",
+  "introduction": "Einführung",
+
+  "intro1_title": "Produktbarcode scannen",
+  "intro1_subtitle": "Sie können Produktdetails über den Produktbarcode anzeigen",
+  "intro1_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>Vom Kamera scannen</b></h3>\n Wählen Sie die Schaltfläche zum Scannen der Kamera auf Ihrem Telefon\n <div style=\"display: flex;align-items: center;justify-content: center;\">",
+  "intro1_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>Aus der Galerie hochladen</b></h3>\n Wählen Sie Aus der Galerie auf Ihrem Telefon hochladen\n <div style=\"display: flex;align-items: center;justify-content: center;\">",
+
+  "intro2_title": "Produktsuche",
+  "intro2_subtitle": "Sie können Produktdetails über die Produktsuche anzeigen",
+  "intro2_card_note1": "Suchen Sie nach Produktname oder Marke",
+  "intro2_card_note2": "Auswahl des Lieferlandes des Produkts",
+  "intro2_card_note3": "Über 3 Millionen Produkte und täglich werden mehr hinzugefügt",
+
+  "intro3_title": "Produktdetails",
+  "intro3_subtitle": "Detaillierte Produktinformationen",
+  "intro3_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>Nährwertampel</b></h3>\n Überprüfen Sie die internationale Standardnährwertkennzeichnung",
+  "intro3_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>Nährwert</b></h3>\n Überprüfen und berechnen Sie den Nährwert und die empfohlene Tagesdosis (Daily Value Nutrition)"
 }

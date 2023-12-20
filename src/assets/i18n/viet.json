@@ -96,5 +96,26 @@
   "try_check_other_country": "Thử tìm kiếm sản phẩm ở các quốc gia khác",
   "check_conection": "Kiểm tra kết nối internet của bạn",
 
-  "nutriments_less": "Xin lỗi, thông tin dinh dưỡng vẫn chưa đầy đủ. Chúng tôi đang cập nhật nó."
+  "nutriments_less": "Xin lỗi, thông tin dinh dưỡng vẫn chưa đầy đủ. Chúng tôi đang cập nhật nó.",
+
+  "result": "Kết quả",
+  "total": "Tổng cộng",
+  "quantity_per_serving": "Số lượng mỗi suất",
+  "introduction": "Giới thiệu",
+
+  "intro1_title": "Quét Mã vạch Sản phẩm",
+  "intro1_subtitle": "Bạn có thể xem chi tiết sản phẩm thông qua mã vạch của sản phẩm",
+  "intro1_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>Quét từ Camera</b></h3>\n Chọn nút quét từ camera trên điện thoại của bạn\n <div style=\"display: flex;align-items: center;justify-content: center;\">",
+  "intro1_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>Tải lên từ Thư viện ảnh</b></h3>\n Chọn tải lên từ thư viện ảnh trên điện thoại của bạn\n <div style=\"display: flex;align-items: center;justify-content: center;\">",
+
+  "intro2_title": "Tìm kiếm Sản phẩm",
+  "intro2_subtitle": "Bạn có thể xem chi tiết sản phẩm thông qua chức năng tìm kiếm sản phẩm",
+  "intro2_card_note1": "Tìm kiếm theo tên sản phẩm hoặc thương hiệu",
+  "intro2_card_note2": "Chọn quốc gia cung cấp sản phẩm",
+  "intro2_card_note3": "Hơn 3 triệu sản phẩm và thêm vào mỗi ngày",
+
+  "intro3_title": "Chi tiết Sản phẩm",
+  "intro3_subtitle": "Thông tin chi tiết về sản phẩm",
+  "intro3_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>Nutri Score</b></h3>\n Kiểm tra nhãn dinh dưỡng theo tiêu chuẩn quốc tế",
+  "intro3_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>Giá trị Dinh dưỡng</b></h3>\n Kiểm tra và tính toán giá trị dinh dưỡng và lượng khuyến nghị hàng ngày (Daily Value Nutrition)"
 }

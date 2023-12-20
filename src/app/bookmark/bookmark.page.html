@@ -8,7 +8,7 @@
   <div style="margin-bottom: 5vh;">
     <div  *ngIf="list_favorites">
       <ion-item class="ion-margin-top ion-text-right">
-        <ion-label class="ion-margin-top ion-text-right">Total : {{list_favorites.length}}</ion-label>
+        <ion-label class="ion-margin-top ion-text-right">{{_translation_service.translateKey('total')}} : {{list_favorites.length}}</ion-label>
       </ion-item>
       <ion-list size="6" class="ion-margin-bottom">
         <ion-card *ngFor="let item of list_favorites; let i = index" >
