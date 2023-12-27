@@ -1,4 +1,6 @@
-<ion-toolbar color="tertiary">
+
+<ion-icon name="close-outline" size="large" color="light" style="position: absolute; z-index: 99; top:0; right: 0; margin: 5px;"  [routerLink]="['/tabs']"></ion-icon>
+<ion-toolbar color="primary" style="padding-top: 50px;;">
   <ion-title class="ion-text-center ion-padding-top mx-3"><h1>{{_translation_service.translateKey('intro1_title')}}</h1></ion-title>
   <div class="text-center mx-3">{{_translation_service.translateKey('intro1_subtitle')}}</div>
 </ion-toolbar>
@@ -13,14 +15,14 @@
         <ion-col>
           <div class="card">
             <div class="circle">
-              <ion-icon size="large" name="camera"></ion-icon>
+              <ion-icon size="large" color="primary" name="camera"></ion-icon>
             </div>
             <ion-card-content class="ion-margin-top">
               <img class="pb-3" src="assets/intro/scan-camera.png">
               <div class="d-flex justify-content-center">
                 <ion-icon size='small' name='scan'></ion-icon><div style='margin:0 4px'> + </div> <ion-icon size='small' name='camera'></ion-icon>
               </div>
-              <div [innerHTML]="_translation_service.translateKey('intro1_card1')"></div>
+              <div class="text-dark" [innerHTML]="_translation_service.translateKey('intro1_card1')"></div>
 
             </ion-card-content>
           </div>
@@ -28,14 +30,14 @@
         <ion-col>
           <div class="card">
             <div class="circle">
-              <ion-icon size="large" name="image-outline"></ion-icon>
+              <ion-icon size="large" color="primary" name="image-outline"></ion-icon>
             </div>
             <ion-card-content class="ion-margin-top">
               <img class="pb-3" src="assets/intro/upload-gallery.png">
               <div class="d-flex justify-content-center">
                 <ion-icon size='small' name='scan'></ion-icon><div style='margin:0 4px'> + </div> <ion-icon size='small' name='image-outline'></ion-icon>
               </div>
-              <div [innerHTML]="_translation_service.translateKey('intro1_card2')"></div>
+              <div class="text-dark" [innerHTML]="_translation_service.translateKey('intro1_card2')"></div>
             </ion-card-content>
           </div>
         </ion-col>
@@ -47,11 +49,10 @@
   <div class="bottom-fill d-flex justify-content-between ion-margin-start ion-margin-end">
     
     <ion-button (click)="back()" class="ion-text-capitalize"  fill="outline" color="primary"  shape="round"><ion-icon name="caret-back-outline"></ion-icon></ion-button> 
-    <a href="https://www.instagram.com/nutricheck.official/" target="_blank" class="text-dark pt-1"><ion-icon name="logo-instagram" size="small"></ion-icon></a>
-    <a href="http://axeonsoft.com/" target="_blank" class="text-dark pt-1"><ion-icon name="globe-outline" size="small"></ion-icon></a>
-    <div (click)="mailto('admin@axeonsoft.com')" class="text-dark pt-1"><ion-icon name="mail-outline" size="small"></ion-icon></div>
+    <a href="https://www.instagram.com/nutricheck.official/" target="_blank" class="pt-1"><ion-icon name="logo-instagram" size="small"></ion-icon></a>
+    <a href="http://axeonsoft.com/en" target="_blank" class="pt-1"><ion-icon name="globe-outline" size="small"></ion-icon></a>
+    <div (click)="mailto('admin@axeonsoft.com')" class="pt-1"><ion-icon color="primary" name="mail-outline" size="small"></ion-icon></div>
     <ion-button class="ion-text-capitalize"  fill="outline" color="primary"  shape="round" (click)="toIntro2()">{{_translation_service.translateKey('next')}}</ion-button> 
-  
     
   </div>
 </ion-content>

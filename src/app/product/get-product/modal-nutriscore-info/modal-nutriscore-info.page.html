@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="tertiary">
+  <ion-toolbar color="primary" style="padding-top: 50px;">
     <ion-title>{{_translation_service.translateKey('popup_header_info_nutri_score')}}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="closeModal()"><ion-icon name="close" size="large"></ion-icon></ion-button>
@@ -16,7 +16,7 @@
     This product is not considered a beverage for the calculation of the Nutri-Score.
   </p> -->
   <ion-item-divider style="margin-bottom: 3rem;"></ion-item-divider>
-  <div *ngIf="product?.nutriscore_data" >
+  <div *ngIf="product?.nutriscore_data"  style="margin-bottom: 50px;">
     <b class="ion-text-capitalize">{{_translation_service.translateKey('positif_point')}} : {{product?.nutriscore_data?.positive_points}}</b>
     <ion-list>
       <ion-item>

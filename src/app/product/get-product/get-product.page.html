@@ -1,5 +1,6 @@
 <ion-content [fullscreen]="true">
-	
+	<div  style="height: 60px !important; background-color: var(--ion-color-primary);">
+	</div>	
 	<ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
@@ -9,13 +10,13 @@
 			<ion-title size="large">get_product</ion-title>
 		</ion-toolbar>
 	</ion-header> -->
-	<swiper-container  [slidesPerView]="product_images.length > 1 ? '1.2' : '1'" [loop]="false"  [autoplay]="false" pagination="true">
+	<swiper-container [slidesPerView]="product_images.length > 1 ? '1.2' : '1'" [loop]="false"  [autoplay]="false" pagination="true">
 		<swiper-slide *ngFor="let image of product_images">
 			<img *ngIf="image.value" (click)="openModalImage(image.value)" [src]="image.value || 'https://world.openfoodfacts.org/images/icons/dist/packaging.svg'" style="width: 100%;object-fit: cover;height: 30vh; padding: 0 5px;"/>
 		</swiper-slide>
 	</swiper-container>
 
-	<div >
+	<div>
 		<ion-card color="light" class="ion-no-margin ion-no-padding" style="box-shadow: none; border-top: solid 1rem var(--ion-color-primary); border-bottom: solid 1rem var(--ion-color-primary);">
 			<ion-grid class="ion-margin-top ion-margin-bottom">
 				<ion-row>

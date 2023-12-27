@@ -45,7 +45,8 @@ export class TabsPage {
         return;
       } else {
         BarcodeScanner.installGoogleBarcodeScannerModule().then((result) => {
-          console.log("GoogleBarcodeScannerModule SUDAH DI INSTALL COY")
+          console.log("GoogleBarcodeScannerModule SUDAH DI INSTALL COY" + result)
+
         });
       }
     })
@@ -60,7 +61,7 @@ export class TabsPage {
   async scan(): Promise<void> {
     const granted = await this.requestPermissions();
     
-    console.log(BarcodeScanner.isGoogleBarcodeScannerModuleAvailable())
+    console.log("apakah udh di install? " + BarcodeScanner.isGoogleBarcodeScannerModuleAvailable())
     
     // if (!granted) {
     //   this.presentAlert('Permision', 'belum di izinkan');

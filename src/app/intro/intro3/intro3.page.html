@@ -1,4 +1,6 @@
-<ion-toolbar color="tertiary">
+
+<ion-icon name="close-outline" size="large" color="light" style="position: absolute; z-index: 99; top:0; right: 0; margin: 5px;"  [routerLink]="['/tabs']"></ion-icon>
+<ion-toolbar color="primary" style="padding-top: 50px;">
   <ion-title class="ion-text-center ion-padding-top"><h1>{{_translation_service.translateKey('intro3_title')}}</h1></ion-title>
   <div class="text-center">{{_translation_service.translateKey('intro3_subtitle')}}</div>
 </ion-toolbar>
@@ -10,25 +12,25 @@
         <ion-col>
           <div class="card">
             <div class="circle">
-              <ion-icon size="large" name="fast-food-outline"></ion-icon>
+              <ion-icon color="primary" size="large" name="fast-food-outline"></ion-icon>
             </div>
             <ion-card-content class="" style=" margin-top: 1.5rem;">
               <img src="assets/nutriscore/nutriscore-a.svg" width="65%">
               <img src="assets/nutriscore/nutriscore-b.svg" width="65%">
               <img src="assets/nutriscore/nutriscore-c.svg" width="65%">
               <img class="pb-3" src="assets/nutriscore/nutriscore-d.svg" width="65%">
-              <div [innerHTML]="_translation_service.translateKey('intro3_card1')"></div>
+              <div class=" text-dark" [innerHTML]="_translation_service.translateKey('intro3_card1')"></div>
             </ion-card-content>
           </div>
         </ion-col>
         <ion-col>
           <div class="card">
             <div class="circle">
-              <ion-icon size="large" name="list-outline"></ion-icon>
+              <ion-icon color="primary" size="large" name="list-outline"></ion-icon>
             </div>
             <ion-card-content class="ion-margin-top">
               <img class="pb-3" src="assets/intro/nutrition-facts.png">
-              <div [innerHTML]="_translation_service.translateKey('intro3_card2')"></div>
+              <div class=" text-dark" [innerHTML]="_translation_service.translateKey('intro3_card2')"></div>
             </ion-card-content>
           </div>
         </ion-col>
@@ -39,9 +41,9 @@
   <div class="bottom-fill d-flex justify-content-between ion-margin-start ion-margin-end">
     
     <ion-button (click)="back()" class="ion-text-capitalize"  fill="outline" color="primary"  shape="round"><ion-icon name="caret-back-outline"></ion-icon></ion-button> 
-    <a href="https://www.instagram.com/nutricheck.official/" target="_blank" class="text-dark pt-1"><ion-icon name="logo-instagram" size="small"></ion-icon></a>
-    <a href="http://axeonsoft.com/" target="_blank" class="text-dark pt-1"><ion-icon name="globe-outline" size="small"></ion-icon></a>
-    <div (click)="mailto('admin@axeonsoft.com')" class="text-dark pt-1"><ion-icon name="mail-outline" size="small"></ion-icon></div>
+    <a href="https://www.instagram.com/nutricheck.official/" target="_blank" class="pt-1"><ion-icon name="logo-instagram" size="small"></ion-icon></a>
+    <a href="http://axeonsoft.com/en" target="_blank" class="pt-1"><ion-icon name="globe-outline" size="small"></ion-icon></a>
+    <div (click)="mailto('admin@axeonsoft.com')" class="pt-1"><ion-icon color="primary" name="mail-outline" size="small"></ion-icon></div>
     <ion-button class="ion-text-capitalize"  fill="outline" color="primary"  shape="round" (click)="toHome()">Home</ion-button> 
   
     

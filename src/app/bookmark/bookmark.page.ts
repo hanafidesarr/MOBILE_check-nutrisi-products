@@ -5,6 +5,7 @@ import { AlertController } from '@ionic/angular';
 
 import { App } from '@capacitor/app';
 import { TranslationService } from '../api/translation.service';
+import { AdmobService } from '../services/admob/admob.service';
 @Component({
   selector: 'app-bookmark',
   templateUrl: './bookmark.page.html',
@@ -18,7 +19,7 @@ export class BookmarkPage implements OnInit {
 
   backButtonListener: any;
 
-  constructor(private _router: Router, public _translation_service: TranslationService, private alertController: AlertController) {
+  constructor(public _admobService: AdmobService, private _router: Router, public _translation_service: TranslationService, private alertController: AlertController) {
 
     this._translation_service.init();
   }
@@ -93,7 +94,11 @@ export class BookmarkPage implements OnInit {
     }
   }
 
-  openProduct = (barcodeId: any) => {
+  openProduct = (barcodeId: any, index:any) => {
+
+    if (index !== 0 && index % 4 === 0) {
+      this._admobService.showInterstitial()
+    }
     this._router.navigate(['/get-product', barcodeId]);
   }
 

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { AdmobService } from 'src/app/services/admob/admob.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class ModalImagePage {
 
   loading: boolean;
 
-  constructor(private _modalCtrl: ModalController) {}
+  constructor(public _admobService: AdmobService, private _modalCtrl: ModalController) {}
 
   ngOnInit(){
     let parts = this.url.split('.');
@@ -24,6 +25,7 @@ export class ModalImagePage {
 
   }
 
+  
   ionViewWillLeave() {
     this.loading = false; // Hide the loading spinner
 
@@ -31,6 +33,9 @@ export class ModalImagePage {
 
   ionViewDidLeave() {
     this.loading = false; // Hide the loading spinner
+
+    // this._admobService.hideBanner()
+    // this._admobService.RemoveBanner()
 
   }
   handleImageError() {

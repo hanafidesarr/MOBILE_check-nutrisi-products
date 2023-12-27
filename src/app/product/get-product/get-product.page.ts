@@ -18,6 +18,7 @@ import { App } from '@capacitor/app';
 import JsBarcode from 'jsbarcode';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { TranslationService } from 'src/app/api/translation.service';
+import { AdmobService } from 'src/app/services/admob/admob.service';
 
 register();
 
@@ -49,6 +50,7 @@ export class GetProductPage implements OnInit {
 
 
   constructor(
+    public _admobService: AdmobService,
     public _translation_service: TranslationService,
     private _toast_service: ToastService,
     private modalController: ModalController,
@@ -61,21 +63,28 @@ export class GetProductPage implements OnInit {
     if (storedData) {
       this.list_favorites = JSON.parse(storedData);
     }
-    this._loadingService.showLoader();
+    // this._loadingService.showLoader();
     this._route.params.subscribe(params => {
 
       this.barcode = params['barcodeId'];
-
+      
 
       this.getProduct(this.barcode)
     });
   }
 
   ngOnInit() {
+
+    this._admobService.showBanner("top_center")
     this.triggerBack();
 
     this._translation_service.init();
 
+  }
+
+  ionViewDidLeave() {
+    // this._admobService.hideBanner()
+    // this._admobService.RemoveBanner()
   }
 
   triggerBack() {
@@ -205,6 +214,8 @@ export class GetProductPage implements OnInit {
   }
 
   async openNutriScore(product: any) {
+    // this._admobService.hideBanner()
+    // this._admobService.RemoveBanner()
     const modal = await this.modalController.create({
       component: ModalNutriscoreInfoPage,
       componentProps: {

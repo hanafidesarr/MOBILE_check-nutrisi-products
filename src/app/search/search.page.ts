@@ -11,6 +11,7 @@ import { Platform } from '@ionic/angular';
 import { App } from '@capacitor/app';
 import { IonContent } from '@ionic/angular';
 import { TranslationService } from '../api/translation.service';
+import { AdmobService } from '../services/admob/admob.service';
 
 
 @Component({
@@ -44,6 +45,7 @@ export class SearchPage {
   error_result: any;
 
   constructor(
+    public _admobService: AdmobService,
     private platform: Platform,
     public formBuilder: FormBuilder,
     private _router: Router,
@@ -58,6 +60,11 @@ export class SearchPage {
 
     this._translation_service.init();
 
+  }
+  ionViewDidLeave() {
+    // this._admobService.hideBanner()
+    // this._admobService.RemoveBanner()
+    
   }
 
   initForm() {
@@ -176,8 +183,17 @@ export class SearchPage {
     }
   }
 
-  openProduct = (barcodeId: any) => {
-    this._router.navigate(['/get-product', barcodeId]);
+  openProduct = (barcodeId: any, index: number) => {
+    if (index !== 0 && index % 4 === 0) {
+      // Show interstitial ad and listen for ad close event
+      this._admobService.showInterstitial().then(() => {
+        // Ad has been closed, navigate to the next route
+      });
+      this._router.navigate(['/get-product', barcodeId]);
+    } else {
+      // If it's not the right index, navigate without waiting for ad
+      this._router.navigate(['/get-product', barcodeId]);
+    }
   }
 
   reloadPage() {

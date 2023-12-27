@@ -3,6 +3,7 @@ import { Route, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { TranslationService } from 'src/app/api/translation.service';
 import JsBarcode from 'jsbarcode';
+import { AdmobService } from 'src/app/services/admob/admob.service';
 
 @Component({
   selector: 'app-modal-barcode',
@@ -14,11 +15,17 @@ export class ModalBarcodePage implements OnInit {
   @ViewChild('generate_barcode') generate_barcode: ElementRef;
 
   @Input() barcode: any;
-  constructor(private _modalCtrl: ModalController, private _router: Router, public _translation_service: TranslationService) {
+  constructor(public _admobService: AdmobService, private _modalCtrl: ModalController, private _router: Router, public _translation_service: TranslationService) {
     this._translation_service.init();
   }
 
   ngOnInit() {
+    this._admobService.showBanner("bottom_center")
+  }
+  
+  ionViewDidLeave() {
+    // this._admobService.hideBanner()
+    // this._admobService.RemoveBanner()
   }
 
   ionViewWillEnter(){
@@ -31,6 +38,7 @@ export class ModalBarcodePage implements OnInit {
 
     this._modalCtrl.dismiss();
   }
+  
   closeModal() {
     this._modalCtrl.dismiss();
   }

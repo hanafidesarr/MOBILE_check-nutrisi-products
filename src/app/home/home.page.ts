@@ -3,6 +3,7 @@ import { register } from 'swiper/element/bundle';
 import { TranslationService } from '../api/translation.service';
 import { ProductService } from '../api/product.service';
 import { LoadingService } from '../api/loading.service';
+import { AdmobService } from '../services/admob/admob.service';
 
 register();
 @Component({
@@ -15,16 +16,16 @@ export class HomePage {
   response: any;
   total_all_products: any = 3009515;
   constructor(
+    public _admobService: AdmobService,
     public _translation_service: TranslationService, 
     private _productService: ProductService,
     private _loadingService: LoadingService) {
-    // Initialize the translation service
-
-    // this.getProducts()
-    this._translation_service.init();
-  }
-
+      this._translation_service.init();
+    }
+  
   ngOnInit() {
+
+    this._admobService.showBanner("top_center")
     this.get_products_count() 
   }
   // getProducts() {
@@ -51,3 +52,4 @@ export class HomePage {
 
   }
 }
+

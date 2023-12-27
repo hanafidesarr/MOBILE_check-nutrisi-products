@@ -20,7 +20,7 @@ export class Intro2Page implements OnInit {
     this.currentLanguage = this._translation_service.getCurrentLanguage();
   }
 
-  toIntro2() {
+  toIntro3() {
 
     // const storedValue = localStorage.getItem('introViewed');
     // // Check if the intro has been viewed from localStorage

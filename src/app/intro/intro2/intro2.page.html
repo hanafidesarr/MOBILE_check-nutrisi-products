@@ -1,4 +1,6 @@
-<ion-toolbar color="tertiary">
+
+<ion-icon name="close-outline" size="large" color="light" style="position: absolute; z-index: 99; top:0; right: 0; margin: 5px;"  [routerLink]="['/tabs']"></ion-icon>
+<ion-toolbar color="primary" style="padding-top: 50px;">
   <ion-title class="ion-text-center ion-padding-top"><h1>{{_translation_service.translateKey('intro2_title')}}</h1></ion-title>
   <div class="text-center">{{_translation_service.translateKey('intro2_subtitle')}}</div>
 </ion-toolbar>
@@ -11,7 +13,7 @@
         <ion-col>
           <div class="card">
             <div class="circle">
-              <ion-icon size="large" name="search-outline"></ion-icon>
+              <ion-icon size="large" color="primary" name="search-outline"></ion-icon>
             </div>
             <ion-grid class="py-3">
               <ion-row>
@@ -21,15 +23,15 @@
                 <ion-col size="6" class="">
                   <ion-row>
                     <ion-col size="2"><ion-icon name="leaf-outline" color="success"></ion-icon></ion-col>
-                    <ion-col class="text-left">{{_translation_service.translateKey('intro2_card_note1')}}</ion-col>
+                    <ion-col class="text-left text-dark">{{_translation_service.translateKey('intro2_card_note1')}}</ion-col>
                   </ion-row>
                   <ion-row>
                     <ion-col size="2"><ion-icon name="leaf-outline" color="success"></ion-icon></ion-col>
-                    <ion-col class="text-left">{{_translation_service.translateKey('intro2_card_note2')}}</ion-col>
+                    <ion-col class="text-left text-dark">{{_translation_service.translateKey('intro2_card_note2')}}</ion-col>
                   </ion-row>
                   <ion-row>
                     <ion-col size="2"><ion-icon name="leaf-outline" color="success"></ion-icon></ion-col>
-                    <ion-col class="text-left">{{_translation_service.translateKey('intro2_card_note3')}}</ion-col>
+                    <ion-col class="text-left text-dark">{{_translation_service.translateKey('intro2_card_note3')}}</ion-col>
                   </ion-row>
                 </ion-col>
               </ion-row>
@@ -42,13 +44,12 @@
 
   <!-- Bottom fill area with text and half-curve background color -->
   <div class="bottom-fill d-flex justify-content-between ion-margin-start ion-margin-end">
-    
+
     <ion-button (click)="back()" class="ion-text-capitalize"  fill="outline" color="primary"  shape="round"><ion-icon name="caret-back-outline"></ion-icon></ion-button> 
-    <a href="https://www.instagram.com/nutricheck.official/" target="_blank" class="text-dark pt-1"><ion-icon name="logo-instagram" size="small"></ion-icon></a>
-    <a href="http://axeonsoft.com/" target="_blank" class="text-dark pt-1"><ion-icon name="globe-outline" size="small"></ion-icon></a>
-    <div (click)="mailto('admin@axeonsoft.com')" class="text-dark pt-1"><ion-icon name="mail-outline" size="small"></ion-icon></div>
-    <ion-button class="ion-text-capitalize"  fill="outline" color="primary"  shape="round" (click)="toIntro2()">{{_translation_service.translateKey('next')}}</ion-button> 
-  
+    <a href="https://www.instagram.com/nutricheck.official/" target="_blank" class="pt-1"><ion-icon name="logo-instagram" size="small"></ion-icon></a>
+    <a href="http://axeonsoft.com/en" target="_blank" class="pt-1"><ion-icon name="globe-outline" size="small"></ion-icon></a>
+    <div (click)="mailto('admin@axeonsoft.com')" class="pt-1"><ion-icon color="primary" name="mail-outline" size="small"></ion-icon></div>
+    <ion-button class="ion-text-capitalize"  fill="outline" color="primary"  shape="round" (click)="toIntro3()">{{_translation_service.translateKey('next')}}</ion-button> 
     
   </div>
 </ion-content>
