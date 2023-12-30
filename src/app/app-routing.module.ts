@@ -33,6 +33,10 @@ const routes: Routes = [
   {
     path: 'about-us',
     loadChildren: () => import('./about-us/about-us.module').then( m => m.AboutUsPageModule)
+  },
+  {
+    path: 'problem-playservices',
+    loadChildren: () => import('./exceptions/problem-playservices/problem-playservices.module').then( m => m.ProblemPlayservicesPageModule)
   }
 ];
 @NgModule({

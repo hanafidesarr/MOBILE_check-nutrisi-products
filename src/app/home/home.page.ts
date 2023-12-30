@@ -15,6 +15,8 @@ export class HomePage {
   loading: boolean = true;
   response: any;
   total_all_products: any = 3009515;
+
+  hasIntroBeenViewed:any;
   constructor(
     public _admobService: AdmobService,
     public _translation_service: TranslationService, 
@@ -24,6 +26,17 @@ export class HomePage {
     }
   
   ngOnInit() {
+
+
+    const storedValue = localStorage.getItem('introViewed');
+    // Check if the intro has been viewed from localStorage
+    this.hasIntroBeenViewed = storedValue !== null && JSON.parse(storedValue);
+
+    // If the intro hasn't been viewed, mark it as viewed
+    if (!this.hasIntroBeenViewed) {
+      localStorage.setItem('introViewed', 'true');
+    }
+    
 
     this._admobService.showBanner("top_center")
     this.get_products_count() 

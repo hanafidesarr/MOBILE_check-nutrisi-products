@@ -18,7 +18,7 @@ export class ProductService {
     let page_size = data.page_size
     let params = new HttpParams();
     params = params.set('search_terms', keyword);
-    params = params.set('fields', 'code,product_name,quantity,brands,nutriscore_grade,ecoscore_grade,image_front_url');
+    params = params.set('fields', 'code,product_name,quantity,brands,nutriscore_grade,ecoscore_grade,image_small_url');
     params = params.set('page', page);
     params = params.set('countries_tags', country);
     params = params.set('page_size', page_size);

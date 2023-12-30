@@ -60,6 +60,8 @@ export class SearchPage {
 
     this._translation_service.init();
 
+    this.accessAPI("", "");
+
   }
   ionViewDidLeave() {
     // this._admobService.hideBanner()

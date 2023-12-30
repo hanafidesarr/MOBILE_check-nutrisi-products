@@ -28,6 +28,10 @@ const routes: Routes = [
   {
     path: 'modal-novascore-info',
     loadChildren: () => import('./modal-novascore-info/modal-novascore-info.module').then( m => m.ModalNovascoreInfoPageModule)
+  },
+  {
+    path: 'modal-badan-pom',
+    loadChildren: () => import('./modal-badan-pom/modal-badan-pom.module').then( m => m.ModalBadanPomPageModule)
   }
 ];
 

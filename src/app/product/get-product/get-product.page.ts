@@ -166,7 +166,7 @@ export class GetProductPage implements OnInit {
       alert("data sudah ada di favorite")
       return;
     } else {
-      this.list_favorites.unshift({ code: this.product.code, product_name: this.product.product_name, image_front_url: this.product.image_front_url, quantity: this.product.quantity, brands: this.product.brands, nutriscore_grade: this.product["nutriscore_grade"], ecoscore_grade: this.product["ecoscore_grade"] });
+      this.list_favorites.unshift({ code: this.product.code, product_name: this.product.product_name, image_small_url: this.product.image_small_url, quantity: this.product.quantity, brands: this.product.brands, nutriscore_grade: this.product["nutriscore_grade"], ecoscore_grade: this.product["ecoscore_grade"] });
       localStorage.setItem('list_favorites', JSON.stringify(this.list_favorites)); 
       // const icon = document.querySelector('ion-icon');
       // if (icon) {
@@ -263,13 +263,16 @@ export class GetProductPage implements OnInit {
         this.product_images.push({ name: 'Object 3', value: this.product.image_packaging_url });
         this.product_images = this.product_images.filter(item => item.value !== undefined);
 
+        if (this.product_images.length == 0) {
+          this.product_images.push({ name: 'empty', value: 'assets/empty-product-banner.png' });
+        }
         this.nutri_score = "assets/nutriscore/nutriscore-" + ( this.product.nutriscore_grade || "unknown" ) + ".svg" || "assets/food-loading.gif"
         this.nova_group = "assets/nova/nova-group-" + ( this.product.nova_group || "unknown" ) + ".svg" || "assets/food-loading.gif"
         this.eco_score = "assets/ecoscore/ecoscore-" + ( this.product.ecoscore_grade || "unknown" ) + ".svg" || "assets/food-loading.gif"
         
         let nutriments = this.product?.nutriments
         this.nutriments_length = Object.keys(nutriments).length;
-        
+        debugger
         this._loadingService.hideLoader();
       },
       (error) => {

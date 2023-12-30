@@ -10,12 +10,15 @@
 			<ion-title size="large">get_product</ion-title>
 		</ion-toolbar>
 	</ion-header> -->
+
 	<swiper-container [slidesPerView]="product_images.length > 1 ? '1.2' : '1'" [loop]="false"  [autoplay]="false" pagination="true">
 		<swiper-slide *ngFor="let image of product_images">
-			<img *ngIf="image.value" (click)="openModalImage(image.value)" [src]="image.value || 'https://world.openfoodfacts.org/images/icons/dist/packaging.svg'" style="width: 100%;object-fit: cover;height: 30vh; padding: 0 5px;"/>
+			
+			
+			<img *ngIf="image.name === 'empty'" (click)="openModalImage(image.value)" [src]="image.value" style="width: 100%;object-fit: auto;height: 300px;"/>
+			<img *ngIf="image.name !== 'empty'" (click)="openModalImage(image.value)" [src]="image.value" style="width: 100%;object-fit: cover;height: 30vh; padding: 0 5px;"/>
 		</swiper-slide>
 	</swiper-container>
-
 	<div>
 		<ion-card color="light" class="ion-no-margin ion-no-padding" style="box-shadow: none; border-top: solid 1rem var(--ion-color-primary); border-bottom: solid 1rem var(--ion-color-primary);">
 			<ion-grid class="ion-margin-top ion-margin-bottom">
@@ -225,9 +228,9 @@
 
 
 	
-	<div class="ion-margin ion-padding ion-text-center">
+	<!-- <div class="ion-margin ion-padding ion-text-center">
 		<small><ion-text>{{_translation_service.translateKey('source_from')}} : <a>openfoodfacts</a></ion-text></small>
-	</div>
+	</div> -->
 </ion-content>
 
 

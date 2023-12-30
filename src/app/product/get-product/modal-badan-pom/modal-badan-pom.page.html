@@ -1,0 +1,19 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary" style="padding-top: 50px;">
+    <ion-title>Badan POM Indonesia</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()"><ion-icon name="close" size="large"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <swiper-container [slidesPerView]="1" [loop]="false"  [autoplay]="false" pagination="true">
+    <swiper-slide><img src="assets/bpom/home.png"></swiper-slide>
+    <swiper-slide><img src="assets/bpom/nutrition.png"></swiper-slide>
+  </swiper-container>
+  <div class="d-flex justify-content-around my-3">
+    <ion-button color="primary" fill="outline"><a href="https://www.pom.go.id/" target="_blank">Visit Website</a></ion-button>
+    <ion-button color="primary" fill="outline"><a href="https://standarpangan.pom.go.id/dokumen/pedoman/KIE_Label_Gizi_-_Masyarakat_Umum.pdf" target="_blank">Download PDF</a></ion-button>
+  </div>
+</ion-content>

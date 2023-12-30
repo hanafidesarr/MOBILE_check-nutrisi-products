@@ -185,7 +185,7 @@
   
       <app-nutrition-list name="Trans fat" [nutriment]="trans_fat" [unit]="product?.nutriments['trans-fat_unit']"  [tab_cell]="1">
       </app-nutrition-list>
-      <app-nutrition-list name="Cholesterol" [nutriment]="cholesterol" [unit]="'mg'"  [tab_cell]="1">
+      <app-nutrition-list name="Cholesterol" [nutriment]="cholesterol" [unit]="product?.nutriments['cholesterol_unit']"  [tab_cell]="1">
       </app-nutrition-list>
       
       <app-nutrition-list name="{{_translation_service.translateKey('carbohydrates')}}" [nutriment]="carbohydrates" [unit]="product?.nutriments['carbohydrates_unit']" [akg]="akg_carbo">
@@ -396,7 +396,7 @@
   </table>
 
 
-  <p class="small-info" style="margin-top: 0.5rem;">{{_translation_service.translateKey('note_1_nutrition_facts')}} <a href="https://standarpangan.pom.go.id/dokumen/pedoman/KIE_Label_Gizi_-_Masyarakat_Umum.pdf" target="_blank"><b>Badan POM</b> indonesia</a>  </p>
+  <div class="small-info" style="margin-top: 0.5rem;">{{_translation_service.translateKey('note_1_nutrition_facts')}} <div (click)="openBadanPOM()" style="text-decoration: underline;"><b>Badan POM</b> indonesia</div>  </div>
   <p class="small-info" style="margin-top: 0.5rem;">{{_translation_service.translateKey('note_2_nutrition_facts')}}</p>
   <table class="performance-facts__table--small small-info">
     <!-- <thead>

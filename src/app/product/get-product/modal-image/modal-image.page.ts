@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AdmobService } from 'src/app/services/admob/admob.service';
 
-
 @Component({
   selector: 'app-modal-image',
   templateUrl: './modal-image.page.html',

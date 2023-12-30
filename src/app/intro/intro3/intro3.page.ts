@@ -11,7 +11,6 @@ import { TranslationService } from 'src/app/api/translation.service';
 export class Intro3Page implements OnInit {
   
   currentLanguage:any;
-  hasIntroBeenViewed:any;
 
   constructor(private _router: Router, public _platform: Platform, public _translation_service: TranslationService) { }
 
@@ -22,16 +21,6 @@ export class Intro3Page implements OnInit {
   }
 
   toHome() {
-
-    const storedValue = localStorage.getItem('introViewed');
-    // Check if the intro has been viewed from localStorage
-    this.hasIntroBeenViewed = storedValue !== null && JSON.parse(storedValue);
-
-    // If the intro hasn't been viewed, mark it as viewed
-    if (!this.hasIntroBeenViewed) {
-      localStorage.setItem('introViewed', 'true');
-    }
-    
 
     this._router.navigate(['/tabs']);
 

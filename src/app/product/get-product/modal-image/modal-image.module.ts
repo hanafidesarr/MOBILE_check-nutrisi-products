@@ -8,7 +8,6 @@ import { ModalImagePageRoutingModule } from './modal-image-routing.module';
 
 import { ModalImagePage } from './modal-image.page';
 
-
 @NgModule({
   imports: [
     CommonModule,

@@ -11,6 +11,7 @@ import { FilePicker } from "@capawesome/capacitor-file-picker";
 import { ModalController } from '@ionic/angular';
 import { ModalBarcodePage } from './modal-barcode/modal-barcode.page';
 import { ModalNotBarcodePage } from './modal-not-barcode/modal-not-barcode.page';
+import { ProblemPlayservicesPage } from '../exceptions/problem-playservices/problem-playservices.page';
 
 @Component({
   selector: 'app-tabs',
@@ -34,7 +35,6 @@ export class TabsPage {
 
 
   ngOnInit() {
-
     this.backButtonListener = App.addListener('backButton', () => {
       this.isModalOpenNotBarcode(false)
       this.isModalOpenProductEmpty(false)
@@ -44,10 +44,7 @@ export class TabsPage {
       if(result.available) {
         return;
       } else {
-        BarcodeScanner.installGoogleBarcodeScannerModule().then((result) => {
-          console.log("GoogleBarcodeScannerModule SUDAH DI INSTALL COY" + result)
-
-        });
+        BarcodeScanner.installGoogleBarcodeScannerModule()
       }
     })
 
@@ -61,30 +58,38 @@ export class TabsPage {
   async scan(): Promise<void> {
     const granted = await this.requestPermissions();
     
-    console.log("apakah udh di install? " + BarcodeScanner.isGoogleBarcodeScannerModuleAvailable())
-    
     // if (!granted) {
     //   this.presentAlert('Permision', 'belum di izinkan');
     //   return;
     // }
-    const { barcodes } = await BarcodeScanner.scan({
-      formats: undefined,
-    });
-    this.barcodes.push(...barcodes);
-
     
-    if (barcodes.length > 0) {
-      barcodes.forEach((barcode) => {
-        if (barcode.format == "QR_CODE") {
-          this.showModalNotBarcode(barcode)
-          return;
-        }
-        this._router.navigate(['/get-product', barcode.rawValue]);
+    try {
+      const { barcodes } = await BarcodeScanner.scan({
+        formats: undefined,
       });
-    } else {
-      this.barcode = this.barcodes[0]
+  
+      this.barcodes.push(...barcodes);
+  
+      
+      if (barcodes.length > 0) {
+        barcodes.forEach((barcode) => {
+          if (barcode.format == "QR_CODE") {
+            this.showModalNotBarcode(barcode)
+            return;
+          }
+          this._router.navigate(['/get-product', barcode.rawValue]);
+        });
+      } else {
+        this.barcode = this.barcodes[0]
+      }
+    } catch (error) {
+      
+      BarcodeScanner.isGoogleBarcodeScannerModuleAvailable().then((result) => {
+        if(!result.available) { 
+          this.showProblemPlayservicesPage()
+        }
+      })
     }
-
   }
 
   async requestPermissions(): Promise<boolean> {
@@ -170,5 +175,15 @@ export class TabsPage {
 
     return await modal.present();
   }
+
+
+  async showProblemPlayservicesPage() {
+    const modal = await this._modalCtrl.create({
+      component: ProblemPlayservicesPage
+    });
+
+    return await modal.present();
+  }
+  
 }
 

@@ -12,7 +12,7 @@ export class ToastService {
     const toast = await this._toastCtrl.create({
       message: text,
       duration: 1000,
-      position: 'bottom',
+      position: 'top',
     });
 
     await toast.present();

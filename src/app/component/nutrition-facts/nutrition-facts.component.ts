@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { TranslationService } from 'src/app/api/translation.service';
 
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
+import { ModalBadanPomPage } from 'src/app/product/get-product/modal-badan-pom/modal-badan-pom.page';
 
 @Component({
   selector: 'app-nutrition-facts',
@@ -138,7 +139,7 @@ export class NutritionFactsComponent  implements OnChanges {
   // GLOBAL
   currentLanguage: any;
 
-  constructor(public _translation_service: TranslationService, private _alertCtrl: AlertController) {
+  constructor(public _translation_service: TranslationService, private _alertCtrl: AlertController, public modalController: ModalController) {
     this.akg_lists_anak = [
       {
         id: 'anak_1-3',
@@ -582,4 +583,10 @@ export class NutritionFactsComponent  implements OnChanges {
     await alert_show.present();
   }
 
+  async openBadanPOM() {
+    const modal = await this.modalController.create({
+      component: ModalBadanPomPage
+    });
+    return await modal.present();
+  }
 }
