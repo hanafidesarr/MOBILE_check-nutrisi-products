@@ -96,7 +96,7 @@ export class BookmarkPage implements OnInit {
 
   openProduct = (barcodeId: any, index:any) => {
 
-    if (index !== 0 && index % 4 === 0) {
+    if (index !== 0 && index % 10 === 0) {
       this._admobService.showInterstitial()
     }
     this._router.navigate(['/get-product', barcodeId]);

@@ -37,9 +37,14 @@ export class HomePage {
       localStorage.setItem('introViewed', 'true');
     }
     
-
-    this._admobService.showBanner("top_center")
-    this.get_products_count() 
+    this._admobService.showInterstitial().then(() => {
+      this._admobService.showBanner("top_center")
+      this.get_products_count() 
+    }).catch((error) => {
+      console.error('Failed to show interstitial ad:', error);
+      this._admobService.showBanner("top_center")
+      this.get_products_count() 
+    });
   }
   // getProducts() {
   //   this._productService.products({keyword: "", country: "", page: 1, page_size: 10}).subscribe(
