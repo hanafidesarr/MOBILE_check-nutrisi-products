@@ -116,10 +116,8 @@ export class TabsPage {
   
 
   async pickImage() {
-    const { files } = await FilePicker.pickImages({
-      multiple: false,
-    });
-    return files[0];
+    const { files } = await FilePicker.pickImages();
+    return files?.[0];
   }
 
   async scanFromImage() {

@@ -22,6 +22,8 @@
   "indonesia_products": "इंडोनेशिया उत्पाद",
   "qty": "मात्रा",
   "brand": "ब्रांड",
+  "country_of_manufacture": "निर्माण देश",
+  "countries_where_marketed": "जहां विपणन किया गया देशों",
 
   "info_product_saved_bookmark": "उत्पाद बुकमार्क से सहेजा गया है",
   "info_product_removed_bookmark": "उत्पाद बुकमार्क से हटा दिया गया है",

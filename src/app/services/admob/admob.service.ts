@@ -58,7 +58,7 @@ export class AdmobService {
       // Subscribe Change Banner Size
     });
 
-    const adId = 'ca-app-pub-3940256099942544/6300978111'
+    const adId = 'ca-app-pub-5130480312435048/9363011126'
     const options: BannerAdOptions = {
       adId,
       adSize: BannerAdSize.BANNER,
@@ -79,7 +79,7 @@ export class AdmobService {
   }
 
   async showInterstitial() {
-    const adId = 'ca-app-pub-3940256099942544/1033173712'
+    const adId = 'ca-app-pub-5130480312435048/2372482397'
     AdMob.addListener(InterstitialAdPluginEvents.Loaded, (info: AdLoadInfo) => {
       // Subscribe prepared interstitial
     });

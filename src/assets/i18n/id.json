@@ -22,7 +22,8 @@
   "indonesia_products": "product indonesia",
   "qty": "jumlah",
   "brand": "merk",
-
+  "country_of_manufacture": "negara asal",
+  "countries_where_marketed": "dipasarkan di",
   "info_product_saved_bookmark": "product telah tersimpan di bookmark",
   "info_product_removed_bookmark": "product telah dihapus dari bookmark",
   "health": "kesehatan",

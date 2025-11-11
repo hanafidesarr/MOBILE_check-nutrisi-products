@@ -22,6 +22,8 @@
   "indonesia_products": "Indonesische producten",
   "qty": "hoeveelheid",
   "brand": "merk",
+  "country_of_manufacture": "land van herkomst",
+  "countries_where_marketed": "landen waar op de markt gebracht",
 
   "info_product_saved_bookmark": "product is opgeslagen in bladwijzer",
   "info_product_removed_bookmark": "product is verwijderd uit bladwijzer",

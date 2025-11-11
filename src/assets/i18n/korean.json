@@ -22,6 +22,8 @@
   "indonesia_products": "인도네시아 제품",
   "qty": "수량",
   "brand": "브랜드",
+  "country_of_manufacture": "제조 국가",
+  "countries_where_marketed": "판매되는 국가",
 
   "info_product_saved_bookmark": "제품이 즐겨찾기에 저장되었습니다",
   "info_product_removed_bookmark": "제품이 즐겨찾기에서 제거되었습니다",

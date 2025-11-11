@@ -22,7 +22,9 @@
   "indonesia_products": "indonesia products",
   "qty": "quantity",
   "brand": "brand",
-
+  "country_of_manufacture": "country of manufacture",
+  "countries_where_marketed": "countries where marketed",
+  
   "info_product_saved_bookmark": "product has saved from bookmark",
   "info_product_removed_bookmark": "product has remove from bookmark",
   "health": "health",

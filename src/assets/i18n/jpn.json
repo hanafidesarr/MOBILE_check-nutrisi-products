@@ -22,6 +22,8 @@
   "indonesia_products": "インドネシアの製品",
   "qty": "数量",
   "brand": "ブランド",
+  "country_of_manufacture": "製造国",
+  "countries_where_marketed": "販売国",
 
   "info_product_saved_bookmark": "商品はブックマークから保存されました",
   "info_product_removed_bookmark": "商品はブックマークから削除されました",

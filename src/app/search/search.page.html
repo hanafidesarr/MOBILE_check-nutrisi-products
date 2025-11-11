@@ -126,6 +126,14 @@
               <div class="ion-margin-top ion-margin-bottom">
                 <div>{{_translation_service.translateKey('qty')}} : {{item?.quantity || '-'}}</div>
                 <div>{{_translation_service.translateKey('brand')}} : {{item?.brands || '-'}}</div>
+                <div>{{_translation_service.translateKey('country_of_manufacture')}} : {{item?.manufacturing_places || item?.origins || '-'}}</div>
+                <div>
+                  {{ _translation_service.translateKey('countries_where_marketed') }} : 
+                  {{ (item?.countries | regexReplace:'[a-z]{2}:':'') 
+                    || (item?.countries_tags?.join(', ') | regexReplace:'[a-z]{2}:':'') 
+                    || '-' }}
+                </div>
+
               </div>
 
               <!-- <ion-row>

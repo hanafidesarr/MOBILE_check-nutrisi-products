@@ -22,6 +22,8 @@
   "indonesia_products": "Sản phẩm Indonesia",
   "qty": "Số lượng",
   "brand": "Nhãn hiệu",
+  "country_of_manufacture": "nước sản xuất",
+  "countries_where_marketed": "các quốc gia được tiếp thị",
 
   "info_product_saved_bookmark": "Sản phẩm đã được lưu từ đánh dấu",
   "info_product_removed_bookmark": "Sản phẩm đã được xóa khỏi đánh dấu",

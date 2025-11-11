@@ -26,6 +26,13 @@
 					<ion-col size="10">
 						<h2 class="ion-no-margin">{{product?.product_name}}</h2>
 						{{product?.brands}} - {{product?.quantity}}
+						<div>{{_translation_service.translateKey('country_of_manufacture')}} : {{product?.manufacturing_places || product?.origins || '-'}}</div>
+						<div>
+							{{ _translation_service.translateKey('countries_where_marketed') }} : 
+							{{ (product?.countries | regexReplace:'[a-z]{2}:':'') 
+								|| (product?.countries_tags?.join(', ') | regexReplace:'[a-z]{2}:':'') 
+								|| '-' }}
+						</div>
 					</ion-col>
 					<ion-col size="2" justify="end" class="ion-text-center" style="align-items: center !important;">
 						<ion-icon (click)="removeFavorite()" *ngIf="isFavorite(product?.code)" color="dark" name="bookmark" size="large" justify="end"></ion-icon>

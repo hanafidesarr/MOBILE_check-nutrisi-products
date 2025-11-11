@@ -14,13 +14,16 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 
 import { NutritionFactsComponentModule } from './../../component/nutrition-facts/nutrition-facts.module';
+
+import { PipesModule } from './../../pipes/pipes.module';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     GetProductPageRoutingModule,
-    NutritionFactsComponentModule
+    NutritionFactsComponentModule,
+    PipesModule,
   ],
   declarations: [GetProductPage],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

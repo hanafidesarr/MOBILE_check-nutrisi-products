@@ -22,6 +22,8 @@
   "indonesia_products": "Продукты Индонезии",
   "qty": "Количество",
   "brand": "Бренд",
+  "country_of_manufacture": "страна производства",
+  "countries_where_marketed": "страны, в которых продается", 
 
   "info_product_saved_bookmark": "Продукт сохранен в закладках",
   "info_product_removed_bookmark": "Продукт удален из закладок",

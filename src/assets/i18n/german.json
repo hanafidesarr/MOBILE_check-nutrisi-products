@@ -22,6 +22,8 @@
   "indonesia_products": "Indonesische Produkte",
   "qty": "Menge",
   "brand": "Marke",
+  "country_of_manufacture": "Herstellungsland",
+  "countries_where_marketed": "Länder, in denen vermarktet",
 
   "info_product_saved_bookmark": "Produkt wurde als Lesezeichen gespeichert",
   "info_product_removed_bookmark": "Produkt wurde aus dem Lesezeichen entfernt",

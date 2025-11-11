@@ -22,6 +22,18 @@ import { AdmobService } from 'src/app/services/admob/admob.service';
 
 register();
 
+function parseCountryTags(tags: string[]): string[] {
+  if (!tags) return [];
+  return tags.map(tag => {
+    const parts = tag.split(':');
+    return parts.length > 1 ? capitalize(parts[1]) : tag;
+  });
+}
+
+function capitalize(word: string) {
+  return word.charAt(0).toUpperCase() + word.slice(1);
+}
+
 @Component({
   selector: 'app-get-product',
   templateUrl: './get-product.page.html',
@@ -166,7 +178,7 @@ export class GetProductPage implements OnInit {
       alert("data sudah ada di favorite")
       return;
     } else {
-      this.list_favorites.unshift({ code: this.product.code, product_name: this.product.product_name, image_small_url: this.product.image_small_url, quantity: this.product.quantity, brands: this.product.brands, nutriscore_grade: this.product["nutriscore_grade"], ecoscore_grade: this.product["ecoscore_grade"] });
+      this.list_favorites.unshift({ code: this.product.code, product_name: this.product.product_name, image_small_url: this.product.image_small_url, quantity: this.product.quantity, brands: this.product.brands, nutriscore_grade: this.product["nutriscore_grade"], ecoscore_grade: this.product["ecoscore_grade"], manufacturing_places: this.product["manufacturing_places"], origins: this.product["origins"], countries: this.product["countries"], countries_tags: this.product["countries_tags"] });
       localStorage.setItem('list_favorites', JSON.stringify(this.list_favorites)); 
       // const icon = document.querySelector('ion-icon');
       // if (icon) {
@@ -255,7 +267,7 @@ export class GetProductPage implements OnInit {
       (response) => {
         this.product = response.product
         this.validation_nutrient_levels()
-
+        const countries = parseCountryTags(this.product.countries_tags);
         this.product_images.push({ name: 'Image front', value: this.product.image_front_url });
         // this.product_images.push({ name: 'Object 2', value: this.product.image_url });
         this.product_images.push({ name: 'Object 3', value: this.product.image_ingredients_url });
@@ -272,7 +284,6 @@ export class GetProductPage implements OnInit {
         
         let nutriments = this.product?.nutriments
         this.nutriments_length = Object.keys(nutriments).length;
-        debugger
         this._loadingService.hideLoader();
       },
       (error) => {

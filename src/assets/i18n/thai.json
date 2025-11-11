@@ -20,6 +20,9 @@
   "indonesia_products": "ผลิตภัณฑ์อินโดนีเซีย",
   "qty": "ปริมาณ",
   "brand": "ยี่ห้อ",
+  "country_of_manufacture": "ประเทศที่ผลิต",
+  "countries_where_marketed": "ประเทศที่ทำการตลาด",
+  
   "info_product_saved_bookmark": "สินค้าได้รับการบันทึกจากบุ๊คมาร์คแล้ว",
   "info_product_removed_bookmark": "สินค้าถูกนำออกจากบุ๊คมาร์คแล้ว",
   "health": "สุขภาพ",

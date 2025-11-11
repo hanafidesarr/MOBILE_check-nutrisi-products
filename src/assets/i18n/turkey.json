@@ -22,6 +22,8 @@
   "indonesia_products": "Endonezya Ürünleri",
   "qty": "Miktar",
   "brand": "Marka",
+  "country_of_manufacture": "imalatın yapıldığı ülke",
+  "countries_where_marketed": "pazara sunulan ülkeler",
 
   "info_product_saved_bookmark": "Ürün yer imlerine kaydedildi",
   "info_product_removed_bookmark": "Ürün yer imlerinden kaldırıldı",

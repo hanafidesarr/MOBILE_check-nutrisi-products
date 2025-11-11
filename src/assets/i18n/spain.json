@@ -22,6 +22,8 @@
   "indonesia_products": "productos de Indonesia",
   "qty": "cantidad",
   "brand": "marca",
+  "country_of_manufacture": "país de fabricación",
+  "countries_where_marketed": "países donde se comercializa",
 
   "info_product_saved_bookmark": "el producto se ha guardado en marcadores",
   "info_product_removed_bookmark": "el producto se ha eliminado de marcadores",

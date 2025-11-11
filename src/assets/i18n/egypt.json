@@ -23,6 +23,8 @@
   "indonesia_products": "منتجات إندونيسية",
   "qty": "الكمية",
   "brand": "العلامة التجارية",
+  "country_of_manufacture": "بلد المنشأ",
+  "countries_where_marketed": "البلدان التي يتم تسويقها فيها",
 
   "info_product_saved_bookmark": "تم حفظ المنتج في المفضلة",
   "info_product_removed_bookmark": "تمت إزالة المنتج من المفضلة",

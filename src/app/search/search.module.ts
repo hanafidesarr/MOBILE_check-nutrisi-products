@@ -6,7 +6,7 @@ import { SearchPage } from './search.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 import { SearchPageRoutingModule } from './search-routing.module';
-
+import { PipesModule } from '../pipes/pipes.module';
 @NgModule({
   imports: [
     IonicModule,
@@ -14,7 +14,8 @@ import { SearchPageRoutingModule } from './search-routing.module';
     FormsModule,
     ReactiveFormsModule,
     ExploreContainerComponentModule,
-    SearchPageRoutingModule
+    SearchPageRoutingModule,
+    PipesModule,
   ],
   declarations: [SearchPage]
 })

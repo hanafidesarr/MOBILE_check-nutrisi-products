@@ -186,7 +186,7 @@ export class SearchPage {
   }
 
   openProduct = (barcodeId: any, index: number) => {
-    if (index !== 0 && index % 10 === 0) {
+    if (index !== 0 && index % 5 === 0) {
       // Show interstitial ad and listen for ad close event
       this._admobService.showInterstitial().then(() => {
         // Ad has been closed, navigate to the next route

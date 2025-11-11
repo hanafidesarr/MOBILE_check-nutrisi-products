@@ -22,6 +22,8 @@
   "indonesia_products": "印尼产品",
   "qty": "数量",
   "brand": "品牌",
+  "country_of_manufacture": "生产国",
+  "countries_where_marketed": "销售国家", 
 
   "info_product_saved_bookmark": "产品已从书签中保存",
   "info_product_removed_bookmark": "产品已从书签中移除",
