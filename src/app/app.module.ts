@@ -16,6 +16,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslationService } from './api/translation.service';
 
+import { IonicStorageModule } from '@ionic/storage-angular';
+
 
 // Function to load translations
 export function createTranslateLoader(http: HttpClient) {
@@ -29,6 +31,7 @@ export function createTranslateLoader(http: HttpClient) {
     IonicModule.forRoot({ innerHTMLTemplatesEnabled: true }),
     AppRoutingModule,
     HttpClientModule,
+    IonicStorageModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

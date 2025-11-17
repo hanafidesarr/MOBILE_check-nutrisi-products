@@ -1,72 +1,105 @@
 <ion-header>
-  <ion-toolbar  color="primary" style="padding-top: 50px;">
-    <ion-title>Bookmark</ion-title>
+  <ion-toolbar color="primary" style="padding-top: 50px;">
+    <ion-segment [(ngModel)]="selectedTab">
+      <ion-segment-button value="bookmark">
+        <ion-label>Bookmark</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="product">
+        <ion-label>Product List</ion-label>
+      </ion-segment-button>
+    </ion-segment>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div style="margin-bottom: 5vh;">
-    <div  *ngIf="list_favorites">
-      <ion-item class="ion-margin-top ion-text-right">
-        <ion-label class="ion-margin-top ion-text-right">{{_translation_service.translateKey('total')}} : {{list_favorites.length}}</ion-label>
-      </ion-item>
-      <ion-list size="6" class="ion-margin-bottom">
-        <ion-card *ngFor="let item of list_favorites; let i = index" >
-          <ion-grid >
-            <ion-row>
-              <ion-col size="3" (click)="openProduct(item.code, i)">
-                <img style="border-radius: 10px;" [src]="item.image_small_url || 'assets/empty-product.png'" class="custom-thumbnail">
-              </ion-col>
-              <ion-col size="5" (click)="openProduct(item.code, i)">
-                <!-- <ion-card-subtitle>{{item.id}}</ion-card-subtitle> -->
-                <ion-card-subtitle><h6 class="ion-no-margin">{{item.product_name || item?.brands }}</h6></ion-card-subtitle>
-                <div class="ion-margin-top ion-margin-bottom">
-                  <div>{{_translation_service.translateKey('qty')}} : {{item?.quantity || '-'}}</div>
-                  <div>{{_translation_service.translateKey('brand')}} : {{item?.brands || '-'}}</div>
-                </div>
-                <!-- <ion-button (click)="deleteFavorite(i)">Delete</ion-button> -->
-              </ion-col>
+  <div *ngIf="selectedTab === 'bookmark'">
+    <div style="margin-bottom: 5vh;">
+      <div  *ngIf="list_favorites">
+        <ion-item class="ion-margin-top ion-text-right">
+          <ion-label class="ion-margin-top ion-text-right">{{_translation_service.translateKey('total')}} : {{list_favorites.length}}</ion-label>
+        </ion-item>
+        <ion-list size="6" class="ion-margin-bottom">
+          <ion-card *ngFor="let item of list_favorites; let i = index" >
+            <ion-grid >
+              <ion-row>
+                <ion-col size="3" (click)="openProduct(item.code, i)">
+                  <img style="border-radius: 10px;" [src]="item.image_small_url || 'assets/empty-product.png'" class="custom-thumbnail">
+                </ion-col>
+                <ion-col size="5" (click)="openProduct(item.code, i)">
+                  <!-- <ion-card-subtitle>{{item.id}}</ion-card-subtitle> -->
+                  <ion-card-subtitle><h6 class="ion-no-margin">{{item.product_name || item?.brands }}</h6></ion-card-subtitle>
+                  <div class="ion-margin-top ion-margin-bottom">
+                    <div>{{_translation_service.translateKey('qty')}} : {{item?.quantity || '-'}}</div>
+                    <div>{{_translation_service.translateKey('brand')}} : {{item?.brands || '-'}}</div>
+                  </div>
+                  <!-- <ion-button (click)="deleteFavorite(i)">Delete</ion-button> -->
+                </ion-col>
 
-              <ion-col size="3" (click)="openProduct(item.code)">
-                <img *ngIf="item['nutriscore_grade']" style="border-radius: 10px;" src="assets/nutriscore/nutriscore-{{item['nutriscore_grade']}}.svg">
-                <!-- <img *ngIf="item['ecoscore_grade']" style="border-radius: 10px;" src="assets/ecoscore/ecoscore-{{item['ecoscore_grade']}}.svg"> -->
-              </ion-col>
+                <ion-col size="3" (click)="openProduct(item.code)">
+                  <img *ngIf="item['nutriscore_grade']" style="border-radius: 10px;" src="assets/nutriscore/nutriscore-{{item['nutriscore_grade']}}.svg">
+                  <!-- <img *ngIf="item['ecoscore_grade']" style="border-radius: 10px;" src="assets/ecoscore/ecoscore-{{item['ecoscore_grade']}}.svg"> -->
+                </ion-col>
 
-              <ion-col size="1" color="red" style="background-color: #eb445a; " class="ion-text-center" (click)="deleteFavorite(i)" >
-                <ion-icon name="close" size="small" color="light" ></ion-icon>
-                <ion-text color="light" style="writing-mode: vertical-lr;
-                transform: rotate(360deg);
-                text-align: center;
-                margin-top: 50%;">{{_translation_service.translateKey('remove')}}</ion-text>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
+                <ion-col size="1" color="red" style="background-color: #eb445a; " class="ion-text-center" (click)="deleteFavorite(i)" >
+                  <ion-icon name="close" size="small" color="light" ></ion-icon>
+                  <ion-text color="light" style="writing-mode: vertical-lr;
+                  transform: rotate(360deg);
+                  text-align: center;
+                  margin-top: 50%;">{{_translation_service.translateKey('remove')}}</ion-text>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
 
 
-        </ion-card>
+          </ion-card>
+        </ion-list>
+        
+      </div>
+      <div  *ngIf="list_favorites == null" class="ion-text-center ">
+        <div class="ion-text-center ion-margin ion-padding-top">{{_translation_service.translateKey('note_product_empty_bookmark')}}</div>
+        <!-- <h1 class="ion-margin">{{_translation_service.translateKey('remove')}}</h1> -->
+        <ion-button [routerLink]="['/tabs/search']">
+          <ion-icon slot="start" name="search" ></ion-icon>
+          <div class="ion-text-capitalize">{{_translation_service.translateKey('search_product')}}</div>
+        </ion-button>
+
+        <!-- <ion-route url="/search" component="page-search">dsds</ion-route> -->
+      </div>
+      <ion-list>
+        <ion-item *ngFor="let barcode of barcodes">
+          <ion-label position="stacked">{{ barcode.format }}</ion-label>
+          <ion-input type="text" [value]="barcode.rawValue"></ion-input>
+        </ion-item>
       </ion-list>
-      
+      <!-- <ion-fab slot="fixed" vertical="top" horizontal="end">
+        <ion-fab-button (click)="scan()" [disabled]="!isSupported">
+          <ion-icon name="scan"></ion-icon>
+        </ion-fab-button>
+      </ion-fab> -->
     </div>
-    <div  *ngIf="list_favorites == null" class="ion-text-center ">
-      <div class="ion-text-center ion-margin ion-padding-top">{{_translation_service.translateKey('note_product_empty_bookmark')}}</div>
-      <!-- <h1 class="ion-margin">{{_translation_service.translateKey('remove')}}</h1> -->
-      <ion-button [routerLink]="['/tabs/search']">
-        <ion-icon slot="start" name="search" ></ion-icon>
-        <div class="ion-text-capitalize">{{_translation_service.translateKey('search_product')}}</div>
-      </ion-button>
+  </div>
+  <div *ngIf="selectedTab === 'product'">
+    <ion-button expand="block" color="success" (click)="openAddProductModal()">
+      Add Product
+    </ion-button>
 
-      <!-- <ion-route url="/search" component="page-search">dsds</ion-route> -->
-    </div>
+    <ion-label>Product List haha</ion-label>
     <ion-list>
-      <ion-item *ngFor="let barcode of barcodes">
-        <ion-label position="stacked">{{ barcode.format }}</ion-label>
-        <ion-input type="text" [value]="barcode.rawValue"></ion-input>
+      <ion-item *ngFor="let prod of localProducts; let i = index" (click)="openAddProductModal(prod)">
+        <ion-label>
+          <h2>{{ prod.product_name }}</h2>
+          <p>{{ prod.brands }}</p>
+          <p>Status: {{ prod.synced ? 'Synced' : 'Local' }}</p>
+        </ion-label>
       </ion-item>
     </ion-list>
-    <!-- <ion-fab slot="fixed" vertical="top" horizontal="end">
-      <ion-fab-button (click)="scan()" [disabled]="!isSupported">
-        <ion-icon name="scan"></ion-icon>
-      </ion-fab-button>
-    </ion-fab> -->
+
+
+    <ng-template #emptyProduct>
+      <div class="ion-text-center ion-margin ion-padding-top">
+        No products added yet
+      </div>
+    </ng-template>
+
   </div>
 </ion-content>

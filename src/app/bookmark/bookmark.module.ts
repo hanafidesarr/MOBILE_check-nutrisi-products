@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { BookmarkPageRoutingModule } from './bookmark-routing.module';
 
 import { BookmarkPage } from './bookmark.page';
+import { ModalAddProductModule } from '../product/add-product/modal-add-product/modal-add-product.module';
+
 
 
 @NgModule({
@@ -14,6 +16,7 @@ import { BookmarkPage } from './bookmark.page';
     CommonModule,
     FormsModule,
     IonicModule,
+    ModalAddProductModule,
     BookmarkPageRoutingModule
   ],
   declarations: [BookmarkPage]

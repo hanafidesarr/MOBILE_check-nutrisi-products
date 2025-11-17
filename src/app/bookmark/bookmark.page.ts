@@ -2,10 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Barcode, BarcodeScanner } from '@capacitor-mlkit/barcode-scanning';
 import { AlertController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 
 import { App } from '@capacitor/app';
 import { TranslationService } from '../api/translation.service';
 import { AdmobService } from '../services/admob/admob.service';
+import { ModalAddProductComponent } from '../product/add-product/modal-add-product/modal-add-product.component';
+import { ProductService, LocalProduct } from 'src/app/api/product.service';
 @Component({
   selector: 'app-bookmark',
   templateUrl: './bookmark.page.html',
@@ -13,20 +16,29 @@ import { AdmobService } from '../services/admob/admob.service';
 })
 export class BookmarkPage implements OnInit {
 
+  selectedTab: string = 'bookmark';
   isSupported = false;
   list_favorites: any;
   barcodes: Barcode[] = [];
 
   backButtonListener: any;
+  localProducts: LocalProduct[] = [];
 
-  constructor(public _admobService: AdmobService, private _router: Router, public _translation_service: TranslationService, private alertController: AlertController) {
+  constructor(public _admobService: AdmobService, private _router: Router, public _translation_service: TranslationService, private alertController: AlertController, private modalCtrl: ModalController, private productService: ProductService ) {
 
     this._translation_service.init();
   }
 
+  
   ionViewWillEnter() {
     this.getFavorites()
+    this.loadLocalProducts();
   }
+
+  async loadLocalProducts() {
+    this.localProducts = await this.productService.getLocalProducts();
+  }
+
 
   getFavorites() {
 
@@ -36,6 +48,7 @@ export class BookmarkPage implements OnInit {
   }
   ngOnInit() {
 
+    this.loadLocalProducts();
     this.backButtonListener = App.addListener('backButton', () => {
 
       this.getFavorites()
@@ -101,5 +114,20 @@ export class BookmarkPage implements OnInit {
     }
     this._router.navigate(['/get-product', barcodeId]);
   }
+  async openAddProductModal(productData?: any) {
+    const modal = await this.modalCtrl.create({
+      component: ModalAddProductComponent,
+      componentProps: { productData } // <-- kirim data di sini
+    });
+
+    await modal.present();
+
+    modal.onDidDismiss().then((result) => {
+      if (result.role === 'submitted') {
+        this.loadLocalProducts(); // reload produk lokal
+      }
+    });
+  }
+  
 
 }

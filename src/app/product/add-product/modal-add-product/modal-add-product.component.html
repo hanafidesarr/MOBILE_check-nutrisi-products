@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ productData ? 'Edit Product' : 'Add Product' }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="stacked">Code</ion-label>
+    <ion-input [(ngModel)]="product.code" placeholder="Enter product code"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Product Name</ion-label>
+    <ion-input [(ngModel)]="product.product_name" placeholder="Enter product name"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Brand</ion-label>
+    <ion-input [(ngModel)]="product.brands" placeholder="Enter brand"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" color="primary" [disabled]="isSubmitting" (click)="submit()" class="ion-margin-top">
+    {{ productData ? 'Save Changes' : 'Add Product' }}
+  </ion-button>
+</ion-content>
