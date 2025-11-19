@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ from_scan ? 'Add Product' : 'Edit Product' }}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-list>
+    <ion-item *ngFor="let field of allFields">
+      <ion-label position="stacked">{{ field }}</ion-label>
+
+      <ion-textarea
+        *ngIf="isLongText(product[field])"
+        [(ngModel)]="product[field]"
+        autoGrow="true">
+      </ion-textarea>
+
+      <ion-input
+        *ngIf="!isLongText(product[field])"
+        [(ngModel)]="product[field]">
+      </ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" (click)="submit()" [disabled]="isSubmitting">
+    {{ from_scan ? 'Add Product' : 'Save Changes' }}
+  </ion-button>
+
+</ion-content>

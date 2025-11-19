@@ -4,19 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { BookmarkPageRoutingModule } from './bookmark-routing.module';
+import { AddEditProductPageRoutingModule } from './add-edit-product-routing.module';
 
-import { BookmarkPage } from './bookmark.page';
-
-
+import { AddEditProductPage } from './add-edit-product.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    BookmarkPageRoutingModule
+    AddEditProductPageRoutingModule
   ],
-  declarations: [BookmarkPage]
+  declarations: [AddEditProductPage]
 })
-export class BookmarkPageModule {}
+export class AddEditProductPageModule {}

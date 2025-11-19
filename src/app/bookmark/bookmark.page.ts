@@ -7,7 +7,6 @@ import { ModalController } from '@ionic/angular';
 import { App } from '@capacitor/app';
 import { TranslationService } from '../api/translation.service';
 import { AdmobService } from '../services/admob/admob.service';
-import { ModalAddProductComponent } from '../product/add-product/modal-add-product/modal-add-product.component';
 import { ProductService, LocalProduct } from 'src/app/api/product.service';
 @Component({
   selector: 'app-bookmark',
@@ -115,18 +114,11 @@ export class BookmarkPage implements OnInit {
     this._router.navigate(['/get-product', barcodeId]);
   }
   async openAddProductModal(productData?: any) {
-    const modal = await this.modalCtrl.create({
-      component: ModalAddProductComponent,
-      componentProps: { productData } // <-- kirim data di sini
+
+    this._router.navigate(['/add-edit-product'], {
+      queryParams: { code: productData.code }
     });
 
-    await modal.present();
-
-    modal.onDidDismiss().then((result) => {
-      if (result.role === 'submitted') {
-        this.loadLocalProducts(); // reload produk lokal
-      }
-    });
   }
   
 

@@ -13,7 +13,6 @@ import { ModalImagePage } from './modal-image/modal-image.page';
 import { ModalNutriscoreInfoPage } from './modal-nutriscore-info/modal-nutriscore-info.page';
 import { ModalEcoscoreInfoPage } from './modal-ecoscore-info/modal-ecoscore-info.page';
 import { ModalNovascoreInfoPage } from './modal-novascore-info/modal-novascore-info.page';
-import { ModalAddProductComponent } from './../add-product/modal-add-product/modal-add-product.component';
 import { App } from '@capacitor/app';
 
 import JsBarcode from 'jsbarcode';
@@ -301,22 +300,10 @@ export class GetProductPage implements OnInit {
     );
   }
   async openAddProductModal(code: string) {
-    const modal = await this.modalController.create({
-      component: ModalAddProductComponent,
-      componentProps: {
-        productData: { code: code },
-        from_scan: true
-      }
+    this._router.navigate(['/add-edit-product'], {
+      queryParams: { code: code, from_scan: true }
     });
 
-    modal.onDidDismiss().then((result) => {
-      if (result.role === 'submitted') {
-        this._toast_service.presentToast('Product added successfully');
-        this._router.navigate(['/tabs/bookmark']); 
-      }
-    });
-
-    return await modal.present();
   }
 
 }

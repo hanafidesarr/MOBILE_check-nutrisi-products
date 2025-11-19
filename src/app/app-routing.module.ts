@@ -37,6 +37,13 @@ const routes: Routes = [
   {
     path: 'problem-playservices',
     loadChildren: () => import('./exceptions/problem-playservices/problem-playservices.module').then( m => m.ProblemPlayservicesPageModule)
+  },
+  {
+    path: 'add-edit-product',
+    loadChildren: () =>
+      import('./add-edit-product/add-edit-product.module').then(
+        m => m.AddEditProductPageModule
+      ),
   }
 ];
 @NgModule({
