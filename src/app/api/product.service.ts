@@ -77,31 +77,11 @@ export class ProductService {
   }
   
 
-  async editProduct(data: { code: string, product_name?: string, brands?: string, lang?: string }): Promise<any> {
-    await this.initStorage();
+  async editProduct(product: any): Promise<any> {
+    // kirim semua field yang ada di this.product secara dinamis
+    const payload = { product };
 
-    // Hanya buat payload untuk backend, jangan include synced
-    const payload = {
-      product: {
-        code: data.code,
-        product_name: data.product_name,
-        brands: data.brands,
-        lang: data.lang || 'en'
-      }
-    };
-
-    const res: any = await this.http.post<any>(`${this.myBackend}/edit_product`, payload).toPromise();
-
-    // update lokal storage
-    const products = (await this._storage?.get('my_products')) || [];
-    const index = (products as LocalProduct[]).findIndex(p => p.code === data.code);
-
-    if (index >= 0) {
-      products[index] = { ...products[index], ...data, synced: res.status === '200' }; // cek res.status string dari Rails
-      await this._storage?.set('my_products', products);
-    }
-
-    return res;
+    return this.http.post<any>(`${this.myBackend}/edit_product`, payload).toPromise();
   }
 
   async updateLocalProduct(data: LocalProduct): Promise<void> {

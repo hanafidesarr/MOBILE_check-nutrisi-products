@@ -1,17 +1,42 @@
 <ion-header>
   <ion-toolbar color="primary" style="padding-top: 50px;">
     <ion-segment [(ngModel)]="selectedTab">
-      <ion-segment-button value="bookmark">
-        <ion-label>Bookmark</ion-label>
-      </ion-segment-button>
+
       <ion-segment-button value="product">
         <ion-label>Product List</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="bookmark">
+        <ion-label>Bookmark</ion-label>
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <div *ngIf="selectedTab === 'product'">
+    <!-- <ion-button expand="block" color="success" (click)="openAddProductModal()">
+      Add Product
+    </ion-button> -->
+
+    <ion-list>
+      <ion-item *ngFor="let prod of localProducts; let i = index" (click)="openAddProductModal(prod)">
+        <ion-label>
+          <h2>{{ prod.product_name }}</h2>
+          <p>{{ prod.brands }}</p>
+          <p>Status: {{ prod.synced ? 'Synced' : 'Local' }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+
+    <ng-template #emptyProduct>
+      <div class="ion-text-center ion-margin ion-padding-top">
+        No products added yet
+      </div>
+    </ng-template>
+
+  </div>
   <div *ngIf="selectedTab === 'bookmark'">
     <div style="margin-bottom: 5vh;">
       <div  *ngIf="list_favorites">
@@ -77,29 +102,5 @@
         </ion-fab-button>
       </ion-fab> -->
     </div>
-  </div>
-  <div *ngIf="selectedTab === 'product'">
-    <ion-button expand="block" color="success" (click)="openAddProductModal()">
-      Add Product
-    </ion-button>
-
-    <ion-label>Product List haha</ion-label>
-    <ion-list>
-      <ion-item *ngFor="let prod of localProducts; let i = index" (click)="openAddProductModal(prod)">
-        <ion-label>
-          <h2>{{ prod.product_name }}</h2>
-          <p>{{ prod.brands }}</p>
-          <p>Status: {{ prod.synced ? 'Synced' : 'Local' }}</p>
-        </ion-label>
-      </ion-item>
-    </ion-list>
-
-
-    <ng-template #emptyProduct>
-      <div class="ion-text-center ion-margin ion-padding-top">
-        No products added yet
-      </div>
-    </ng-template>
-
   </div>
 </ion-content>

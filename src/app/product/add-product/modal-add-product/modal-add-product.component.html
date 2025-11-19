@@ -8,22 +8,33 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-item>
-    <ion-label position="stacked">Code</ion-label>
-    <ion-input [(ngModel)]="product.code" placeholder="Enter product code"></ion-input>
-  </ion-item>
+  
+  <ion-list>
+    <ion-item *ngFor="let field of allFields">
+      <ion-label position="stacked">{{ field }}</ion-label>
 
-  <ion-item>
-    <ion-label position="stacked">Product Name</ion-label>
-    <ion-input [(ngModel)]="product.product_name" placeholder="Enter product name"></ion-input>
-  </ion-item>
+      <ion-textarea
+        *ngIf="isLongText(product[field])"
+        [(ngModel)]="product[field]"
+        autoGrow="true">
+      </ion-textarea>
 
-  <ion-item>
-    <ion-label position="stacked">Brand</ion-label>
-    <ion-input [(ngModel)]="product.brands" placeholder="Enter brand"></ion-input>
-  </ion-item>
+      <ion-input
+        *ngIf="!isLongText(product[field])"
+        [(ngModel)]="product[field]">
+      </ion-input>
+    </ion-item>
+  </ion-list>
 
-  <ion-button expand="block" color="primary" [disabled]="isSubmitting" (click)="submit()" class="ion-margin-top">
+  <ion-button
+    expand="block"
+    color="primary"
+    [disabled]="isSubmitting"
+    (click)="submit()"
+    class="ion-margin-top">
+
     {{ productData ? 'Save Changes' : 'Add Product' }}
+
   </ion-button>
+
 </ion-content>

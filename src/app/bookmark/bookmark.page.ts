@@ -16,7 +16,7 @@ import { ProductService, LocalProduct } from 'src/app/api/product.service';
 })
 export class BookmarkPage implements OnInit {
 
-  selectedTab: string = 'bookmark';
+  selectedTab: string = 'product';
   isSupported = false;
   list_favorites: any;
   barcodes: Barcode[] = [];

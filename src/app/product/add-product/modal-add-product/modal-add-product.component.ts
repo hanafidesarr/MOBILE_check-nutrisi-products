@@ -8,13 +8,11 @@ import { ProductService } from 'src/app/api/product.service';
   styleUrls: ['./modal-add-product.component.scss'],
 })
 export class ModalAddProductComponent implements OnInit {
-  @Input() productData: any; // input dari parent
+  @Input() productData: any;
+  @Input() from_scan: boolean = false;
 
-  product: { code: string; product_name: string; brands: string } = {
-    code: '',
-    product_name: '',
-    brands: '',
-  };
+  product: any = {};
+  allFields: string[] = [];
 
   isSubmitting = false;
 
@@ -25,43 +23,98 @@ export class ModalAddProductComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // Pastikan productData diisi sebelum binding
-    if (this.productData) {
+
+    // -----------------------------------------------------
+    // 1. Jika SCAN → jangan ambil dari OFF, langsung tambah
+    // -----------------------------------------------------
+    if (this.from_scan) {
       this.product = {
-        code: this.productData.code || '',
-        product_name: this.productData.product_name || '',
-        brands: this.productData.brands || '',
+        code: this.productData?.code || '',
+        product_name: '',
+        brands: ''
       };
+      this.allFields = Object.keys(this.product);
+      return;
     }
+
+    // -----------------------------------------------------
+    // 2. Jika EDIT produk (bukan scan) dan ada code → fetch dari OFF
+    // -----------------------------------------------------
+    if (this.productData?.code) {
+      this.productService.product({ barcode_id: this.productData.code })
+        .subscribe(
+          (response: any) => {
+            const p = response?.product;
+
+            if (p) {
+              this.product = { ...p };
+              this.product.code = p.code || this.productData.code;
+            } else {
+              this.product = {
+                code: this.productData.code,
+                product_name: '',
+                brands: ''
+              };
+            }
+
+            this.allFields = Object.keys(this.product);
+          },
+          () => {
+            // fallback fetch gagal
+            this.product = {
+              code: this.productData.code,
+              product_name: '',
+              brands: ''
+            };
+            this.allFields = Object.keys(this.product);
+          }
+        );
+
+      return;
+    }
+
+    // -----------------------------------------------------
+    // 3. Tambah produk manual
+    // -----------------------------------------------------
+    this.product = {
+      code: '',
+      product_name: '',
+      brands: ''
+    };
+    this.allFields = Object.keys(this.product);
   }
 
   dismiss() {
     this.modalCtrl.dismiss();
   }
 
+  // -----------------------------------
+  // SUBMIT
+  // -----------------------------------
   async submit() {
-    // if (!this.product.code || !this.product.product_name || !this.product.brands) {
-    //   await this.showToast('Please fill in all fields');
-    //   return;
-    // }
-
     this.isSubmitting = true;
 
     try {
       let res;
-      if (this.productData) {
-        // Edit product
-        const payload = { ...this.product }; // Jangan sertakan properti ekstra
-        res = await this.productService.editProduct(payload);
+
+      if (this.from_scan) {
+        // SCAN → selalu ADD
+        res = await this.productService.addProduct(this.product);
+
+      } else if (this.productData) {
+        // Non-scan EDIT
+        res = await this.productService.editProduct(this.product);
+
       } else {
-        // Add product
+        // Manual ADD
         res = await this.productService.addProduct(this.product);
       }
 
       this.isSubmitting = false;
-
       await this.showToast('Product saved successfully ✅');
+
       this.modalCtrl.dismiss(res, 'submitted');
+
     } catch (err) {
       console.error('Error saving product:', err);
       this.isSubmitting = false;
@@ -77,5 +130,9 @@ export class ModalAddProductComponent implements OnInit {
       color: 'medium',
     });
     await toast.present();
+  }
+
+  isLongText(value: any) {
+    return typeof value === 'string' && value.length > 40;
   }
 }
