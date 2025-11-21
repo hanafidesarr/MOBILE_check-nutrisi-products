@@ -113,12 +113,11 @@ export class BookmarkPage implements OnInit {
     }
     this._router.navigate(['/get-product', barcodeId]);
   }
-  async openAddProductModal(productData?: any) {
+  async editProduct(productData?: any) {
 
     this._router.navigate(['/add-edit-product'], {
-      queryParams: { code: productData.code }
+      queryParams: { code: productData.code, is_redirect_to_bookmark: true }
     });
-
   }
   
 

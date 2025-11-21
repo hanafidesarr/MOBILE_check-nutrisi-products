@@ -290,7 +290,7 @@ export class GetProductPage implements OnInit {
         this._loadingService.hideLoader();
 
         if (error.status == 404) {
-          this.openAddProductModal(this.barcode);
+          this.addProduct(this.barcode);
         } else {
           this._toast_service.presentToast(error.message || 'Something went wrong');
           this._router.navigate(['/tabs']);
@@ -299,9 +299,16 @@ export class GetProductPage implements OnInit {
 
     );
   }
-  async openAddProductModal(code: string) {
+  async addProduct(code: string) {
     this._router.navigate(['/add-edit-product'], {
-      queryParams: { code: code, from_scan: true }
+      queryParams: { code: code, is_add_product: true }
+    });
+
+  }
+
+  async editProduct(code: string) {
+    this._router.navigate(['/add-edit-product'], {
+      queryParams: { code: code, is_add_product: false, is_redirect_to_bookmark: false }
     });
 
   }

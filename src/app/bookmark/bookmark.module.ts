@@ -8,6 +8,7 @@ import { BookmarkPageRoutingModule } from './bookmark-routing.module';
 
 import { BookmarkPage } from './bookmark.page';
 
+import { PipesModule } from '../pipes/pipes.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { BookmarkPage } from './bookmark.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    BookmarkPageRoutingModule
+    BookmarkPageRoutingModule,
+    PipesModule
   ],
   declarations: [BookmarkPage]
 })

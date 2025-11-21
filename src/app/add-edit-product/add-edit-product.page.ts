@@ -12,7 +12,8 @@ import { ProductService } from 'src/app/api/product.service';
 export class AddEditProductPage implements OnInit {
 
   productData: any;
-  from_scan: boolean = false;
+  is_add_product: boolean = true;
+  is_redirect_to_bookmark: boolean = false;
 
   product: any = {};
   allFields: string[] = [];
@@ -29,14 +30,15 @@ export class AddEditProductPage implements OnInit {
     // Ambil data dari query params
     this.route.queryParams.subscribe(params => {
       this.productData = { code: params['code'] || '' };
-      this.from_scan = params['from_scan'] === 'true';
+      this.is_add_product = params['is_add_product'] === 'true';
+      this.is_redirect_to_bookmark = params['is_redirect_to_bookmark'] === 'true';
       this.loadProduct();
     });
   }
 
   loadProduct() {
     // ------- 1. Jika dari scan -------
-    if (this.from_scan) {
+    if (this.is_add_product) {
       this.product = {
         code: this.productData.code,
         product_name: '',
@@ -91,7 +93,7 @@ export class AddEditProductPage implements OnInit {
     try {
       let res;
 
-      if (this.from_scan) {
+      if (this.is_add_product) {
         res = await this.productService.addProduct(this.product);
       } else if (this.productData?.code) {
         res = await this.productService.editProduct(this.product);
@@ -101,8 +103,11 @@ export class AddEditProductPage implements OnInit {
 
       this.isSubmitting = false;
       await this.showToast('Product saved successfully');
-
-      this.router.navigate(['/tabs/bookmark']);
+      if (this.is_redirect_to_bookmark) {
+        this.router.navigate(['/tabs/bookmark']);
+      } else {
+        this.router.navigate(['/get-product', this.productData?.code]);
+      }
 
     } catch (err) {
       console.error(err);
@@ -123,4 +128,5 @@ export class AddEditProductPage implements OnInit {
   isLongText(v: any) {
     return typeof v === 'string' && v.length > 40;
   }
+  
 }

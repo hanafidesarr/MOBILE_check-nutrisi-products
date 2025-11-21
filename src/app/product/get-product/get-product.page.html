@@ -35,6 +35,7 @@
 						</div>
 					</ion-col>
 					<ion-col size="2" justify="end" class="ion-text-center" style="align-items: center !important;">
+						<ion-icon (click)="editProduct(product?.code)" color="dark" name="create" size="large" justify="end"></ion-icon>
 						<ion-icon (click)="removeFavorite()" *ngIf="isFavorite(product?.code)" color="dark" name="bookmark" size="large" justify="end"></ion-icon>
 						<ion-icon (click)="saveFavorite()" *ngIf="!isFavorite(product?.code)" color="dark" name="bookmark-outline" size="large" justify="end"></ion-icon>
 					</ion-col>
