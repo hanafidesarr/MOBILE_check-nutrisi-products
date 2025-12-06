@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { AddEditProductPageRoutingModule } from './add-edit-product-routing.module';
 
 import { AddEditProductPage } from './add-edit-product.page';
+import { ImageFieldsComponent } from '../components/image-fields/image-fields.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { AddEditProductPage } from './add-edit-product.page';
     FormsModule,
     IonicModule,
     AddEditProductPageRoutingModule
+    
   ],
-  declarations: [AddEditProductPage]
+  declarations: [AddEditProductPage, ImageFieldsComponent]
 })
 export class AddEditProductPageModule {}

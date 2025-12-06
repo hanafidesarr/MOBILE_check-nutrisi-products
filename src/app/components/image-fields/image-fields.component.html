@@ -1,0 +1,191 @@
+
+<!-- =============== IMAGE FIELDS =============== -->
+<ion-accordion value="images" toggleIcon="caret-down-circle" toggleIconSlot="end" class="ion-margin-top ion-margin-bottom">
+  <ion-item slot="header" color="light">
+    <ion-label>Image Fields</ion-label>
+  </ion-item>
+
+  <div class="ion-padding" slot="content">
+
+    <!-- <ng-container *ngFor="let field of imageFields">
+
+      <ion-item lines="none">
+        <ion-label class="ion-text-capitalize">{{ friendlyLabel(field) }}</ion-label>
+      </ion-item>
+
+      <input
+        type="file"
+        accept="image/*"
+        (change)="onImageSelected($event, field)"
+        style="margin: 8px 0 12px 0; width:100%;"
+      />
+
+      <div class="image-box">
+
+        <div class="loader-wrapper" *ngIf="imageLoading[field]">
+          <ion-spinner name="crescent"></ion-spinner>
+        </div>
+
+        <img
+          *ngIf="product[field]"
+          class="preview-img"
+          [src]="product[field]"
+          (load)="onImageLoaded(field)"
+          (error)="onImageError(field)"
+          alt="{{ field }}"
+        />
+
+        <div *ngIf="!product[field] && !imageLoading[field]" class="placeholder-box">
+          <div>No image</div>
+        </div>
+
+        <div class="gallery" *ngIf="allImages[field]?.length">
+          <div class="thumb" *ngFor="let url of allImages[field]; let idx = index" (click)="setMainPreview(field, url)">
+            <img [src]="url" [alt]="field + '-' + idx" />
+          </div>
+        </div>
+
+      </div>
+
+    </ng-container> -->
+
+    <ion-card class="image-card">
+      <ion-card-content>
+
+        <div class="image-row">
+
+
+          <!-- Preview -->
+          <div class="ion-margin-bottom"><b>Front Image</b></div>
+          <div class="preview-wrapper">
+            <div class="loader-wrapper" *ngIf="imageLoading['image_front_url']">
+              <ion-spinner></ion-spinner>
+            </div>
+
+            <img
+              *ngIf="product.image_front_url"
+              class="preview-img"
+              [src]="product.image_front_url"
+              (load)="onImageLoaded('image_front_url')"
+              (error)="onImageError('image_front_url')"
+            />
+
+            <div *ngIf="!product.image_front_url && !imageLoading['image_front_url']" class="placeholder-box">
+              <span>No image</span>
+            </div>
+          </div>
+          <!-- Upload -->
+          <hr>
+          <div class="upload-box">
+            <input type="file" accept="image/*" (change)="onImageSelected($event, 'image_front_url')" class="file-input" />
+            <!-- <ion-button expand="block">Upload</ion-button> -->
+          </div>
+
+        </div>
+
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="image-card">
+      <ion-card-content>
+        <div class="image-row">
+          <!-- Preview -->
+          <div class="ion-margin-bottom"><b>Ingredients</b></div>
+          <div class="preview-wrapper">
+            <div class="loader-wrapper" *ngIf="imageLoading['image_ingredients_url']">
+              <ion-spinner></ion-spinner>
+            </div>
+
+            <img
+              *ngIf="product.image_ingredients_url"
+              class="preview-img"
+              [src]="product.image_ingredients_url"
+              (load)="onImageLoaded('image_ingredients_url')"
+              (error)="onImageError('image_ingredients_url')"
+            />
+
+            <div *ngIf="!product.image_ingredients_url && !imageLoading['image_ingredients_url']" class="placeholder-box">
+              <span>No image</span>
+            </div>
+          </div>
+          <!-- Upload -->
+          <hr>
+          <div class="upload-box">
+            <input type="file" accept="image/*" (change)="onImageSelected($event, 'image_ingredients_url')" class="file-input" />
+            <!-- <ion-button expand="block">Upload</ion-button> -->
+          </div>
+
+        </div>
+
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="image-card">
+      <ion-card-content>
+        <div class="image-row">
+          <!-- Preview -->
+          <div class="ion-margin-bottom"><b>Nutrition</b></div>
+          <div class="preview-wrapper">
+            <div class="loader-wrapper" *ngIf="imageLoading['image_nutrition_url']">
+              <ion-spinner></ion-spinner>
+            </div>
+
+            <img
+              *ngIf="product.image_nutrition_url"
+              class="preview-img"
+              [src]="product.image_nutrition_url"
+              (load)="onImageLoaded('image_nutrition_url')"
+              (error)="onImageError('image_nutrition_url')"
+            />
+
+            <div *ngIf="!product.image_nutrition_url && !imageLoading['image_nutrition_url']" class="placeholder-box">
+              <span>No image</span>
+            </div>
+          </div>
+          <!-- Upload -->
+          <hr>
+          <div class="upload-box">
+            <input type="file" accept="image/*" (change)="onImageSelected($event, 'image_nutrition_url')" class="file-input" />
+            <!-- <ion-button expand="block">Upload</ion-button> -->
+          </div>
+
+        </div>
+
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="image-card">
+      <ion-card-content>
+        <div class="image-row">
+          <!-- Preview -->
+          <div class="ion-margin-bottom"><b>Packaging</b></div>
+          <div class="preview-wrapper">
+            <div class="loader-wrapper" *ngIf="imageLoading['image_packaging_url']">
+              <ion-spinner></ion-spinner>
+            </div>
+
+            <img
+              *ngIf="product.image_packaging_url"
+              class="preview-img"
+              [src]="product.image_packaging_url"
+              (load)="onImageLoaded('image_packaging_url')"
+              (error)="onImageError('image_packaging_url')"
+            />
+
+            <div *ngIf="!product.image_packaging_url && !imageLoading['image_packaging_url']" class="placeholder-box">
+              <span>No image</span>
+            </div>
+          </div>
+          <!-- Upload -->
+          <hr>
+          <div class="upload-box">
+            <input type="file" accept="image/*" (change)="onImageSelected($event, 'image_packaging_url')" class="file-input" />
+            <!-- <ion-button expand="block">Upload</ion-button> -->
+          </div>
+
+        </div>
+
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-accordion>

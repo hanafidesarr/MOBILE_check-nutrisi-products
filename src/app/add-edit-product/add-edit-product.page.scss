@@ -1,0 +1,76 @@
+.image-box {
+  margin-bottom: 16px;
+  .preview-img {
+    width: 100%;
+    max-height: 240px;
+    object-fit: contain;
+    border-radius: 8px;
+    display: block;
+    margin-bottom: 8px;
+    background: #f8f8f8;
+  }
+
+  .placeholder-box {
+    width: 100%;
+    height: 160px;
+    border-radius: 8px;
+    background: rgba(240,240,240,0.6);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#666;
+    margin-bottom:8px;
+  }
+
+  .loader-wrapper {
+    width: 100%;
+    height: 160px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: rgba(255,255,255,0.6);
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+
+  .gallery {
+    margin-top: 6px;
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    .thumb {
+      width:64px;
+      height:64px;
+      border-radius:6px;
+      overflow:hidden;
+      flex:0 0 auto;
+      border:1px solid rgba(0,0,0,0.08);
+      img {
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        display:block;
+      }
+    }
+  }
+}
+
+.preview-img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: contain;   /* seluruh gambar tampil, ada ruang kosong */
+  background: #f0f0f0;    /* warna latar belakang */
+  border-radius: 8px;
+  display: block;
+}
+
+.labels-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 12px 0;
+}
+
+.ion-text-bold {
+  font-weight: 600;
+}

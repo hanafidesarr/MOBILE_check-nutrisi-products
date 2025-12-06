@@ -300,8 +300,12 @@ export class GetProductPage implements OnInit {
     );
   }
   async addProduct(code: string) {
+    // this._router.navigate(['/add-edit-product'], {
+    //   queryParams: { code: code, is_add_product: true }
+    // });
+
     this._router.navigate(['/add-edit-product'], {
-      queryParams: { code: code, is_add_product: true }
+      queryParams: { code: code, is_add_product: true },
     });
 
   }

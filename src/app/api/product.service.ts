@@ -114,6 +114,30 @@ export class ProductService {
       await this._storage?.set('my_products', products);
     }
   }
+  // =================================================
+  // Upload image to OpenFoodFacts
+  // =================================================
+  async uploadImage(barcode: string, offField: string, file: File): Promise<any> {
+    const url = 'https://world.openfoodfacts.org/cgi/product_image_upload.pl';
+
+    // offField sudah berupa: front_en, ingredients_en, packaging_en
+    const imagefield = offField;
+    const fileFieldName = `imgupload_${offField}`;
+
+    const form = new FormData();
+    form.append('code', barcode);
+    form.append('imagefield', imagefield);
+    form.append(fileFieldName, file, file.name);
+
+    try {
+      return await this.http.post(url, form).toPromise();
+    } catch (err) {
+      throw err;
+    }
+  }
+
+
+
 
 }
 

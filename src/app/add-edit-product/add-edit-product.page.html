@@ -1,8 +1,6 @@
 <ion-header>
-  <div  style="height: 60px !important; background-color: var(--ion-color-primary) !important;">
-  </div>
-  <ion-toolbar>
-    <ion-title>{{ is_add_product ? 'Add Product' : 'Edit Product' }}</ion-title>
+  <ion-toolbar color="primary" style="padding-top: 50px;">
+    <ion-title>{{ is_add_product ? 'Add Product' : product?.product_name }}</ion-title>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs/home"></ion-back-button>
     </ion-buttons>
@@ -11,22 +9,147 @@
 
 <ion-content class="ion-padding">
 
-  <ion-list>
-    <ion-item *ngFor="let field of allFields">
-      <ion-label position="stacked">{{ field }}</ion-label>
+  <ion-card style="border: 2px solid #f44336; border-radius: 8px;" *ngIf="is_add_product">
+    <ion-card-content>
+      Please fill in this new product data, at least the product name. Thank you.
+    </ion-card-content>
+  </ion-card>
 
-      <ion-textarea
-        *ngIf="isLongText(product[field])"
-        [(ngModel)]="product[field]"
-        autoGrow="true">
-      </ion-textarea>
+  <ion-accordion-group  [multiple]="true">
+<!-- =============== NON IMAGE FIELDS =============== -->
+    <ion-accordion value="general-information" toggleIcon="caret-down-circle" toggleIconSlot="end" class="ion-margin-bottom">
+      <ion-item slot="header" color="light">
+        <ion-label>General Information</ion-label>
+      </ion-item>
 
-      <ion-input
-        *ngIf="!isLongText(product[field])"
-        [(ngModel)]="product[field]">
-      </ion-input>
-    </ion-item>
-  </ion-list>
+      <div class="" slot="content">
+        <ion-list>
+          <ion-item>
+            <ion-label position="stacked">Code</ion-label>
+            <ion-input [(ngModel)]="product.code"  [disabled]="true"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Product Name</ion-label>
+            <ion-input [(ngModel)]="product.product_name"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Product Name EN</ion-label>
+            <ion-input [(ngModel)]="product.product_name_en"></ion-input>
+          </ion-item>
+          <!-- <ion-item>
+            <ion-input placeholder="Product Name" [(ngModel)]="product.product_name"></ion-input>
+          </ion-item> -->
+
+          <ion-item>
+            <ion-label position="stacked">Brands</ion-label>
+            <ion-input [(ngModel)]="product.brands"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Quantity</ion-label>
+            <ion-input [(ngModel)]="product.quantity"></ion-input>
+          </ion-item>
+          
+          <!-- <ng-container *ngFor="let field of allFields">
+            <ng-container *ngIf="!isImageField(field)">
+              <ion-item>
+                <ion-label position="stacked">{{ field }}</ion-label>
+
+                <ion-textarea
+                  *ngIf="isLongText(product[field])"
+                  [(ngModel)]="product[field]"
+                  autoGrow="true">
+                </ion-textarea>
+
+                <ion-input
+                  *ngIf="!isLongText(product[field])"
+                  [(ngModel)]="product[field]">
+                </ion-input>
+              </ion-item>
+            </ng-container>
+          </ng-container> -->
+
+        </ion-list>
+      </div>
+    </ion-accordion>
+
+    <app-image-fields
+      *ngIf="product"
+      [product]="product"
+      [imageLoading]="imageLoading"
+      [allImages]="allImages"
+      [onImageSelected]="onImageSelected.bind(this)"
+      [onImageLoaded]="onImageLoaded.bind(this)"
+      [onImageError]="onImageError.bind(this)"
+      [setMainPreview]="setMainPreview.bind(this)"
+    ></app-image-fields>
+
+
+    
+
+    <!-- =============== Ingredient =============== -->
+    <ion-accordion value="ingredient" toggleIcon="caret-down-circle" toggleIconSlot="end" class="ion-margin-bottom">
+      <ion-item slot="header" color="light">
+        <ion-label>Ingredient</ion-label>
+      </ion-item>
+
+      <div slot="content">
+        <ion-list>
+          <ion-item>
+            <ion-label position="stacked">Ingredients text</ion-label>
+            <ion-input [(ngModel)]="product.ingredients_text"></ion-input>
+          </ion-item>
+        </ion-list>
+        
+      </div>
+    </ion-accordion>
+
+
+    <!-- =============== Ingredient =============== -->
+    <ion-accordion value="labels" toggleIcon="caret-down-circle" toggleIconSlot="end" class="ion-margin-bottom">
+      <ion-item slot="header" color="light">
+        <ion-label>Labels & Certifications</ion-label>
+      </ion-item>
+
+      <div slot="content">
+        <ion-list>
+          <!-- LABELS SECTION -->
+          <!-- <ion-item lines="none">
+            <ion-label class="ion-text-bold">Labels</ion-label>
+          </ion-item> -->
+
+
+          <!-- Input untuk menambah label -->
+          <ion-item>
+            <ion-input
+              placeholder="Add label…"
+              [(ngModel)]="newLabel"
+              (keyup.enter)="addLabel()">
+            </ion-input>
+
+            <ion-button (click)="addLabel()" fill="outline" size="small">
+              Add
+            </ion-button>
+          </ion-item>
+          <!-- Chips -->
+          <ion-grid>
+            <ion-row>
+              <ion-col size="12" *ngFor="let label of product.labels_tags">
+                <ion-chip>
+                  <ion-label>{{ label }}</ion-label>
+                  <ion-icon name="close-circle" (click)="removeLabel(label)"></ion-icon>
+                </ion-chip>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+
+        </ion-list>
+        
+      </div>
+    </ion-accordion>
+
+  </ion-accordion-group>
 
   <ion-button expand="block" (click)="submit()" [disabled]="isSubmitting">
     {{ is_add_product ? 'Add Product' : 'Save Changes' }}
