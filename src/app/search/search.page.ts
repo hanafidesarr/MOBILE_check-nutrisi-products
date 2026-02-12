@@ -38,7 +38,7 @@ export class SearchPage {
   result_products: any;
   list_products: any;
   next_page: any;
-  page_size = 10;
+  page_size = 3;
   showTextMain = true;
   backButtonListener: any;
 
@@ -115,14 +115,13 @@ export class SearchPage {
     this.search_histories = false;
     this._productService.products({keyword: keyword, country: country, page: 1, page_size: this.page_size}).subscribe(
       (response) => {
-
-
         this.loaded = true;
         this.showTextMain = false;
 
         this.result_products =  response
         
         this.list_products = this.result_products.products
+        
         this.product_present = this.list_products.length > 0
         
         

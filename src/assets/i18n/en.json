@@ -103,7 +103,36 @@
 
   "result": "Result",
   "total": "Total",
-  "quantity_per_serving": "Quantity per Serving",
+  
+  "quantity": "quantity",
+  "general": "general",
+  "general_information": "general information",
+  "image": "image",
+  "labels_and_certifications": "label & certifications",
+  "product_name": "product name",
+  "product_name_in_en": "product name in english",
+  "front_image": "front image",
+  "no_image": "no image",
+  "ingredients": "ingredients",
+  "nutrition": "nutrition",
+  "packaging": "packaging",
+  "ingredient_text": "ingredient text",
+  "nutrition_per": "nutrition per",
+  "the_nutrition_values_below_are_based_on": "The nutrition values below are based on",
+  "add": "add",
+  "add_label": "add label",
+  "save": "save",
+  "please_fill_new_product": "Please fill in this new product data, at least the product name. Thank you.",
+  "code": "code",
+  "quantity_per_serving": "quantity per Serving",
+  "serving_size": "serving size",
+  "serving": "serving",
+  "add_nutrition": "add nutrition",
+  "origins": "origin",
+  "serving_size_info": "Enter the serving size exactly as written on the package, for example: 30g or 250ml. This field is very important for accurate nutrition calculations.",
+  "nutrition_per_info": "Select whether the nutrition values are entered per 100g or per serving.",
+  "quantity_info": "Copy the value indicated on the product and don't forget the units, example : 230g , 6, 3 x 150g",
+
   "introduction": "Introduction",
 
   "intro1_title": "Scan Barcode Product",
@@ -120,5 +149,7 @@
   "intro3_title": "Product Details",
   "intro3_subtitle": "Detailed product information",
   "intro3_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>Nutri Score</b></h3>\nCheck international standard nutrition labels",
-  "intro3_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>Nutritional Value</b></h3>\nCheck and calculate nutritional values and RDA (Daily Value)"
+  "intro3_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>Nutritional Value</b></h3>\nCheck and calculate nutritional values and RDA (Daily Value)",
+  
+  "edit_product": "Edit Product"
 }

@@ -102,7 +102,35 @@
 
   "result": "Risultato",
   "total": "Totale",
-  "quantity_per_serving": "Quantità per Porzione",
+  
+  "quantity": "quantità",
+  "general": "generale",
+  "general_information": "informazioni generali",
+  "image": "immagine",
+  "labels_and_certifications": "etichette e certificazioni",
+  "product_name": "nome del prodotto",
+  "product_name_in_en": "nome del prodotto in inglese",
+  "front_image": "immagine frontale",
+  "no_image": "nessuna immagine",
+  "ingredients": "ingredienti",
+  "nutrition": "valori nutrizionali",
+  "packaging": "confezione",
+  "ingredient_text": "testo ingredienti",
+  "nutrition_per": "valori nutrizionali per",
+  "the_nutrition_values_below_are_based_on": "I valori nutrizionali sotto sono basati su",
+  "add": "aggiungi",
+  "add_label": "aggiungi etichetta",
+  "save": "salva",
+  "please_fill_new_product": "Compila i dati di questo nuovo prodotto, almeno il nome del prodotto. Grazie.",
+  "code": "codice",
+  "quantity_per_serving": "quantità per porzione",
+  "serving_size": "dimensione porzione",
+  "serving": "porzione",
+  "add_nutrition": "aggiungi valori nutrizionali",
+  "origins": "origine",
+  "serving_size_info": "Inserisci la dimensione della porzione esattamente come indicata sulla confezione, ad esempio: 30g o 250ml. Questo campo è molto importante per calcoli nutrizionali accurati.",
+  "nutrition_per_info": "Seleziona se i valori nutrizionali sono inseriti per 100g o per porzione.",
+  "quantity_info": "Copia la quantità indicata sul prodotto e non dimenticare le unità, esempio: 230g, 6, 3 x 150g",
   "introduction": "Introduzione",
 
   "intro1_title": "Scansione Codice a Barre del Prodotto",
@@ -119,5 +147,7 @@
   "intro3_title": "Dettagli del Prodotto",
   "intro3_subtitle": "Informazioni dettagliate sul prodotto",
   "intro3_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>Nutri Score</b></h3>\n Verifica l'etichettatura nutrizionale standard internazionale",
-  "intro3_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>Valore Nutrizionale</b></h3>\n Verifica e calcola il valore nutrizionale e le dosi giornaliere raccomandate (Daily Value Nutrition)"
+  "intro3_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>Valore Nutrizionale</b></h3>\n Verifica e calcola il valore nutrizionale e le dosi giornaliere raccomandate (Daily Value Nutrition)",
+
+  "edit_product": "Modifica prodotto"
   }

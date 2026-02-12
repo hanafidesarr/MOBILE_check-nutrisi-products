@@ -102,7 +102,35 @@
 
   "result": "結果",
   "total": "合計",
-  "quantity_per_serving": "1食あたりの量",
+  
+  "quantity": "内容量",
+  "general": "一般",
+  "general_information": "基本情報",
+  "image": "画像",
+  "labels_and_certifications": "ラベルと認証",
+  "product_name": "商品名",
+  "product_name_in_en": "英語の商品名",
+  "front_image": "前面画像",
+  "no_image": "画像なし",
+  "ingredients": "原材料",
+  "nutrition": "栄養成分",
+  "packaging": "包装",
+  "ingredient_text": "原材料表示",
+  "nutrition_per": "栄養成分（基準）",
+  "the_nutrition_values_below_are_based_on": "以下の栄養成分は次を基準にしています",
+  "add": "追加",
+  "add_label": "ラベル追加",
+  "save": "保存",
+  "please_fill_new_product": "この新しい商品の情報を入力してください。少なくとも商品名を入力してください。ありがとうございます。",
+  "code": "コード",
+  "quantity_per_serving": "1食当たりの量",
+  "serving_size": "1食分の量",
+  "serving": "1食分",
+  "add_nutrition": "栄養成分を追加",
+  "origins": "原産地",
+  "serving_size_info": "パッケージに記載されている通りの1食分の量を入力してください。例：30g または 250ml。正確な栄養計算のために重要です。",
+  "nutrition_per_info": "栄養成分を100g当たりか、1食分当たりで入力するか選択してください。",
+  "quantity_info": "商品に記載された量をそのまま入力し、単位を忘れないでください。例：230g、6、3 x 150g",
   "introduction": "紹介",
 
   "intro1_title": "商品バーコードスキャン",
@@ -119,5 +147,7 @@
   "intro3_title": "商品詳細",
   "intro3_subtitle": "商品の詳細情報",
   "intro3_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>栄養スコア</b></h3>\n 国際基準の栄養ラベルを確認",
-  "intro3_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>栄養価</b></h3>\n 栄養価と一日の推奨摂取量を確認・計算 (Daily Value Nutrition)"
+  "intro3_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>栄養価</b></h3>\n 栄養価と一日の推奨摂取量を確認・計算 (Daily Value Nutrition)",
+
+  "edit_product": "商品を編集"
 }

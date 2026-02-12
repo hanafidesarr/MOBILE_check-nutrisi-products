@@ -102,9 +102,37 @@
 
   "result": "Resultaat",
   "total": "Totaal",
-  "quantity_per_serving": "Hoeveelheid per Portie",
+  "quantity": "hoeveelheid",
+  "general": "algemeen",
+  "general_information": "algemene informatie",
+  "image": "afbeelding",
+  "labels_and_certifications": "labels & certificeringen",
+  "product_name": "productnaam",
+  "product_name_in_en": "productnaam in het Engels",
+  "front_image": "voorkant afbeelding",
+  "no_image": "geen afbeelding",
+  "ingredients": "ingrediënten",
+  "nutrition": "voedingswaarde",
+  "packaging": "verpakking",
+  "ingredient_text": "ingrediëntentekst",
+  "nutrition_per": "voedingswaarde per",
+  "the_nutrition_values_below_are_based_on": "De onderstaande voedingswaarden zijn gebaseerd op",
+  "add": "toevoegen",
+  "add_label": "label toevoegen",
+  "save": "opslaan",
+  "please_fill_new_product": "Vul alstublieft de gegevens van dit nieuwe product in, ten minste de productnaam. Dank u.",
+  "code": "code",
+  "quantity_per_serving": "hoeveelheid per portie",
+  "serving_size": "portiegrootte",
+  "serving": "portie",
+  "add_nutrition": "voedingswaarde toevoegen",
+  "origins": "herkomst",
+  "serving_size_info": "Voer de portiegrootte precies in zoals op de verpakking staat, bijvoorbeeld: 30g of 250ml. Dit veld is erg belangrijk voor nauwkeurige voedingsberekeningen.",
+  "nutrition_per_info": "Selecteer of de voedingswaarden per 100g of per portie worden ingevoerd.",
+  "quantity_info": "Kopieer de waarde die op het product staat en vergeet de eenheden niet, bijvoorbeeld: 230g, 6, 3 x 150g",
+  
   "introduction": "Inleiding",
-
+  
   "intro1_title": "Scan Product Barcode",
   "intro1_subtitle": "U kunt productdetails bekijken via de productbarcode",
   "intro1_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>Scannen via Camera</b></h3>\n Selecteer de knop om de camera van uw telefoon te scannen\n <div style=\"display: flex;align-items: center;justify-content: center;\">",
@@ -119,5 +147,7 @@
   "intro3_title": "Productdetails",
   "intro3_subtitle": "Gedetailleerde productinformatie",
   "intro3_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>Nutri Score</b></h3>\n Controleer het voedingslabel volgens internationale normen",
-  "intro3_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>Voedingswaarde</b></h3>\n Controleer en bereken de voedingswaarde en Daily Value"
+  "intro3_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>Voedingswaarde</b></h3>\n Controleer en bereken de voedingswaarde en Daily Value",
+
+  "edit_product": "Product bewerken"
 }

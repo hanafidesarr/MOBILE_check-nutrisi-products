@@ -70,6 +70,33 @@
   "note_1_nutrition_facts": "* Angka Kebutuhan Gizi (AKG) merupakan kecukupan rata-rata zat gizi setiap hari. sumber perhitungan berdasarkan data dari",
   "note_2_nutrition_facts": "* Kami secara terbuka menerima masukan dari produsen maupun konsumen tentang nilai gizi yang tertera",
 
+  "quantity": "jumlah",
+  "general": "umum",
+  "general_information": "informasi umum",
+  "image": "gambar",
+  "labels_and_certifications": "label & sertifikasi",
+  "product_name": "nama produk",
+  "product_name_in_en": "nama produk dalam bahasa Inggris",
+  "front_image": "gambar depan",
+  "no_image": "tidak ada gambar",
+  "ingredients": "komposisi",
+  "nutrition": "nutrisi",
+  "packaging": "kemasan",
+  "ingredient_text": "teks komposisi",
+  "nutrition_per": "nutrisi per",
+  "the_nutrition_values_below_are_based_on": "Nilai nutrisi di bawah ini berdasarkan",
+  "add": "tambah",
+  "add_label": "tambah label",
+  "save": "simpan",
+  "please_fill_new_product": "Silakan isi data produk baru ini, minimal nama produk. Terima kasih.",
+  "code": "kode",
+  "serving_size": "ukuran takaran",
+  "serving": "takaran",
+  "add_nutrition": "tambah nutrisi",
+  "origins": "berasal dari",
+  "serving_size_info": "Masukkan takaran saji persis seperti yang tertulis pada kemasan, misalnya: 30g atau 250ml. Kolom ini sangat penting untuk perhitungan nutrisi yang akurat.",
+  "nutrition_per_info": "Pilih apakah nilai nutrisi di isi per 100g atau per takaran saji.",
+  "quantity_info": "Salin nilai yang tertera pada produk dan jangan lupa satuannya, contoh: 230g, 6, 3 x 150g",
   "remove":"hapus",
   "products_count_available": "total product",
 
@@ -118,6 +145,7 @@
   "intro3_title": "Detail Product",
   "intro3_subtitle": "Detail informasi product",
   "intro3_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>Nutri Score</b></h3>\n cek label nutrisi standard internasional",
-  "intro3_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>Nilai Gizi</b></h3>\n Cek dan kalkulasi nilai gizi dan AKG"
+  "intro3_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>Nilai Gizi</b></h3>\n Cek dan kalkulasi nilai gizi dan AKG",
+  "edit_product": "Edit Product"
 
 }

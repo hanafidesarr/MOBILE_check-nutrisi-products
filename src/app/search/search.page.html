@@ -118,7 +118,7 @@
         <ion-grid  (click)="openProduct(item.code, i)">
           <ion-row>
             <ion-col size="3">
-              <img style="border-radius: 10px;" [src]="item.image_small_url || 'assets/empty-product.png'" class="custom-thumbnail">
+              <img style="border-radius: 10px;" [src]="item.image_thumb_url || 'assets/empty-product.png'" class="custom-thumbnail">
             </ion-col>
             <ion-col size="6">
               <!-- <ion-card-subtitle>{{item.id}}</ion-card-subtitle> -->
@@ -181,7 +181,7 @@
   </ion-list>
   
   <!-- Add the ion-infinite-scroll component at the bottom of your content -->
-  <ion-infinite-scroll  *ngIf="result_products" (ionInfinite)="loadMore($event)">
+  <ion-infinite-scroll  (ionInfinite)="loadMore($event)" style="margin-top: -25%;">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."></ion-infinite-scroll-content>
   </ion-infinite-scroll>
 

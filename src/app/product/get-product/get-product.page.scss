@@ -16,3 +16,21 @@ ion-row {
 .swiper-slide {
   width: 80%; /* Set the width of your slides as needed */
 }
+
+.transparent-footer {
+  ion-toolbar {
+    --background: transparent;
+    --ion-toolbar-background: transparent;
+    box-shadow: none;
+    border: none;
+  }
+
+  ion-button {
+    --background: transparent;
+  }
+}
+
+.action-footer ion-button {
+  --background: var(--ion-color-light);
+  --color: var(--ion-color-primary);
+}

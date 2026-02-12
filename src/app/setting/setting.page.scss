@@ -10,11 +10,11 @@
   visibility: visible;
 }
 
-@media (prefers-color-scheme: dark) {
-  .barcode-scanning-modal {
-    --background: transparent;
-    --ion-background-color: transparent;
-  }
-}
+// @media (prefers-color-scheme: dark) {
+//   .barcode-scanning-modal {
+//     --background: transparent;
+//     --ion-background-color: transparent;
+//   }
+// }
 
 ion-content { --background: transparent !important; }

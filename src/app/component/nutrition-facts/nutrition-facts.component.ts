@@ -228,7 +228,7 @@ export class NutritionFactsComponent  implements OnChanges {
   }
 
   ngOnInit() {
-
+    
     this._translation_service.init();
     this.currentLanguage = this._translation_service.getCurrentLanguage();
 
@@ -238,8 +238,18 @@ export class NutritionFactsComponent  implements OnChanges {
 
   ngOnChanges(changes: any): void {
     if (changes.product && !changes.product.firstChange) {
-      let takaran_per = this.product?.serving_size ? 'serving' : '100g'
-      this.dynamic(takaran_per, null);
+      // let takaran_per = this.product?.serving_size ? 'serving' : '100g'
+
+      // let takaran_per = "value"
+      // karena
+      // salt_value	nilai asli input user → pakai ini di form
+      // salt_unit	unit asli → pakai ini di form
+      // salt_serving	nilai dalam gram → jangan tampilkan langsung
+      // salt_100g	nilai dalam gram → jangan tampilkan langsung
+      
+      // this.dynamic(takaran_per, null);
+      this.dynamic("value", null);
+
 
       this.akg_energy = (this.energy_kcal / 2550) * 100;
       this.akg_protein = (this.proteins / 65) * 100;
@@ -249,13 +259,15 @@ export class NutritionFactsComponent  implements OnChanges {
     }
   }
 
-
-  ionViewDidEnter() {
-
-  }
-
   customCalculateNutrition(e: any) {
-    this.dynamic('100g', e);
+    // let takaran_per = "value"
+    // karena
+    // salt_value	nilai asli input user → pakai ini di form
+    // salt_unit	unit asli → pakai ini di form
+    // salt_serving	nilai dalam gram → jangan tampilkan langsung
+    // salt_100g	nilai dalam gram → jangan tampilkan langsung
+    
+    this.dynamic("value", e);
 
     this.akg_formula(this.value_AKG)
   }
@@ -431,123 +443,277 @@ export class NutritionFactsComponent  implements OnChanges {
     }
   }
 
-  dynamic(data: any, custom_value:any) {
-    const exclusionList = ['100g', 'serving'];
-    if (custom_value) {
-      custom_value = custom_value / 100
-    } else {
-      custom_value = 1
+
+  // dynamic(data: any, custom_value:any) {
+  //   // OVERIDE DATA JADI VALUE
+  //   if (custom_value) {
+  //     custom_value = custom_value / 100
+  //   } else {
+  //     custom_value = 1
+  //   }
+  //   this.energy_kj = this.product?.nutriments["energy_" + data] * custom_value
+    
+  //   if (this.product?.nutriments["energy-kcal_" + data] == undefined) {
+  //     this.energy_kcal = (this.energy_kj / 4.184 ) * custom_value
+  //   } else {
+  //     this.energy_kcal = this.product?.nutriments["energy-kcal_" + data] * custom_value
+  //   }
+    
+  //   this.energy_from_fat = this.product?.nutriments["energy-from-fat_" + data] * custom_value
+  //   this.fat = this.product?.nutriments["fat_" + data] * custom_value
+  //   this.saturated_fat = this.product?.nutriments["saturated-fat_" + data] * custom_value
+  //   this.butyric_acid = this.product?.nutriments["butyric-acid_" + data] * custom_value
+  //   this.caproic_acid = this.product?.nutriments["caproic-acid_" + data] * custom_value
+  //   this.caprylic_acid = this.product?.nutriments["caprylic-acid_" + data] * custom_value
+  //   this.capric_acid = this.product?.nutriments["capric-acid_" + data] * custom_value
+  //   this.lauric_acid = this.product?.nutriments["lauric-acid_" + data] * custom_value
+  //   this.myristic_acid = this.product?.nutriments["myristic-acid_" + data] * custom_value
+  //   this.palmitic_acid = this.product?.nutriments["palmitic-acid_" + data] * custom_value
+  //   this.stearic_acid = this.product?.nutriments["stearic-acid_" + data] * custom_value
+  //   this.arachidic_acid = this.product?.nutriments["arachidic-acid_" + data] * custom_value
+  //   this.behenic_acid = this.product?.nutriments["behenic-acid_" + data] * custom_value
+  //   this.lignoceric_acid = this.product?.nutriments["lignoceric-acid_" + data] * custom_value
+  //   this.cerotic_acid = this.product?.nutriments["cerotic-acid_" + data] * custom_value
+  //   this.montanic_acid = this.product?.nutriments["montanic-acid_" + data] * custom_value
+  //   this.melissic_acid = this.product?.nutriments["melissic-acid_" + data] * custom_value
+  //   this.monounsaturated_fat = this.product?.nutriments["monounsaturated-fat_" + data] * custom_value
+  //   this.polyunsaturated_fat = this.product?.nutriments["polyunsaturated-fat_" + data] * custom_value
+
+  //   this.omega_3_fat = this.product?.nutriments["omega-3-fat_" + data] * custom_value
+  //   this.alpha_linolenic_acid = this.product?.nutriments["alpha-linolenic-acid_" + data] * custom_value
+  //   this.eicosapentaenoic_acid = this.product?.nutriments["eicosapentaenoic-acid_" + data] * custom_value
+  //   this.docosahexaenoic_acid = this.product?.nutriments["docosahexaenoic-acid_" + data] * custom_value
+
+  //   this.omega_6_fat = this.product?.nutriments["omega-6-fat_" + data] * custom_value
+  //   this.linoleic_acid = this.product?.nutriments["linoleic-acid_" + data] * custom_value
+  //   this.arachidonic_acid = this.product?.nutriments["arachidonic-acid_" + data] * custom_value
+  //   this.gamma_linolenic_acid = this.product?.nutriments["gamma-linolenic-acid_" + data] * custom_value
+  //   this.dihomo_gamma_linolenic_acid = this.product?.nutriments["dihomo-gamma-linolenic-acid_" + data] * custom_value
+
+  //   this.omega_9_fat = this.product?.nutriments["omega-9-fat_" + data] * custom_value
+  //   this.oleic_acid = this.product?.nutriments["oleic-acid_" + data] * custom_value
+  //   this.elaidic_acid = this.product?.nutriments["elaidic-acid_" + data] * custom_value
+  //   this.gondoic_acid = this.product?.nutriments["gondoic-acid_" + data] * custom_value
+  //   this.mead_acid = this.product?.nutriments["mead-acid_" + data] * custom_value
+  //   this.erucic_acid = this.product?.nutriments["erucic-acid_" + data] * custom_value
+  //   this.nervonic_acid = this.product?.nutriments["nervonic-acid_" + data] * custom_value
+
+
+  //   this.trans_fat = this.product?.nutriments["trans-fat_" + data] * custom_value
+  //   this.cholesterol = this.product?.nutriments["cholesterol_" + data] * custom_value
+    
+  //   this.carbohydrates = this.product?.nutriments["carbohydrates_" + data] * custom_value
+  //   this.sugars = this.product?.nutriments["sugars_" + data] * custom_value
+  //   this.sucrose = this.product?.nutriments["sucrose_" + data] * custom_value
+  //   this.glucose = this.product?.nutriments["glucose_" + data] * custom_value
+  //   this.fructose = this.product?.nutriments["fructose_" + data] * custom_value
+  //   this.lactose = this.product?.nutriments["lactose_" + data] * custom_value
+  //   this.maltose = this.product?.nutriments["maltose_" + data] * custom_value
+  //   this.maltodextrins = this.product?.nutriments["maltodextrins_" + data] * custom_value
+  //   this.starch = this.product?.nutriments["starch_" + data] * custom_value
+  //   this.polyols = this.product?.nutriments["polyols_" + data] * custom_value
+    
+  //   this.fiber = this.product?.nutriments["fiber_" + data] * custom_value
+  //   this.proteins = this.product?.nutriments["proteins_" + data] * custom_value
+  //   this.casein = this.product?.nutriments["casein_" + data] * custom_value
+  //   this.serum_proteins = this.product?.nutriments["serum-proteins_" + data] * custom_value
+  //   this.nucleotides = this.product?.nutriments["nucleotides_" + data] * custom_value
+  //   debugger
+  //   this.salt = this.product?.nutriments["salt_" + data] * custom_value
+  //   this.sodium = this.product?.nutriments["sodium_" + data] * custom_value
+  //   this.alcohol = this.product?.nutriments["alcohol_" + data] * custom_value
+
+
+  //   this.vitamin_a = this.product?.nutriments["vitamin-a_" + data] * custom_value
+  //   this.beta_carotene = this.product?.nutriments["beta-carotene_" + data] * custom_value
+  //   this.vitamin_d = this.product?.nutriments["vitamin-d_" + data] * custom_value
+  //   this.vitamin_e = this.product?.nutriments["vitamin-e_" + data] * custom_value
+  //   this.vitamin_k = this.product?.nutriments["vitamin-k_" + data] * custom_value
+  //   this.vitamin_c = this.product?.nutriments["vitamin-c_" + data] * custom_value
+  //   this.vitamin_b1 = this.product?.nutriments["vitamin-b1_" + data] * custom_value
+  //   this.vitamin_b2 = this.product?.nutriments["vitamin-b2_" + data] * custom_value
+  //   this.vitamin_pp = this.product?.nutriments["vitamin-pp_" + data] * custom_value
+  //   this.vitamin_b6 = this.product?.nutriments["vitamin-b6_" + data] * custom_value
+  //   this.vitamin_b9 = this.product?.nutriments["vitamin-b9_" + data] * custom_value
+  //   this.vitamin_b12 = this.product?.nutriments["vitamin-b12_" + data] * custom_value
+    
+  //   this.biotin = this.product?.nutriments["biotin_" + data] * custom_value
+  //   this.pantothenic_acid = this.product?.nutriments["pantothenic-acid_" + data] * custom_value
+  //   this.silica = this.product?.nutriments["silica_" + data] * custom_value
+  //   this.bicarbonate = this.product?.nutriments["bicarbonate_" + data] * custom_value
+  //   this.potassium = this.product?.nutriments["potassium_" + data] * custom_value
+  //   this.chloride = this.product?.nutriments["chloride_" + data] * custom_value
+  //   this.calcium = this.product?.nutriments["calcium_" + data] * custom_value
+  //   this.phosphorus = this.product?.nutriments["phosphorus_" + data] * custom_value
+  //   this.iron = this.product?.nutriments["iron_" + data] * custom_value
+  //   this.magnesium = this.product?.nutriments["magnesium_" + data] * custom_value
+  //   this.zinc = this.product?.nutriments["zinc_" + data] * custom_value
+  //   this.copper = this.product?.nutriments["copper_" + data] * custom_value
+  //   this.manganese = this.product?.nutriments["manganese_" + data] * custom_value
+  //   this.fluoride = this.product?.nutriments["fluoride_" + data] * custom_value
+  //   this.selenium = this.product?.nutriments["selenium_" + data] * custom_value
+  //   this.chromium = this.product?.nutriments["chromium_" + data] * custom_value
+  //   this.molybdenum = this.product?.nutriments["molybdenum_" + data] * custom_value
+  //   this.iodine = this.product?.nutriments["iodine_" + data] * custom_value
+  //   this.caffeine = this.product?.nutriments["caffeine_" + data] * custom_value
+  //   this.taurine = this.product?.nutriments["taurine_" + data] * custom_value
+  //   this.ph = this.product?.nutriments["ph_" + data] * custom_value
+  //   this.fruits_vegetables_nuts = this.product?.nutriments["fruits-vegetables-nuts_" + data] * custom_value
+  //   this.collagen_meat_protein_ratio = this.product?.nutriments["collagen-meat-protein-ratio_" + data] * custom_value
+  //   this.cocoa = this.product?.nutriments["cocoa_" + data] * custom_value
+  //   this.chlorophyl = this.product?.nutriments["chlorophyl_" + data] * custom_value
+  //   this.carbon_footprint = this.product?.nutriments["carbon_footprint_" + data] * custom_value
+
+  // }
+
+  dynamic(data: any, custom_value: any) {
+    
+    if (!this.product?.nutriments) return;
+
+    const nutriments = this.product.nutriments;
+
+    // ambil serving awal produk
+    const originalServing = this.getServingSizeInGrams(
+      this.product?.serving_size
+    );
+
+    // jika tidak ada perubahan, factor = 1
+    let factor = 1;
+
+    if (custom_value && originalServing) {
+      const newServing = this.getServingSizeInGrams(custom_value);
+      if (newServing > 0) {
+        factor = newServing / originalServing;
+      }
     }
-    this.energy_kj = this.product?.nutriments["energy_" + data] * custom_value
-    if (this.product?.nutriments["energy-kcal_" + data] == undefined) {
-      this.energy_kcal = (this.energy_kj / 4.184 ) * custom_value
-    } else {
-      this.energy_kcal = this.product?.nutriments["energy-kcal_" + data] * custom_value
+
+    // helper ambil nilai nutriment
+    const getValue = (key: string) => {
+      let value =
+        nutriments[key + "_value"] ??
+        nutriments[key + "_serving"] ??
+        nutriments[key + "_100g"];
+
+      if (value === undefined || value === null) {
+        return undefined;
+      }
+
+      return value * factor;
+    };
+
+    // ENERGY
+    this.energy_kcal = getValue("energy-kcal");
+    this.energy_kj = getValue("energy");
+
+    if (this.energy_kcal !== undefined) {
+      this.energy_kj = this.energy_kcal * 4.184;
+    } else if (this.energy_kj !== undefined) {
+      this.energy_kcal = this.energy_kj / 4.184;
     }
-    
-    this.energy_from_fat = this.product?.nutriments["energy-from-fat_" + data] * custom_value
-    this.fat = this.product?.nutriments["fat_" + data] * custom_value
-    this.saturated_fat = this.product?.nutriments["saturated-fat_" + data] * custom_value
-    this.butyric_acid = this.product?.nutriments["butyric-acid_" + data] * custom_value
-    this.caproic_acid = this.product?.nutriments["caproic-acid_" + data] * custom_value
-    this.caprylic_acid = this.product?.nutriments["caprylic-acid_" + data] * custom_value
-    this.capric_acid = this.product?.nutriments["capric-acid_" + data] * custom_value
-    this.lauric_acid = this.product?.nutriments["lauric-acid_" + data] * custom_value
-    this.myristic_acid = this.product?.nutriments["myristic-acid_" + data] * custom_value
-    this.palmitic_acid = this.product?.nutriments["palmitic-acid_" + data] * custom_value
-    this.stearic_acid = this.product?.nutriments["stearic-acid_" + data] * custom_value
-    this.arachidic_acid = this.product?.nutriments["arachidic-acid_" + data] * custom_value
-    this.behenic_acid = this.product?.nutriments["behenic-acid_" + data] * custom_value
-    this.lignoceric_acid = this.product?.nutriments["lignoceric-acid_" + data] * custom_value
-    this.cerotic_acid = this.product?.nutriments["cerotic-acid_" + data] * custom_value
-    this.montanic_acid = this.product?.nutriments["montanic-acid_" + data] * custom_value
-    this.melissic_acid = this.product?.nutriments["melissic-acid_" + data] * custom_value
-    this.monounsaturated_fat = this.product?.nutriments["monounsaturated-fat_" + data] * custom_value
-    this.polyunsaturated_fat = this.product?.nutriments["polyunsaturated-fat_" + data] * custom_value
-
-    this.omega_3_fat = this.product?.nutriments["omega-3-fat_" + data] * custom_value
-    this.alpha_linolenic_acid = this.product?.nutriments["alpha-linolenic-acid_" + data] * custom_value
-    this.eicosapentaenoic_acid = this.product?.nutriments["eicosapentaenoic-acid_" + data] * custom_value
-    this.docosahexaenoic_acid = this.product?.nutriments["docosahexaenoic-acid_" + data] * custom_value
-
-    this.omega_6_fat = this.product?.nutriments["omega-6-fat_" + data] * custom_value
-    this.linoleic_acid = this.product?.nutriments["linoleic-acid_" + data] * custom_value
-    this.arachidonic_acid = this.product?.nutriments["arachidonic-acid_" + data] * custom_value
-    this.gamma_linolenic_acid = this.product?.nutriments["gamma-linolenic-acid_" + data] * custom_value
-    this.dihomo_gamma_linolenic_acid = this.product?.nutriments["dihomo-gamma-linolenic-acid_" + data] * custom_value
-
-    this.omega_9_fat = this.product?.nutriments["omega-9-fat_" + data] * custom_value
-    this.oleic_acid = this.product?.nutriments["oleic-acid_" + data] * custom_value
-    this.elaidic_acid = this.product?.nutriments["elaidic-acid_" + data] * custom_value
-    this.gondoic_acid = this.product?.nutriments["gondoic-acid_" + data] * custom_value
-    this.mead_acid = this.product?.nutriments["mead-acid_" + data] * custom_value
-    this.erucic_acid = this.product?.nutriments["erucic-acid_" + data] * custom_value
-    this.nervonic_acid = this.product?.nutriments["nervonic-acid_" + data] * custom_value
 
 
-    this.trans_fat = this.product?.nutriments["trans-fat_" + data] * custom_value
-    this.cholesterol = this.product?.nutriments["cholesterol_" + data] * custom_value
-    
-    this.carbohydrates = this.product?.nutriments["carbohydrates_" + data] * custom_value
-    this.sugars = this.product?.nutriments["sugars_" + data] * custom_value
-    this.sucrose = this.product?.nutriments["sucrose_" + data] * custom_value
-    this.glucose = this.product?.nutriments["glucose_" + data] * custom_value
-    this.fructose = this.product?.nutriments["fructose_" + data] * custom_value
-    this.lactose = this.product?.nutriments["lactose_" + data] * custom_value
-    this.maltose = this.product?.nutriments["maltose_" + data] * custom_value
-    this.maltodextrins = this.product?.nutriments["maltodextrins_" + data] * custom_value
-    this.starch = this.product?.nutriments["starch_" + data] * custom_value
-    this.polyols = this.product?.nutriments["polyols_" + data] * custom_value
-    
-    this.fiber = this.product?.nutriments["fiber_" + data] * custom_value
-    this.proteins = this.product?.nutriments["proteins_" + data] * custom_value
-    this.casein = this.product?.nutriments["casein_" + data] * custom_value
-    this.serum_proteins = this.product?.nutriments["serum-proteins_" + data] * custom_value
-    this.nucleotides = this.product?.nutriments["nucleotides_" + data] * custom_value
-    this.salt = this.product?.nutriments["salt_" + data] * custom_value
-    this.sodium = this.product?.nutriments["sodium_" + data] * custom_value
-    this.alcohol = this.product?.nutriments["alcohol_" + data] * custom_value
+    this.energy_from_fat = getValue("energy-from-fat");
+    this.fat = getValue("fat");
+    this.saturated_fat = getValue("saturated-fat");
+    this.butyric_acid = getValue("butyric-acid");
+    this.caproic_acid = getValue("caproic-acid");
+    this.caprylic_acid = getValue("caprylic-acid");
+    this.capric_acid = getValue("capric-acid");
+    this.lauric_acid = getValue("lauric-acid");
+    this.myristic_acid = getValue("myristic-acid");
+    this.palmitic_acid = getValue("palmitic-acid");
+    this.stearic_acid = getValue("stearic-acid");
+    this.arachidic_acid = getValue("arachidic-acid");
+    this.behenic_acid = getValue("behenic-acid");
+    this.lignoceric_acid = getValue("lignoceric-acid");
+    this.cerotic_acid = getValue("cerotic-acid");
+    this.montanic_acid = getValue("montanic-acid");
+    this.melissic_acid = getValue("melissic-acid");
+    this.monounsaturated_fat = getValue("monounsaturated-fat");
+    this.polyunsaturated_fat = getValue("polyunsaturated-fat");
 
+    this.omega_3_fat = getValue("omega-3-fat");
+    this.alpha_linolenic_acid = getValue("alpha-linolenic-acid");
+    this.eicosapentaenoic_acid = getValue("eicosapentaenoic-acid");
+    this.docosahexaenoic_acid = getValue("docosahexaenoic-acid");
 
-    this.vitamin_a = this.product?.nutriments["vitamin-a_" + data] * custom_value
-    this.beta_carotene = this.product?.nutriments["beta-carotene_" + data] * custom_value
-    this.vitamin_d = this.product?.nutriments["vitamin-d_" + data] * custom_value
-    this.vitamin_e = this.product?.nutriments["vitamin-e_" + data] * custom_value
-    this.vitamin_k = this.product?.nutriments["vitamin-k_" + data] * custom_value
-    this.vitamin_c = this.product?.nutriments["vitamin-c_" + data] * custom_value
-    this.vitamin_b1 = this.product?.nutriments["vitamin-b1_" + data] * custom_value
-    this.vitamin_b2 = this.product?.nutriments["vitamin-b2_" + data] * custom_value
-    this.vitamin_pp = this.product?.nutriments["vitamin-pp_" + data] * custom_value
-    this.vitamin_b6 = this.product?.nutriments["vitamin-b6_" + data] * custom_value
-    this.vitamin_b9 = this.product?.nutriments["vitamin-b9_" + data] * custom_value
-    this.vitamin_b12 = this.product?.nutriments["vitamin-b12_" + data] * custom_value
-    
-    this.biotin = this.product?.nutriments["biotin_" + data] * custom_value
-    this.pantothenic_acid = this.product?.nutriments["pantothenic-acid_" + data] * custom_value
-    this.silica = this.product?.nutriments["silica_" + data] * custom_value
-    this.bicarbonate = this.product?.nutriments["bicarbonate_" + data] * custom_value
-    this.potassium = this.product?.nutriments["potassium_" + data] * custom_value
-    this.chloride = this.product?.nutriments["chloride_" + data] * custom_value
-    this.calcium = this.product?.nutriments["calcium_" + data] * custom_value
-    this.phosphorus = this.product?.nutriments["phosphorus_" + data] * custom_value
-    this.iron = this.product?.nutriments["iron_" + data] * custom_value
-    this.magnesium = this.product?.nutriments["magnesium_" + data] * custom_value
-    this.zinc = this.product?.nutriments["zinc_" + data] * custom_value
-    this.copper = this.product?.nutriments["copper_" + data] * custom_value
-    this.manganese = this.product?.nutriments["manganese_" + data] * custom_value
-    this.fluoride = this.product?.nutriments["fluoride_" + data] * custom_value
-    this.selenium = this.product?.nutriments["selenium_" + data] * custom_value
-    this.chromium = this.product?.nutriments["chromium_" + data] * custom_value
-    this.molybdenum = this.product?.nutriments["molybdenum_" + data] * custom_value
-    this.iodine = this.product?.nutriments["iodine_" + data] * custom_value
-    this.caffeine = this.product?.nutriments["caffeine_" + data] * custom_value
-    this.taurine = this.product?.nutriments["taurine_" + data] * custom_value
-    this.ph = this.product?.nutriments["ph_" + data] * custom_value
-    this.fruits_vegetables_nuts = this.product?.nutriments["fruits-vegetables-nuts_" + data] * custom_value
-    this.collagen_meat_protein_ratio = this.product?.nutriments["collagen-meat-protein-ratio_" + data] * custom_value
-    this.cocoa = this.product?.nutriments["cocoa_" + data] * custom_value
-    this.chlorophyl = this.product?.nutriments["chlorophyl_" + data] * custom_value
-    this.carbon_footprint = this.product?.nutriments["carbon_footprint_" + data] * custom_value
+    this.omega_6_fat = getValue("omega-6-fat");
+    this.linoleic_acid = getValue("linoleic-acid");
+    this.arachidonic_acid = getValue("arachidonic-acid");
+    this.gamma_linolenic_acid = getValue("gamma-linolenic-acid");
+    this.dihomo_gamma_linolenic_acid = getValue("dihomo-gamma-linolenic-acid");
+
+    this.omega_9_fat = getValue("omega-9-fat");
+    this.oleic_acid = getValue("oleic-acid");
+    this.elaidic_acid = getValue("elaidic-acid");
+    this.gondoic_acid = getValue("gondoic-acid");
+    this.mead_acid = getValue("mead-acid");
+    this.erucic_acid = getValue("erucic-acid");
+    this.nervonic_acid = getValue("nervonic-acid");
+
+    this.trans_fat = getValue("trans-fat");
+    this.cholesterol = getValue("cholesterol");
+
+    this.carbohydrates = getValue("carbohydrates");
+    this.sugars = getValue("sugars");
+    this.sucrose = getValue("sucrose");
+    this.glucose = getValue("glucose");
+    this.fructose = getValue("fructose");
+    this.lactose = getValue("lactose");
+    this.maltose = getValue("maltose");
+    this.maltodextrins = getValue("maltodextrins");
+    this.starch = getValue("starch");
+    this.polyols = getValue("polyols");
+
+    this.fiber = getValue("fiber");
+    this.proteins = getValue("proteins");
+    this.casein = getValue("casein");
+    this.serum_proteins = getValue("serum-proteins");
+    this.nucleotides = getValue("nucleotides");
+
+    this.salt = getValue("salt");
+    this.sodium = getValue("sodium");
+    this.alcohol = getValue("alcohol");
+
+    this.vitamin_a = getValue("vitamin-a");
+    this.beta_carotene = getValue("beta-carotene");
+    this.vitamin_d = getValue("vitamin-d");
+    this.vitamin_e = getValue("vitamin-e");
+    this.vitamin_k = getValue("vitamin-k");
+    this.vitamin_c = getValue("vitamin-c");
+    this.vitamin_b1 = getValue("vitamin-b1");
+    this.vitamin_b2 = getValue("vitamin-b2");
+    this.vitamin_pp = getValue("vitamin-pp");
+    this.vitamin_b6 = getValue("vitamin-b6");
+    this.vitamin_b9 = getValue("vitamin-b9");
+    this.vitamin_b12 = getValue("vitamin-b12");
+
+    this.biotin = getValue("biotin");
+    this.pantothenic_acid = getValue("pantothenic-acid");
+    this.silica = getValue("silica");
+    this.bicarbonate = getValue("bicarbonate");
+    this.potassium = getValue("potassium");
+    this.chloride = getValue("chloride");
+    this.calcium = getValue("calcium");
+    this.phosphorus = getValue("phosphorus");
+    this.iron = getValue("iron");
+    this.magnesium = getValue("magnesium");
+    this.zinc = getValue("zinc");
+    this.copper = getValue("copper");
+    this.manganese = getValue("manganese");
+    this.fluoride = getValue("fluoride");
+    this.selenium = getValue("selenium");
+    this.chromium = getValue("chromium");
+    this.molybdenum = getValue("molybdenum");
+    this.iodine = getValue("iodine");
+    this.caffeine = getValue("caffeine");
+    this.taurine = getValue("taurine");
+    this.ph = getValue("ph");
+    this.fruits_vegetables_nuts = getValue("fruits-vegetables-nuts");
+    this.collagen_meat_protein_ratio = getValue("collagen-meat-protein-ratio");
+    this.cocoa = getValue("cocoa");
+    this.chlorophyl = getValue("chlorophyl");
+    this.carbon_footprint = getValue("carbon_footprint");
 
   }
 
@@ -589,4 +755,27 @@ export class NutritionFactsComponent  implements OnChanges {
     });
     return await modal.present();
   }
+
+  getServingSizeInGrams(serving: any): number {
+    if (!serving) return 0;
+
+    if (typeof serving === "number") return serving;
+
+    const str = serving.toString().toLowerCase().trim();
+
+    if (str.includes("kg")) {
+      return parseFloat(str) * 1000;
+    }
+
+    if (str.includes("g")) {
+      return parseFloat(str);
+    }
+
+    if (str.includes("ml")) {
+      return parseFloat(str); // asumsi 1ml ≈ 1g
+    }
+
+    return parseFloat(str) || 0;
+  }
+
 }

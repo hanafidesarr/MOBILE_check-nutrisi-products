@@ -28,7 +28,7 @@ export class ProductService {
   products(data: any) {
     let params = new HttpParams()
       .set('search_terms', data.keyword)
-      .set('fields', 'code,product_name,quantity,brands,nutriscore_grade,ecoscore_grade,image_small_url,countries,countries_tags,manufacturing_places,origins')
+      .set('fields', 'code,product_name,quantity,brands,nutriscore_grade,ecoscore_grade,image_thumb_url,image_small_url,countries,countries_tags,manufacturing_places,origins')
       .set('page', data.page)
       .set('countries_tags', data.country || '')
       .set('page_size', data.page_size)
@@ -55,7 +55,7 @@ export class ProductService {
   // =================================================
   // Add product
   // =================================================
-  async addProduct(data: { code: string, product_name: string, brands: string, lang?: string }): Promise<any> {
+  async addProduct(data: { code: string, product_name: string, brands: string, lang?: string, quantity? :string, image_thumb_url?: string, image_small_url?: string, manufacturing_places?: string }): Promise<any> {
     await this.initStorage();
     try {
       const res: any = await this.http.post<any>(`${this.myBackend}/add_product`, data).toPromise();
@@ -80,7 +80,6 @@ export class ProductService {
   async editProduct(product: any): Promise<any> {
     // kirim semua field yang ada di this.product secara dinamis
     const payload = { product };
-
     return this.http.post<any>(`${this.myBackend}/edit_product`, payload).toPromise();
   }
 
@@ -147,6 +146,10 @@ export interface LocalProduct {
   brands: string;
   lang?: string;
   synced: boolean;
+  quantity?:string;
+  image_thumb_url?: string;
+  image_small_url?: string;
+  manufacturing_places?: string;
 }
 
 export interface MyResponse {

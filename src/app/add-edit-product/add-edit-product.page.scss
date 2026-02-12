@@ -74,3 +74,154 @@
 .ion-text-bold {
   font-weight: 600;
 }
+
+.nutrition-table {
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 12px;
+}
+
+.nutrition-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  transition: background 0.2s ease;
+}
+
+/* striped effect */
+.nutrition-row:nth-child(odd) {
+  background: #f2f3f5;
+}
+
+.nutrition-row:nth-child(even) {
+  background: #e9eaed;
+}
+
+.nutrition-label {
+  font-weight: 500;
+  font-size: 14px;
+  color: #333;
+  width: 45%;
+}
+
+.nutrition-inputs {
+  display: flex;
+  gap: 8px;
+  width: 55%;
+  justify-content: flex-end;
+}
+
+/* input style */
+.nutrition-input {
+  --background: #ffffff;
+  --border-radius: 8px;
+  --padding-start: 6px;
+  --padding-end: 6px;
+  border-radius: 8px;
+  border: 1px solid #dcdcdc;
+  height: 30px;
+  font-size: 13px;
+}
+
+
+
+.nutrition-select {
+  width: 70px;
+  margin: 0 auto;
+
+  --background: #ffffff;
+  --border-radius: 8px;
+  --padding-start: 8px;
+  --padding-end: 8px;
+  flex-direction: row-reverse !important;
+}
+
+/* Override alignment bawaan Ionic */
+.nutrition-select::part(container) {
+  justify-content: center;
+}
+
+.nutrition-select::part(text) {
+  text-align: center;
+  width: 100%;
+}
+
+/* Paksa wrapper jadi tengah */
+.nutrition-select .select-wrapper {
+  text-align: center !important;
+}
+
+.no-border {
+  --inner-border-width: 0;
+  --border-width: 0;
+}
+
+/* vertical layout */
+.nutrition-row.vertical {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+}
+
+.nutrition-row.vertical .nutrition-label {
+  width: 100%;
+  font-size: 13px;
+  color: #666;
+}
+
+.nutrition-input.full {
+  width: 100%;
+  text-align: left;
+}
+
+.nutrition-inputs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nutrition-input {
+  flex: 1;
+  --background: #fff;
+  border-radius: 8px;
+  padding: 0 8px;
+}
+
+.nutrition-select {
+  width: 70px; /* lebar tetap */
+  --background: #fff;
+  border-radius: 8px;
+}
+
+.info-btn {
+  --padding-start: 0;
+  --padding-end: 0;
+  --border-radius: 50%;
+  --background: var(--ion-color-light);
+
+  width: 20px;
+  height: 20px;
+  min-height: 20px;
+  min-width: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 10px;
+}
+
+/* kecilkan icon */
+.info-btn ion-icon {
+  font-size: 12px;
+}
+
+.ion-text-primary {
+  color: var(--ion-color-primary) !important;
+  font-weight: 600;
+}
+
+ion-footer {
+  padding-bottom: env(safe-area-inset-bottom);
+}

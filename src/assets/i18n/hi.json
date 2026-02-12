@@ -102,7 +102,34 @@
 
   "result": "परिणाम",
   "total": "कुल",
+  "quantity": "मात्रा",
+  "general": "सामान्य",
+  "general_information": "सामान्य जानकारी",
+  "image": "चित्र",
+  "labels_and_certifications": "लेबल और प्रमाणन",
+  "product_name": "उत्पाद का नाम",
+  "product_name_in_en": "अंग्रेज़ी में उत्पाद का नाम",
+  "front_image": "सामने की तस्वीर",
+  "no_image": "कोई चित्र नहीं",
+  "ingredients": "सामग्री",
+  "nutrition": "पोषण",
+  "packaging": "पैकेजिंग",
+  "ingredient_text": "सामग्री विवरण",
+  "nutrition_per": "पोषण प्रति",
+  "the_nutrition_values_below_are_based_on": "नीचे दिए गए पोषण मान आधारित हैं",
+  "add": "जोड़ें",
+  "add_label": "लेबल जोड़ें",
+  "save": "सहेजें",
+  "please_fill_new_product": "कृपया इस नए उत्पाद का डेटा भरें, कम से कम उत्पाद का नाम। धन्यवाद।",
+  "code": "कोड",
   "quantity_per_serving": "प्रति सर्विंग मात्रा",
+  "serving_size": "सर्विंग आकार",
+  "serving": "सर्विंग",
+  "add_nutrition": "पोषण जोड़ें",
+  "origins": "मूल देश",
+  "serving_size_info": "सर्विंग आकार ठीक वैसे ही दर्ज करें जैसा पैकेज पर लिखा है, उदाहरण: 30g या 250ml। सटीक पोषण गणना के लिए यह बहुत महत्वपूर्ण है।",
+  "nutrition_per_info": "चुनें कि पोषण मान 100g के लिए हैं या प्रति सर्विंग।",
+  "quantity_info": "उत्पाद पर दी गई मात्रा को कॉपी करें और इकाइयाँ न भूलें, उदाहरण: 230g, 6, 3 x 150g",
   "introduction": "परिचय",
 
   "intro1_title": "उत्पाद बारकोड स्कैन करें",
@@ -119,5 +146,7 @@
   "intro3_title": "उत्पाद विवरण",
   "intro3_subtitle": "उत्पाद का विस्तृत जानकारी",
   "intro3_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>न्यूट्री स्कोर</b></h3>\n अंतरराष्ट्रीय मानक पोषण लेबल की जाँच करें",
-  "intro3_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>पोषण मूल्य</b></h3>\n पोषण मूल्य और अनुशंसित दैनिक आवश्यकता की गणना करें (Daily Value Nutrition)"
+  "intro3_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>पोषण मूल्य</b></h3>\n पोषण मूल्य और अनुशंसित दैनिक आवश्यकता की गणना करें (Daily Value Nutrition)",
+
+  "edit_product": "उत्पाद संपादित करें"
 }

@@ -1,6 +1,13 @@
+<ion-header>
+  <ion-toolbar color="primary" style="padding-top: 50px;">
+    <ion-title>{{product?.product_name}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/search"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content [fullscreen]="true">
-	<div  style="height: 60px !important; background-color: var(--ion-color-primary);">
-	</div>	
 	<ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
@@ -23,22 +30,23 @@
 		<ion-card color="light" class="ion-no-margin ion-no-padding" style="box-shadow: none; border-top: solid 1rem var(--ion-color-primary); border-bottom: solid 1rem var(--ion-color-primary);">
 			<ion-grid class="ion-margin-top ion-margin-bottom">
 				<ion-row>
-					<ion-col size="10">
+					<ion-col size="12">
 						<h2 class="ion-no-margin">{{product?.product_name}}</h2>
-						{{product?.brands}} - {{product?.quantity}}
-						<div>{{_translation_service.translateKey('country_of_manufacture')}} : {{product?.manufacturing_places || product?.origins || '-'}}</div>
-						<div>
+						<!-- <div>{{ _translation_service.translateKey('countries_where_marketed') }} : {{product?.brands || '-' }}</div> -->
+						<div>{{ _translation_service.translateKey('quantity') }} : {{product?.quantity || '-' }}</div>
+						<div>{{_translation_service.translateKey('origins')}} : {{product?.origins || '-'}}</div>
+						<!-- <div>
 							{{ _translation_service.translateKey('countries_where_marketed') }} : 
 							{{ (product?.countries | regexReplace:'[a-z]{2}:':'') 
 								|| (product?.countries_tags?.join(', ') | regexReplace:'[a-z]{2}:':'') 
 								|| '-' }}
-						</div>
+						</div> -->
 					</ion-col>
-					<ion-col size="2" justify="end" class="ion-text-center" style="align-items: center !important;">
+					<!-- <ion-col size="2" justify="end" class="ion-text-center" style="align-items: center !important;">
 						<ion-icon (click)="editProduct(product?.code)" color="dark" name="create" size="large" justify="end"></ion-icon>
 						<ion-icon (click)="removeFavorite()" *ngIf="isFavorite(product?.code)" color="dark" name="bookmark" size="large" justify="end"></ion-icon>
 						<ion-icon (click)="saveFavorite()" *ngIf="!isFavorite(product?.code)" color="dark" name="bookmark-outline" size="large" justify="end"></ion-icon>
-					</ion-col>
+					</ion-col> -->
 				</ion-row>
 			</ion-grid>
 		</ion-card>
@@ -240,6 +248,50 @@
 		<small><ion-text>{{_translation_service.translateKey('source_from')}} : <a>openfoodfacts</a></ion-text></small>
 	</div> -->
 </ion-content>
+
+<ion-footer class="action-footer">
+  <ion-toolbar color="primary">
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
+        <div class="left-bottom-actions">
+
+          <ion-button
+            fill="solid"
+            color="light"
+            size="small"
+            *ngIf="isFavorite(product?.code)"
+            (click)="removeFavorite()"
+          >
+            <ion-icon name="bookmark" slot="start" color="primary"></ion-icon>
+						<ion-text>{{_translation_service.translateKey('bookmark')}}</ion-text>
+          </ion-button>
+
+          <ion-button
+            fill="solid"
+            color="light"
+            size="small"
+            *ngIf="!isFavorite(product?.code)"
+            (click)="saveFavorite()"
+          >
+            <ion-icon name="bookmark-outline" slot="start" color="primary"></ion-icon>
+						<ion-text>{{_translation_service.translateKey('bookmark')}}</ion-text>
+          </ion-button>
+
+          <ion-button
+            fill="solid"
+            color="light"
+            size="small"
+            (click)="editProduct(product?.code)"
+          >
+            <ion-icon name="create-outline" slot="start" color="primary"></ion-icon>
+						<ion-text>{{_translation_service.translateKey('edit_product')}}</ion-text>
+          </ion-button>
+
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>
 
 
 

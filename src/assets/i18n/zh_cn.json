@@ -102,7 +102,35 @@
 
   "result": "结果",
   "total": "总计",
+  "quantity": "数量",
+  "general": "通用",
+  "general_information": "基本信息",
+  "image": "图片",
+  "labels_and_certifications": "标签与认证",
+  "product_name": "产品名称",
+  "product_name_in_en": "英文产品名称",
+  "front_image": "正面图片",
+  "no_image": "暂无图片",
+  "ingredients": "成分",
+  "nutrition": "营养成分",
+  "packaging": "包装",
+  "ingredient_text": "成分说明",
+  "nutrition_per": "营养基准",
+  "the_nutrition_values_below_are_based_on": "以下营养数值基于",
+  "add": "添加",
+  "add_label": "添加标签",
+  "save": "保存",
+  "please_fill_new_product": "请填写该新产品的信息，至少填写产品名称。谢谢。",
+  "code": "条码",
   "quantity_per_serving": "每份数量",
+  "serving_size": "食用份量",
+  "serving": "每份",
+  "add_nutrition": "添加营养成分",
+  "origins": "产地",
+  "serving_size_info": "请输入包装上标注的食用份量，例如：30g 或 250ml。此字段对营养计算非常重要。",
+  "nutrition_per_info": "选择营养数值是按每100g还是按每份填写。",
+  "quantity_info": "请复制产品上标注的数量并包含单位，例如：230g、6、3 x 150g",
+  
   "introduction": "介绍",
 
   "intro1_title": "扫描产品条形码",
@@ -119,5 +147,7 @@
   "intro3_title": "产品详情",
   "intro3_subtitle": "产品详细信息",
   "intro3_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>营养分数</b></h3>\n 检查国际标准的营养标签",
-  "intro3_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>营养价值</b></h3>\n 检查和计算营养价值和每日推荐量 (Daily Value Nutrition)"
+  "intro3_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>营养价值</b></h3>\n 检查和计算营养价值和每日推荐量 (Daily Value Nutrition)",
+
+  "edit_product": "编辑产品"
 }

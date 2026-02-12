@@ -15,7 +15,7 @@ import { ProductService, LocalProduct } from 'src/app/api/product.service';
 })
 export class BookmarkPage implements OnInit {
 
-  selectedTab: string = 'product';
+  selectedTab: string = 'bookmark';
   isSupported = false;
   list_favorites: any;
   barcodes: Barcode[] = [];
@@ -108,7 +108,7 @@ export class BookmarkPage implements OnInit {
 
   openProduct = (barcodeId: any, index:any) => {
 
-    if (index !== 0 && index % 10 === 0) {
+    if (index !== 0 && index % 5 === 0) {
       this._admobService.showInterstitial()
     }
     this._router.navigate(['/get-product', barcodeId]);

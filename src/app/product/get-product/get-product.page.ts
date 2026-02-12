@@ -81,6 +81,7 @@ export class GetProductPage implements OnInit {
       this.barcode = params['barcodeId'];
       
 
+      // this._loadingService.hideLoader();
       this.getProduct(this.barcode)
     });
   }
@@ -103,7 +104,7 @@ export class GetProductPage implements OnInit {
     
     this.backButtonListener = App.addListener('backButton', () => {
 
-      this._loadingService.hideLoader();
+      // this._loadingService.hideLoader();
       
     });
   }
@@ -178,7 +179,7 @@ export class GetProductPage implements OnInit {
       alert("data sudah ada di favorite")
       return;
     } else {
-      this.list_favorites.unshift({ code: this.product.code, product_name: this.product.product_name, image_small_url: this.product.image_small_url, quantity: this.product.quantity, brands: this.product.brands, nutriscore_grade: this.product["nutriscore_grade"], ecoscore_grade: this.product["ecoscore_grade"], manufacturing_places: this.product["manufacturing_places"], origins: this.product["origins"], countries: this.product["countries"], countries_tags: this.product["countries_tags"] });
+      this.list_favorites.unshift({ code: this.product.code, product_name: this.product.product_name, image_thumb_url: this.product.image_thumb_url, quantity: this.product.quantity, brands: this.product.brands, nutriscore_grade: this.product["nutriscore_grade"], ecoscore_grade: this.product["ecoscore_grade"], manufacturing_places: this.product["manufacturing_places"], origins: this.product["origins"], countries: this.product["countries"], countries_tags: this.product["countries_tags"] });
       localStorage.setItem('list_favorites', JSON.stringify(this.list_favorites)); 
       // const icon = document.querySelector('ion-icon');
       // if (icon) {
@@ -263,6 +264,7 @@ export class GetProductPage implements OnInit {
   }
 
   getProduct(barcode: any){
+    // this._loadingService.showLoader();
     this._productService.product({barcode_id: this.barcode}).subscribe(
       (response) => {
         this.product = response.product
@@ -284,10 +286,10 @@ export class GetProductPage implements OnInit {
         
         let nutriments = this.product?.nutriments
         this.nutriments_length = Object.keys(nutriments).length;
-        this._loadingService.hideLoader();
+        // this._loadingService.hideLoader();
       },
       (error) => {
-        this._loadingService.hideLoader();
+        // this._loadingService.hideLoader();
 
         if (error.status == 404) {
           this.addProduct(this.barcode);

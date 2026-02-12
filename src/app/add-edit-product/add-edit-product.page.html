@@ -2,8 +2,11 @@
   <ion-toolbar color="primary" style="padding-top: 50px;">
     <ion-title>{{ is_add_product ? 'Add Product' : product?.product_name }}</ion-title>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tabs/home"></ion-back-button>
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
     </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
@@ -11,92 +14,119 @@
 
   <ion-card style="border: 2px solid #f44336; border-radius: 8px;" *ngIf="is_add_product">
     <ion-card-content>
-      Please fill in this new product data, at least the product name. Thank you.
+      {{ _translation_service.translateKey('please_fill_new_product') }}
     </ion-card-content>
   </ion-card>
 
+
   <ion-accordion-group  [multiple]="true">
-<!-- =============== NON IMAGE FIELDS =============== -->
-    <ion-accordion value="general-information" toggleIcon="caret-down-circle" toggleIconSlot="end" class="ion-margin-bottom">
-      <ion-item slot="header" color="light">
-        <ion-label>General Information</ion-label>
+    <!-- =============== NON IMAGE FIELDS =============== -->
+    <ion-accordion value="general-information" toggleIcon="caret-down-circle" toggleIconSlot="end" class="ion-margin-bottom border-radius-8px">
+      <ion-item slot="header" color="primary">
+        <ion-label>{{ _translation_service.translateKey('general') | titlecase }}</ion-label>
       </ion-item>
 
-      <div class="" slot="content">
+      <div slot="content">
         <ion-list>
-          <ion-item>
-            <ion-label position="stacked">Code</ion-label>
-            <ion-input [(ngModel)]="product.code"  [disabled]="true"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Product Name</ion-label>
-            <ion-input [(ngModel)]="product.product_name"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Product Name EN</ion-label>
-            <ion-input [(ngModel)]="product.product_name_en"></ion-input>
-          </ion-item>
-          <!-- <ion-item>
-            <ion-input placeholder="Product Name" [(ngModel)]="product.product_name"></ion-input>
-          </ion-item> -->
 
-          <ion-item>
-            <ion-label position="stacked">Brands</ion-label>
-            <ion-input [(ngModel)]="product.brands"></ion-input>
-          </ion-item>
+          <div class="nutrition-table m-0">
 
-          <ion-item>
-            <ion-label position="stacked">Quantity</ion-label>
-            <ion-input [(ngModel)]="product.quantity"></ion-input>
-          </ion-item>
-          
-          <!-- <ng-container *ngFor="let field of allFields">
-            <ng-container *ngIf="!isImageField(field)">
-              <ion-item>
-                <ion-label position="stacked">{{ field }}</ion-label>
+            <div class="nutrition-row vertical">
+              <div class="nutrition-label">
+                {{ _translation_service.translateKey('code') }}
+              </div>
+              <ion-input class="nutrition-input" [(ngModel)]="product.code" [disabled]="true">
+              </ion-input>
+            </div>
 
-                <ion-textarea
-                  *ngIf="isLongText(product[field])"
-                  [(ngModel)]="product[field]"
-                  autoGrow="true">
-                </ion-textarea>
+            <div class="nutrition-row vertical">
+              <div class="nutrition-label">
+                {{ _translation_service.translateKey('product_name') }}
+              </div>
+              <ion-input
+                class="nutrition-input full"
+                [(ngModel)]="product.product_name">
+              </ion-input>
+            </div>
 
-                <ion-input
-                  *ngIf="!isLongText(product[field])"
-                  [(ngModel)]="product[field]">
-                </ion-input>
-              </ion-item>
-            </ng-container>
-          </ng-container> -->
+            <div class="nutrition-row vertical">
+              <div class="nutrition-label">
+                {{ _translation_service.translateKey('product_name_in_en') }}
+              </div>
+              <ion-input
+                class="nutrition-input full"
+                [(ngModel)]="product.product_name_en">
+              </ion-input>
+            </div>
+
+            <div class="nutrition-row vertical">
+              <div class="nutrition-label">
+                {{ _translation_service.translateKey('brand') }}
+              </div>
+              <ion-input
+                class="nutrition-input full"
+                [(ngModel)]="product.brands">
+              </ion-input>
+            </div>
+            
+            <div class="nutrition-row">
+              <div class="nutrition-label">{{ _translation_service.translateKey('quantity') }}</div>
+              <div class="nutrition-inputs">
+                <ion-input [(ngModel)]="product.quantity" class="nutrition-input text-right"></ion-input>
+              </div>
+              <ion-icon name="help-circle-outline" size="large" class="px-1" color="success" (click)="openQuantityInfo()"></ion-icon>
+            </div>
+
+            <div class="nutrition-row vertical">
+              <div class="nutrition-label">
+                {{ _translation_service.translateKey('origins') }}
+              </div>
+              <ion-input
+                class="nutrition-input full"
+                [(ngModel)]="product.origins">
+              </ion-input>
+            </div>
+
+            <!-- <div class="nutrition-row vertical">
+              <div class="nutrition-label">
+                Manufacturing Places
+              </div>
+              <ion-input
+                class="nutrition-input full"
+                [(ngModel)]="product.manufacturing_places">
+              </ion-input>
+            </div> -->
+
+          </div>
 
         </ion-list>
       </div>
-    </ion-accordion>
 
+    </ion-accordion>
+    <ion-img
+      *ngIf="product?.image_thumb_url && is_add_product"
+      [src]="product.image_thumb_url">
+    </ion-img>
     <app-image-fields
       *ngIf="product"
       [product]="product"
       [imageLoading]="imageLoading"
       [allImages]="allImages"
+      [is_add_product]="is_add_product"
+      [is_image_thumb_url]="product?.image_thumb_url"
       [onImageSelected]="onImageSelected.bind(this)"
-      [onImageLoaded]="onImageLoaded.bind(this)"
-      [onImageError]="onImageError.bind(this)"
-      [setMainPreview]="setMainPreview.bind(this)"
     ></app-image-fields>
 
-
-    
-
     <!-- =============== Ingredient =============== -->
-    <ion-accordion value="ingredient" toggleIcon="caret-down-circle" toggleIconSlot="end" class="ion-margin-bottom">
-      <ion-item slot="header" color="light">
-        <ion-label>Ingredient</ion-label>
+    <ion-accordion *ngIf="!is_add_product" value="ingredient" toggleIcon="caret-down-circle" toggleIconSlot="end" class="ion-margin-bottom border-radius-8px">
+      <ion-item slot="header" color="primary">
+        <ion-label>{{ _translation_service.translateKey('ingredient') | titlecase }}</ion-label>
       </ion-item>
 
       <div slot="content">
         <ion-list>
           <ion-item>
-            <ion-label position="stacked">Ingredients text</ion-label>
+            <ion-label position="stacked">{{ _translation_service.translateKey('ingredient_text') | titlecase }}</ion-label>
             <ion-input [(ngModel)]="product.ingredients_text"></ion-input>
           </ion-item>
         </ion-list>
@@ -104,13 +134,116 @@
       </div>
     </ion-accordion>
 
-
-    <!-- =============== Ingredient =============== -->
-    <ion-accordion value="labels" toggleIcon="caret-down-circle" toggleIconSlot="end" class="ion-margin-bottom">
-      <ion-item slot="header" color="light">
-        <ion-label>Labels & Certifications</ion-label>
+    <ion-accordion *ngIf="!is_add_product" value="nutriments" toggleIcon="caret-down-circle" toggleIconSlot="end" class="ion-margin-bottom border-radius-8px">
+      <ion-item slot="header" color="primary">
+        <ion-label>{{ _translation_service.translateKey('nutrition_facts') | titlecase }}</ion-label>
       </ion-item>
 
+      <div slot="content">
+        <ion-list>
+
+          <div class="nutrition-table m-0">
+
+            <div class="nutrition-row">
+              <div class="nutrition-label">{{ _translation_service.translateKey('serving_size') }}</div>
+              <div class="nutrition-inputs">
+                <ion-input [(ngModel)]="product.serving_size" class="nutrition-input text-right"></ion-input>
+              </div>
+              <ion-icon name="help-circle-outline" size="large" class="px-1" color="danger" (click)="openServingInfo()"></ion-icon>
+            </div>
+
+            <div class="nutrition-row">
+              <div class="nutrition-label">{{ _translation_service.translateKey('nutrition_per') }}</div>
+              <div class="nutrition-inputs">
+                <ion-select [(ngModel)]="product.nutrition_data_per" placeholder="Select one" labelPlacement="end" class="nutrition-input text-right p-0">
+                  <ion-select-option value="100g">100g</ion-select-option>
+                  <ion-select-option value="serving">{{_translation_service.translateKey('serving')}}</ion-select-option>
+                </ion-select>
+              </div>
+              <ion-icon name="help-circle-outline" size="large" class="px-1" color="success" (click)="openNutritionData()"></ion-icon>
+            </div>
+          </div>
+
+          <ion-item class="no-border" slot="end">
+            {{ _translation_service.translateKey('the_nutrition_values_below_are_based_on') }}
+            <span slot="end" class="ion-text-primary ml-2">
+              {{
+                product.nutrition_data_per === 'serving'
+                  ? _translation_service.translateKey('serving')
+                  : product.nutrition_data_per
+              }}
+            </span>
+          </ion-item>
+
+          <!-- <ion-item-divider>
+            <ion-label>Nutrition Details</ion-label>
+          </ion-item-divider> -->
+
+          <div class="nutrition-table m-0">
+            <div class="nutrition-row" *ngFor="let n of nutrimentList; let i = index">
+              <div class="nutrition-label">
+                {{ humanizeNutrientKey(n.key) }}
+              </div>
+
+              <div class="nutrition-inputs">
+                <ion-input
+                  class="nutrition-input"
+                  type="number"
+                  placeholder="0"
+                  [(ngModel)]="n.value">
+                </ion-input>
+
+                <ng-container *ngIf="getUnitsFor(n.key).length > 1; else singleUnit">
+                  <ion-select
+                    class="nutrition-select"
+                    labelPlacement="end"
+                    [(ngModel)]="n.unit">
+                    <ion-select-option
+                      *ngFor="let u of getUnitsFor(n.key)"
+                      [value]="u">
+                      {{ u }}
+                    </ion-select-option>
+                  </ion-select>
+                </ng-container>
+
+                <ng-template #singleUnit>
+                  <div class="nutrition-unit">
+                    {{ n.unit }}
+                  </div>
+                </ng-template>
+
+
+                <ion-button
+                  fill="solid"
+                  color="danger"
+                  size="small"
+                  (click)="removeNutriment(i)">
+                  ✕
+                </ion-button>
+              </div>
+            </div>
+
+          </div>
+          <div class="ion-padding">
+            <ion-button
+              expand="block"
+              fill="outline"
+              size="small"
+              (click)="openAddNutrimentPopup()">
+              + {{ _translation_service.translateKey('add_nutrition') }}
+            </ion-button>
+          </div>
+
+        </ion-list>
+      </div>
+    </ion-accordion>
+
+    <!-- =============== Labels & Certifications =============== -->
+    <ion-accordion *ngIf="!is_add_product" value="labels" toggleIcon="caret-down-circle" toggleIconSlot="end" class="ion-margin-bottom border-radius-8px">
+      <ion-item slot="header" color="primary">
+        <ion-label>{{ _translation_service.translateKey('labels_and_certifications') | titlecase }}</ion-label>
+      </ion-item>
+      
       <div slot="content">
         <ion-list>
           <!-- LABELS SECTION -->
@@ -122,13 +255,13 @@
           <!-- Input untuk menambah label -->
           <ion-item>
             <ion-input
-              placeholder="Add label…"
+              placeholder="{{_translation_service.translateKey('add_label')}}..."
               [(ngModel)]="newLabel"
               (keyup.enter)="addLabel()">
             </ion-input>
 
             <ion-button (click)="addLabel()" fill="outline" size="small">
-              Add
+              {{ _translation_service.translateKey('add') }}
             </ion-button>
           </ion-item>
           <!-- Chips -->
@@ -151,8 +284,10 @@
 
   </ion-accordion-group>
 
-  <ion-button expand="block" (click)="submit()" [disabled]="isSubmitting">
-    {{ is_add_product ? 'Add Product' : 'Save Changes' }}
-  </ion-button>
 
 </ion-content>
+<ion-footer class="ion-padding">
+  <ion-button expand="block" (click)="submit()" [disabled]="isSubmitting" ion-margin-bottom>
+    {{ _translation_service.translateKey('save') }}
+  </ion-button>
+</ion-footer>

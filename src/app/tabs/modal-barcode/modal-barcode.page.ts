@@ -20,7 +20,7 @@ export class ModalBarcodePage implements OnInit {
   }
 
   ngOnInit() {
-    this._admobService.showBanner("bottom_center")
+    this._admobService.showBanner("top_center")
   }
   
   ionViewDidLeave() {

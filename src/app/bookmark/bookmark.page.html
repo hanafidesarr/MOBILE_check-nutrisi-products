@@ -2,13 +2,13 @@
   <ion-toolbar color="primary" style="padding-top: 50px;">
     <ion-segment [(ngModel)]="selectedTab">
 
+      <ion-segment-button value="bookmark">
+        <ion-label>Bookmark</ion-label>
+      </ion-segment-button>
       <ion-segment-button value="product">
         <ion-label>Product List</ion-label>
       </ion-segment-button>
 
-      <ion-segment-button value="bookmark">
-        <ion-label>Bookmark</ion-label>
-      </ion-segment-button>
 
     </ion-segment>
   </ion-toolbar>
@@ -16,70 +16,6 @@
 
 
 <ion-content>
-
-  <!-- PRODUCT LIST -->
-  <div *ngIf="selectedTab === 'product'">
-
-    <!-- Total product -->
-    <ion-item *ngIf="localProducts" class="ion-margin-top ion-text-right">
-      <ion-label class="ion-text-right">
-        {{ _translation_service.translateKey('total_product') }} : {{ localProducts.length }}
-      </ion-label>
-    </ion-item>
-
-    <!-- Product Cards -->
-    <ion-list class="ion-margin-bottom">
-
-      <ion-card *ngFor="let item of localProducts; let i = index">
-        <ion-grid (click)="editProduct(item)">
-          <ion-row>
-
-            <ion-col size="3">
-              <img [src]="item.image_small_url || 'assets/empty-product.png'"
-                   class="custom-thumbnail"
-                   style="border-radius:10px;">
-            </ion-col>
-
-            <ion-col size="6">
-              <ion-card-subtitle>
-                <h6 class="ion-no-margin">
-                  {{ item.product_name || item.brands }}
-                </h6>
-              </ion-card-subtitle>
-
-              <div class="ion-margin-top ion-margin-bottom">
-                <div>{{ _translation_service.translateKey('qty') }} : {{ item.quantity || '-' }}</div>
-                <div>{{ _translation_service.translateKey('brand') }} : {{ item.brands || '-' }}</div>
-                <div>{{ _translation_service.translateKey('country_of_manufacture') }} :
-                  {{ item.manufacturing_places || item.origins || '-' }}
-                </div>
-                <div>
-                  {{ _translation_service.translateKey('countries_where_marketed') }} :
-                  {{ (item.countries | regexReplace:'[a-z]{2}:':'')
-                      || (item.countries_tags?.join(', ') | regexReplace:'[a-z]{2}:':'')
-                      || '-' }}
-                </div>
-              </div>
-            </ion-col>
-
-            <ion-col size="3">
-              <img *ngIf="item.nutriscore_grade"
-                   style="border-radius:10px;"
-                   src="assets/nutriscore/nutriscore-{{item.nutriscore_grade}}.svg">
-            </ion-col>
-
-          </ion-row>
-        </ion-grid>
-      </ion-card>
-
-    </ion-list>
-
-    <div *ngIf="localProducts?.length === 0" class="ion-text-center ion-margin ion-padding-top">
-      No products added yet
-    </div>
-
-  </div>
-
 
 
   <!-- BOOKMARK TAB -->
@@ -102,7 +38,7 @@
 
                 <ion-col size="3" (click)="openProduct(item.code, i)">
                   <img style="border-radius: 10px;"
-                       [src]="item.image_small_url || 'assets/empty-product.png'"
+                       [src]="item.image_thumb_url || item.image_small_url || 'assets/empty-product.png'"
                        class="custom-thumbnail">
                 </ion-col>
 
@@ -161,6 +97,70 @@
     </div>
 
   </div>
+
+  <!-- PRODUCT LIST -->
+  <div *ngIf="selectedTab === 'product'">
+
+    <!-- Total product -->
+    <ion-item *ngIf="localProducts" class="ion-margin-top ion-text-right">
+      <ion-label class="ion-text-right">
+        {{ _translation_service.translateKey('total_product') }} : {{ localProducts.length }}
+      </ion-label>
+    </ion-item>
+
+    <!-- Product Cards -->
+    <ion-list class="ion-margin-bottom">
+
+      <ion-card *ngFor="let item of localProducts; let i = index">
+        <ion-grid (click)="openProduct(item.code, i)">
+          <ion-row>
+
+            <ion-col size="3">
+              <img [src]="item.image_thumb_url || item.image_small_url || item.image_url || 'assets/empty-product.png'"
+                   class="custom-thumbnail"
+                   style="border-radius:10px;">
+            </ion-col>
+
+            <ion-col size="6">
+              <ion-card-subtitle>
+                <h6 class="ion-no-margin">
+                  {{ item.product_name || item.brands }}
+                </h6>
+              </ion-card-subtitle>
+
+              <div class="ion-margin-top ion-margin-bottom">
+                <div>{{ _translation_service.translateKey('qty') }} : {{ item.quantity || '-' }}</div>
+                <div>{{ _translation_service.translateKey('brand') }} : {{ item.brands || '-' }}</div>
+                <div>{{ _translation_service.translateKey('country_of_manufacture') }} :
+                  {{ item.manufacturing_places || item.origins || '-' }}
+                </div>
+                <div>
+                  {{ _translation_service.translateKey('countries_where_marketed') }} :
+                  {{ (item.countries | regexReplace:'[a-z]{2}:':'')
+                      || (item.countries_tags?.join(', ') | regexReplace:'[a-z]{2}:':'')
+                      || '-' }}
+                </div>
+              </div>
+            </ion-col>
+
+            <ion-col size="3">
+              <img *ngIf="item.nutriscore_grade"
+                   style="border-radius:10px;"
+                   src="assets/nutriscore/nutriscore-{{item.nutriscore_grade}}.svg">
+            </ion-col>
+
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+
+    </ion-list>
+
+    <div *ngIf="localProducts?.length === 0" class="ion-text-center ion-margin ion-padding-top">
+      No products added yet
+    </div>
+
+  </div>
+
 
 
 </ion-content>

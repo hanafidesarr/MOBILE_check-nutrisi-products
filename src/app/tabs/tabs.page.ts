@@ -132,7 +132,7 @@ export class TabsPage {
 
         this.barcode = barcodes[0]
         if (this.barcode.format == "QR_CODE") {
-          alert("ini QRCODE")
+          // alert("ini QRCODE")
           // this.presentAlert('Barocode salah', 'pastikan anda scan barcode, bukan QRCode');
           return;
         } else {

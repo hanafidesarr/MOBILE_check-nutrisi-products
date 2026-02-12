@@ -102,7 +102,34 @@
 
   "result": "Ergebnis",
   "total": "Gesamt",
+  "quantity": "Menge",
+  "general": "allgemein",
+  "general_information": "allgemeine Informationen",
+  "image": "Bild",
+  "labels_and_certifications": "Labels und Zertifizierungen",
+  "product_name": "Produktname",
+  "product_name_in_en": "Produktname auf Englisch",
+  "front_image": "Vorderseite Bild",
+  "no_image": "kein Bild",
+  "ingredients": "Zutaten",
+  "nutrition": "Nährwerte",
+  "packaging": "Verpackung",
+  "ingredient_text": "Zutatenliste",
+  "nutrition_per": "Nährwerte pro",
+  "the_nutrition_values_below_are_based_on": "Die untenstehenden Nährwerte basieren auf",
+  "add": "hinzufügen",
+  "add_label": "Label hinzufügen",
+  "save": "speichern",
+  "please_fill_new_product": "Bitte füllen Sie die Daten dieses neuen Produkts aus, mindestens den Produktnamen. Danke.",
+  "code": "Code",
   "quantity_per_serving": "Menge pro Portion",
+  "serving_size": "Portionsgröße",
+  "serving": "Portion",
+  "add_nutrition": "Nährwerte hinzufügen",
+  "origins": "Herkunft",
+  "serving_size_info": "Geben Sie die Portionsgröße genau so ein, wie sie auf der Verpackung steht, z. B.: 30g oder 250ml. Dieses Feld ist sehr wichtig für genaue Nährwertberechnungen.",
+  "nutrition_per_info": "Wählen Sie, ob die Nährwerte pro 100g oder pro Portion eingegeben werden.",
+  "quantity_info": "Kopieren Sie die auf dem Produkt angegebene Menge und vergessen Sie die Einheiten nicht, Beispiel: 230g, 6, 3 x 150g",
   "introduction": "Einführung",
 
   "intro1_title": "Produktbarcode scannen",
@@ -119,5 +146,7 @@
   "intro3_title": "Produktdetails",
   "intro3_subtitle": "Detaillierte Produktinformationen",
   "intro3_card1": "<h3 style=\"margin-top: 1.5rem;\"><b>Nährwertampel</b></h3>\n Überprüfen Sie die internationale Standardnährwertkennzeichnung",
-  "intro3_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>Nährwert</b></h3>\n Überprüfen und berechnen Sie den Nährwert und die empfohlene Tagesdosis (Daily Value Nutrition)"
+  "intro3_card2": "<h3 style=\"margin-top: 1.5rem;\"><b>Nährwert</b></h3>\n Überprüfen und berechnen Sie den Nährwert und die empfohlene Tagesdosis (Daily Value Nutrition)",
+  
+  "edit_product": "Produkt bearbeiten"
 }
