@@ -139,6 +139,8 @@ export class NutritionFactsComponent  implements OnChanges {
   // GLOBAL
   currentLanguage: any;
 
+  nutritionList: any[] = [];
+
   constructor(public _translation_service: TranslationService, private _alertCtrl: AlertController, public modalController: ModalController) {
     this.akg_lists_anak = [
       {

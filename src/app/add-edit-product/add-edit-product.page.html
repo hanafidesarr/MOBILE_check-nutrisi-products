@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary" style="padding-top: 50px;">
-    <ion-title>{{ is_add_product ? 'Add Product' : product?.product_name }}</ion-title>
+    <ion-title>{{ is_add_product ? _translation_service.translateKey('add_product') : product?.product_name }}</ion-title>
     <ion-buttons slot="start">
       <ion-button (click)="goBack()">
         <ion-icon name="arrow-back"></ion-icon>
@@ -182,7 +182,9 @@
           <div class="nutrition-table m-0">
             <div class="nutrition-row" *ngFor="let n of nutrimentList; let i = index">
               <div class="nutrition-label">
-                {{ humanizeNutrientKey(n.key) }}
+                {{ translateNutrimentKey(n.key) }}
+
+
               </div>
 
               <div class="nutrition-inputs">

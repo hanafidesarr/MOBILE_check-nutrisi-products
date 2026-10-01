@@ -64,6 +64,7 @@ export class AddEditProductPage implements OnInit {
 
   defaultNutriments = [ 
     { key: 'energy-kcal', value: null, unit: 'kcal' },
+    { key: 'energy-from-fat', label: 'Energy from fat', unit: 'kcal' },
     { key: 'fat', value: null, unit: 'g' },
     { key: 'saturated-fat', value: null, unit: 'g' },
     { key: 'carbohydrates', value: null, unit: 'g' },
@@ -82,9 +83,56 @@ export class AddEditProductPage implements OnInit {
     { key: 'trans-fat', label: 'Trans fat', unit: 'g' },
     { key: 'cholesterol', label: 'Cholesterol', unit: 'mg' },
 
+    // Asam lemak jenuh detail
+    { key: 'butyric-acid', label: 'Butyric acid', unit: 'g' },
+    { key: 'caproic-acid', label: 'Caproic acid', unit: 'g' },
+    { key: 'caprylic-acid', label: 'Caprylic acid', unit: 'g' },
+    { key: 'capric-acid', label: 'Capric acid', unit: 'g' },
+    { key: 'lauric-acid', label: 'Lauric acid', unit: 'g' },
+    { key: 'myristic-acid', label: 'Myristic acid', unit: 'g' },
+    { key: 'palmitic-acid', label: 'Palmitic acid', unit: 'g' },
+    { key: 'stearic-acid', label: 'Stearic acid', unit: 'g' },
+    { key: 'arachidic-acid', label: 'Arachidic acid', unit: 'g' },
+    { key: 'behenic-acid', label: 'Behenic acid', unit: 'g' },
+    { key: 'lignoceric-acid', label: 'Lignoceric acid', unit: 'g' },
+    { key: 'cerotic-acid', label: 'Cerotic acid', unit: 'g' },
+    { key: 'montanic-acid', label: 'Montanic acid', unit: 'g' },
+    { key: 'melissic-acid', label: 'Melissic acid', unit: 'g' },
+
+    // Omega fats
+    { key: 'omega-3-fat', label: 'Omega 3 fat', unit: 'g' },
+    { key: 'alpha-linolenic-acid', label: 'Alpha-linolenic acid', unit: 'g' },
+    { key: 'eicosapentaenoic-acid', label: 'EPA', unit: 'g' },
+    { key: 'docosahexaenoic-acid', label: 'DHA', unit: 'g' },
+
+    { key: 'omega-6-fat', label: 'Omega 6 fat', unit: 'g' },
+    { key: 'linoleic-acid', label: 'Linoleic acid', unit: 'g' },
+    { key: 'arachidonic-acid', label: 'Arachidonic acid', unit: 'g' },
+    { key: 'gamma-linolenic-acid', label: 'Gamma-linolenic acid', unit: 'g' },
+    { key: 'dihomo-gamma-linolenic-acid', label: 'Dihomo-gamma-linolenic acid', unit: 'g' },
+
+    { key: 'omega-9-fat', label: 'Omega 9 fat', unit: 'g' },
+    { key: 'oleic-acid', label: 'Oleic acid', unit: 'g' },
+    { key: 'elaidic-acid', label: 'Elaidic acid', unit: 'g' },
+    { key: 'gondoic-acid', label: 'Gondoic acid', unit: 'g' },
+    { key: 'mead-acid', label: 'Mead acid', unit: 'g' },
+    { key: 'erucic-acid', label: 'Erucic acid', unit: 'g' },
+    { key: 'nervonic-acid', label: 'Nervonic acid', unit: 'g' },
+
     // Karbohidrat detail
+    { key: 'sucrose', label: 'Sucrose', unit: 'g' },
+    { key: 'glucose', label: 'Glucose', unit: 'g' },
+    { key: 'fructose', label: 'Fructose', unit: 'g' },
+    { key: 'lactose', label: 'Lactose', unit: 'g' },
+    { key: 'maltose', label: 'Maltose', unit: 'g' },
+    { key: 'maltodextrins', label: 'Maltodextrins', unit: 'g' },
     { key: 'starch', label: 'Starch', unit: 'g' },
     { key: 'polyols', label: 'Polyols', unit: 'g' },
+
+    // Protein detail
+    { key: 'casein', label: 'Casein', unit: 'g' },
+    { key: 'serum-proteins', label: 'Serum proteins', unit: 'g' },
+    { key: 'nucleotides', label: 'Nucleotides', unit: 'g' },
 
     // Mineral
     { key: 'potassium', label: 'Potassium', unit: 'mg' },
@@ -93,41 +141,170 @@ export class AddEditProductPage implements OnInit {
     { key: 'magnesium', label: 'Magnesium', unit: 'mg' },
     { key: 'zinc', label: 'Zinc', unit: 'mg' },
     { key: 'phosphorus', label: 'Phosphorus', unit: 'mg' },
+    { key: 'copper', label: 'Copper', unit: 'mg' },
+    { key: 'manganese', label: 'Manganese', unit: 'mg' },
+    { key: 'fluoride', label: 'Fluoride', unit: 'mg' },
+    { key: 'selenium', label: 'Selenium', unit: 'µg' },
+    { key: 'chromium', label: 'Chromium', unit: 'µg' },
+    { key: 'molybdenum', label: 'Molybdenum', unit: 'µg' },
+    { key: 'iodine', label: 'Iodine', unit: 'µg' },
+    { key: 'chloride', label: 'Chloride', unit: 'mg' },
 
     // Vitamin utama
     { key: 'vitamin-a', label: 'Vitamin A', unit: 'µg' },
+    { key: 'beta-carotene', label: 'Beta carotene', unit: 'µg' },
     { key: 'vitamin-c', label: 'Vitamin C', unit: 'mg' },
     { key: 'vitamin-d', label: 'Vitamin D', unit: 'µg' },
     { key: 'vitamin-e', label: 'Vitamin E', unit: 'mg' },
     { key: 'vitamin-k', label: 'Vitamin K', unit: 'µg' },
 
     // Vitamin B complex
-    { key: 'vitamin-b1', label: 'Vitamin B1 (Thiamin)', unit: 'mg' },
-    { key: 'vitamin-b2', label: 'Vitamin B2 (Riboflavin)', unit: 'mg' },
-    { key: 'vitamin-b3', label: 'Vitamin B3 (Niacin)', unit: 'mg' },
-    { key: 'vitamin-b5', label: 'Vitamin B5 (Pantothenic acid)', unit: 'mg' },
-    { key: 'vitamin-b6', label: 'Vitamin B6', unit: 'mg' },
+    { key: 'vitamin_b1', label: 'Vitamin B1 (Thiamin)', unit: 'mg' },
+    { key: 'vitamin_b2', label: 'Vitamin B2 (Riboflavin)', unit: 'mg' },
+    { key: 'vitamin_pp', label: 'Vitamin B3 (Niacin)', unit: 'mg' },
+    { key: 'vitamin_b6', label: 'Vitamin B6', unit: 'mg' },
     { key: 'vitamin-b9', label: 'Vitamin B9 (Folate)', unit: 'µg' },
     { key: 'vitamin-b12', label: 'Vitamin B12', unit: 'µg' },
+    { key: 'biotin', label: 'Biotin', unit: 'µg' },
+    { key: 'pantothenic-acid', label: 'Pantothenic acid', unit: 'mg' },
 
     // Lainnya
     { key: 'caffeine', label: 'Caffeine', unit: 'mg' },
-    { key: 'taurine', label: 'Taurine', unit: 'mg' }
+    { key: 'taurine', label: 'Taurine', unit: 'mg' },
+    { key: 'silica', label: 'Silica', unit: 'mg' },
+    { key: 'bicarbonate', label: 'Bicarbonate', unit: 'mg' },
+    { key: 'ph', label: 'pH', unit: '' },
+    { key: 'fruits-vegetables-nuts', label: 'Fruits/vegetables/nuts', unit: '%' },
+    { key: 'collagen-meat-protein-ratio', label: 'Collagen/meat protein ratio', unit: '%' },
+    { key: 'cocoa', label: 'Cocoa', unit: '%' },
+    { key: 'chlorophyl', label: 'Chlorophyll', unit: 'mg' },
+    { key: 'carbon-footprint', label: 'Carbon footprint', unit: 'g' }
   ];
 
+
   nutrimentUnits: { [key: string]: string[] } = {
+    // Energy
     'energy-kcal': ['kcal'],
+    'energy-from-fat': ['kcal'],
+
+    // Lemak utama
     fat: ['g', 'mg', 'µg'],
     'saturated-fat': ['g', 'mg', 'µg'],
+    'monounsaturated-fat': ['g', 'mg', 'µg'],
+    'polyunsaturated-fat': ['g', 'mg', 'µg'],
+    'trans-fat': ['g', 'mg', 'µg'],
+    cholesterol: ['mg', 'µg', 'g'],
+
+    // Asam lemak
+    'butyric-acid': ['g', 'mg', 'µg'],
+    'caproic-acid': ['g', 'mg', 'µg'],
+    'caprylic-acid': ['g', 'mg', 'µg'],
+    'capric-acid': ['g', 'mg', 'µg'],
+    'lauric-acid': ['g', 'mg', 'µg'],
+    'myristic-acid': ['g', 'mg', 'µg'],
+    'palmitic-acid': ['g', 'mg', 'µg'],
+    'stearic-acid': ['g', 'mg', 'µg'],
+    'arachidic-acid': ['g', 'mg', 'µg'],
+    'behenic-acid': ['g', 'mg', 'µg'],
+    'lignoceric-acid': ['g', 'mg', 'µg'],
+    'cerotic-acid': ['g', 'mg', 'µg'],
+    'montanic-acid': ['g', 'mg', 'µg'],
+    'melissic-acid': ['g', 'mg', 'µg'],
+
+    // Omega
+    'omega-3-fat': ['g', 'mg', 'µg'],
+    'alpha-linolenic-acid': ['g', 'mg', 'µg'],
+    'eicosapentaenoic-acid': ['g', 'mg', 'µg'],
+    'docosahexaenoic-acid': ['g', 'mg', 'µg'],
+
+    'omega-6-fat': ['g', 'mg', 'µg'],
+    'linoleic-acid': ['g', 'mg', 'µg'],
+    'arachidonic-acid': ['g', 'mg', 'µg'],
+    'gamma-linolenic-acid': ['g', 'mg', 'µg'],
+    'dihomo-gamma-linolenic-acid': ['g', 'mg', 'µg'],
+
+    'omega-9-fat': ['g', 'mg', 'µg'],
+    'oleic-acid': ['g', 'mg', 'µg'],
+    'elaidic-acid': ['g', 'mg', 'µg'],
+    'gondoic-acid': ['g', 'mg', 'µg'],
+    'mead-acid': ['g', 'mg', 'µg'],
+    'erucic-acid': ['g', 'mg', 'µg'],
+    'nervonic-acid': ['g', 'mg', 'µg'],
+
+    // Karbohidrat
     carbohydrates: ['g', 'mg', 'µg'],
     sugars: ['g', 'mg', 'µg'],
+    sucrose: ['g', 'mg', 'µg'],
+    glucose: ['g', 'mg', 'µg'],
+    fructose: ['g', 'mg', 'µg'],
+    lactose: ['g', 'mg', 'µg'],
+    maltose: ['g', 'mg', 'µg'],
+    maltodextrins: ['g', 'mg', 'µg'],
+    starch: ['g', 'mg', 'µg'],
+    polyols: ['g', 'mg', 'µg'],
+
+    // Protein
     proteins: ['g', 'mg', 'µg'],
+    casein: ['g', 'mg', 'µg'],
+    'serum-proteins': ['g', 'mg', 'µg'],
+    nucleotides: ['g', 'mg', 'µg'],
+
+    // Serat
+    fiber: ['g', 'mg', 'µg'],
+
+    // Garam
     salt: ['g', 'mg', 'µg'],
     sodium: ['g', 'mg', 'µg'],
-    fiber: ['g', 'mg', 'µg'],
+
+    // Alkohol
     alcohol: ['%'],
-    cholesterol: ['g', 'mg', 'µg']
+
+    // Mineral
+    potassium: ['mg', 'µg'],
+    calcium: ['mg', 'µg'],
+    iron: ['mg', 'µg'],
+    magnesium: ['mg', 'µg'],
+    zinc: ['mg', 'µg'],
+    phosphorus: ['mg', 'µg'],
+    copper: ['mg', 'µg'],
+    manganese: ['mg', 'µg'],
+    fluoride: ['mg', 'µg'],
+    selenium: ['µg', 'mg'],
+    chromium: ['µg', 'mg'],
+    molybdenum: ['µg', 'mg'],
+    iodine: ['µg', 'mg'],
+    chloride: ['mg', 'µg'],
+
+    // Vitamin
+    'vitamin-a': ['µg', 'mg'],
+    'beta-carotene': ['µg', 'mg'],
+    'vitamin-c': ['mg', 'µg'],
+    'vitamin-d': ['µg', 'mg'],
+    'vitamin-e': ['mg', 'µg'],
+    'vitamin-k': ['µg', 'mg'],
+
+    'vitamin-b1': ['mg', 'µg'],
+    'vitamin-b2': ['mg', 'µg'],
+    'vitamin-pp': ['mg', 'µg'],
+    'vitamin-b6': ['mg', 'µg'],
+    'vitamin-b9': ['µg', 'mg'],
+    'vitamin-b12': ['µg', 'mg'],
+    biotin: ['µg', 'mg'],
+    'pantothenic-acid': ['mg', 'µg'],
+
+    // Lainnya
+    caffeine: ['mg', 'µg'],
+    taurine: ['mg', 'µg'],
+    silica: ['mg', 'µg'],
+    bicarbonate: ['mg', 'µg'],
+    ph: [''],
+    'fruits-vegetables-nuts': ['%'],
+    'collagen-meat-protein-ratio': ['%'],
+    cocoa: ['%'],
+    chlorophyl: ['mg', 'µg'],
+    'carbon-footprint': ['g', 'mg']
   };
+
 
   constructor(
     private route: ActivatedRoute,
@@ -539,7 +716,7 @@ export class AddEditProductPage implements OnInit {
       .filter(n => !existingKeys.includes(n.key))
       .map(n => ({
         type: 'radio',
-        label: n.label,
+        label: this.translateNutrimentKey(n.key),
         value: n.key
       }));
 
@@ -603,7 +780,7 @@ export class AddEditProductPage implements OnInit {
       this.isSubmitting = false;
 
       this._loadingService.hideLoader();
-      this._admobService.showInterstitial()
+      this._admobService.showInterstitial();
       await this.showToast('Product saved successfully');
       if (this.is_redirect_to_bookmark) {
         this.router.navigate(['/tabs/bookmark']);
@@ -723,6 +900,12 @@ export class AddEditProductPage implements OnInit {
     } else {
       this.location.back();
     }
+  }
+  
+  translateNutrimentKey(key: string): string {
+    if (!key) return '';
+    const normalizedKey = key.replace(/-/g, '_');
+    return this._translation_service.translateKey(normalizedKey);
   }
 
   

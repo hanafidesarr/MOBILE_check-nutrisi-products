@@ -185,7 +185,9 @@ export class GetProductPage implements OnInit {
       // if (icon) {
       //   icon.style.color = 'red';
       // }
-      this._toast_service.presentToast(this._translation_service.translateKey('info_product_saved_bookmark'))
+      this._admobService.showInterstitial().then(() => {
+        this._toast_service.presentToast(this._translation_service.translateKey('info_product_saved_bookmark'))
+      });
     }
 
 
